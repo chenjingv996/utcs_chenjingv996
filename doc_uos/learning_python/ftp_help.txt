@@ -1,0 +1,119 @@
+https://blog.csdn.net/sunxiaoju/article/details/85224602?spm=1001.2101.3001.6650.5&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-5.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-5.pc_relevant_default&utm_relevant_index=10
+
+1、使用sudo apt install vsftpd安装，如下图所示：
+
+
+
+2、为FTP添加用户，使用sudo useradd -m sunftp命令添加一个sunftp的用户，如下图所示：
+
+
+
+3、为sunftp用户设置密码，使用sudo passwd sunftp修改密码，此时可能会提示：passwd：认证令牌操作错误，如下图所示：
+
+
+
+4、如果提示错误，先执行：sudo pwconv，然后在执行sudo passwd sunftp即可，如下图所示：
+
+
+
+5、在/home/sunftp/目录中创建一个ftpdir目录用于作为ftp的根目录，如下图所示：
+
+
+
+6、使用 sudo vim /etc/vsftpd.conf编辑配置文件，用于配置目录信息，然后添加：
+
+local_root=/home/sunftp/ftpdir
+allow_writeable_chroot=YES
+如下图所示：
+
+
+
+7、将#chroot_local_user=YES前的注释去掉，如下图所示：
+
+
+
+其余的选项如：
+
+listen=NO 
+listen_ipv6=YES #vsftpd 将监听 ipv6 而不是 IPv4，你可以根据你的网络情况设置 anonymous_enable=NO #不允许匿名用户 
+local_enable=YES #允许本地用户登录 
+write_enable=YES #允许用户有修改文件权限 
+local_umask=022 #本地用户创建文件的 umask 值 
+dirmessage_enable=YES #用户第一次进入目录时的提示消息 
+use_localtime=YES #使用本地时间 
+xferlog_enable=YES #一个存有详细的上传和下载信息的日志文件 
+connect_from_port_20=YES #在服务器上针对 PORT 类型的连接使用端口 20 
+chroot_local_user=YES #本地用户将进入 chroot 环境，当登录以后默认情况下是其 home 目录 secure_chroot_dir=/var/run/vsftpd/empty #当vsftpd不需要访问系统文件的权限时，就会将使用者限制在此资料夹中 
+pam_service_name=vsftpd #这个字符串是PAM服务vsftpd将使用的名称。必须启用 rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem #此选项指定用于SSL的RSA证书的位置，加密连接。必须开启 
+rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key #加密链接私匙 ssl_enable=NO 
+pasv_enable=Yes 
+pasv_min_port=10000 
+pasv_max_port=10100 
+local_root=/var/www/html #登录默认目录 
+allow_writeable_chroot=YES #默认情况下，出于安全原因，VSFTPD 不允许 chroot 目录具有可写权限。然而，我们可以通过选项 allow_writeable_chroot=YES 来改变这个设置
+8、其他选择默认，保存退出，然后使用sudo service vsftpd start命令启动，如下图所示：
+
+
+
+9、在该目录中新建一个文件，或者拷贝一个文件，如下图所示：
+
+
+
+10、然后打开浏览器输入：ftp://192.168.0.109让其输入用户名和密码，如下图所示：
+
+
+
+11、输入用户名密码之后即可看到刚刚新建的一个文件，如下图所示：
+
+
+
+12、然后使用scp ntfsformac15.5.10_wm.dmg sunxj@192.168.0.109:/home/sunftp/ftpdir/ 命令上传文件，ntfsformac15.5.10_wm.dmg表示要上传的文件，sunxj@192.168.0.109表示用户名和主机IP地址，/home/sunftp/ftpdir/表示要上传远程目录位置，如下图所示：
+
+
+
+ 
+
+13、当出现scp: /home/sunftp/ftpdir//ntfsformac15.5.10_wm.dmg: Permission denied错误时，说明远程目录没有权限，需要将对应的目录设置为777权限，如下图所示：
+
+
+
+14、再次上传即可成功，可使用scp -r upload sunxj@192.168.0.109:/home/sunftp/ftpdir/ 将upload目录上传到服务器上，如下图所示：
+
+
+
+
+
+15、再次查看目录，如下图所示：
+
+
+
+16、从远程主机下载文件使用：scp  sunxj@192.168.0.109:/home/sunftp/ftpdir/ntfsformac15.5.10_wm.dmg ntfsformac15.5.10_wm.dmg，下载目录使用：scp -r  sunxj@192.168.0.109:/home/sunftp/ftpdir/upload upload
+
+如下图所示：
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+————————————————
+版权声明：本文为CSDN博主「sxjlinux」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/sunxiaoju/article/details/85224602
