@@ -4,4 +4,6 @@ git@github.com:chenjingv996/utcs_chenjingv996.git
 gh repo clone chenjingv996/utcs_chenjingv996
 
 git push:
-chenjingv996/Einstein!23./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
+chenjingv996
+Einstein!23.
+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
