@@ -1,7 +1,0 @@
-https://github.com/chenjingv996/utcs_chenjingv996
-https://github.com/chenjingv996/utcs_chenjingv996.git
-git@github.com:chenjingv996/utcs_chenjingv996.git
-gh repo clone chenjingv996/utcs_chenjingv996
-
-Personal access tokens:
-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
