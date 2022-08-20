@@ -7,4 +7,27 @@ gh repo clone chenjingv996/utcs_chenjingv996
 git push:
 chenjingv996
 Einstein!23.
-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
+
+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
+
+https://blog.csdn.net/qq_39045645/article/details/119833309?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-119833309-blog-121337486.t5_layer_eslanding_s_randoms&spm=1001.2101.3001.4242.2&utm_relevant_index=4
+
+第七步
+有两种方式。
+
+之后用自己生成的token登录，把上面生成的token粘贴到输入密码的位置。
+如果 push 等操作没有出现输入密码选项，请先输入如下命令，之后就可以看到输入密码选项了。
+
+git config --system --unset credential.helper
+1
+把token直接添加远程仓库链接中，这样就可以避免同一个仓库每次提交代码都要输入token了：
+git remote set-url origin https://<your_token>@github.com/<USERNAME>/<REPO>.git
+1
+<your_token>：换成你自己得到的token
+<USERNAME>：是你自己github的用户名
+<REPO>：是你的仓库名称
+————————————————
+版权声明：本文为CSDN博主「前端历劫之路」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_39045645/article/details/119833309
+
+
