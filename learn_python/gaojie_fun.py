@@ -24,3 +24,4 @@ def fn(func,lst):
 
 print(fn(fn3,lst))
 print(fn(fn2,lst))
+print("hello,chenjingv!")
