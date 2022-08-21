@@ -3,6 +3,8 @@ https://github.com/chenjingv996/utcs_chenjingv996
 https://github.com/chenjingv996/utcs_chenjingv996.git
 git@github.com:chenjingv996/utcs_chenjingv996.git
 gh repo clone chenjingv996/utcs_chenjingv996
+---------------------------------------------------------
+git add . && git commit -m "update 0820" && git push
 
 git push:
 chenjingv996
