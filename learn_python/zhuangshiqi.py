@@ -1,26 +1,20 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-print(f'"#"*60')
+print("#"*60)
 
 import time
-#import datetime 
+from datetime import datetime 
 
-#print(f'当前时间为:{datetime.datetime.now()}')
+t1=datetime.now()
+t2=datetime.today()
 
-def timer(func):
-    def deco(*args,**kwargs):
-        start = time.time()
-        res = func(*args,**kwargs)
-        stop = time.time()
-        print(stop-start)
-        return res
-    return deco
-
-@timer
-def test(a):
-    time.sleep(2)
-    print("test is running!")
-    return "bcd"
-
-test()
+print(t1)
+print(t2)
+print(t1.strftime("%x"))
+print(t1.strftime("%X"))
+print(t1.strftime("%c"))
+print("\n")
+print(f'当前时间为:{t1}')
+print(t1.strftime("%Y-%m-%d_%H:%M:%S"))
+print(f'当前时间为:{t2.strftime("%Y-%m-%d_%H:%M:%S")}')
