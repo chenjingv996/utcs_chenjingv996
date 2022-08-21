@@ -1,16 +1,30 @@
 #!/usr/bin/env python
 #coding:utf-8
-while True:
-    try:
-        s=input()
-        l=[0,0,0]
-        for i in s:
-            l[0]+=int(i.isalpha())
-            l[1]+=int(i==' ')
-            l[2]+=int(i.isnumeric())
-        print(l[0])
-        print(l[1])
-        print(l[2])
-        print(len(s)-l[0]-l[1]-l[2])
-    except:
-        break
+
+print("#"*80)
+    
+def fn():
+    print("我是fn函数!")
+
+def add(a,b):
+    r=a+b
+    return r
+
+def mul(a,b,c):
+    r=a*b*c
+    return r
+
+def begin_end(old):
+    def new_fun(*args,**kwargs):
+        print("执行开始...")
+        res=old(*args,**kwargs)
+        return res
+        print("执行结束...")
+        #return res
+    return new_fun
+
+f3=begin_end(mul)
+r3=f3(2,3,4)
+
+print(r3)
+
