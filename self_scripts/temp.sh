@@ -1,13 +1,13 @@
-#!/usr/bin/env python
-#coding:utf-8
+#!/bin/bash
 
-self_path = "/home/chenjing/utcs_chenjingv996/"
-py_info = `ls -l *.py`
-sh_info = `ls -l *.sh`
+self_path="/home/chenjing/utcs_chenjingv996/self_scripts"
+
+py_info=`ls -l *.py`
+sh_info=`ls -l *.sh`
 
 fn_start()
 {
-    echo "\n"
+    echo -e "\n"
     echo -e "########################计算开始####################################"
 }
 
@@ -20,11 +20,10 @@ fn_stop()
 scripts_total()
 {
     fn_start
-    cd ${self_path}/self_scripts	
-    echo -e "python脚本为:\n${py_info}\n"
-    echo -e "\n"
-    echo -e "shell脚本为:\n${sh_info}\n"
-    echo -e "该文件夹下共有$(${py_info}|wc -l)个python脚本，$(${sh_info}|wc -l)个shell脚本"
+    cd ${self_path}	
+    echo -e "python脚本为:\n$py_info\n"
+    echo -e "shell脚本为:\n$sh_info\n"
+    echo -e "该文件夹下包括$(ls -l *.py|wc -l)个python脚本，$(ls -l *.sh|wc -l)个shell脚本!"
     fn_stop
 }
 
