@@ -12,9 +12,9 @@ do
 	    c=$((k*k))
 	    d=$(($a+$b))
 	    if [[ $c = $d ]] && [[ $c % $b = 1 ]] && [[ $c % $a = 1 ]]
-        then
-            echo -e "($i $j $k)"
-	fi
+            then
+                echo -e "($i $j $k)"
+	    fi
         done
     done
 done
