@@ -12,6 +12,8 @@ Einstein!23.
 
 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
 
+ssh-keygen -t rsa
+
 git config --global credential.helper store
 
 https://blog.csdn.net/qq_39045645/article/details/119833309?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-119833309-blog-121337486.t5_layer_eslanding_s_randoms&spm=1001.2101.3001.4242.2&utm_relevant_index=4
