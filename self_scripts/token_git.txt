@@ -1,0 +1,58 @@
+git server:
+https://github.com/chenjingv996/utcs_chenjingv996
+https://github.com/chenjingv996/utcs_chenjingv996.git
+git@github.com:chenjingv996/utcs_chenjingv996.git
+gh repo clone chenjingv996/utcs_chenjingv996
+
+git clone https://github.com/chenjingv996/utcs_chenjingv996.git
+ 
+---------------------------------------------------------
+git add . && git commit -m "update 0820" && git push
+
+git push:
+chenjingv996
+Einstein!23.
+
+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
+
+ssh-keygen -t rsa
+
+git config --global credential.helper store
+
+https://blog.csdn.net/qq_39045645/article/details/119833309?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-119833309-blog-121337486.t5_layer_eslanding_s_randoms&spm=1001.2101.3001.4242.2&utm_relevant_index=4
+
+第七步
+有两种方式。
+
+之后用自己生成的token登录，把上面生成的token粘贴到输入密码的位置。
+如果 push 等操作没有出现输入密码选项，请先输入如下命令，之后就可以看到输入密码选项了。
+
+git config --system --unset credential.helper
+1
+把token直接添加远程仓库链接中，这样就可以避免同一个仓库每次提交代码都要输入token了：
+git remote set-url origin https://<your_token>@github.com/<USERNAME>/<REPO>.git
+1
+<your_token>：换成你自己得到的token
+<USERNAME>：是你自己github的用户名
+<REPO>：是你的仓库名称
+————————————————
+版权声明：本文为CSDN博主「前端历劫之路」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_39045645/article/details/119833309
+
+#######################################################
+git 设置不用每次都输入 账号密码
+
+执行一下 这个命令：
+
+git config --global credential.helper store
+
+然后，下次再输入一次 账号密码 就可以了。
+————————————————
+版权声明：本文为CSDN博主「发光的叮当猫」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/yuzeiger/article/details/82781664
+
+------------------------------------------------------------------------------------------------------------------
+chenjingv@chenjingv-virtual-machine:~$ cat /home/chenjingv/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDPuKYOFVfXhr1hT/tacGd/1En5nCkwTNXroRUoY1A5FA+39UsGyAKv9DcWQ7yfhp2sYzAf0hEZ9aUvfOxwYSYB/5yHbVwShNDWmq6VV0v2zMYKE2g0X15KXhy471eo1XyDUFA+fjXWtdWeJmfyyB2N03TB40dj0AgDbH5CBVU/o3o2mppg8mhXyxP3X74WBbdnjz3v625ApyBVfjpQQwE88kWwl7f8+Vmi88vo2HARtb18lOwCYmgdDktAaA3/Yx76j92XCMcmVxcLS/hJSJUy9gajYbvnXIAS6Ih1HhXtTdf3EXIpfLRSRltW0TmSR6X39Sa5n2P+e9/kv6tTmQIGXYfm9NZDgEtHR159LgJ1inyH97/dfgja1e0oGVYFJHwJQgBjc1T0lDRXkXuwDhnY/h1QwmSV9Ds7vj/IHlYaOb1i4GjsJTcNMOw9Z4aIj/CoU24USTNEq1JmjtQU1uajesXUPrBNscc1FVF/RqTnr/emustkxMLzA5flebyOFI8= chenjingv@chenjingv-virtual-machine
+
+
