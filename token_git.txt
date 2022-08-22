@@ -4,7 +4,7 @@ https://github.com/chenjingv996/utcs_chenjingv996.git
 git@github.com:chenjingv996/utcs_chenjingv996.git
 gh repo clone chenjingv996/utcs_chenjingv996
 
- git clone https://github.com/chenjingv996/utcs_chenjingv996.git
+git clone https://github.com/chenjingv996/utcs_chenjingv996.git
  
 ---------------------------------------------------------
 git add . && git commit -m "update 0820" && git push
