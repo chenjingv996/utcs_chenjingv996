@@ -10,7 +10,7 @@ git push:
 chenjingv996
 Einstein!23.
 
-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
+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
 
 git config --global credential.helper store
 
