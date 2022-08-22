@@ -3,7 +3,7 @@
 git status
 echo -e "\n"
 
-cat ~./gitconfig
+cat ~/.gitconfig
 echo -e "\n"
 
 git add . && git commit -m "update_0820" && git push
