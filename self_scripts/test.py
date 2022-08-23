@@ -18,9 +18,9 @@ def begin_end(old):
     def new_fun(*args,**kwargs):
         print("执行开始...")
         res=old(*args,**kwargs)
-        return res
+#        return res
         print("执行结束...")
-        #return res
+        return res
     return new_fun
 
 f3=begin_end(mul)
