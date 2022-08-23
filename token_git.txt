@@ -1,4 +1,5 @@
 git server:
+
 https://github.com/chenjingv996/utcs_chenjingv996
 https://github.com/chenjingv996/utcs_chenjingv996.git
 git@github.com:chenjingv996/utcs_chenjingv996.git
@@ -8,7 +9,8 @@ git clone https://github.com/chenjingv996/utcs_chenjingv996.git
 
 git clone git@github.com:chenjingv996/utcs_chenjingv996.git
  
----------------------------------------------------------
+----------------------------------------------------------------------------
+
 git add . && git commit -m "update 0820" && git push
 
 git push:
@@ -39,7 +41,9 @@ git remote set-url origin https://<your_token>@github.com/<USERNAME>/<REPO>.git
 <your_token>：换成你自己得到的token
 <USERNAME>：是你自己github的用户名
 <REPO>：是你的仓库名称
-————————————————
+
+-----------------------------------------------------------------————————————————
+
 版权声明：本文为CSDN博主「前端历劫之路」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/qq_39045645/article/details/119833309
 
