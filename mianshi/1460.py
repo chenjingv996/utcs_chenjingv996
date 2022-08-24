@@ -8,6 +8,9 @@ class Solution:
         return sorted(target) == sorted(arr)
 
 p1=Solution()
-r1=p1.canBeEqual()
+r1=p1.canBeEqual([1,2,3,4],[2,3,4,1])
+r2=p1.canBeEqual([1,2,3,4],[3,4,1])
 
-print(r1([1,2,3,4],[2,3,1,4]))
+
+print(r1)
+print(r2)
