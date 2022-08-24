@@ -15,5 +15,9 @@ class Solution:
 
 p1=Solution()
 r1=p1.twoSum([1,2,3,4],7)
+r2=p1.twoSum([1,2,3,4],4)
+r3=p1.twoSum([1,2,3,4],12)
 
 print(r1)
+print(r2)
+print(r3)
