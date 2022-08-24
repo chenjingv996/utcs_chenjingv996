@@ -14,3 +14,4 @@ r2=p1.canBeEqual([1,2,3,4],[3,4,1])
 
 print(r1)
 print(r2)
+print(Solution().canBeEqual([1,2,3,4],[3,4,1,2]))
