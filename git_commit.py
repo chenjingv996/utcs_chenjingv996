@@ -5,6 +5,7 @@
 from datetime import datetime
 from time import sleep
 import os
+import subprocess
 
 def git_commit():
     print("#"*50)
@@ -19,7 +20,12 @@ def git_commit():
     print(os.system("git status"))
     print()
 
+def git_push():
+    print("#"*50)
+    print(subprocess.call("./commit_git.sh"))
+    print()
+
 
 if __name__=="__main__":
-    git_commit()
-
+    #git_commit()
+    git_push()
