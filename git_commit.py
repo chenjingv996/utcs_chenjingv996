@@ -5,7 +5,6 @@
 from datetime import datetime
 from time import sleep
 import os
-import subprocess
 
 def git_commit():
     print("#"*50)
@@ -17,7 +16,7 @@ def git_commit():
     print()
     print("提交后的状态为:")
     print()
-    print(subprocess.call("git status"))
+    print(os.system("git status"))
     print()
 
 
