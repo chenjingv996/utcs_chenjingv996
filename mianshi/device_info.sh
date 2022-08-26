@@ -17,6 +17,8 @@ def device_info():
     print(os.system("ip add |grep brd"))
     print(os.system("pwd"))
     print(os.system("fdisk -l |grep sda"))
+    print(os.system("lspci -nn | grep -i net"))
+    print("\n\n")
    
     
 
