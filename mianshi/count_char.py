@@ -20,6 +20,7 @@ def count_char():
 
 
 
+
 if __name__=="__main__":
     count_char()
 
