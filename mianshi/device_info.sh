@@ -11,6 +11,8 @@ def device_info():
     print(f'当前时间为:{datetime.now().strftime("%Y_%m_%d %H:%M:%S")}\n')
     time.sleep(1)
     print(f'当前时间为:{time.strftime("%Y-%m-%d %H:%M:%S")}\n')
+    time.sleep(1)
+    print(f'当前时间为:{time.ctime()}\n')
     print("#"*80)
     print("\n\n")
     print(os.system("uname -a"))
