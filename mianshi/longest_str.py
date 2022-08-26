@@ -21,4 +21,4 @@ class Solution:
         return res
 
 
-print(Solution().lengthOfLongestSubstring(abcbaddfd))
+print(Solution().lengthOfLongestSubstring("abcbaddfd"))
