@@ -7,6 +7,8 @@ import time
 import os
 import subprocess
 
+user_name=subprocess.check_output('whoami').strip()
+
 def device_info():
     print()
     print(f'当前时间为:{datetime.now().strftime("%Y_%m_%d %H:%M:%S")}\n')
@@ -15,8 +17,7 @@ def device_info():
     time.sleep(1)
     print(f'当前时间为:{time.ctime()}\n')
     time.sleep(2)
-    t=subprocess.check_output("whoami")
-    print("name is:%s\n\n"%t)
+    print("name is:%s\n\n"%user_name) 
     print("#"*80)
     print("\n\n")
     print(os.system("uname -r"))
