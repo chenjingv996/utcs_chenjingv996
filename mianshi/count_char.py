@@ -19,6 +19,8 @@ def count_char():
         print("字符串过长!")
 
 
-count_char()
+
+if __name__=="__main__":
+    count_char()
 
 
