@@ -3,8 +3,6 @@
 
 print("#"*80)
 
-
-
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         l, r = 0, -1
