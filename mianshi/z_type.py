@@ -1,30 +1,21 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-print("#"*80)
-    
-def fn():
-    print("我是fn函数!")
+class ccc:
+    def aaa(self, s: str, numRows: int) -> str:
+        rel = ['']*numRows
+        if numRows==1:
+            return s
+        else:
+            for i in range(len(s)):
+                k = i%(2*(numRows-1))
+                if k<= numRows-1:
+                    rel[k] += s[i]
+                else:
+                    rel[2*(numRows-1)-k] += s[i]
+            result = ''.join(rel)
+            print(rel)
+            return result
 
-def add(a,b):
-    r=a+b
-    return r
-
-def mul(a,b,c):
-    r=a*b*c
-    return r
-
-def begin_end(old):
-    def new_fun(*args,**kwargs):
-        print("执行开始...")
-        res=old(*args,**kwargs)
-#        return res
-        print("执行结束...")
-        return res
-    return new_fun
-
-f3=begin_end(mul)
-r3=f3(2,3,4)
-
-print(r3)
-
+print(ccc().aaa("abcdefghijklmn",3))
+print(ccc().aaa("LEETCODEISHIRING",3))
