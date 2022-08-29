@@ -5,4 +5,4 @@ print("#"*80)
     
 import os
 
-print(eval("os.system("uname -r")"))
+print(eval("ipconfig"))
