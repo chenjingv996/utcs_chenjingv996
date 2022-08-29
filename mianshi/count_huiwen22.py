@@ -16,5 +16,6 @@ class ccc(object):
         return res
 
 
-print(ccc().aaa("abcbadfd"))
-print(ccc().aaa("abbafwef"))
+print(ccc().aaa("qwabcbadfd"))
+print(ccc().aaa("eabbafwef"))
+
