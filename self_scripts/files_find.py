@@ -1,8 +1,19 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-print("*"*60)
-import glob
+print("*"*80)
+
+from datetime import datetime
+import glob 
+import os
+import subprocess
+
+dir1=os.getcwd()
+
+print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+print()
+print("当前目录为:%s" %dir1)
+print()
 
 lst1=glob.glob("*.py")
 for i in lst1:
