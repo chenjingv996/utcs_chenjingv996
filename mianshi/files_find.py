@@ -7,10 +7,12 @@ import glob
 import os
 import subprocess
 
-path=os.system("pwd")
+dir1=os.getcwd()
+#path=os.system("pwd")
 
-print("当前目录为:%s" %path)
-
+print("当前目录为:%s" %dir1)
+print()
+#print(f"当前路径为:{path}")
 print()
 
 lst1=glob.glob("*.py")
