@@ -1,30 +1,16 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-print("#"*80)
-    
-def fn():
-    print("我是fn函数!")
+class ccc:
+    def aaa(self,x:int)->bool:
+        if str(x)==str(x)[::-1]:
+            return True
+        else:
+            return False
 
-def add(a,b):
-    r=a+b
-    return r
-
-def mul(a,b,c):
-    r=a*b*c
-    return r
-
-def begin_end(old):
-    def new_fun(*args,**kwargs):
-        print("执行开始...")
-        res=old(*args,**kwargs)
-#        return res
-        print("执行结束...")
-        return res
-    return new_fun
-
-f3=begin_end(mul)
-r3=f3(2,3,4)
-
-print(r3)
+print(ccc().aaa(12321))
+p1=ccc()
+print(p1.aaa(-1234))
+print(p1.aaa("abcba"))
+print(p1.aaa(1221))
 
