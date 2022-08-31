@@ -1,3 +1,6 @@
+chrome多线程：
+chrome://flags/#enable-parallel-downloadingEdge
+
 git server:
 https://github.com/chenjingv996/utcs_chenjingv996
 https://github.com/chenjingv996/utcs_chenjingv996.git
