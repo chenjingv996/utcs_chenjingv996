@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-   
-
 class ccc:
     def aaa(self, x: int) -> int:
         str_num = str(x)
