@@ -14,7 +14,7 @@ n=int(input("是否需要关机(1.是 2.否):"))
 while True:
     try:
         if n==1:
-            os.system("shutdown -s -t 60")
+            os.system("shutdown -s -t 30")
         elif n==2:
             print("已取消关机操作！")
             break
@@ -24,4 +24,3 @@ while True:
     except:
         break
    
-
