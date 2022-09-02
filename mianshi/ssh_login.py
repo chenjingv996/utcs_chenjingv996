@@ -16,8 +16,6 @@ if __name__=='__main__':
     
     s=paramiko.SSHClient()
     
-    #s.load_system_host_keys()
-    
     s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     
     s.connect(hostname = hostname,username=username, password=password)
