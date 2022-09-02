@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-import paramik
+import paramiko
 
 hostname='192.168.0.123'
 
@@ -22,7 +22,7 @@ if __name__=='__main__':
     
     stdin,stdout,stderr=s.exec_command('ifconfig;free;df -h')
     
-    print stdout.read()
+    print(stdout.read())
     
     s.close()
 
