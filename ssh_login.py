@@ -1,5 +1,6 @@
 #!/usr/bin/python env
-# -*- coding: utf-8 -*
+#coding:utf-8
+
 # 测试过程中，比较常用的操作就是将DUT(待测物)接入网络中，然后远程操控对DUT，
 # 使用SSH远程登陆到主机，然后执行相应的command即可
 # python 代码如下：
@@ -7,6 +8,7 @@
 # 首先第一步我们需要安装paramiko这个包
 # 安装命令：pip install paramiko
 # 导入paramiko包
+
 import paramiko
 s = paramiko.SSHClient()
 s.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # 允许连接不在know_hosts文件中的主机
@@ -16,3 +18,6 @@ stdin, stdout, stderr = s.exec_command (execmd)
 print(stdout.read())
 s.close()
 #结果
+
+
+
