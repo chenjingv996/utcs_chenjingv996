@@ -7,8 +7,10 @@ import os
 import re
 
 
-print("$"*80)
+print("$"*80+"\n")
+print(f"当前时间为:{time.ctime()}\n")
 res=input("是否需要关机(是[y/Y]/否[n/N]):")
+print()
 
 def get_result():
     if res=="y" or res=="Y":
