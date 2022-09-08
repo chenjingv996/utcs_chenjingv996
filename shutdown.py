@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# !/usr/bin/env python
 #coding:utf-8
 
 import time
@@ -7,8 +7,9 @@ import os
 import re
 
 
-print("#"*80+"\n")
+print("$"*80+"\n")
 print(f"当前时间为:{time.ctime()}\n")
+print(f'当前时间为:{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 res=input("是否需要关机(是[y/Y]/否[n/N]):")
 print()
 
