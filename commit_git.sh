@@ -1,7 +1,6 @@
 #!/bin/bash
 
-date+%F\%T
-echo -e "\n"
+echo -e "date+%F\%T\n"
 
 git status
 echo -e "\n"
