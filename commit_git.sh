@@ -1,5 +1,8 @@
 #!/bin/bash
 
+date+%F\%T
+echo -e "\n"
+
 git status
 echo -e "\n"
 
