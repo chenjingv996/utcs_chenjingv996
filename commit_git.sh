@@ -1,6 +1,7 @@
 #!/bin/bash
 
-echo -e "{date+%F\%T}\n"
+curr_time=`date +%F\%T`
+echo -e "${curr_time}\n"
 
 git status
 echo -e "\n"
