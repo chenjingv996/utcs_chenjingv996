@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+#coding:utf-8
+
+import random
+
+num=random.randint(1,101)
+n=int(input())
+
