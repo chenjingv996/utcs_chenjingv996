@@ -18,12 +18,14 @@ print()
 lst1=glob.glob("*.py")
 for i in lst1:
     print(i)
-print ("\n\n")
+
+print ("\n")
 
 lst2=glob.glob("*.sh")
 for j in lst2:
     print(j)
-print ("\n\n")
+
+print ("\n")
 
 total=len(lst1)+len(lst2)
 
