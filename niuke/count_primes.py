@@ -27,10 +27,10 @@ def count_primes(n:int)->int:
         if is_prime(k):
             count += 1
             lst.append(k)
-    print(f'其中包含的素数分别为:{lst}\n')
+    print(f'100以内包含的素数分别为:{lst}\n')
     return count
 
-print(f'共有素数个数为:{count_primes(100)}')
+print(f'100以内共有素数个数为:{count_primes(100)}')
 
 print()
 
