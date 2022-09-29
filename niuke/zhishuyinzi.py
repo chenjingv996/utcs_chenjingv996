@@ -12,7 +12,7 @@ import math
 print(f"{time.ctime()}\n")
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
-n=int(input())
+n=int(input("请输入一个正整数:"))
 
 for i in range(2,int(n/2)+1):
     while n%i==0:
