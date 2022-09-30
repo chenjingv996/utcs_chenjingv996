@@ -1,7 +1,7 @@
 #!/bin/bash
 
-printf "################################"
+echo -e "######################################################\n"
 
-cur_time=`date+%F\ %H:%M:%S`
+curr_time=`date +%F\ %H:%M:%S`
 
-echo -e "${cur_time}"
+echo -e "${curr_time}\n"
