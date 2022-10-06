@@ -3,6 +3,7 @@
 
 print("*"*80)
 
+import time
 from datetime import datetime
 import glob 
 import os
@@ -10,7 +11,12 @@ import subprocess
 
 dir1=os.getcwd()
 
-print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+print(time.ctime()+"\n")
+
+print(str(datetime.now())+"\n")
+
+print(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))+"\n")
+
 print()
 print("当前目录为:%s" %dir1)
 print()
