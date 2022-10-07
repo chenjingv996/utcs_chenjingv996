@@ -3,6 +3,7 @@
 curr_time=`date +%F\ %T`
 
 echo -e "\n当前时间为:${curr_time}\n"
+echo -e "$(date +%F)"
 
 git status
 echo -e "\n"
