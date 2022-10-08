@@ -36,4 +36,6 @@ print ("\n")
 total=len(lst1)+len(lst2)
 
 print(f'该目录下共有{total}个文件，其中包含{len(lst1)}个python文件，包含{len(lst2)}个shell文件!')
-print ("\n\n")
+
+print ('\n\n')
+
