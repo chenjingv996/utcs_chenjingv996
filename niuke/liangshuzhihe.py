@@ -24,6 +24,7 @@ class ccc:
                 d[nums[x]]=x
 
 print(ccc().aaa([2,5,8,10],10))
+print(ccc().aaa([2,5,7,9,10],12))
 print(ccc().aaa([3,3],6))
 print(ccc().aaa([2],2))
 print(ccc().aaa([3],4))
