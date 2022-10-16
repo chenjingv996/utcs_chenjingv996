@@ -10,3 +10,5 @@ if __name__=="__main__":
     number=float(input("请输入圆的半径:"))
     zhouchang=get_zhouchang(number)
     area=get_area(number)
+    print(zhouchang)
+    print(area)
