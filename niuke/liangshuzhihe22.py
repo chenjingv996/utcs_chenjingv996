@@ -15,7 +15,7 @@ print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
 # 时间复杂度：O(n^2)
 # 空间复杂度：O(1)
-def twoSum(self, nums: list[int], target: int) -> list[int]:
+def twoSum(self, nums:list[int], target:int)->list[int]:
     for i in range(len(nums)):
         x = nums[i]
         for j in range(i + 1, len(nums)):
