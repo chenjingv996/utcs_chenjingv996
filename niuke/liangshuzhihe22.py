@@ -24,7 +24,8 @@ def twoSum(self, nums: list[int], target: int) -> list[int]:
     return []
 
 if __name__=="__main__":
-    print(twoSum([1,2,3,4],6))
+    res=twoSum([1,2,3,4],6)
+    print(res)
 
 
 
