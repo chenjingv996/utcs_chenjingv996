@@ -1,6 +1,6 @@
 #!/bin/bash
 
-current_time=$(date "+%Y-%m-%d %H:%M:%S")
+current_time=`date +%F\%T`
 utcs_dir="/etc/utcs/scripts"
 utcs_tool="/home/uos/utcs_1.0-1_all.deb"
 local_product_name=`sudo cat /sys/class/dmi/id/product_name`
