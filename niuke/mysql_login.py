@@ -10,10 +10,17 @@ import re
 import math
 import pymysql
 
-conn=pymysql.connect(host='192.168.3.123',
-        user='root', password='123456',
-        charset='utf8')
-cur=conn.cursor()
-print(cur)
-
-print(f'\n')
+if __name__=="__main__":
+    conn=pymysql.connect(host='192.168.3.123',
+                         user='root', password='123456',
+                         database='mysql', charset='utf8')    
+    cur=conn.cursor()
+    sql="select * from stus"
+    cur.execute(sql)
+    res=cur.fetchall()
+    for i in res:
+        print(i)
+    cur.close()
+    conn.close()
+    #print(cur)
+    print(f'\n')
