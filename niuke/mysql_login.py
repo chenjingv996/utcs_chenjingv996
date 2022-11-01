@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-print("#"*80+"\n")
 
 import time
 from datetime import datetime
@@ -9,6 +8,12 @@ import sys
 import re
 import math
 import pymysql
+import os
+
+print("#"*80+"\n")
+print(f'{time.ctime()}\n')
+print(f'{os.system("date")}\n')
+
 
 if __name__=="__main__":
     conn=pymysql.connect(host='192.168.3.123',
