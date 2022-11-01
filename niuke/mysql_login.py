@@ -10,10 +10,10 @@ import re
 import math
 import pymysql
 
-connect=pymysql.connect(host='192.168.3.123',
-        user='root',password=123456,
+conn=pymysql.connect(host='192.168.3.123',
+        user='root', password='123456',
         charset='utf8')
-cur=connect.cursor()
+cur=conn.cursor()
 print(cur)
 
 print(f'\n')
