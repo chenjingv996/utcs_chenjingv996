@@ -20,7 +20,7 @@ if __name__=="__main__":
                          user='root', password='123456',
                          database='mysql', charset='utf8')    
     cur=conn.cursor()
-    sql="select * from stus"
+    sql="select * from stus where tel like '%138%'"
     cur.execute(sql)
     res=cur.fetchall()
     for i in res:
