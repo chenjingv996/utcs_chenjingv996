@@ -11,8 +11,8 @@ echo -e "$(date +%F_%T)\n"
 
 echo -e "`date +%F\ %H:%M:%S`\n"
 
-echo -e "`expr 3 \* 30`"
+echo -e "计算结果为:`expr 3 \* 30`"
 
-echo -e "`expr 3 + 30`"
+echo -e "计算结果为:`expr 3 + 30`"
 
 echo -e "\n"
