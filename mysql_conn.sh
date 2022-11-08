@@ -14,6 +14,7 @@ mysql_conn()
 mysql -u$user -p$pwd << EOF
 use mysql;
 select * from stus where tel like "%138%";
+status;
 select * from mysql.stus where addr="wuhan";
 EOF
 
