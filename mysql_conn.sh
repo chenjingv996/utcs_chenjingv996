@@ -14,6 +14,7 @@ mysql_conn()
 mysql -u$user -p$pwd << EOF
 use mysql;
 select * from stus where tel like "%138%";
+select * from mysql.stus where name="chenjingv";
 EOF
 
 echo -e "\n\n"
