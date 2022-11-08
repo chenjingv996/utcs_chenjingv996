@@ -6,8 +6,7 @@ host=192.168.3.123
 user=root
 pwd=123456
 
-echo -e "`'*'*30`"
-echo -e "############################################################\n"
+echo -e "`seq -s '#' 60|sed s/[0-9]//g`\n"
 echo -e "${curr_time}\n"
 
 mysql_conn()
