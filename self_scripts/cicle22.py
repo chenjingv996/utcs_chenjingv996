@@ -27,3 +27,5 @@ if __name__=="__main__":
     area=get_area(number)
     print("\n"+str(float(zhouchang))+"\n")
     print("\n"+str(float(area))+"\n")
+
+
