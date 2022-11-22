@@ -17,5 +17,4 @@ if __name__=="__main__":
     paixu()
 
 
-
 print(f'\n')
