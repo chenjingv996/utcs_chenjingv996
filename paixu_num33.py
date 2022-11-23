@@ -4,11 +4,8 @@
 print("#"*80+"\n")
 
 lst=[2,5,3]
-res=[]
-for i in lst:
-    res.append(i)
-print(sorted(res))
-
+for i in sorted(lst):
+    print(" ".join(str(i)),end=" ")
 
 
 print(f'\n')
