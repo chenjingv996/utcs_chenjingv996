@@ -26,7 +26,9 @@ class ccc:
 
 
 print(ccc().aaa("abcdadaef"))
+
 print(ccc().aaa(""))
+
 print(ccc().aaa("ddd"))
 
 
