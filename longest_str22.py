@@ -24,6 +24,7 @@ class ccc:
         return max(length, len(queue))
 
 
+
 print(ccc().aaa("abcdadaef"))
 print(ccc().aaa(""))
 print(ccc().aaa("ddd"))
