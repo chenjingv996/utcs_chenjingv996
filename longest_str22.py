@@ -31,6 +31,4 @@ print(ccc().aaa(""))
 
 print(ccc().aaa("ddd"))
 
-
-
 print(f'\n')
