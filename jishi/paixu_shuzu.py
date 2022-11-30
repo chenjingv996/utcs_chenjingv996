@@ -13,9 +13,10 @@ print(f"{time.ctime()}\n")
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
 
+x,y,z=input(),input(),input()
 
-str1=input("请输入一组字符串:")
-print(f'\n其中最后一个字符串长度为:{len(str1.split(" ")[-1])}')
-print(f'\n{list(map(lambda x:x**2,range(11)))}')
+print(*sorted(y.split(' '),key=int,reverse=bool(int(z))))
+
+
 
 print(f'\n')
