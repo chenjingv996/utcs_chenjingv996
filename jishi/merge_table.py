@@ -28,4 +28,5 @@ for i in range(x):
 for key, value in sorted(dic.items()):
     print(key, value)
 
+
 print(f'\n')
