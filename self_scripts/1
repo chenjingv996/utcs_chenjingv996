@@ -1,6 +1,0 @@
-#!/usr/bin/python3
-
-str1=input()
-char1=input()
-
-print(str1.count(char1)))
