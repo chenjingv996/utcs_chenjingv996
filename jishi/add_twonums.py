@@ -9,6 +9,9 @@ import sys
 import re
 import math
 
+print(f"{time.ctime()}\n")
+print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
+
 class ccc():
     def aaa(self,nums:list[int],target:int)->list[int]:
         for i in range(len(nums)):
