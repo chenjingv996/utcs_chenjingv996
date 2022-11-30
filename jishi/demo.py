@@ -20,6 +20,6 @@ print(f'\n其中最后一个字符串长度为:{len(str1.split(" ")[-1])}')
 
 print(f'\n{list(map(lambda x:x**2,range(11)))}')
 
-
+print(f'\n{list(map(str,range(5)))}')
 
 print(f'\n')
