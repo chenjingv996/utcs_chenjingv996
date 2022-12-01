@@ -23,12 +23,12 @@ class ccc():
                 return mid
             elif target<=nums[mid]:
                 r=mid-1
-            else target>=nums[mid]:
+            else:
                 l=mid+1
         return -1
 
 
-print(ccc().aaa([1,2,3,4,5]),5)
+print(ccc().aaa([1,2,3,4,5],5))
 
 
 print(f'\n')
