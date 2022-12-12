@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 #coding:utf-8
+
 print("*"*60)
+
 import math
  
 max = 100  
