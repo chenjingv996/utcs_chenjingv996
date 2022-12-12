@@ -12,6 +12,13 @@ import math
 print(f"{time.ctime()}\n")
 print(f'{dt.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
+print(f'{sys.version}\n')
+
+
+aa=sys.stdin.readline()
+bb=input("请输入bb:")
+print(len(aa))
+print(len(bb))
 
 
 str1=input("请输入一组字符串:")
