@@ -1,5 +1,6 @@
 #!/bin/bash
 
+curr_time=`date +%F_%T`
 self_path=`pwd`
 py_info=`ls -l *.py`
 sh_info=`ls -l *.sh`
@@ -34,7 +35,7 @@ scripts_total()
 main_menu()
 {
     echo -e	
-    echo -e "当前时间为:"$(date "+%Y-%m-%d %H:%M:%S")
+    echo -e "当前时间为:"$curr_time
     scripts_total
     echo -e 
 }
