@@ -13,7 +13,6 @@ print(f"{time.ctime()}\n")
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
 
-
 class ccc():
     def aaa(self,nums:list[int],target:int)->int:
         l,r=0,len(nums)-1
