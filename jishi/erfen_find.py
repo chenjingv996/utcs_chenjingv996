@@ -30,6 +30,7 @@ class ccc():
 
 print(ccc().aaa([1,2,3,4,5],5))
 print(ccc().aaa([1,2,3,4,5],6))
+print(ccc().aaa([1,2,3,4,5],2))
 print(ccc().aaa([],123))
 
 print(f'\n')
