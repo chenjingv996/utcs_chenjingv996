@@ -17,4 +17,4 @@ for t in pn:
 print(f"Total = {len(pn)}")
 
 
-print()
+print("\n\n")
