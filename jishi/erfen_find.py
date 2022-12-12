@@ -4,13 +4,13 @@
 print("#"*80+"\n")
 
 import time
-from datetime import datetime
+from datetime import datetime as dt
 import sys
 import re
 import math
 
 print(f"{time.ctime()}\n")
-print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
+print(f'{dt.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
 
 class ccc():
