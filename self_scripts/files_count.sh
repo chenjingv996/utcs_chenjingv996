@@ -1,7 +1,6 @@
 #!/bin/bash
 
 self_path=`pwd`
-
 py_info=`ls -l *.py`
 sh_info=`ls -l *.sh`
 py_count=`ls -l *.py|wc -l`
