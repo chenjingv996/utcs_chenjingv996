@@ -7,11 +7,12 @@ sh_info=`ls -l *.sh`
 py_count=`ls -l *.py|wc -l`
 sh_count=`ls -l *.sh|wc -l`
 total_count=`ls -l *.py *.sh|wc -l`
+jing_count=`seq -s '#' 30|sed s/[0-9]//g`
 
 fn_start()
 {
     echo -e 
-    echo -e "`seq -s '#' 30|sed s/[0-9]//g`测试执行开始`seq -s '#' 30|sed s/[0-9]//g`\n"
+    echo -e "$jing_count测试执行开始$jing_count\n"
     echo -e 
 }
 
@@ -19,7 +20,7 @@ fn_start()
 fn_stop()
 {
     echo -e 
-    echo -e "`seq -s '#' 30|sed s/[0-9]//g`测试执行结束`seq -s '#' 30|sed s/[0-9]//g`\n"
+    echo -e "$jing_count测试执行结束$jing_count\n"
     echo -e 
 }
 
