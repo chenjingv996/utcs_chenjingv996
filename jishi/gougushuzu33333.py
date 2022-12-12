@@ -16,3 +16,5 @@ for t in pn:
     print(t)
 print(f"Total = {len(pn)}")
 
+
+print()
