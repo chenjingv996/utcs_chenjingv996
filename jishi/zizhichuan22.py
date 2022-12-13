@@ -13,26 +13,16 @@ import let
 print(f"{time.ctime()}\n")
 print(f'{dt.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
-s = str(input())
-t = str(input())
-
-s_len = len(s)
-t_len = len(t)
-ne = 0
-count = 0
-for i in range(s_len):
-    for j in range(ne,t_len):
-        if t[j] == s[i]:
-
-            ne += 1
-            count += 1
+s = input()
+t = input()
+tmp = ''
+for i in s:
+    for j in range(len(t)):
+        if i == t[j]:
+            tmp += i
+            t = t[j+1:]
             break
-        else:
-            ne += 1
+print("true") if tmp == s else print('false')
 
-if count == s_len:
-    print('true')
-else:
-    print('false')
 
 print(f'\n')
