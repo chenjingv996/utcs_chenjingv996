@@ -7,6 +7,8 @@ echo -e "`seq -s '#' 60|sed s/[0-9]//g`\n"
 
 echo -e "`seq -s '#' 30|sed s/[0-9]//g`测试执行中`seq -s '#' 30|sed s/[0-9]//g`\n"
 
+echo -e "`seq -s '#' 60|sed s/[0-9]//g`测试中\n"
+
 echo -e "${curr_time}\n"
 
 echo -e "$(date +%F_%T)\n"
