@@ -12,7 +12,7 @@ commit_git(){
     echo -e 
     
     cat ~/.gitconfig
-    echo -e "当前目录为:$curr_dir"
+    echo -e "\n当前目录为:$curr_dir\n"
     
     git add $curr_dir && git commit -m "update_0820" && git push
     echo -e "\n\ngit提交后状态为:\n"
