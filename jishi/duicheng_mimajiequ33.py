@@ -12,24 +12,25 @@ import math
 print(f"{time.ctime()}\n")
 print(f'{dt.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
-print(f'{sys.version}\n')
+def f(s, l, r):
+    temp = 0
+    while l >= 0 and r < len(s) and s[l] == s[r]:
+        temp = r - l + 1
+        l -= 1
+        r += 1
+    return temp
 
-
-password = input()
-max_length = 1
-for i in range(1, len(password)):
-    # 直接以已知最大长度开始
-    for j in range((max_length-1) // 2 , len(password[0:i])):
-        # 以当前下标字符 的 下一个字符为对称轴，判断两边是否一样
-        if password[i - j - 1:i + 1] == password[i + j + 1:i - 1:-1]:
-            max_length = len(password[i - j - 1:i + 1]) * 2 - 1
-        # 以当前下标字符 和 下一个字符为对称轴
-        elif password[i - j - 1:i] == password[i + j:i - 1:-1]:
-            max_length = len(password[i - j - 1:i]) * 2
-        else:
-            # 从最长字符串的长度逐渐递增,不相等则直接跳出
-            break
-print(max_length)
-
+while True:
+    try:
+        s = input()
+        res = 1
+        for i in range(len(s)):
+            # 奇数
+            res = max(res, f(s, i, i))
+            # 偶数
+            res = max(res, f(s, i, i + 1))
+        print(res)
+    except:
+        break
 
 print(f'\n')

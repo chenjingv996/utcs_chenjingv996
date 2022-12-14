@@ -12,8 +12,6 @@ import math
 print(f"{time.ctime()}\n")
 print(f'{dt.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
-print(f'{sys.version}\n')
-
 
 password = input()
 max_length = 1
