@@ -12,8 +12,6 @@ import math
 print(f"{time.ctime()}\n")
 print(f'{dt.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
-print(f'{sys.version}\n')
-
 
 class ccc:
     def aaa(self,s:str)->int:
