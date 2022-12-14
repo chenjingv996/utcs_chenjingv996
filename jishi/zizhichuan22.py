@@ -22,7 +22,10 @@ for i in s:
             tmp += i
             t = t[j+1:]
             break
-print("true") if tmp == s else print('false')
+if tmp==s:
+    print("true") 
+else:
+    print('false')
 
 
 print(f'\n')
