@@ -22,6 +22,7 @@ for i in range(len(str1)):
         if str1[i] == str2[j]:
             tmp += str1[i]
             str2=str2[j+1:]
+            print(str2)
             break
 
 if tmp==str1:
