@@ -32,5 +32,3 @@ else:
 
 
 print(f'\n')
-
-
