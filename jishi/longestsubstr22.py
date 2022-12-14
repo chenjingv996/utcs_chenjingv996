@@ -21,7 +21,9 @@ class ccc:
             while i in que:
                 que.pop(0)
             que.append(i)
+            print(que)
             res=max(res,len(que))
+            print(res)
         return res
 
 bbb=ccc()

@@ -25,7 +25,7 @@ class ccc:
         return res
 
 bbb=ccc()
-print(bbb.aaa("qqwerwerrtt"))
+print(bbb.aaa("qqwerwrret"))
 
 
 
