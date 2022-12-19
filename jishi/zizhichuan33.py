@@ -21,6 +21,7 @@ for i in range(len(str1)):
     for j in range(len(str2)):
         if str1[i] == str2[j]:
             tmp += str1[i]
+            print(tmp)       #debug
             str2=str2[j+1:]
             print(str2)       #debug
             break
