@@ -13,7 +13,7 @@ print(f"{time.ctime()}\n")
 print(f'{dt.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
 def baowen():
-    str1=input.strip()
+    str1=input().strip()
     i,stack,total=0,[],""
     while i<len(str1):
         if str1[i]=="]":
@@ -30,6 +30,7 @@ def baowen():
         i+=1
     return total
 
-			
+#if __name__=="__main__":
+print(baowen())
 
 print(f'\n')
