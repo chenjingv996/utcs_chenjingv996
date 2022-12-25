@@ -39,5 +39,7 @@ def screen_end(s):
 
 
 print(screen_end("11515244"))
+print(screen_end("111"))
+
 
 print(f'\n')
