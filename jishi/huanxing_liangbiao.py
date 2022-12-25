@@ -14,7 +14,7 @@ print(f'{dt.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
 
 class ccc:
-    def aaa(self, head: list) -> bool:
+    def aaa(self, head: ListNode) -> bool:
         # 1. python map
         m = {}
         while head:
@@ -24,9 +24,7 @@ class ccc:
             head = head.next
         return False
 
-bbb=ccc()
 
-print(bbb.aaa([3,2,0,-4],1))
 
 
 
