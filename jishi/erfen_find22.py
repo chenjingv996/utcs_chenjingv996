@@ -7,6 +7,7 @@ from datetime import datetime as dt
 print("\n"+"#"*80+"\n")
 
 print(f"\n当前时间为:{tm.ctime()}\n")
+print(f"\n当前时间为:{dt.now()}\n")
 
 class ccc:
     def aaa(self,nums:list[int],target:int)->int:
