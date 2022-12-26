@@ -23,7 +23,7 @@ class ccc:
                 max_tmp = max(max_tmp, tmp+nums[i])
                 print(max_tmp)   #debug
                 tmp = tmp + nums[i] 
-                print(tmp)   #debug
+                #print(tmp)   #debug
             else:
             #当tmp(当前和)小于下一个元素时，当前最长序列到此为止。以该元素为起点继续找最大子序列,
             # 并记录此时的最大值
