@@ -22,8 +22,9 @@ class ccc:
             return "-"+"".join(list(reversed(str(-x))))
 
 bbb=ccc()
-print(bbb.aaa(-123))
-print(bbb.aaa(234))
+print(bbb.aaa(123))
+print(bbb.aaa(-234))
+print(bbb.aaa(0))
 
 
 print(f'\n')
