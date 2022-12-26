@@ -4,7 +4,7 @@
 import time as tm
 from datetime import datetime as dt
 
-print("#"*80+"\n")
+print("\n"+"#"*80+"\n")
 
 print(f"\n当前时间为:{tm.ctime()}\n")
 
