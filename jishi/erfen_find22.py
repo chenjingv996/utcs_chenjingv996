@@ -18,4 +18,4 @@ class ccc:
         return -1
 
 bbb=ccc()
-print(bbb.aaa([1,2,3,4,5],6))
+print(bbb.aaa([1,2,3,4,5],2))
