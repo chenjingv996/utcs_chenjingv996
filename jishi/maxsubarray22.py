@@ -13,7 +13,6 @@ print(f"{time.ctime()}\n")
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
 
-
 class ccc:
     def aaa(self, nums: list[int]) -> int:
         tmp = nums[0]
@@ -31,9 +30,6 @@ class ccc:
                 tmp = nums[i]
         return max_
         
-
-
-
 
 bbb=ccc()
 print(bbb.aaa([-2,1,-3,4,-1,2,1,-5,4]))
