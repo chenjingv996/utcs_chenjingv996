@@ -20,6 +20,7 @@ for i in s:
     for j in range(len(t)):
         if i == t[j]:
             tmp += i
+            print(tmp)   #debug
             t = t[j+1:]
             break
 if tmp==s:
