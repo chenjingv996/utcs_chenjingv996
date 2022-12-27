@@ -15,11 +15,12 @@ print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 s = []
 for i in range(2):
     s.append(sys.stdin.readline().strip())
-
+    print(s)   #debug
 for x in s:
     while len(x) > 8:
         print (x[:8])
         x = x[8:]
+        print(x)   #debug
     if len(x) <= 8:
         x = x + '0'*(8-len(x))
         print (x) 
