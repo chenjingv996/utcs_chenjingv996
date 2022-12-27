@@ -17,9 +17,9 @@ class ccc:
         if x==0:
             return 0
         elif x>0:
-            return "".join(list(reversed(str(x))))
+            return "".join(reversed(str(x)))
         else:
-            return "-"+"".join(list(reversed(str(-x))))
+            return "-"+"".join(reversed(str(-x)))
 
 bbb=ccc()
 print(bbb.aaa(123))
