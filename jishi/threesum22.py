@@ -13,7 +13,7 @@ print(f"{time.ctime()}\n")
 print(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
 
 class ccc:
-    def aaa(self, nums: list[int]) -> list[list[int]]:
+    def aaa(self, nums: list[int]) -> list[int]:
         n=len(nums)
         res=[]
         # 数组为 null 或者数组长度小于 3，返回 []
