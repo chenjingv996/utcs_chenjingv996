@@ -21,6 +21,7 @@ class ccc:
             return []
         # 对数组进行排序
         nums.sort()
+        print(nums)   #debug
         # 若 nums[0]>0：因为已经排序好，所以后面不可能有三个数加和等于 0，直接返回[]
         if(nums[0]>0):
             return []
