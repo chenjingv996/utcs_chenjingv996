@@ -10,14 +10,14 @@
 # 导入paramiko包
 
 import paramiko
-import telnetlib
+import telnetlib3
 
 host="192.168.10.253"
 ad="admin"
 pw="yhkj@123"
 ena_pw="yhkj@123"
 
-tn=telnetlib.Telnet(host)
+tn=telnetlib3.Telnet(host)
 
 tn.read_until(b"gin:")
 tn.write(ad.encode('ascii')+b'\n')
