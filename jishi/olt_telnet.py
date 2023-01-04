@@ -10,17 +10,31 @@
 # 导入paramiko包
 
 import paramiko
+import telnetlib3
 import time
-import spw
 
-s = paramiko.SSHClient()
-s.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # 允许连接不在know_hosts文件中的主机
-s.connect("192.168.0.123",22,"chenjingv", "123456")
-execmd = "pwd" #需要输入的命令
-stdin, stdout, stderr = s.exec_command (execmd)
-print(stdout.read())
-s.close()
-#结果
+
+host="192.168.10.253"
+ad="admin"
+pw="yhkj@123"
+ena_pw="yhkj@123"
+
+tn=telnetlib3.Telnet(host)
+
+tn.read_until(b"gin:")
+tn.write(ad.encode('ascii')+b'\n')
+
+tn.read_until(b"word:")
+tn.write(pw.encode('ascii')+b'\n')
+
+tn.read_until(b">")
+tn.write(ena_pw.encode('ascii')+b'\n')
+
+#tn.read_until(b"gin:")
+tn.write(b'conf ter\n')
+
+
+
 
 
 
