@@ -11,6 +11,8 @@
 
 import paramiko
 import telnetlib3
+import time
+
 
 host="192.168.10.253"
 ad="admin"
