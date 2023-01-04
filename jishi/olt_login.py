@@ -17,7 +17,7 @@ s.connect("192.168.10.123",22,"admin", "admin@123")
 execmd = "enable" #需要输入的命令
 stdin, stdout, stderr = s.exec_command (execmd)
 print(stdout.read())
-s.close()
+#s.close()
 #结果
 
 
