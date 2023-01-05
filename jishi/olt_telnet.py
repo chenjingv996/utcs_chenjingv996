@@ -18,7 +18,7 @@ ad="chenjingv"
 pw="123456"
 ena_pw="123456"
 
-tn=telnetlib3.TelnetClient(host)
+tn=telnetlib3.Telnet(host)
 
 tn.read_until(b"gin:")
 tn.write(ad.encode('ascii')+b'\n')
