@@ -9,15 +9,14 @@
 # 安装命令：pip install paramiko
 # 导入paramiko包
 
-import paramiko
 import telnetlib3
 import time
 
 
-host="192.168.10.253"
-ad="admin"
-pw="yhkj@123"
-ena_pw="yhkj@123"
+host="192.168.3.123"
+ad="chenjingv"
+pw="123456"
+ena_pw="123456"
 
 tn=telnetlib3.Telnet(host)
 
@@ -27,11 +26,11 @@ tn.write(ad.encode('ascii')+b'\n')
 tn.read_until(b"word:")
 tn.write(pw.encode('ascii')+b'\n')
 
-tn.read_until(b">")
-tn.write(ena_pw.encode('ascii')+b'\n')
+#tn.read_until(b">")
+#tn.write(ena_pw.encode('ascii')+b'\n')
 
 #tn.read_until(b"gin:")
-tn.write(b'conf ter\n')
+tn.write(b'ip add\n')
 
 
 
