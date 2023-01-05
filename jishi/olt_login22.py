@@ -12,21 +12,21 @@
 import time
 import paramiko
 
-ip = "192.168.8.200"
-username = "admin"
+ip = "192.168.3.123"
+username = "chenjingv"
 password = "admin@123"
 
-\\创建交换机登陆信息变量
+#\\创建交换机登陆信息变量
 ssh=paramiko.SSHClient()
-\\创建SSH对象
+#\\创建SSH对象
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-\\允许连接不在know_hosts文件中的主机
+#\\允许连接不在know_hosts文件中的主机
 ssh.connect(hostname=ip,port=22,username=username,password=password)
-\\SSH方式连接交换机
+#\\SSH方式连接交换机
 print("成功连接",ip)
 
 command=ssh.invoke_shell()
-\\调用交换机命令行
+#\\调用交换机命令行
 command.send("en\n")
 command.send("admin@123\n")
 command.send("cont ter\n")
@@ -34,12 +34,12 @@ command.send("cont ter\n")
 #command.send("return\n")
 #command.send("save\n")
 #command.send("y\n")
-\\发送配置命令
+#\\发送配置命令
 time.sleep(1)
 #output=command.recv(65535)
 #print(output)
-\\设置等待时间并打印回显内容
+#\\设置等待时间并打印回显内容
 #ssh.close()
-\\关闭连接
+#\\关闭连接
 
 
