@@ -24,3 +24,5 @@ send "\r\r"
 
 interact
 
+
+#执行方式：./olt_telnet.sh 192.168.3.123
