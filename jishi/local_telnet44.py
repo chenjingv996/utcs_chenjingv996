@@ -1,10 +1,10 @@
-
-#!/usr/bin/python env
+#!/usr/bin/env python
 #coding:utf-8
 
 import paramiko
+#import threading
 
-host_ip="192.168.3.123"
+ip="192.168.3.123"
 ad="chenjingv"
 pw="123456"
 
@@ -12,10 +12,17 @@ ssh = paramiko.SSHClient()
 
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-ssh.connect(hostname=host_ip,22,username=ad,password=pd)
+ssh.connect(hostname=ip,port=22,username=ad,password=pw)
 
-stdin, stdout, stderr = ssh.exec_command("pwd")
+cmd="pwd;df -h;ip add"
 
-print stdout.readlines()
+stdin, stdout, stderr = ssh.exec_command(cmd)
 
+result=stdout.read()
+print (result)
+
+if not result:
+    result=stderr.read()
 ssh.close()
+
+print(result.decode())
