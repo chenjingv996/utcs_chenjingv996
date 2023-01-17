@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# encoding=utf-8
+#coding:utf-8
 
 import paramiko
 import time
@@ -16,7 +16,7 @@ ssh_shell = client.invoke_shell()
 while True:
     line = ssh_shell.recv(1024)
     #print line
-    if line and line.endswith(b'$'):
+    if line and line.endswith(b'#'):
         break;
  
 # send command
@@ -26,7 +26,7 @@ ssh_shell.sendall( 'ping 192.168.3.123' + '\n')
 lines = []
 while True:
     line = ssh_shell.recv(1024)
-    if line and line.endswith(b'$'):
+    if line and line.endswith(b'#'):
         break;
     lines.append(line)
 result = ''.join(lines)
