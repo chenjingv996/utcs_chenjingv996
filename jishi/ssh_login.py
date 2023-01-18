@@ -26,7 +26,7 @@ ssh_shell.sendall("ping 192.168.3.123" + "\n")
 lines = []
 while True:
     line = ssh_shell.recv(1024)
-    if line and line.endswith(b"\$"):
+    if line and line.endswith(b"$"):
         break;
     lines.append(line)
 result = ''.join(lines)
