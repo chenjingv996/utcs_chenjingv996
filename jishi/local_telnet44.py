@@ -14,7 +14,7 @@ ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
 ssh.connect(hostname=ip,port=22,username=ad,password=pw)
 
-cmd="pwd;df -h;ip add"
+cmd="pwd;df -h;ip add;chenjingv"
 
 stdin, stdout, stderr = ssh.exec_command(cmd)
 

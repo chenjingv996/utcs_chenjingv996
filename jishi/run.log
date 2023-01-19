@@ -1,0 +1,24 @@
+b'/home/chenjingv\n\xe6\x96\x87\xe4\xbb\xb6\xe7\xb3\xbb\xe7\xbb\x9f        \xe5\xae\xb9\xe9\x87\x8f  \xe5\xb7\xb2\xe7\x94\xa8  \xe5\x8f\xaf\xe7\x94\xa8 \xe5\xb7\xb2\xe7\x94\xa8% \xe6\x8c\x82\xe8\xbd\xbd\xe7\x82\xb9\ntmpfs           389M  2.0M  388M    1% /run\n/dev/sda3        29G   14G   15G   49% /\ntmpfs           1.9G     0  1.9G    0% /dev/shm\ntmpfs           5.0M  4.0K  5.0M    1% /run/lock\n/dev/sda2       512M  5.3M  507M    2% /boot/efi\ntmpfs           389M  2.4M  387M    1% /run/user/1000\n/dev/sr0        3.6G  3.6G     0  100% /media/chenjingv/Ubuntu 22.04.1 LTS amd64\n1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n    inet 127.0.0.1/8 scope host lo\n       valid_lft forever preferred_lft forever\n    inet6 ::1/128 scope host \n       valid_lft forever preferred_lft forever\n2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000\n    link/ether 00:0c:29:f4:79:05 brd ff:ff:ff:ff:ff:ff\n    altname enp2s1\n    inet 192.168.3.123/24 brd 192.168.3.255 scope global noprefixroute ens33\n       valid_lft forever preferred_lft forever\n    inet6 fe80::4010:9894:7184:fd38/64 scope link noprefixroute \n       valid_lft forever preferred_lft forever\n'
+/home/chenjingv
+文件系统        容量  已用  可用 已用% 挂载点
+tmpfs           389M  2.0M  388M    1% /run
+/dev/sda3        29G   14G   15G   49% /
+tmpfs           1.9G     0  1.9G    0% /dev/shm
+tmpfs           5.0M  4.0K  5.0M    1% /run/lock
+/dev/sda2       512M  5.3M  507M    2% /boot/efi
+tmpfs           389M  2.4M  387M    1% /run/user/1000
+/dev/sr0        3.6G  3.6G     0  100% /media/chenjingv/Ubuntu 22.04.1 LTS amd64
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:f4:79:05 brd ff:ff:ff:ff:ff:ff
+    altname enp2s1
+    inet 192.168.3.123/24 brd 192.168.3.255 scope global noprefixroute ens33
+       valid_lft forever preferred_lft forever
+    inet6 fe80::4010:9894:7184:fd38/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+
