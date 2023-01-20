@@ -11,6 +11,8 @@ echo -e "$(date +%F_%T)\n"
 
 echo -e "`date +%F\ %H:%M:%S`\n"
 
+chmod a+x *.py *.sh
+
 git status
 
 echo -e "\n"
