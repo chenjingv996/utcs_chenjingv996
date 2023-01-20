@@ -16,7 +16,7 @@ ssh_shell = client.invoke_shell()
 while True:
     line = ssh_shell.recv(1024)
     #print line
-    if line and line.endswith('>'):
+    if line and line.endswith('$'):
         break;
 
 # send command
@@ -26,7 +26,7 @@ ssh_shell.sendall( 'ping 192.168.3.1' + '\n')
 lines = []
 while True:
     line = ssh_shell.recv(1024)
-    if line and line.endswith('>'):
+    if line and line.endswith('$'):
         break;
     lines.append(line)
 result = ''.join(lines)
