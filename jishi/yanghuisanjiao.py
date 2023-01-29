@@ -20,7 +20,7 @@ class ccc:
 
 bbb=ccc()
 print(bbb.aaa(3))
-
+print(bbb.aaa(5))
 
 
 print(f'\n')
