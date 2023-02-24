@@ -17,12 +17,11 @@ port=22
 ad='chenjingv'
 pw='123456'
 
-cmd=['pwd','uname -r','arch']
+#cmd=['pwd','uname -r','arch']
 
-
-for i in cmd:
-    print(f'{cmd.index(i)+1},{i}')
-    print()
+#for i in cmd:
+#    print(f'{cmd.index(i)+1},{i}')
+#    print()
 
 mycmd='date && ls -l'
 
