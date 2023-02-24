@@ -17,8 +17,8 @@ port=22
 username='chenjingv'
 pwd='123456'
 
-cmd=['pwd','uname -r','arch']
-
+#cmd=['pwd','uname -r','arch']
+cmd='arch'
 
 def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
     print(ipaddr, port, username, pwd, cmd)
@@ -36,7 +36,7 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
 
         # 打开一个Channel并执行命令
         # stdout 为正确输出，stderr为错误输出，同时是有1个变量有值
-        stdin, stdout, stderr = ssh.exec_command(cmd, get_pty=True, timeout=60)
+        stdin, stdout, stderr = ssh.exec_command(cmd, get_pty=True, timeout=10)
         # 打印执行结果
         # for item in stdout.readlines():
         #     print item
@@ -60,7 +60,15 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
         print(e)
     return stdout, stderr
 
-print(f"\nend_time:{time.ctime()}\n")
 
+if __name__=="__main__":
+    aaa=excuseRemoteCmd(ipaddr,port,username,pwd,cmd)
+    print(aaa)
+
+
+print(f"\nend_time:{time.ctime()}\n")
+    
 #https://blog.csdn.net/LanlanDeming/article/details/113700202?spm=1001.2101.3001.6650.4&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-4-113700202-blog-110885957.pc_relevant_3mothn_strategy_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-4-113700202-blog-110885957.pc_relevant_3mothn_strategy_recovery&utm_relevant_index=9
-#https://www.jb51.net/article/270422.htm
+#https://www.jb51.net/article/270422.html
+#https://blog.51cto.com/u_15079076/4324430
+
