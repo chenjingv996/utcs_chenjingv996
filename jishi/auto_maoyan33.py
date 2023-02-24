@@ -12,41 +12,53 @@ import paramiko
 
 print(f"\nstart_time:{time.ctime()}\n")
 
-ip='192.168.3.123'
+ipaddr='192.168.3.123'
 port=22
-ad='chenjingv'
-pw='123456'
+username='chenjingv'
+pwd='123456'
 
 cmd=['pwd','uname -r','arch']
 
-for i in cmd:
-    print(f'{cmd.index(i)+1},{i}')
-    print()
 
-mycmd='date && ls -l'
+def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
+    print(ipaddr, port, username, pwd, cmd)
+    try:
+        # 创建SSH对象
+        ssh = paramiko.SSHClient()
 
-try:
-    ssh=paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(ip,port,ad,pw)
-    stdin,stdout,stderr=ssh.exec_command(mycmd,get_pty=True)
-    stdin.close()
-    while not stdout.channel.exit_status_ready():
-        res=stdout.readlines()
-        print(f"\n输入命令为:{mycmd}\n")
-        print(f"\n输出结果为:{res}\n")
-        if "chenjingv"  in str(res):
-            print(f"\n测试结果为:PASS\n")
-        else:
-            print(f"\n测试结果为:FAIL\n")
-#            a=stdout.readlines()
-#            print(a)
-#            break
-    ssh.close()
+        # 允许连接不在know_hosts文件中的主机
+        ssh.load_system_host_keys()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-except Exception as e:
-    print(e)
+        # 连接服务器
+        ssh.connect(ipaddr, port=port, username=username,
+                    password=pwd, timeout=10)
 
+        # 打开一个Channel并执行命令
+        # stdout 为正确输出，stderr为错误输出，同时是有1个变量有值
+        stdin, stdout, stderr = ssh.exec_command(cmd, get_pty=True, timeout=60)
+        # 打印执行结果
+        # for item in stdout.readlines():
+        #     print item
+        while not stdout.channel.exit_status_ready():
+            result = stdout.readline()
+            print(result)
+            if stdout.channel.exit_status_ready():
+                result = stdout.readlines()
+                print(result)
+                break
+        # 错误打印
+        err_list = stderr.readlines()
+        if len(err_list) > 0:
+            print ('ERROR:' + err_list)
+            # exit()
+
+        # 关闭连接
+        ssh.close()
+        return stdout, stderr
+    except Exception as e:
+        print(e)
+    return stdout, stderr
 
 print(f"\nend_time:{time.ctime()}\n")
 
