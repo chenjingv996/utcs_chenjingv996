@@ -8,6 +8,7 @@ import paramiko
 import time
 from datetime import datetime
 import sys
+import os
 
 
 
@@ -21,6 +22,12 @@ cmd = 'pwd && arch && who'
 
 def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
     print(ipaddr, port, username, pwd, cmd)
+    
+    log_file=open(os.path.join(os.getcwd(),'log123.txt'),'w')
+    sys.stdout=log_file
+    
+    print(f'\nstart_time:{time.ctime()}\n')
+
     try:
         # 创建SSH对象
         ssh = paramiko.SSHClient()
@@ -44,12 +51,14 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
             print(result)
             if stdout.channel.exit_status_ready():
                 result = stdout.readlines()
-                print(result)
+                #print(result)
+                for item in result:
+                    print(item)
                 break
         # 错误打印
         err_list = stderr.readlines()
         if len(err_list) > 0:
-            print 'ERROR:' + err_list
+            print (f"'ERROR:' + {err_list}")
             # exit()
 
         # 关闭连接
@@ -59,5 +68,10 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
         print(e)
     return stdout, stderr
 
+    print(f'\nend_time:{time.ctime()}\n')
+
+if __name__=="__main__":
+    aaa=excuseRemoteCmd(ipaddr,port,username,pwd,cmd)
+    print(aaa)
 
 
