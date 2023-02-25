@@ -15,8 +15,7 @@ ipaddr = '192.168.3.123'
 port = 22
 username = 'chenjingv'
 pwd = '123456'
-
-cmd = 'pwd && arch && who'
+cmd = 'pwd && arch && who && userlist'
 
 log_file=open(os.path.join(os.getcwd(),'log_host.txt'),'w')
 sys.stdout=log_file
@@ -43,18 +42,18 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
         # stdout 为正确输出，stderr为错误输出，同时是有1个变量有值
         stdin, stdout, stderr = ssh.exec_command(cmd, get_pty=True, timeout=60)
         # 打印执行结果
-        # for item in stdout.readlines():
-        #     print item
-        while not stdout.channel.exit_status_ready():
-            result = stdout.readline()
-            print(result)
-            if stdout.channel.exit_status_ready():
-                result = stdout.readlines()
-                #print(result)
-                for item in result:
-                    print(item)
-                break
-        # 错误打印
+        for item in stdout.readlines():
+            print(item)
+       # while not stdout.channel.exit_status_ready():
+       #     result = stdout.readline()
+       #     print(result)
+       #     if stdout.channel.exit_status_ready():
+       #         result = stdout.readlines()
+       #         #print(result)
+       #         for item in result:
+       #             print(item)
+       #         break
+       # # 错误打印
         err_list = stderr.readlines()
         if len(err_list) > 0:
             print (f"'ERROR:' + {err_list}")
