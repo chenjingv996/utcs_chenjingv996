@@ -41,17 +41,17 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
         # 打印执行结果
         for item in stdout.readlines():
             print(item)
-       # while not stdout.channel.exit_status_ready():
-       #     result = stdout.readline()
-       #     print(result)
-       #     if stdout.channel.exit_status_ready():
-       #         result = stdout.readlines()
-       #         #print(result)
-       #         for item in result:
-       #             print(item)
-       #         break
-       # # 错误打印
-        err_list = stderr.readlines()
+        # while not stdout.channel.exit_status_ready():
+        #     result = stdout.readline()
+        #     print(result)
+        #     if stdout.channel.exit_status_ready():
+        #         result = stdout.readlines()
+        #         #print(result)
+        #         for item in result:
+        #             print(item)
+        #         break
+        # # 错误打印
+         err_list = stderr.readlines()
         if len(err_list) > 0:
             print (f"'ERROR:' + {err_list}")
             # exit()
