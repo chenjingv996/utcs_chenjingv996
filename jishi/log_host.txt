@@ -1,0 +1,21 @@
+
+start_time is:Sun Feb 26 00:31:43 2023
+
+192.168.3.123 22 chenjingv 123456 pwd && arch && who
+/home/chenjingv
+
+x86_64
+
+chenjingv tty2         2023-02-25 17:22 (tty2)
+
+chenjingv pts/0        2023-02-25 17:22 (192.168.3.13)
+
+chenjingv pts/1        2023-02-26 00:13 (192.168.3.13)
+
+chenjingv pts/2        2023-02-26 00:31 (192.168.3.123)
+
+
+(<paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0x32002050 (unconnected)>>>, <paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0x32002050 (unconnected)>>>)
+
+end_time is:Sun Feb 26 00:31:43 2023
+

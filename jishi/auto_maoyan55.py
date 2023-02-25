@@ -18,12 +18,14 @@ pwd = '123456'
 
 cmd = 'pwd && arch && who'
 
+log_file=open(os.path.join(os.getcwd(),'log_host.txt'),'w')
+sys.stdout=log_file
     
 def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
     print(ipaddr, port, username, pwd, cmd)
     
-    log_file=open(os.path.join(os.getcwd(),'log123.txt'),'w')
-    sys.stdout=log_file
+#    log_file=open(os.path.join(os.getcwd(),'log123.txt'),'w')
+#    sys.stdout=log_file
     
     try:
         # 创建SSH对象
