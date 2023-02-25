@@ -13,7 +13,6 @@ cmd = "pwd && arch && who"
 task_info = "ps -aux"
 
 
-
 # 创建客户端对象
 ssh = paramiko.SSHClient()
 # 接收并保存新的主机名，此外还有RejectPolicy()拒绝未知的主机名
