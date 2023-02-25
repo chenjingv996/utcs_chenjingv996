@@ -1,5 +1,5 @@
 
-start_time is:Sun Feb 26 01:24:28 2023
+start_time is:Sun Feb 26 01:27:28 2023
 
 192.168.3.123 22 chenjingv 123456 pwd && arch && who && userlist
 /home/chenjingv
@@ -12,19 +12,19 @@ chenjingv pts/0        2023-02-26 00:42 (192.168.3.13)
 
 chenjingv pts/1        2023-02-26 00:13 (192.168.3.13)
 
-chenjingv pts/2        2023-02-26 01:24 (192.168.3.123)
+chenjingv pts/2        2023-02-26 01:27 (192.168.3.123)
 
 USERNAME Real name                      Idletime TTY Remote console location
 
-chenjing chenjing                           8:01   2 (tty2)                   
+chenjing chenjing                           8:04   2 (tty2)                   
 
 chenjing chenjing                                 pt (192.168.3.13)           
 
-chenjing chenjing                           1:10  pt (192.168.3.13)           
+chenjing chenjing                           1:13  pt (192.168.3.13)           
 
 chenjing chenjing                                 pt (192.168.3)              
 
-(<paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0xc2d75de0 (unconnected)>>>, <paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0xc2d75de0 (unconnected)>>>)
+(<paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0x3ea5dde0 (unconnected)>>>, <paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0x3ea5dde0 (unconnected)>>>)
 
-end_time is:Sun Feb 26 01:24:28 2023
+end_time is:Sun Feb 26 01:27:29 2023
 

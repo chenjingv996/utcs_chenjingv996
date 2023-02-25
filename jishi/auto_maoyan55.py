@@ -51,7 +51,7 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
         #             print(item)
         #         break
         # # 错误打印
-         err_list = stderr.readlines()
+        err_list = stderr.readlines()
         if len(err_list) > 0:
             print (f"'ERROR:' + {err_list}")
             # exit()
