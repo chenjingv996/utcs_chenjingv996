@@ -19,7 +19,7 @@ cmd = 'pwd && arch && who && userlist'
 
 log_file=open(os.path.join(os.getcwd(),'log_host.txt'),'w')
 sys.stdout=log_file
-    
+
 def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
     print(ipaddr, port, username, pwd, cmd)
     
