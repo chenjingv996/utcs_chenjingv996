@@ -1,6 +1,3 @@
-
-start_time:Sat Feb 25 23:52:40 2023
-
 /home/chenjingv
 
 x86_64
@@ -9,7 +6,10 @@ chenjingv tty2         2023-02-25 17:22 (tty2)
 
 chenjingv pts/0        2023-02-25 17:22 (192.168.3.13)
 
-chenjingv pts/1        2023-02-25 23:52 (192.168.3.123)
+chenjingv pts/1        2023-02-26 00:08 (192.168.3.123)
 
 
-(<paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0x7ed72050 (unconnected)>>>, <paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0x7ed72050 (unconnected)>>>)
+(<paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0x77106050 (unconnected)>>>, <paramiko.ChannelFile from <paramiko.Channel 0 (closed) -> <paramiko.Transport at 0x77106050 (unconnected)>>>)
+
+end_time is:Sun Feb 26 00:08:49 2023
+
