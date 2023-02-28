@@ -10,14 +10,18 @@ from datetime import datetime
 import sys
 import os
 
-
-ipaddr = '192.168.3.123'
+curr_time=time.strftime("%Y-%m-%d-%H_%M_%S")
+ipaddr = '192.168.10.222'
 port = 22
 username = 'chenjingv'
 pwd = '123456'
 cmd = 'pwd && arch && who && userlist'
 
+<<<<<<< HEAD
 log_file=open(os.path.join(os.getcwd(),'run.log'),'a')
+=======
+log_file=open(os.path.join(os.getcwd(),ipaddr + '_' + curr_time +'.log'),'w')
+>>>>>>> d129c9adf59ab77cc77002a2061e8ce800b09327
 sys.stdout=log_file
 
 def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
