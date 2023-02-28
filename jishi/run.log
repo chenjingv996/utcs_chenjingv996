@@ -1,8 +1,21 @@
 
-start_time is:Tue Feb 28 21:32:53 2023
+start_time is:Wed Mar  1 00:17:41 2023
 
-'_io.TextIOWrapper' object has no attribute 'endswith'
-None
+192.168.3.123 22 chenjingv 123456 pwd && arch && who
+/home/chenjingv
 
-end_time is:Tue Feb 28 21:32:53 2023
+x86_64
+
+chenjingv pts/0        2023-03-01 00:07 (192.168.3.13)
+
+chenjingv pts/1        2023-03-01 00:17 (192.168.3.123)
+
+chenjingv pts/2        2023-03-01 00:07 (169.254.174.158)
+
+chenjingv pts/3        2023-03-01 00:07 (169.254.174.158)
+
+chenjingv pts/4        2023-03-01 00:07 (192.168.3.13)
+
+
+end_time is:Wed Mar  1 00:17:41 2023
 

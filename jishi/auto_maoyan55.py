@@ -11,17 +11,13 @@ import sys
 import os
 
 curr_time=time.strftime("%Y-%m-%d-%H_%M_%S")
-ipaddr = '192.168.10.222'
+ipaddr = '192.168.3.123'
 port = 22
 username = 'chenjingv'
 pwd = '123456'
-cmd = 'pwd && arch && who && userlist'
+cmd = 'pwd && arch && who'
 
-<<<<<<< HEAD
-log_file=open(os.path.join(os.getcwd(),'run.log'),'a')
-=======
-log_file=open(os.path.join(os.getcwd(),ipaddr + '_' + curr_time +'.log'),'w')
->>>>>>> d129c9adf59ab77cc77002a2061e8ce800b09327
+log_file=open(os.path.join(os.getcwd(),'run.log'),'w')
 sys.stdout=log_file
 
 def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
@@ -65,13 +61,15 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
         return stdout, stderr
     except Exception as e:
         print(e)
-    return stdout, stderr
+        return stdout, stderr
 
 
 if __name__=="__main__":
     print(f'\nstart_time is:{time.ctime()}\n')
-    aaa=excuseRemoteCmd(ipaddr,port,username,pwd,cmd)
-    print(aaa)
+    
+    excuseRemoteCmd(ipaddr,port,username,pwd,cmd)
+
+    
     print(f'\nend_time is:{time.ctime()}\n')
 
 

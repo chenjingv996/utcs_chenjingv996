@@ -31,8 +31,9 @@ def ssh_login(ipaddr, port, username, pwd, cmd):
 
         # 连接服务器
         conn=ssh.connect(ipaddr, port, username, pwd, timeout=10)
-        end=sys.stdout.endswith("$")
-
+        end=conn.sys.stdout.endswith("$")
+        print(conn)
+        
         if end==True:
             print(end)
             stdin.write("su")
