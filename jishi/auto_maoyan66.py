@@ -15,14 +15,12 @@ ipaddr = '192.168.3.123'
 port = 22
 username = 'chenjingv'
 pwd = '123456'
-cmd = 'pwd && arch && who && userlist'
+cmd = 'pwd && arch && who'
 
 log_file=open(os.path.join(os.getcwd(),'run.log'),'a')
 sys.stdout=log_file
 
-def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
-    print(ipaddr, port, username, pwd, cmd)
-    
+def ssh_login(ipaddr, port, username, pwd, cmd):
     try:
         # 创建SSH对象
         ssh = paramiko.SSHClient()
@@ -32,15 +30,26 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
         # 连接服务器
-        ssh.connect(ipaddr, port, username,
-                    pwd, timeout=10)
+        ssh.connect(ipaddr, port, username, pwd, timeout=10)
 
         # 打开一个Channel并执行命令
         # stdout 为正确输出，stderr为错误输出，同时是有1个变量有值
         stdin, stdout, stderr = ssh.exec_command(cmd, get_pty=True, timeout=60)
+
         # 打印执行结果
+        res=[]
+        
         for item in stdout.readlines():
             print(item)
+        
+        res.append(item)
+        print(res[-1])
+
+        if "3.123a" in res[-1]:
+            print(f'\n###测试结果为:PASS\n')
+        else:
+            print(f'\n###测试结果为:FAIL\n')
+        #print(f'\n最后一个元素为:{res[-1]}\n')
         # while not stdout.channel.exit_status_ready():
         #     result = stdout.readline()
         #     print(result)
@@ -66,8 +75,9 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
 
 if __name__=="__main__":
     print(f'\nstart_time is:{time.ctime()}\n')
-    aaa=excuseRemoteCmd(ipaddr,port,username,pwd,cmd)
+    aaa=ssh_login(ipaddr,port,username,pwd,cmd)
     print(aaa)
     print(f'\nend_time is:{time.ctime()}\n')
+
 
 
