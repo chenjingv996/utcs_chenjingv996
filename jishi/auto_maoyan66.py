@@ -1,83 +1,56 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-
-#paramiko是ansible重要模板之一，支持SSH2远程安全连接，支持认证及密钥方式。可以实现远程命
-#令执行、文件传输、中间SSH代理等功能
-import paramiko
 import time
-from datetime import datetime
 import sys
-import os
+import paramiko
 
+class gxl116_maoyan_test:
+    # ip = ''
+    # cmd_list = []
+    def __init__(self, ip, port, user, pwd, cmd_list):
+        self.ip = ip
+        self.port = port
+        self.user = user
+        self.pwd = pwd
+        self.cmd_list = cmd_list
 
-ipaddr = '192.168.3.123'
-port = 22
-username = 'chenjingv'
-pwd = '123456'
-cmd = 'pwd && arch && who'
-
-log_file=open(os.path.join(os.getcwd(),'run.log'),'a')
-sys.stdout=log_file
-
-def ssh_login(ipaddr, port, username, pwd, cmd):
-    try:
-        # 创建SSH对象
-        ssh = paramiko.SSHClient()
-
-        # 允许连接不在know_hosts文件中的主机
-        ssh.load_system_host_keys()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-
-        # 连接服务器
-        ssh.connect(ipaddr, port, username, pwd, timeout=10)
-
-        # 打开一个Channel并执行命令
-        # stdout 为正确输出，stderr为错误输出，同时是有1个变量有值
-        stdin, stdout, stderr = ssh.exec_command(cmd, get_pty=True, timeout=60)
-
-        # 打印执行结果
-        res=[]
-        
-        for item in stdout.readlines():
-            print(item)
-        
-        res.append(item)
-        print(res[-1])
-
-        if "3.123a" in res[-1]:
-            print(f'\n###测试结果为:PASS\n')
-        else:
-            print(f'\n###测试结果为:FAIL\n')
-        #print(f'\n最后一个元素为:{res[-1]}\n')
-        # while not stdout.channel.exit_status_ready():
-        #     result = stdout.readline()
-        #     print(result)
-        #     if stdout.channel.exit_status_ready():
-        #         result = stdout.readlines()
-        #         #print(result)
-        #         for item in result:
-        #             print(item)
-        #         break
-        # # 错误打印
-        err_list = stderr.readlines()
-        if len(err_list) > 0:
-            print (f"'ERROR:' + {err_list}")
-            # exit()
-
-        # 关闭连接
+    def check_onu(self, asy_id=1, verbose=True):
+        try:
+            print('try shh' + str(asy_id))
+            ssh = paramiko.SSHClient()
+            ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            # ssh.connect()
+            ssh.connect(ip, port, user, pwd, timeout=5, compress=True)
+            print('You have successfully connect to ' + ip + '\n')
+        except paramiko.ssh_exception.AuthenticationException:
+            print("User authentication failed for " + ip + '.')
+        #激活交互式shell
+        command = ssh.invoke_shell()
+        #等待网络设备回应
+        # command.send('system\n')
+        #执行具体的命令
+        for cmd in cmd_list:
+            command.send(cmd)
+        time.sleep(2)
+        #获取中路由器返回信息
+        output = command.recv(65535)
+        x = output.decode('ascii')
+        #关闭连接
         ssh.close()
-        return stdout, stderr
-    except Exception as e:
-        print(e)
-    return stdout, stderr
+        print('SSH 连接关闭！')
+        if verbose:
+            print(x)
+        return x
 
 
-if __name__=="__main__":
-    print(f'\nstart_time is:{time.ctime()}\n')
-    aaa=ssh_login(ipaddr,port,username,pwd,cmd)
-    print(aaa)
-    print(f'\nend_time is:{time.ctime()}\n')
-
-
-
+if __name__ == "__main__":
+    #执行命令
+    cmd_list = ['admin\n','admin123\n','en\n','admin123\n','$$$auto_test of chenjingv!\n\n','conf t\n\n','show onu state\n\n','end\n\n']
+    ip = '192.168.10.135'
+    port = 22
+    user= 'admin'
+    pwd= 'admin123'
+    
+    sw1 = gxl116_maoyan_test(ip,port,user,pwd,cmd_list)
+    sw1.check_onu()
