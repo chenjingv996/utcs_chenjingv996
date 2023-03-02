@@ -1,21 +1,62 @@
 
-start_time is:Wed Mar  1 00:17:41 2023
+start_time is:2023-03-02-20:15:17
 
-192.168.3.123 22 chenjingv 123456 pwd && arch && who
 /home/chenjingv
 
 x86_64
 
-chenjingv pts/0        2023-03-01 00:07 (192.168.3.13)
+Package        Version
 
-chenjingv pts/1        2023-03-01 00:17 (192.168.3.123)
+-------------- -------
 
-chenjingv pts/2        2023-03-01 00:07 (169.254.174.158)
+attrs          22.1.0
 
-chenjingv pts/3        2023-03-01 00:07 (169.254.174.158)
+bcrypt         4.0.0
 
-chenjingv pts/4        2023-03-01 00:07 (192.168.3.13)
+cffi           1.15.1
+
+cryptography   39.0.1
+
+exceptiongroup 1.0.0
+
+fix            1.0.3
+
+iniconfig      1.1.1
+
+let            1.0.1
+
+logzero        1.7.0
+
+packaging      21.3
+
+paramiko       3.0.0
+
+pip            23.0.1
+
+pluggy         1.0.0
+
+pycparser      2.21
+
+pycrypto       2.6.1
+
+PyMySQL        1.0.2
+
+PyNaCl         1.5.0
+
+pytest         7.2.0
+
+scapy          2.4.5
+
+setuptools     59.6.0
+
+telnetlib3     2.0.0
+
+tomli          2.0.1
+
+typing         3.7.4.3
+
+wheel          0.37.1
 
 
-end_time is:Wed Mar  1 00:17:41 2023
+end_time is:2023-03-02-20:15:17
 

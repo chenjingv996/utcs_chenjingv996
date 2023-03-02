@@ -10,18 +10,18 @@ from datetime import datetime
 import sys
 import os
 
-curr_time=time.strftime("%Y-%m-%d-%H_%M_%S")
+curr_time=time.strftime("%Y-%m-%d-%H:%M:%S")
 ipaddr = '192.168.3.123'
 port = 22
 username = 'chenjingv'
 pwd = '123456'
-cmd = 'pwd && arch && who'
+cmd = 'pwd && arch && pip list'
 
 log_file=open(os.path.join(os.getcwd(),'run.log'),'w')
 sys.stdout=log_file
 
-def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
-    print(ipaddr, port, username, pwd, cmd)
+def login_olt(ipaddr, port, username, pwd, cmd):
+#    print(ipaddr, port, username, pwd, cmd)
     
     try:
         # 创建SSH对象
@@ -65,11 +65,11 @@ def excuseRemoteCmd(ipaddr, port, username, pwd, cmd):
 
 
 if __name__=="__main__":
-    print(f'\nstart_time is:{time.ctime()}\n')
+    print(f'\nstart_time is:{curr_time}\n')
     
-    excuseRemoteCmd(ipaddr,port,username,pwd,cmd)
+    login_olt(ipaddr,port,username,pwd,cmd)
 
     
-    print(f'\nend_time is:{time.ctime()}\n')
+    print(f'\nend_time is:{curr_time}\n')
 
 
