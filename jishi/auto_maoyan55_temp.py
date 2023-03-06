@@ -11,16 +11,17 @@ import sys
 import os
 
 curr_time=time.strftime("%Y-%m-%d-%H:%M:%S")
-ipaddr = '192.168.10.222'
+ipaddr = '192.168.10.135'
 port = 22
-username = 'chenjingv'
-pwd = '123456'
-cmd = 'pwd && arch && who'
+username = 'admin'
+pwd = 'admin123'
+#cmd = 'pwd && arch && who'
+cmd_list = ['en','admin123','conf t']
 
 log_file=open(os.path.join(os.getcwd(),'run.log'),'w')
 sys.stdout=log_file
 
-def login_olt(ipaddr, port, username, pwd, cmd):
+def login_olt(ipaddr, port, username, pwd, cmd_list):
 #    print(ipaddr, port, username, pwd, cmd)
     
     try:
@@ -37,8 +38,12 @@ def login_olt(ipaddr, port, username, pwd, cmd):
 
         # 打开一个Channel并执行命令
         # stdout 为正确输出，stderr为错误输出，同时是有1个变量有值
-        stdin, stdout, stderr = ssh.exec_command(cmd, get_pty=True, timeout=60)
+        stdin, stdout, stderr = ssh.exec_command(cmd_list, get_pty=True, timeout=60)
+        command = ssh.invoke_shell()
         # 打印执行结果
+        for cmd in cmd_list:
+            command.send(cmd)
+        time.sleep(1)    
         for item in stdout.readlines():
             print(item)
         # while not stdout.channel.exit_status_ready():
@@ -67,7 +72,7 @@ def login_olt(ipaddr, port, username, pwd, cmd):
 if __name__=="__main__":
     print(f'\nstart_time is:{curr_time}\n')
     
-    login_olt(ipaddr,port,username,pwd,cmd)
+    login_olt(ipaddr,port,username,pwd,cmd_list)
 
     
     print(f'\nend_time is:{curr_time}\n')
