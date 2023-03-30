@@ -26,7 +26,10 @@ class TelnetClient:
         self.cmd_1='su'
         self.tn = telnetlib.Telnet()
 
-
+    def recode(self):
+        with open(os.path.join(os.getcwd(),'run_recode.log'),'w') as f:
+            f.write(str(self.tn.readall().decode("ascii")))
+             
     # 此函数实现telnet登录主机
     def login_host(self):
         try:
@@ -90,6 +93,7 @@ if __name__ == '__main__':
     telnet_client = TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     #if telnet_client.login_host():
+    recode()
     telnet_client.execute_some_command()
     #    telnet_client.logout_host()
 
