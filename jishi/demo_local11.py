@@ -59,8 +59,9 @@ class TelnetClient:
             return False
 
     # 此函数实现执行传过来的命令，并输出其执行结果
-    def execute_some_command(self,command):
+    def execute_some_command(self):
         self.login_host()
+        command='arch'
         # 执行命令
         self.tn.write(command.encode('ascii')+b'\n')
         time.sleep(2)
@@ -79,10 +80,10 @@ if __name__ == '__main__':
     #host_ip = '192.168.3.123'
     #username = 'chenjingv'
     #password = '123456'
-    command = 'arch'
+    #command = 'arch'
     telnet_client = TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     #if telnet_client.login_host():
-    telnet_client.execute_some_command(command)
+    telnet_client.execute_some_command()
     #    telnet_client.logout_host()
 
