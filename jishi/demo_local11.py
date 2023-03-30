@@ -61,15 +61,16 @@ class TelnetClient:
     # 此函数实现执行传过来的命令，并输出其执行结果
     def execute_some_command(self):
         self.login_host()
-        command='arch'
+        commands=['arch','pwd','uname -r']
+        for i in range(len(commands)):
         # 执行命令
-        self.tn.write(command.encode('ascii')+b'\n')
-        time.sleep(2)
+            self.tn.write(commands[i].encode('ascii')+b'\n')
+            time.sleep(2)
         # 获取命令结果
-        command_result = self.tn.read_very_eager().decode('ascii')
-        res=str(command_result)
-        self.tn.logfile=output.write(f'{res}\n')
-        logging.warning(f'命令执行结果：\n{command_result}')
+            commands_result = self.tn.read_very_eager().decode('ascii')
+            res=str(commands_result)
+            self.tn.logfile=output.write(f'{res}\n')
+            logging.warning(f'命令执行结果：\n{commands_result}')
         self.logout_host()    
 
     # 退出telnet
