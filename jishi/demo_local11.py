@@ -9,10 +9,14 @@ import logging
 import telnetlib
 import time
 import os,sys
+from datetime import datetime as dt
 
+start_time,end_time=dt.now(),dt.now()
 
 output=open(os.path.join(os.getcwd(),'run_temp.log'),'w')
-#sys.stdout=log_file
+
+
+print(f'\n测试开始时间为:{start_time}\n')
 
 class TelnetClient:
     def __init__(self):
@@ -82,10 +86,7 @@ class TelnetClient:
         self.tn.write(b"exit\n\n")
 
 if __name__ == '__main__':
-    #host_ip = '192.168.3.123'
-    #username = 'chenjingv'
-    #password = '123456'
-    #command = 'arch'
+    
     telnet_client = TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     #if telnet_client.login_host():
