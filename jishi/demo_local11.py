@@ -48,6 +48,7 @@ class TelnetClient:
         #self.tn.write(cmd_2.encode('ascii') + b'\n')
         # 延时两秒再收取返回结果，给服务端足够响应时间
         time.sleep(2)
+        print()
         # 获取登录结果
         # read_very_eager()获取到的是的是上次获取之后本次获取之前的所有输出
         command_result = self.tn.read_very_eager().decode('ascii')
@@ -61,21 +62,24 @@ class TelnetClient:
     # 此函数实现执行传过来的命令，并输出其执行结果
     def execute_some_command(self):
         self.login_host()
-        commands=['arch','pwd','uname -r']
-        for i in range(len(commands)):
+        cmds=['arch','pwd','uname -r']
+        for i in range(len(cmds)):
         # 执行命令
-            self.tn.write(commands[i].encode('ascii')+b'\n')
-            time.sleep(2)
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(1)
         # 获取命令结果
-            commands_result = self.tn.read_very_eager().decode('ascii')
-            res=str(commands_result)
+            cmds_res = self.tn.read_very_eager().decode('ascii')
+            print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
+            res=str(cmds_res)
             self.tn.logfile=output.write(f'{res}\n')
-            logging.warning(f'命令执行结果：\n{commands_result}')
+            #logging.warning(f'命令执行结果：\n{cmds_res}')
+        #return res
+        print()
         self.logout_host()    
 
     # 退出telnet
     def logout_host(self):
-        self.tn.write(b"exit\n")
+        self.tn.write(b"exit\n\n")
 
 if __name__ == '__main__':
     #host_ip = '192.168.3.123'
