@@ -1,9 +1,33 @@
-arch
-x86_64
-root@chenjingv:/home/chenjingv# 
-pwd
-/home/chenjingv
-root@chenjingv:/home/chenjingv# 
-uname -r
-5.19.0-38-generic
-root@chenjingv:/home/chenjingv# 
+conf t
+gpon-olt(config)# 
+show version
+  Olt Serial Number:           V2108060002
+  Olt Device Model:            GPL116-16P404-2AC
+  Hardware Version:            V3.1.16
+  Software Version:            V1.3.7R / (Secondary:V1.3.7R)
+  Software Created Time:       Tue, 07 Mar 2023 16:25:36 /(Secondary:Tue, 07 Mar 2023 16:25:36 )
+  Copyright 2020-2025
+
+gpon-olt(config)# 
+show onu state
+OnuIndex    Admin State    OMCC State    Phase State    Serial Number
+---------------------------------------------------------------
+1/1/3:128[12Cenable[27Cenable[41Clogging[56CMONU0000456a
+
+pon: 3 total: 1 working: 0
+
+gpon-olt(config)# 
+show mac address-table
+
+ Mac Address Table
+
+ ----------------------------------------------------------
+
+ Vlan     Mac Address       Type       Ports  Remaining Age
+
+ ----   --------------     -------     -----  -------------
+
+ ----------------------------------------------------------
+
+ Total Addresses Found in System :0
+gpon-olt(config)# 
