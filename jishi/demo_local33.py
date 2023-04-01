@@ -99,6 +99,19 @@ class TelnetClient:
         #return res
         print()
         self.logout_host()    
+    
+    @zhuangsiqi
+    def check_ssh(self):
+        self.login_host()
+        cmds=['ps -ef |grep sshd','netstat -anp | grep :22']
+        for i in range(len(cmds)):
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(1)
+            cmds_res=self.tn.read_very_eager().decode('ascii')
+            print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
+            self.tn.logfile=output.write(f'{cmds_res}\n')
+        print()
+        self.logout_host()
 
     # 退出telnet
     def logout_host(self):
@@ -111,4 +124,5 @@ if __name__ == '__main__':
     #if telnet_client.login_host():
     #telnet_client.recode()
     telnet.exec_cmd()
+    telnet.check_ssh()
     #    telnet_client.logout_host()
