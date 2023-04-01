@@ -19,7 +19,7 @@ class Logger(object):
 import time  
 t = time.strftime("-%Y%m%d-%H%M%S", time.localtime())  # 时间戳
 #filename = 'log' + t + '.txt'
-filename='bbb.txt'
+filename='aaaa.txt'
 
 log = Logger(filename)  
 sys.stdout = log
