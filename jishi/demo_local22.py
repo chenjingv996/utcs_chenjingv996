@@ -81,8 +81,7 @@ class TelnetClient:
         # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('ascii')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
-            #res=str(cmds_res)
-            #self.tn.logfile=output.write(f'{cmds_res}\n\n')
+            self.tn.logfile=output.write(f'{cmds_res}\n\n')
             #logging.warning(f'命令执行结果：\n{cmds_res}')
         #return res
         if "gen" in cmds_res[:-1]:
