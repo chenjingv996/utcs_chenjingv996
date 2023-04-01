@@ -36,7 +36,6 @@ class TelnetClient:
         return abc
     return beg_end
 
-    @beg_end
     def login_host(self):
         try:
             # self.tn = telnetlib.Telnet(host_ip,port=23)
@@ -73,6 +72,7 @@ class TelnetClient:
             return False
 
     # 此函数实现执行传过来的命令，并输出其执行结果
+    @beg_end
     def execute_some_command(self):
         self.login_host()
         cmds=['arch','pwd','uname -r']
