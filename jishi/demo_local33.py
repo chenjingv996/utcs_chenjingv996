@@ -88,6 +88,10 @@ class TelnetClient:
             self.tn.logfile=output.write(f'{cmds_res}\n\n')
             #logging.warning(f'命令执行结果：\n{cmds_res}')
         #return res
+            if "gen" in cmds_res[:-1]:
+                print(f'当前测试结果为:pass\n')
+            else:
+                print(f'当前测试结果为:fail\n')
         print()
         self.logout_host()    
     
