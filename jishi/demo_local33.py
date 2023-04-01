@@ -72,6 +72,12 @@ class TelnetClient:
         else:
             logging.warning(f'{self.host_ip}登录失败，用户名或密码错误!\n')
             return False
+    
+    def pass_res(self):
+        print("\n"+"--"*20+"当前测试结果为:pass"+"\n")
+
+    def fail_res(self):
+        print("\n"+"--"*20+"当前测试结果为:fail"+"\n")
 
     @zhuangsiqi
     def exec_cmd(self):
@@ -89,9 +95,9 @@ class TelnetClient:
             #logging.warning(f'命令执行结果：\n{cmds_res}')
         #return res
         if "gen" in cmds_res[:-1]:
-            print("\n"+"--"*20+"当前测试结果为:pass"+"\n")
+            self.pass_res()
         else:
-            print("\n"+"--"*20+"当前测试结果为:fail"+"\n")
+            self.fail_res()
         self.logout_host()    
     
     @zhuangsiqi
@@ -105,9 +111,9 @@ class TelnetClient:
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             self.tn.logfile=output.write(f'{cmds_res}\n\n')
         if "gen" in cmds_res[:-1]:
-            print("\n"+"--"*20+"当前测试结果为:pass"+"\n")
+            self.pass_res()
         else:
-            print("\n"+"--"*20+"当前测试结果为:fail"+"\n")
+            self.fail_res()
         self.logout_host()
 
     # 退出telnet
