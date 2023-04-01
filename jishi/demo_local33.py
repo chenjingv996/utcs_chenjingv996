@@ -31,9 +31,9 @@ class TelnetClient:
     # 此函数实现telnet登录主机
     def zhuangsiqi(fun_name):
         def wrapper(*args,**kwargs):
-            print("\n"+"#"*20+fun_name.__name__+"脚本测试执行开始!"+"#"*20+"\n")
+            print("\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行开始!"+"#"*20+"\n")
             res=fun_name(*args,**kwargs)
-            print("\n"+"#"*20+fun_name.__name__+"脚本测试执行结束!"+"#"*20+"\n")
+            print("\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行结束!"+"#"*20+"\n")
             return res
         return wrapper
     
@@ -120,6 +120,7 @@ class TelnetClient:
         self.tn.write(b"exit\n\n")
 
 if __name__ == '__main__':
+    
     output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
 
     telnet= TelnetClient()

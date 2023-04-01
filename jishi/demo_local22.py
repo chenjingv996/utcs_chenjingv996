@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-'''
-'''
 import logging
 import telnetlib
 import time
@@ -11,7 +9,8 @@ from datetime import datetime as dt
 
 start_time,end_time=dt.now(),dt.now()
 
-output=open(os.path.join(os.getcwd(),'run_local.log'),'w')
+#output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
+#sys.stdout,sys.stderr=output,output
 
 
 print(f'\n测试开始时间为:{start_time}\n')
@@ -32,9 +31,9 @@ class TelnetClient:
     # 此函数实现telnet登录主机
     def zhuangsiqi(fun_name):
         def wrapper(*args,**kwargs):
-            print("\n"+"#"*20+fun_name.__name__+"脚本测试执行开始!"+"#"*20+"\n")
+            print("\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行开始!"+"#"*20+"\n")
             res=fun_name(*args,**kwargs)
-            print("\n"+"#"*20+fun_name.__name__+"脚本测试执行结束!"+"#"*20+"\n")
+            print("\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行结束!"+"#"*20+"\n")
             return res
         return wrapper
     
@@ -72,6 +71,12 @@ class TelnetClient:
         else:
             logging.warning(f'{self.host_ip}登录失败，用户名或密码错误!\n')
             return False
+    
+    def pass_res(self):
+        print("\n"+"--"*20+"当前用例测试结果为:pass"+"\n")
+
+    def fail_res(self):
+        print("\n"+"--"*20+"当前用例测试结果为:fail"+"\n")
 
     @zhuangsiqi
     def exec_cmd(self):
@@ -80,34 +85,34 @@ class TelnetClient:
         for i in range(len(cmds)):
         # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(0.5)
+            time.sleep(1)
         # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('ascii')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             #res=str(cmds_res)
-            self.tn.logfile=output.write(f'{cmds_res}\n\n')
+            #self.tn.logfile=output.write(f'{cmds_res}\n\n')
             #logging.warning(f'命令执行结果：\n{cmds_res}')
         #return res
         if "gen" in cmds_res[:-1]:
-            print("\n"+"--"*20+"当前测试结果为:pass"+"\n")
+            self.pass_res()
         else:
-            print("\n"+"--"*20+"当前测试结果为:fail"+"\n")
+            self.fail_res()
         self.logout_host()    
     
     @zhuangsiqi
     def check_ssh(self):
         self.login_host()
-        cmds=['ps -ef |grep sshd','netstat -anp | grep :22']
+        cmds=['ip add | grep inet -C2','netstat -anp | grep :22']
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(0.5)
+            time.sleep(1)
             cmds_res=self.tn.read_very_eager().decode('ascii')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             self.tn.logfile=output.write(f'{cmds_res}\n\n')
         if "gen" in cmds_res[:-1]:
-            print("\n"+"--"*20+"当前测试结果为:pass"+"\n")
+            self.pass_res()
         else:
-            print("\n"+"--"*20+"当前测试结果为:fail"+"\n")
+            self.fail_res()
         self.logout_host()
 
     # 退出telnet
@@ -116,10 +121,15 @@ class TelnetClient:
 
 if __name__ == '__main__':
     
+    output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
+
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     #if telnet_client.login_host():
     #telnet_client.recode()
     telnet.exec_cmd()
     telnet.check_ssh()
+
+    sys.stdout,sys.stderr=output,output
+    
     #    telnet_client.logout_host()
