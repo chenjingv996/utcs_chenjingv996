@@ -29,11 +29,12 @@ class TelnetClient:
    #         f.write(str(self.tn.read_all().decode("ascii")))
           
     # 此函数实现telnet登录主机
-    def beg_end(*args,**kwargs):
+    def beg_end(self,*args,**kwargs):
         print("######测试执行开始!######")
         fn(*args,**kwargs)
         print("######测试执行结束!######")
         return fn
+    return beg_end
 
     @beg_end
     def login_host(self):
