@@ -1,9 +1,0 @@
-arch
-x86_64
-root@chenjingv:/home/chenjingv# 
-pwd
-/home/chenjingv
-root@chenjingv:/home/chenjingv# 
-uname -r
-5.19.0-38-generic
-root@chenjingv:/home/chenjingv# 

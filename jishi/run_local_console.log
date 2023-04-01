@@ -26,11 +26,19 @@ ip add | grep inet -C2
        valid_lft forever preferred_lft forever
 root@chenjingv:/home/chenjingv# 
 
+ps -ef | grep sshd
+root         932       1  0 4月01 ?       00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
+root       22655     932  0 4月01 ?       00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
+chenjin+   22733   22655  0 4月01 ?       00:00:04 [01;31m[Ksshd[m[K: chenjingv@pts/0
+root       24304     932  0 4月01 ?       00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
+chenjin+   24382   24304  0 4月01 ?       00:00:18 [01;31m[Ksshd[m[K: chenjingv@pts/1
+root       37736   37727  0 03:19 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+root@chenjingv:/home/chenjingv# 
+
 netstat -anp | grep :22
 tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      932/sshd: /usr/sbin 
 tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:57395      ESTABLISHED 22655/sshd: chenjin 
-tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
-tcp        0      0 192.168.3.123:56358     20.205.243.166[01;31m[K:22[m[K       TIME_WAIT   -                   
+tcp        0    748 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      932/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 

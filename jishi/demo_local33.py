@@ -93,7 +93,7 @@ class TelnetClient:
     @zhuangsiqi
     def check_ssh(self):
         self.login_host()
-        cmds=['ip add | grep inet -C2','netstat -anp | grep :22']
+        cmds=['ip add | grep inet -C2','ps -ef | grep sshd','netstat -anp | grep :22']
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
             time.sleep(1)
