@@ -11,7 +11,9 @@ from datetime import datetime as dt
 
 start_time,end_time=dt.now(),dt.now()
 
-output=open(os.path.join(os.getcwd(),'run_local.log'),'w')
+output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
+sys.stdout=output
+sys.stderr=output
 
 
 print(f'\n测试开始时间为:{start_time}\n')
@@ -91,7 +93,7 @@ class TelnetClient:
             cmds_res = self.tn.read_very_eager().decode('ascii')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             #res=str(cmds_res)
-            self.tn.logfile=output.write(f'{cmds_res}\n\n')
+            #self.tn.logfile=output.write(f'{cmds_res}\n\n')
             #logging.warning(f'命令执行结果：\n{cmds_res}')
         #return res
         if "gen" in cmds_res[:-1]:
