@@ -1,5 +1,5 @@
 
-测试开始时间为:2023-04-01 20:30:46.476079
+测试开始时间为:2023-04-01 20:32:15.640239
 
 
 ####################exec_cmd脚本测试执行开始!####################
@@ -40,13 +40,13 @@ ps -ef |grep sshd
 root         932       1  0 14:02 ?        00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
 root       22655     932  0 19:43 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
 chenjin+   22733   22655  0 19:43 ?        00:00:03 [01;31m[Ksshd[m[K: chenjingv@pts/0
-root       24114   24106  0 20:30 pts/3    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+root       24250   24243  0 20:32 pts/3    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 ps -ef |grep sshd
 root         932       1  0 14:02 ?        00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
 root       22655     932  0 19:43 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
 chenjin+   22733   22655  0 19:43 ?        00:00:03 [01;31m[Ksshd[m[K: chenjingv@pts/0
-root       24114   24106  0 20:30 pts/3    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+root       24250   24243  0 20:32 pts/3    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 
@@ -54,11 +54,13 @@ root@chenjingv:/home/chenjingv#
 netstat -anp | grep :22
 tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      932/sshd: /usr/sbin 
 tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:57395      ESTABLISHED 22655/sshd: chenjin 
+tcp        0      0 192.168.3.123:36120     20.205.243.166[01;31m[K:22[m[K       TIME_WAIT   -                   
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      932/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 netstat -anp | grep :22
 tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      932/sshd: /usr/sbin 
 tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:57395      ESTABLISHED 22655/sshd: chenjin 
+tcp        0      0 192.168.3.123:36120     20.205.243.166[01;31m[K:22[m[K       TIME_WAIT   -                   
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      932/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 
