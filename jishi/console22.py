@@ -1,19 +1,28 @@
 #!/usr/bin/env python
-#coding:utf-8
+#!coding:utf-8
 
+import sys,os  # 需要引入的包
 
-import time
-from datetime import datetime as dt
-import sys,re,os
-import math
+# 以下为包装好的 Logger 类的定义
+class Logger(object):
+    def __init__(self, filename="Default.log"):
+        self.terminal = sys.stdout
+        self.log = open(filename, "w", encoding="utf-8")  # 防止编码错误
 
-f=open('a.log','w')
+    def write(self, message):
+        self.terminal.write(message)
+        self.log.write(message)
 
-print(dt.now())
-print('sfwefwefw'+'\n')
-print(os.system("ip route"))
+    def flush(self):
+        pass
 
-sys.stdout=f
-sys.stderr=f
+import time  
+t = time.strftime("-%Y%m%d-%H%M%S", time.localtime())  # 时间戳
+#filename = 'log' + t + '.txt'
+filename='bbb.txt'
 
+log = Logger(filename)  
+sys.stdout = log
 
+#print(os.system('arch'))
+log.write(os.system("uname -r"))
