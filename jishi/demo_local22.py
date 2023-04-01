@@ -113,7 +113,7 @@ class TelnetClient:
 
 if __name__ == '__main__':
     
-    output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
+    output=open(os.path.join(os.getcwd(),'run_local_console22.log'),'w')
 
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
