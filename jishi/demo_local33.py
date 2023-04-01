@@ -31,9 +31,9 @@ class TelnetClient:
     # 此函数实现telnet登录主机
     def beg_end(self,*args,**kwargs):
         print("######测试执行开始!######")
-        fn(*args,**kwargs)
+        abc=fn(*args,**kwargs)
         print("######测试执行结束!######")
-        return fn
+        return abc
     return beg_end
 
     @beg_end
