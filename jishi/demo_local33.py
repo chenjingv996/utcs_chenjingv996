@@ -89,12 +89,12 @@ class TelnetClient:
         for i in range(len(cmds)):
         # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(1)
+            time.sleep(0.5)
         # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('ascii')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             #res=str(cmds_res)
-            self.tn.logfile=output.write(f'{cmds_res}\n')
+            self.tn.logfile=output.write(f'{cmds_res}\n\n')
             #logging.warning(f'命令执行结果：\n{cmds_res}')
         #return res
         print()
@@ -106,10 +106,10 @@ class TelnetClient:
         cmds=['ps -ef |grep sshd','netstat -anp | grep :22']
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(1)
+            time.sleep(0.5)
             cmds_res=self.tn.read_very_eager().decode('ascii')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
-            self.tn.logfile=output.write(f'{cmds_res}\n')
+            self.tn.logfile=output.write(f'{cmds_res}\n\n')
         print()
         self.logout_host()
 
