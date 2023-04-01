@@ -17,7 +17,7 @@ root@chenjingv:/home/chenjingv#
 netstat -anp | grep :22
 tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      932/sshd: /usr/sbin 
 tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:57395      ESTABLISHED 22655/sshd: chenjin 
-tcp        0    956 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
+tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      932/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 
