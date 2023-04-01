@@ -30,13 +30,6 @@ class TelnetClient:
    #         f.write(str(self.tn.read_all().decode("ascii")))
           
     # 此函数实现telnet登录主机
-    #def beg_end(self,fn):
-    #    def new_fun(*args,**kwargs):
-    #        print("######测试执行开始!######")
-    #        abc=fn(*args,**kwargs)
-    #        print("######测试执行结束!######")
-    #        return abc
-    #    return new_fun
     def zhuangsiqi(fun_name):
         def wrapper(*args,**kwargs):
             print(f'\n################{fun_name.__name__}脚本测试执行开始!################\n')
@@ -80,8 +73,6 @@ class TelnetClient:
             logging.warning(f'{self.host_ip}登录失败，用户名或密码错误!\n')
             return False
 
-    # 此函数实现执行传过来的命令，并输出其执行结果
-    #@beg_end
     @zhuangsiqi
     def exec_cmd(self):
         self.login_host()
