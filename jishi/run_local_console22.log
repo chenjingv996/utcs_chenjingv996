@@ -1,3 +1,15 @@
+arch
+x86_64
+root@chenjingv:/home/chenjingv# 
+
+pwd
+/home/chenjingv
+root@chenjingv:/home/chenjingv# 
+
+uname -r
+5.19.0-38-generic
+root@chenjingv:/home/chenjingv# 
+
 ip add | grep inet -C2
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -18,6 +30,7 @@ netstat -anp | grep :22
 tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      932/sshd: /usr/sbin 
 tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:57395      ESTABLISHED 22655/sshd: chenjin 
 tcp        0    956 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
+tcp        0      0 192.168.3.123:53276     20.205.243.166[01;31m[K:22[m[K       TIME_WAIT   -                   
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      932/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 
