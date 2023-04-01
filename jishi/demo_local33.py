@@ -74,10 +74,10 @@ class TelnetClient:
             return False
     
     def pass_res(self):
-        print("\n"+"--"*20+"当前测试结果为:pass"+"\n")
+        print("\n"+"--"*20+"当前用例测试结果为:pass"+"\n")
 
     def fail_res(self):
-        print("\n"+"--"*20+"当前测试结果为:fail"+"\n")
+        print("\n"+"--"*20+"当前用例测试结果为:fail"+"\n")
 
     @zhuangsiqi
     def exec_cmd(self):
