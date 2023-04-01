@@ -30,13 +30,6 @@ class TelnetClient:
    #         f.write(str(self.tn.read_all().decode("ascii")))
           
     # 此函数实现telnet登录主机
-    #def beg_end(self,fn):
-    #    def new_fun(*args,**kwargs):
-    #        print("######测试执行开始!######")
-    #        abc=fn(*args,**kwargs)
-    #        print("######测试执行结束!######")
-    #        return abc
-    #    return new_fun
     def zhuangsiqi(fun_name):
         def wrapper(*args,**kwargs):
             print(f'\n################{fun_name.__name__}脚本测试执行开始!################\n')
@@ -80,8 +73,6 @@ class TelnetClient:
             logging.warning(f'{self.host_ip}登录失败，用户名或密码错误!\n')
             return False
 
-    # 此函数实现执行传过来的命令，并输出其执行结果
-    #@beg_end
     @zhuangsiqi
     def exec_cmd(self):
         self.login_host()
@@ -89,16 +80,29 @@ class TelnetClient:
         for i in range(len(cmds)):
         # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(1)
+            time.sleep(0.5)
         # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('ascii')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             #res=str(cmds_res)
-            self.tn.logfile=output.write(f'{cmds_res}\n')
+            self.tn.logfile=output.write(f'{cmds_res}\n\n')
             #logging.warning(f'命令执行结果：\n{cmds_res}')
         #return res
         print()
         self.logout_host()    
+    
+    @zhuangsiqi
+    def check_ssh(self):
+        self.login_host()
+        cmds=['ps -ef |grep sshd','netstat -anp | grep :22']
+        for i in range(len(cmds)):
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(0.5)
+            cmds_res=self.tn.read_very_eager().decode('ascii')
+            print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
+            self.tn.logfile=output.write(f'{cmds_res}\n\n')
+        print()
+        self.logout_host()
 
     # 退出telnet
     def logout_host(self):
@@ -111,4 +115,5 @@ if __name__ == '__main__':
     #if telnet_client.login_host():
     #telnet_client.recode()
     telnet.exec_cmd()
+    telnet.check_ssh()
     #    telnet_client.logout_host()
