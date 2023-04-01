@@ -32,9 +32,9 @@ class TelnetClient:
     # 此函数实现telnet登录主机
     def zhuangsiqi(fun_name):
         def wrapper(*args,**kwargs):
-            print(f'\n################{fun_name.__name__}脚本测试执行开始!################\n')
+            print("\n"+"#"*20+fun_name.__name__+"脚本测试执行开始!"+"#"*20+"\n")
             res=fun_name(*args,**kwargs)
-            print(f'\n################{fun_name.__name__}脚本测试执行结束!################\n')
+            print("\n"+"#"*20+fun_name.__name__+"脚本测试执行结束!"+"#"*20+"\n")
             return res
         return wrapper
     
@@ -88,7 +88,10 @@ class TelnetClient:
             self.tn.logfile=output.write(f'{cmds_res}\n\n')
             #logging.warning(f'命令执行结果：\n{cmds_res}')
         #return res
-        print()
+        if "gen" in cmds_res[:-1]:
+            print("\n"+"--"*20+"当前测试结果为:pass"+"\n")
+        else:
+            print("\n"+"--"*20+"当前测试结果为:fail"+"\n")
         self.logout_host()    
     
     @zhuangsiqi
@@ -101,7 +104,10 @@ class TelnetClient:
             cmds_res=self.tn.read_very_eager().decode('ascii')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             self.tn.logfile=output.write(f'{cmds_res}\n\n')
-        print()
+        if "gen" in cmds_res[:-1]:
+            print("\n"+"--"*20+"当前测试结果为:pass"+"\n")
+        else:
+            print("\n"+"--"*20+"当前测试结果为:fail"+"\n")
         self.logout_host()
 
     # 退出telnet
