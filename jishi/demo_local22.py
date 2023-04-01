@@ -23,12 +23,28 @@ class TelnetClient:
         self.password='123456'
         self.cmd_1='su'
         self.tn = telnetlib.Telnet()
+        #self.fn = fn
 
    # def recode(self):
    #     with open(os.path.join(os.getcwd(),'run_recode.log'),'w') as f:
    #         f.write(str(self.tn.read_all().decode("ascii")))
           
     # 此函数实现telnet登录主机
+    #def beg_end(self,fn):
+    #    def new_fun(*args,**kwargs):
+    #        print("######测试执行开始!######")
+    #        abc=fn(*args,**kwargs)
+    #        print("######测试执行结束!######")
+    #        return abc
+    #    return new_fun
+    def zhuangsiqi(fun_name):
+        def wrapper(*args,**kwargs):
+            print(f'\n################{fun_name.__name__}脚本测试执行开始!################\n')
+            res=fun_name(*args,**kwargs)
+            print(f'\n################{fun_name.__name__}脚本测试执行结束!################\n')
+            return res
+        return wrapper
+    
     def login_host(self):
         try:
             # self.tn = telnetlib.Telnet(host_ip,port=23)
@@ -65,7 +81,9 @@ class TelnetClient:
             return False
 
     # 此函数实现执行传过来的命令，并输出其执行结果
-    def execute_some_command(self):
+    #@beg_end
+    @zhuangsiqi
+    def exec_cmd(self):
         self.login_host()
         cmds=['arch','pwd','uname -r']
         for i in range(len(cmds)):
@@ -88,9 +106,9 @@ class TelnetClient:
 
 if __name__ == '__main__':
     
-    telnet_client = TelnetClient()
+    telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     #if telnet_client.login_host():
     #telnet_client.recode()
-    telnet_client.execute_some_command()
+    telnet.exec_cmd()
     #    telnet_client.logout_host()
