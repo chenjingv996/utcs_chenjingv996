@@ -23,6 +23,7 @@ class TelnetClient:
         self.password='123456'
         self.cmd_1='su'
         self.tn = telnetlib.Telnet()
+        #self.fn = fn
 
    # def recode(self):
    #     with open(os.path.join(os.getcwd(),'run_recode.log'),'w') as f:
