@@ -122,6 +122,6 @@ if __name__ == '__main__':
     telnet.exec_cmd()
     telnet.check_ssh()
 
-    sys.stdout,sys.stderr=output,output
+    sys.stdout.readline(),sys.stdout,sys.stderr=output,output,output
     
     #    telnet_client.logout_host()
