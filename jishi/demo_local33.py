@@ -9,9 +9,6 @@ from datetime import datetime as dt
 
 start_time,end_time=dt.now(),dt.now()
 
-#output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
-#sys.stdout,sys.stderr=output,output
-
 
 print(f'\n测试开始时间为:{start_time}\n')
 
@@ -22,11 +19,6 @@ class TelnetClient:
         self.password='123456'
         self.cmd_1='su'
         self.tn = telnetlib.Telnet()
-        #self.fn = fn
-
-   # def recode(self):
-   #     with open(os.path.join(os.getcwd(),'run_recode.log'),'w') as f:
-   #         f.write(str(self.tn.read_all().decode("ascii")))
           
     # 此函数实现telnet登录主机
     def zhuangsiqi(fun_name):
