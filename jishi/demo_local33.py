@@ -9,9 +9,9 @@ from datetime import datetime as dt
 
 start_time,end_time=dt.now(),dt.now()
 
-output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
-sys.stdout=output
-sys.stderr=output
+#output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
+#sys.stdout=output
+#sys.stderr=output
 
 
 print(f'\n测试开始时间为:{start_time}\n')
@@ -86,7 +86,7 @@ class TelnetClient:
         for i in range(len(cmds)):
         # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(0.5)
+            time.sleep(1)
         # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('ascii')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
@@ -103,10 +103,10 @@ class TelnetClient:
     @zhuangsiqi
     def check_ssh(self):
         self.login_host()
-        cmds=['ps -ef |grep sshd','netstat -anp | grep :22']
+        cmds=['ip add | grep inet -C2','netstat -anp | grep :22']
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(0.5)
+            time.sleep(1)
             cmds_res=self.tn.read_very_eager().decode('ascii')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             self.tn.logfile=output.write(f'{cmds_res}\n\n')
@@ -121,11 +121,15 @@ class TelnetClient:
         self.tn.write(b"exit\n\n")
 
 if __name__ == '__main__':
-    
+    output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
+
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     #if telnet_client.login_host():
     #telnet_client.recode()
     telnet.exec_cmd()
     telnet.check_ssh()
+
+    sys.stdout=output
+    sys.stderr=output
     #    telnet_client.logout_host()
