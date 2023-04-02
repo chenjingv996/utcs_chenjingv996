@@ -102,7 +102,7 @@ class TelnetClient:
         cmds=['ip add | grep inet -C2',
               'ps -ef | grep sshd',
               'netstat -anp | grep :22',
-              'this is a testing!']
+              'this is a test script!']
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
             time.sleep(1)
