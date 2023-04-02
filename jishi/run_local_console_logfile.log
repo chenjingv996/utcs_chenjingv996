@@ -1,5 +1,5 @@
 
-测试开始时间为:2023-04-02 12:36:00.357330
+测试开始时间为:2023-04-02 12:54:40.752982
 
 
 ####################[exec_cmd]脚本测试执行开始!####################
@@ -54,8 +54,8 @@ root         932       1  0 4月01 ?       00:00:00 [01;31m[Ksshd[m[K: /usr/
 root       22655     932  0 03:41 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
 chenjin+   22733   22655  0 03:41 ?        00:00:04 [01;31m[Ksshd[m[K: chenjingv@pts/0
 root       24304     932  0 04:53 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
-chenjin+   24382   24304  0 04:53 ?        00:00:35 [01;31m[Ksshd[m[K: chenjingv@pts/1
-root       47743   47734  0 12:36 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+chenjin+   24382   24304  0 04:53 ?        00:00:37 [01;31m[Ksshd[m[K: chenjingv@pts/1
+root       48351   48342  0 12:54 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 
@@ -63,8 +63,7 @@ root@chenjingv:/home/chenjingv#
 netstat -anp | grep :22
 tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      932/sshd: /usr/sbin 
 tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:57395      ESTABLISHED 22655/sshd: chenjin 
-tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
-tcp        0      0 192.168.3.123:51274     20.205.243.166[01;31m[K:22[m[K       TIME_WAIT   -                   
+tcp        0    748 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      932/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 
