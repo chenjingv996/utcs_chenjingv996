@@ -21,7 +21,7 @@ class TelnetClient:
         self.tn = telnetlib.Telnet()
           
     # 此函数实现telnet登录主机
-    def zhuangsiqi(fun_name):
+    def outer(fun_name):
         def wrapper(*args,**kwargs):
             print("\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行开始!"+"#"*20+"\n")
             res=fun_name(*args,**kwargs)
@@ -70,7 +70,7 @@ class TelnetClient:
     def fail_res(self):
         print("\n"+"--"*20+"当前用例测试结果为:fail"+"\n")
 
-    @zhuangsiqi
+    @outer
     def exec_cmd(self):
         self.login_host()
         cmds=['arch','pwd','uname -r']
@@ -90,7 +90,7 @@ class TelnetClient:
             self.fail_res()
         self.logout_host()    
     
-    @zhuangsiqi
+    @outer
     def check_ssh(self):
         self.login_host()
         cmds=['ip add | grep inet -C2',
