@@ -71,10 +71,10 @@ class TelnetClient:
     
     def pass_res(self):
         print("\n"+"++"*20+"当前用例测试结果为:pass"+"\n")
-        self.tn.logfile=output.write("\n"+"++"*20+"当前用例测试结果为:pass"+"\n")
+        self.tn.logfile=output.write("\n"+"--"*20+"当前用例测试结果为:pass"+"\n")
     def fail_res(self):
         print("\n"+"++"*20+"当前用例测试结果为:fail"+"\n")
-        self.tn.logfile=output.write("\n"+"++"*20+"当前用例测试结果为:fail"+"\n")
+        self.tn.logfile=output.write("\n"+"--"*20+"当前用例测试结果为:fail"+"\n")
 
     @outer
     def exec_cmd(self):
