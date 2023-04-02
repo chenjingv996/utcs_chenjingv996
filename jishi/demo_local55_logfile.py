@@ -132,9 +132,10 @@ if __name__ == '__main__':
     # 如果登录结果返加True，则执行命令，然后退出
     telnet.exec_cmd()
     telnet.check_ssh()
-    #telnet.exec_cmd()
-    #telnet.check_ssh()
-    #telnet.exec_cmd()
-    #telnet.check_ssh()
-    #sys.stdout,sys.stderr=output,output
+    telnet.exec_cmd()
+    telnet.check_ssh()
+    telnet.exec_cmd()
+    telnet.check_ssh()
+      
+    sys.stdout,sys.stderr=output,output
     
