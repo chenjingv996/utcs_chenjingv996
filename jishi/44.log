@@ -1,5 +1,5 @@
 
-测试开始时间为:2023-04-02 09:29:08.887191
+测试开始时间为:2023-04-02 10:01:20.274646
 
 
 ####################[exec_cmd]脚本测试执行开始!####################
@@ -58,8 +58,8 @@ root         932       1  0 4月01 ?       00:00:00 [01;31m[Ksshd[m[K: /usr/
 root       22655     932  0 03:41 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
 chenjin+   22733   22655  0 03:41 ?        00:00:04 [01;31m[Ksshd[m[K: chenjingv@pts/0
 root       24304     932  0 04:53 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
-chenjin+   24382   24304  0 04:53 ?        00:00:20 [01;31m[Ksshd[m[K: chenjingv@pts/1
-root       39094   39085  0 09:29 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+chenjin+   24382   24304  0 04:53 ?        00:00:24 [01;31m[Ksshd[m[K: chenjingv@pts/1
+root       40704   40695  0 10:01 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 命令netstat -anp | grep :22执行结果：
@@ -68,6 +68,13 @@ tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*          
 tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:57395      ESTABLISHED 22655/sshd: chenjin 
 tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      932/sshd: /usr/sbin 
+root@chenjingv:/home/chenjingv# 
+
+命令this is a testing!执行结果：
+this is a testing!
+找不到命令 “this”，您的意思是：
+  “thin” 命令来自 Debian 软件包 thin (1.8.0-1ubuntu3)
+尝试 apt install <deb name>
 root@chenjingv:/home/chenjingv# 
 
 ----------------------------------------当前用例测试结果为:fail
