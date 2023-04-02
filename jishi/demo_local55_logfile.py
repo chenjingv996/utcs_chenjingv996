@@ -9,9 +9,6 @@ from datetime import datetime as dt
 
 start_time,end_time=dt.now(),dt.now()
 
-
-#print(f'\n测试开始时间为:{start_time}\n')
-
 class TelnetClient:
     def __init__(self):
         self.host_ip='192.168.3.123'
@@ -19,9 +16,7 @@ class TelnetClient:
         self.password='123456'
         self.cmd_1='su'
         self.tn = telnetlib.Telnet()
-        #self.fun_name=fun_name()
           
-    # 此函数实现telnet登录主机
     def outer(fun_name):
         def wrapper(*args,**kwargs):
             print("\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行开始!"+"#"*20+"\n")
@@ -34,6 +29,7 @@ class TelnetClient:
             return res
         return wrapper
     
+    #此函数实现telnet登录主机
     def login_host(self):
         try:
             # self.tn = telnetlib.Telnet(host_ip,port=23)
@@ -72,6 +68,7 @@ class TelnetClient:
     def pass_res(self):
         print("\n"+"++"*20+"当前用例测试结果为:pass"+"\n")
         self.tn.logfile=output.write("\n"+"++"*20+"当前用例测试结果为:pass"+"\n")
+    
     def fail_res(self):
         print("\n"+"++"*20+"当前用例测试结果为:fail"+"\n")
         self.tn.logfile=output.write("\n"+"++"*20+"当前用例测试结果为:fail"+"\n")
@@ -116,9 +113,10 @@ class TelnetClient:
             self.fail_res()
         self.logout_host()
 
-    # 退出telnet
+    #退出telnet
     def logout_host(self):
         self.tn.write(b"exit\n\n")
+
 
 if __name__ == '__main__':
     #打印console时间
