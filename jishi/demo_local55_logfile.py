@@ -10,7 +10,7 @@ from datetime import datetime as dt
 start_time,end_time=dt.now(),dt.now()
 
 
-print(f'\n测试开始时间为:{start_time}\n')
+#print(f'\n测试开始时间为:{start_time}\n')
 
 class TelnetClient:
     def __init__(self):
@@ -121,6 +121,8 @@ class TelnetClient:
         self.tn.write(b"exit\n\n")
 
 if __name__ == '__main__':
+    
+    print(f'\n测试开始时间为:{start_time}\n')
     
     output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
     

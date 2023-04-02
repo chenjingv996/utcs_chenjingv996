@@ -1,5 +1,5 @@
 
-测试开始时间为:2023-04-02 11:23:41.355511
+测试开始时间为:2023-04-02 11:27:11.077427
 
 
 ####################[exec_cmd]脚本测试执行开始!####################
@@ -54,8 +54,8 @@ root         932       1  0 4月01 ?       00:00:00 [01;31m[Ksshd[m[K: /usr/
 root       22655     932  0 03:41 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
 chenjin+   22733   22655  0 03:41 ?        00:00:04 [01;31m[Ksshd[m[K: chenjingv@pts/0
 root       24304     932  0 04:53 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
-chenjin+   24382   24304  0 04:53 ?        00:00:30 [01;31m[Ksshd[m[K: chenjingv@pts/1
-root       44187   44178  0 11:23 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+chenjin+   24382   24304  0 04:53 ?        00:00:31 [01;31m[Ksshd[m[K: chenjingv@pts/1
+root       44341   44332  0 11:27 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 
