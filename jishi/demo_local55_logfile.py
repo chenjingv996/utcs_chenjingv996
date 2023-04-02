@@ -84,14 +84,14 @@ class TelnetClient:
         for i in range(len(cmds)):
         # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(1)
+            time.sleep(0.5)
         # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
             #print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
-            res="命令cmds[i]执行结果:"
+            res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}')
             #self.tn.logfile=output.write(f'{cmds_res}\n\n')
-            self.tn.logfile=output.write(f'命令{cmds[i]}执行结果：\n{cmds_res}\n\n')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}')
         if "gen" in cmds_res[:-1]:
             self.pass_res()
         else:
@@ -107,11 +107,13 @@ class TelnetClient:
               'this is a test script!']
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(1)
+            time.sleep(0.5)
             cmds_res=self.tn.read_very_eager().decode('utf-8')
-            print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
+            #print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
+            res="命令"+cmds[i]+"执行结果:"
+            print(f'\n{res}\n{cmds_res}')
             #self.tn.logfile=output.write(f'{cmds_res}\n\n')
-            self.tn.logfile=output.write(f'\n命令{cmds[i]}执行结果：\n{cmds_res}\n\n')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}')
         if "gen" in cmds_res[:-1]:
             self.pass_res()
         else:
