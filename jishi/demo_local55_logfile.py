@@ -25,12 +25,12 @@ class TelnetClient:
     def outer(fun_name):
         def wrapper(*args,**kwargs):
             print("\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行开始!"+"#"*20+"\n")
-            telnetlib.Telnet().logfile=output.write("\n"+"#"*20+"["+fun_name.__name__+"]"+
-                    "脚本测试执行开始!"+"#"*20+"\n")
+            telnetlib.Telnet().logfile=output.write("\n\n"+"#"*20+"["+fun_name.__name__+"]"+
+                    "脚本测试执行开始!"+"#"*20+"\n\n")
             res=fun_name(*args,**kwargs)
-            print("\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行结束!"+"#"*20+"\n")
-            telnetlib.Telnet().logfile=output.write("\n"+"#"*20+"["+fun_name.__name__+"]"+
-                    "脚本测试执行结束!"+"#"*20+"\n")
+            print("\n\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行结束!"+"#"*20+"\n")
+            telnetlib.Telnet().logfile=output.write("\n\n"+"#"*20+"["+fun_name.__name__+"]"+
+                    "脚本测试执行结束!"+"#"*20+"\n\n")
             return res
         return wrapper
     
@@ -123,6 +123,8 @@ class TelnetClient:
 if __name__ == '__main__':
     
     output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
+    
+    telnetlib.Telnet().logfile=output.write(f'\n测试开始时间为:{start_time}\n')
 
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出

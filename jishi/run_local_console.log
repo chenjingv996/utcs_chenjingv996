@@ -1,5 +1,9 @@
 
+测试开始时间为:2023-04-02 11:23:41.355511
+
+
 ####################[exec_cmd]脚本测试执行开始!####################
+
 命令arch执行结果：
 arch
 x86_64
@@ -18,9 +22,13 @@ root@chenjingv:/home/chenjingv#
 
 ----------------------------------------当前用例测试结果为:pass
 
-####################[exec_cmd]脚本测试执行开始!####################
+
+####################[exec_cmd]脚本测试执行结束!####################
+
+
 
 ####################[check_ssh]脚本测试执行开始!####################
+
 
 命令ip add | grep inet -C2执行结果：
 ip add | grep inet -C2
@@ -46,8 +54,8 @@ root         932       1  0 4月01 ?       00:00:00 [01;31m[Ksshd[m[K: /usr/
 root       22655     932  0 03:41 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
 chenjin+   22733   22655  0 03:41 ?        00:00:04 [01;31m[Ksshd[m[K: chenjingv@pts/0
 root       24304     932  0 04:53 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
-chenjin+   24382   24304  0 04:53 ?        00:00:28 [01;31m[Ksshd[m[K: chenjingv@pts/1
-root       43550   43541  0 11:07 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+chenjin+   24382   24304  0 04:53 ?        00:00:30 [01;31m[Ksshd[m[K: chenjingv@pts/1
+root       44187   44178  0 11:23 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 
@@ -55,7 +63,7 @@ root@chenjingv:/home/chenjingv#
 netstat -anp | grep :22
 tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      932/sshd: /usr/sbin 
 tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:57395      ESTABLISHED 22655/sshd: chenjin 
-tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
+tcp        0    748 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      932/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 
@@ -70,4 +78,6 @@ root@chenjingv:/home/chenjingv#
 
 ----------------------------------------当前用例测试结果为:fail
 
-####################[check_ssh]脚本测试执行开始!####################
+
+####################[check_ssh]脚本测试执行结束!####################
+
