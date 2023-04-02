@@ -81,7 +81,7 @@ class TelnetClient:
         # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
-            self.tn.logfile=output.write(f'{cmds_res}\n\n')
+            #self.tn.logfile=output.write(f'{cmds_res}\n\n')
             #logging.warning(f'命令执行结果：\n{cmds_res}')
         #return res
         if "gen" in cmds_res[:-1]:
@@ -99,7 +99,7 @@ class TelnetClient:
             time.sleep(1)
             cmds_res=self.tn.read_very_eager().decode('utf-8')
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
-            self.tn.logfile=output.write(f'{cmds_res}\n\n')
+            #self.tn.logfile=output.write(f'{cmds_res}\n\n')
         if "gen" in cmds_res[:-1]:
             self.pass_res()
         else:
@@ -112,15 +112,12 @@ class TelnetClient:
 
 if __name__ == '__main__':
     
-    output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
+    #output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
 
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
-    #if telnet_client.login_host():
-    #telnet_client.recode()
     telnet.exec_cmd()
     telnet.check_ssh()
 
-    sys.stdout,sys.stderr=output,output
+    #sys.stdout,sys.stderr=output,output
     
-    #    telnet_client.logout_host()
