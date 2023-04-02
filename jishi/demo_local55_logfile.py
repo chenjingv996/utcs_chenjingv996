@@ -89,9 +89,9 @@ class TelnetClient:
             cmds_res = self.tn.read_very_eager().decode('utf-8')
             #print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             res="命令"+cmds[i]+"执行结果:"
-            print(f'\n{res}\n{cmds_res}')
+            print(f'\n{res}\n{cmds_res}\n')
             #self.tn.logfile=output.write(f'{cmds_res}\n\n')
-            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
         if "gen" in cmds_res[:-1]:
             self.pass_res()
         else:
@@ -111,9 +111,9 @@ class TelnetClient:
             cmds_res=self.tn.read_very_eager().decode('utf-8')
             #print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             res="命令"+cmds[i]+"执行结果:"
-            print(f'\n{res}\n{cmds_res}')
+            print(f'\n{res}\n{cmds_res}\n')
             #self.tn.logfile=output.write(f'{cmds_res}\n\n')
-            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
         if "gen" in cmds_res[:-1]:
             self.pass_res()
         else:
@@ -126,12 +126,14 @@ class TelnetClient:
 
 
 if __name__ == '__main__':
+
+    timmer="测试开始时间为:"+str(start_time)
     #打印console时间
-    print(f'\n测试开始时间为:{start_time}\n')
+    print(f'\n{timmer}\n')
     #创建log文件
     output=open(os.path.join(os.getcwd(),'run_local_console_logfile.log'),'w')
     #打印log时间
-    telnetlib.Telnet().logfile=output.write(f'\n测试开始时间为:{start_time}\n')
+    telnetlib.Telnet().logfile=output.write(f'\n{timmer}\n')
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
