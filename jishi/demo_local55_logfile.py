@@ -121,21 +121,19 @@ class TelnetClient:
         self.tn.write(b"exit\n\n")
 
 if __name__ == '__main__':
-    
+    #打印console时间
     print(f'\n测试开始时间为:{start_time}\n')
-    
-    output=open(os.path.join(os.getcwd(),'run_local_console.log'),'w')
-    
+    #创建log文件
+    output=open(os.path.join(os.getcwd(),'run_local_console_logfile.log'),'w')
+    #打印log时间
     telnetlib.Telnet().logfile=output.write(f'\n测试开始时间为:{start_time}\n')
-
+    #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     telnet.exec_cmd()
     telnet.check_ssh()
     #telnet.exec_cmd()
     #telnet.check_ssh()
-    #telnet.exec_cmd()
-    #telnet.check_ssh()
-      
+    #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
     
