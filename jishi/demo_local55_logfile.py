@@ -18,16 +18,10 @@ class TelnetClient:
           
     def outer(fun_name):
         def wrapper(*args,**kwargs):
-            #print("\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行开始!"+"#"*20+"\n")
-            #telnetlib.Telnet().logfile=output.write("\n\n"+"#"*20+"["+fun_name.__name__+"]"+
-            #        "脚本测试执行开始!"+"#"*20+"\n\n")
             test_exec1="#"*20+"["+fun_name.__name__+"]"+"脚本测试执行开始!"+"#"*20
             print(f'\n{test_exec1}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n')
             res=fun_name(*args,**kwargs)
-            #print("\n\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行结束!"+"#"*20+"\n")
-            #telnetlib.Telnet().logfile=output.write("\n\n"+"#"*20+"["+fun_name.__name__+"]"+
-            #        "脚本测试执行结束!"+"#"*20+"\n\n")
             test_exec2="#"*20+"["+fun_name.__name__+"]"+"脚本测试执行结束!"+"#"*20
             print(f'\n{test_exec2}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec2}\n\n')
@@ -137,7 +131,6 @@ class TelnetClient:
 
 
 if __name__ == '__main__':
-
     timmer="测试开始时间为:"+str(start_time)
     #打印console时间
     print(f'\n{timmer}\n')
