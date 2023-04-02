@@ -59,10 +59,16 @@ class TelnetClient:
         # read_very_eager()获取到的是的是上次获取之后本次获取之前的所有输出
         command_result = self.tn.read_very_eager().decode('utf-8')
         if 'Login incorrect' not in command_result:
-            print(f'{self.host_ip}登录成功!\n')
+            #print(f'{self.host_ip}登录成功!\n')
+            login_res1=self.host_ip+"登录成功!"
+            print(f'{login_res1}\n')
+            self.tn.logfile=output.write(f'{login_res1}\n')
             return True
         else:
-            print(f'{self.host_ip}登录失败，用户名或密码错误!\n')
+            #print(f'{self.host_ip}登录失败，用户名或密码错误!\n')
+            login_res2=self.host_ip+"登录失败，用户名或密码错误!"
+            print(f'{login_res2}\n')
+            self.tn.logfile=output.write(f'{login_res2}\n')
             return False
     
     def pass_res(self):
