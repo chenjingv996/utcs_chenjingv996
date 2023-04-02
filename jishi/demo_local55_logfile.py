@@ -30,7 +30,7 @@ class TelnetClient:
             res=fun_name(*args,**kwargs)
             print("\n"+"#"*20+"["+fun_name.__name__+"]"+"脚本测试执行结束!"+"#"*20+"\n")
             telnetlib.Telnet().logfile=output.write("\n"+"#"*20+"["+fun_name.__name__+"]"+
-                    "脚本测试执行开始!"+"#"*20+"\n")
+                    "脚本测试执行结束!"+"#"*20+"\n")
             return res
         return wrapper
     
