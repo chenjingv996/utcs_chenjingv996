@@ -66,12 +66,16 @@ class TelnetClient:
             return False
     
     def pass_res(self):
-        print("\n"+"++"*20+"当前用例测试结果为:pass"+"\n")
-        self.tn.logfile=output.write("\n"+"++"*20+"当前用例测试结果为:pass"+"\n")
+        #print("\n"+"++"*20+"当前用例测试结果为:pass"+"\n")
+        res="++"*20+"当前用例测试结果为:pass"
+        print(f'\n{res}')
+        self.tn.logfile=output.write(f'\n{res}\n')
     
     def fail_res(self):
-        print("\n"+"++"*20+"当前用例测试结果为:fail"+"\n")
-        self.tn.logfile=output.write("\n"+"++"*20+"当前用例测试结果为:fail"+"\n")
+        #print("\n"+"++"*20+"当前用例测试结果为:fail"+"\n")
+        res="++"*20+"当前用例测试结果为:fail"
+        print(f'\n{res}')
+        self.tn.logfile=output.write(f'\n{res}\n')
 
     @outer
     def exec_cmd(self):
@@ -83,7 +87,9 @@ class TelnetClient:
             time.sleep(1)
         # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
-            print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
+            #print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
+            res="命令cmds[i]执行结果:"
+            print(f'\n{res}\n{cmds_res}')
             #self.tn.logfile=output.write(f'{cmds_res}\n\n')
             self.tn.logfile=output.write(f'命令{cmds[i]}执行结果：\n{cmds_res}\n\n')
         if "gen" in cmds_res[:-1]:
