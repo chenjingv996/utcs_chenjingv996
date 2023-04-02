@@ -3,11 +3,11 @@
 
 import logging
 import telnetlib
-import time
-import os,sys
+import time,os,sys
 from datetime import datetime as dt
 
 start_time,end_time=dt.now(),dt.now()
+
 
 class TelnetClient:
     def __init__(self):
@@ -86,7 +86,6 @@ class TelnetClient:
             print(f'\n命令{cmds[i]}执行结果：\n{cmds_res}')
             #self.tn.logfile=output.write(f'{cmds_res}\n\n')
             self.tn.logfile=output.write(f'命令{cmds[i]}执行结果：\n{cmds_res}\n\n')
-        #return res
         if "gen" in cmds_res[:-1]:
             self.pass_res()
         else:
