@@ -8,7 +8,6 @@ from datetime import datetime as dt
 
 start_time,end_time=dt.now(),dt.now()
 
-
 class TelnetClient:
     def __init__(self):
         self.host_ip='192.168.3.123'
@@ -149,4 +148,4 @@ if __name__ == '__main__':
     #telnet.check_ssh()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
-    
+   

@@ -1,5 +1,5 @@
 
-测试开始时间为:2023-04-02 20:28:38.579222
+测试开始时间为:2023-04-02 21:04:04.854699
 
 
 ####################[exec_cmd]脚本测试执行开始!####################
@@ -51,19 +51,19 @@ root@chenjingv:/home/chenjingv#
 
 命令ps -ef | grep sshd执行结果:
 ps -ef | grep sshd
-root         932       1  0 00:06 ?        00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
-root       22655     932  0 05:47 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
-chenjin+   22733   22655  0 05:47 ?        00:00:04 [01;31m[Ksshd[m[K: chenjingv@pts/0
-root       24304     932  0 07:00 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
-chenjin+   24382   24304  0 07:00 ?        00:00:47 [01;31m[Ksshd[m[K: chenjingv@pts/1
-root       56528   56519  0 20:28 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+root         932       1  0 00:10 ?        00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
+root       22655     932  0 05:51 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
+chenjin+   22733   22655  0 05:51 ?        00:00:04 [01;31m[Ksshd[m[K: chenjingv@pts/0
+root       24304     932  0 07:04 ?        00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
+chenjin+   24382   24304  0 07:04 ?        00:00:48 [01;31m[Ksshd[m[K: chenjingv@pts/1
+root       56971   56962  0 21:04 pts/4    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 命令netstat -anp | grep :22执行结果:
 netstat -anp | grep :22
 tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      932/sshd: /usr/sbin 
 tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:57395      ESTABLISHED 22655/sshd: chenjin 
-tcp        0    748 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
+tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59798      ESTABLISHED 24304/sshd: chenjin 
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      932/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 
