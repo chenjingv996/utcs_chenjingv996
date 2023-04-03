@@ -14,7 +14,8 @@ class TelnetClient:
         self.username='admin'
         self.password='admin123'
         self.cmd_1='en'
-        self.cmd_2='conf t'
+        self.cmd_2='terminal length 0'
+        self.cmd_3='conf t'
         self.tn = telnetlib.Telnet()
           
     def outer(fun_name):
@@ -52,6 +53,9 @@ class TelnetClient:
         
         self.tn.read_until(b'# ',timeout=10)
         self.tn.write(self.cmd_2.encode('ascii') + b'\n')
+
+        self.tn.read_until(b'# ',timeout=10)
+        self.tn.write(self.cmd_3.encode('ascii') + b'\n')
         # 延时1秒再收取返回结果，给服务端足够响应时间
         time.sleep(1)
         print()
