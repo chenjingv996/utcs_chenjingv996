@@ -68,7 +68,11 @@ class TelnetClient:
             print(f'{login_res2}\n')
             self.tn.logfile=output.write(f'{login_res2}\n')
             return False
-    
+
+    #退出telnet
+    def logout_host(self):
+        self.tn.write(b"exit\n\n")
+
     def pass_res(self):
         res="++"*20+"当前用例测试结果为:pass"
         print(f'\n{res}')
@@ -128,10 +132,6 @@ class TelnetClient:
             self.fail_res()
         self.logout_host()
 
-    #退出telnet
-    def logout_host(self):
-        self.tn.write(b"exit\n\n")
-
     @outer
     def vlan_del(self):
         self.login_host()
@@ -157,10 +157,6 @@ class TelnetClient:
         else:
             self.fail_res()
         self.logout_host()
-
-    #退出telnet
-    def logout_host(self):
-        self.tn.write(b"exit\n\n")
 
     @outer
     def vlan_select(self):
