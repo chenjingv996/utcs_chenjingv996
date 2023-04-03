@@ -19,11 +19,11 @@ class TelnetClient:
           
     def outer(fun_name):
         def wrapper(*args,**kwargs):
-            test_exec1="#"*20+"["+fun_name.__name__+"]"+"脚本测试执行开始!"+"#"*20
+            test_exec1="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
             print(f'\n{test_exec1}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n')
             res=fun_name(*args,**kwargs)
-            test_exec2="#"*20+"["+fun_name.__name__+"]"+"脚本测试执行结束!"+"#"*20
+            test_exec2="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行结束!"+"#"*20
             print(f'\n{test_exec2}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec2}\n\n')
             return res
