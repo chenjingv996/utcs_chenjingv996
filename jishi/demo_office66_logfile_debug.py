@@ -182,13 +182,12 @@ class TelnetClient:
         print(f'\n{check_str}\n')
         self.tn.logfile=output.write(f'\n{check_str}\n')
         vlan_lst=["vlan125","vlan126","vlan127","vlan128","vlan129","vlan122"]
-        print(vlan_lst[1])
         for i in range(len(vlan_lst)):            
-            if vlan_lst[i] in cmds_res[:-1]:
-                i += 1 
-        self.pass_res()
-        # else:
-            # self.fail_res()
+            if vlan_lst[i] not in cmds_res[:-1]:
+                 self.fail_res()
+                 break
+        else:
+            self.pass_res()
         
         self.logout_host()        
 
