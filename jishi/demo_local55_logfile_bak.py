@@ -18,11 +18,11 @@ class TelnetClient:
           
     def outer(fun_name):
         def wrapper(*args,**kwargs):
-            test_exec1="#"*20+"["+fun_name.__name__+"]"+"脚本测试执行开始!"+"#"*20
+            test_exec1="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
             print(f'\n{test_exec1}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n')
             res=fun_name(*args,**kwargs)
-            test_exec2="#"*20+"["+fun_name.__name__+"]"+"脚本测试执行结束!"+"#"*20
+            test_exec2="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行结束!"+"#"*20
             print(f'\n{test_exec2}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec2}\n\n')
             return res
@@ -68,6 +68,10 @@ class TelnetClient:
             self.tn.logfile=output.write(f'{login_res2}\n')
             return False
     
+    #退出telnet
+    def logout_host(self):
+        self.tn.write(b"exit\n\n")
+
     def pass_res(self):
         res="++"*20+"当前用例测试结果为:pass"
         print(f'\n{res}')
@@ -125,10 +129,6 @@ class TelnetClient:
         else:
             self.pass_res()
         self.logout_host()
-
-    #退出telnet
-    def logout_host(self):
-        self.tn.write(b"exit\n\n")
 
 
 if __name__ == '__main__':
