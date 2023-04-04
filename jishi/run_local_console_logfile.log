@@ -1,13 +1,78 @@
 
-测试开始时间为:2023-04-03 21:38:54.236994
+测试开始时间为:2023-04-05 00:14:09.646571
+
+####################[exec_cmd]脚本测试执行开始!####################
+
+192.168.3.123登录成功!
+
+命令arch执行结果:
+arch
+x86_64
+root@chenjingv:/home/chenjingv# 
+
+命令pwd执行结果:
+pwd
+/home/chenjingv
+root@chenjingv:/home/chenjingv# 
+
+命令uname -r执行结果:
+uname -r
+5.19.0-38-generic
+root@chenjingv:/home/chenjingv# 
+
+tips:检查设备版本信息是否正确......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################[exec_cmd]脚本测试执行结束!####################
+
 
 ####################[check_ssh]脚本测试执行开始!####################
 
 192.168.3.123登录成功!
 
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+命令ip add | grep inet -C2执行结果:
+ip add | grep inet -C2
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    [01;31m[Kinet[m[K 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    [01;31m[Kinet[m[K6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:f4:79:05 brd ff:ff:ff:ff:ff:ff
+    altname enp2s1
+    [01;31m[Kinet[m[K 192.168.3.123/24 brd 192.168.3.255 scope global noprefixroute ens33
+       valid_lft forever preferred_lft forever
+    [01;31m[Kinet[m[K6 fe80::4010:9894:7184:fd38/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+root@chenjingv:/home/chenjingv# 
 
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+命令ps -ef | grep sshd执行结果:
+ps -ef | grep sshd
+root         889       1  0 4月04 ?       00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
+root        5619     889  0 4月04 ?       00:00:00 [01;31m[Ksshd[m[K: chenjingv [priv]
+chenjin+    5700    5619  0 4月04 ?       00:00:02 [01;31m[Ksshd[m[K: chenjingv@pts/0
+root        6236    6227  0 00:14 pts/2    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+root@chenjingv:/home/chenjingv# 
+
+命令netstat -anp | grep :22执行结果:
+netstat -anp | grep :22
+tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      889/sshd: /usr/sbin 
+tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:54515      ESTABLISHED 5619/sshd: chenjing 
+tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      889/sshd: /usr/sbin 
+root@chenjingv:/home/chenjingv# 
+
+命令this is a test script!执行结果:
+this is a test script!
+找不到命令 “this”，您的意思是：
+  “thin” 命令来自 Debian 软件包 thin (1.8.0-1ubuntu3)
+尝试 apt install <deb name>
+root@chenjingv:/home/chenjingv# 
+
+tips:检查接口表项是否正确......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:fail
 
 ####################[check_ssh]脚本测试执行结束!####################
 
