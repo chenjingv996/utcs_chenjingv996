@@ -95,13 +95,16 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
-        check_str="tips:检查设备版本信息是否正确......"
-        print(f'\n{check_str}\n')
-        self.tn.logfile=output.write(f'\n{check_str}\n')
-        if "gen" in cmds_res[:-1]:
-            self.pass_res()
+        check_name="tips:检查设备版本信息是否正确......"
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        check_words=["gen"]
+        for i in range(len(check_words)):
+            if check_words[i] not in cmds_res[:-1]:
+                self.fail_res()
+                break
         else:
-            self.fail_res()
+            self.pass_res()
         self.logout_host()    
     
     @outer
@@ -118,12 +121,12 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
-        check_str="tips:检查接口表项是否正确......"
-        print(f'\n{check_str}\n')
-        self.tn.logfile=output.write(f'\n{check_str}\n')
-        port_lst=["lo","ens33","ens35"]
-        for i in range(len(port_lst)):
-            if port_lst[i] not in cmds_res[0]:
+        check_name="tips:检查接口表项是否正确......"
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        check_words=["lo","ens33","ens35"]
+        for i in range(len(check_words)):
+            if check_words[i] not in cmds_res[0]:
                 self.fail_res()
                 break
         else:
