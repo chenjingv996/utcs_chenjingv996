@@ -214,7 +214,7 @@ class TelnetClient:
         self.logout_host()         
 
     @outer
-    def vlan_select(self):
+    def vlan_show(self):
         self.login_host()
         cmds=['show vlan']
         for i in range(len(cmds)):
@@ -251,7 +251,7 @@ if __name__ == '__main__':
     telnet.vlan_del_uni()
     telnet.vlan_add_mul()
     telnet.vlan_del_mul()
-    telnet.vlan_select()
+    telnet.vlan_show()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
