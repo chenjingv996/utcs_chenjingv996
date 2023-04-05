@@ -97,9 +97,11 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+
         check_name="tips:检查设备版本信息是否正确......"
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
+        
         check_words=["gen"]
         for j in range(len(check_words)):
             if check_words[j] not in output_lst[-1]:
@@ -125,9 +127,11 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         check_name="tips:检查接口表项是否正确......"
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
+        
         check_words=["lo","ens33"]
         for j in range(len(check_words)):
             if check_words[j] not in output_lst[0]:
@@ -151,8 +155,6 @@ if __name__ == '__main__':
     # 如果登录结果返加True，则执行命令，然后退出
     telnet.exec_cmd()
     telnet.check_ssh()
-    #telnet.exec_cmd()
-    #telnet.check_ssh()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
    
