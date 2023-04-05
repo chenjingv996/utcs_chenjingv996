@@ -1,5 +1,5 @@
 
-测试开始时间为:2023-04-05 12:03:46.563162
+测试开始时间为:2023-04-05 12:19:21.398918
 
 ####################【exec_cmd】脚本测试执行开始!####################
 
@@ -51,8 +51,8 @@ root@chenjingv:/home/chenjingv#
 命令ps -ef | grep sshd执行结果:
 ps -ef | grep sshd
 root         896       1  0 09:56 ?        00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
-root        3248     896  0 11:02 ?        00:00:04 [01;31m[Ksshd[m[K: root@pts/0
-root        5633    5623  0 12:03 pts/2    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+root        3248     896  0 11:02 ?        00:00:05 [01;31m[Ksshd[m[K: root@pts/0
+root        6057    6048  0 12:19 pts/2    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 命令netstat -anp | grep :22执行结果:

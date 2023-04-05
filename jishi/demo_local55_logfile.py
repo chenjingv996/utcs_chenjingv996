@@ -92,9 +92,12 @@ class TelnetClient:
             time.sleep(0.5)
         # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
+            output_lst=[]
+            output_lst.append(cmds_res)
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        print(output_lst)
         check_name="tips:检查设备版本信息是否正确......"
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
