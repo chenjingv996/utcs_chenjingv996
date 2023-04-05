@@ -86,62 +86,35 @@ class TelnetClient:
         res="++"*20+"当前用例测试结果为:fail"
         print(f'\n{res}')
         self.tn.logfile=output.write(f'\n{res}\n')
-    
-    def check_res1(self,cmds,check_name,check_words,output_lst):
-        for i in range(len(cmds)):
-            # 执行命令
-            self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(0.5)
-            # 获取命令结果
-            cmds_res = self.tn.read_very_eager().decode('utf-8')
-            output_lst.append(cmds_res)
-            res="命令"+cmds[i]+"执行结果:"
-            print(f'\n{res}\n{cmds_res}\n')
-            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
-
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
-
-        for j in range(len(check_words)):
-            if check_words[j] not in output_lst[-1]:
-                elf.fail_res()
-                break
-        else:
-            self.pass_res()
-
-    def check_res2(self,cmds,check_name,check_words,output_lst):
-        for i in range(len(cmds)):
-            # 执行命令
-            self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(0.5)
-            # 获取命令结果
-            cmds_res = self.tn.read_very_eager().decode('utf-8')
-            output_lst.append(cmds_res)
-            res="命令"+cmds[i]+"执行结果:"
-            print(f'\n{res}\n{cmds_res}\n')
-            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
-
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
-
-        for j in range(len(check_words)):
-            if check_words[j] not in output_lst[-1]:
-                self.pass_res()
-                break
-        else:
-            self.fail_res()
 
     @outer
     def check_onu(self):
         self.login_host()
 
         cmds=['show onu state']
+        for i in range(len(cmds)):
+        # 执行命令
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(0.5)
+        # 获取命令结果
+            cmds_res = self.tn.read_very_eager().decode('utf-8')
+            res="命令"+cmds[i]+"执行结果:"
+            print(f'\n{res}\n{cmds_res}\n')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
-        check_words=["working        MONU0000456a"]
-        output_lst=[]
-        self.check_res1(cmds,check_name,check_words,output_lst)
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
         
+        check_words=["working        MONU0000456a"]
+        for j in range(len(check_words)):
+            if check_words[j] not in cmds_res:
+                self.fail_res()
+                break
+        else:
+            self.pass_res()
+
         self.logout_host()    
     
     @outer
@@ -151,11 +124,26 @@ class TelnetClient:
         cmds=['vlan 123',
               'exit',
               'show vlan']
+        for i in range(len(cmds)):
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(0.5)
+            cmds_res=self.tn.read_very_eager().decode('utf-8')
+            res="命令"+cmds[i]+"执行结果:"
+            print(f'\n{res}\n{cmds_res}\n')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查单个vlan是否创建成功···
         check_name="tips:检查单个vlan是否创建成功......"
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
         check_words=["Name           : vlan123"]
-        output_lst=[]
-        self.check_res1(cmds,check_name,check_words,output_lst)
+        for j in range(len(check_words)):
+            if check_words[j] not in cmds_res:
+                self.fail_res()
+                break
+        else:
+            self.pass_res()
         
         self.logout_host()
 
@@ -167,12 +155,27 @@ class TelnetClient:
               'exit',
               'no vlan 123',
               'show vlan 123']
+        for i in range(len(cmds)):
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(0.5)
+            cmds_res=self.tn.read_very_eager().decode('utf-8')
+            res="命令"+cmds[i]+"执行结果:"
+            print(f'\n{res}\n{cmds_res}\n')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查单个vlan是否删除成功···
         check_name='tips:检查单个vlan是否删除成功......'
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
         check_words=["Vlan 123 is not exist."]
-        output_lst=[]
-        self.check_res1(cmds,check_name,check_words,output_lst)
-
+        for j in range(len(check_words)):
+            if check_words[j] not in cmds_res:
+                self.fail_res()
+                break
+        else:
+            self.pass_res()
+        
         self.logout_host()
 
     @outer
@@ -182,12 +185,27 @@ class TelnetClient:
         cmds=['vlan 125 - 129',
             #   'exit',
               'show vlan']
+        for i in range(len(cmds)):
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(0.5)
+            cmds_res=self.tn.read_very_eager().decode('utf-8')
+            res="命令"+cmds[i]+"执行结果:"
+            print(f'\n{res}\n{cmds_res}\n')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查多个vlan是否创建成功···
         check_name='tips:检查多个vlan是否创建成功......'
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
         check_words=["vlan125","vlan126","vlan127","vlan128","vlan129"]
-        output_lst=[] 
-        self.check_res1(cmds,check_name,check_words,output_lst)
-
+        for j in range(len(check_words)):            
+            if check_words[j] not in cmds_res:
+                self.fail_res()
+                break            
+        else:
+            self.pass_res()
+        
         self.logout_host()
 
     @outer
@@ -198,11 +216,26 @@ class TelnetClient:
               'show vlan',
               'no vlan 125 - 127',
               'show vlan']
+        for i in range(len(cmds)):
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(0.5)
+            cmds_res=self.tn.read_very_eager().decode('utf-8')
+            res="命令"+cmds[i]+"执行结果:"
+            print(f'\n{res}\n{cmds_res}\n')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查多个vlan是否删除成功···
         check_name='tips:检查多个vlan是否删除成功......'
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+
         check_words=["vlan125","vlan126","vlan127"]
-        output_lst=[]
-        self.check_res2(cmds,check_name,check_words,output_lst)
+        for j in range(len(check_words)):            
+            if check_words[j] not in cmds_res:
+                self.pass_res()
+                break            
+        else:
+            self.fail_res()
 
         self.logout_host()         
 
@@ -211,11 +244,26 @@ class TelnetClient:
         self.login_host()
 
         cmds=['show vlan']
+        for i in range(len(cmds)):
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(0.5)
+            cmds_res=self.tn.read_very_eager().decode('utf-8')
+            res="命令"+cmds[i]+"执行结果:"
+            print(f'\n{res}\n{cmds_res}\n')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查vlan128和vlan129是否存在···
         check_name='tips:检查vlan128和vlan129是否存在......'
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
         check_words=["vlan128","vlan129"]
-        output_lst=[]
-        self.check_res1(cmds,check_name,check_words,output_lst)
+        for j in range(len(check_words)):
+            if check_words[j] not in cmds_res:
+                self.fail_res()
+                break
+        else:
+            self.pass_res()
 
         self.logout_host()
 
