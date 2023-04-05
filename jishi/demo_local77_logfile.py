@@ -95,11 +95,12 @@ class TelnetClient:
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
         
+        print(f'\n{output_lst}\n')
+
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
         
         for j in range(len(check_words)):
-            print(f'aaa:{str(cmds_res)}\n')
             if check_words[j] not in output_lst[-1]:
                 self.fail_res()
                 break
