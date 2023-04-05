@@ -1,5 +1,31 @@
 
-测试开始时间为:2023-04-05 11:55:49.416253
+测试开始时间为:2023-04-05 12:03:46.563162
+
+####################【exec_cmd】脚本测试执行开始!####################
+
+192.168.3.123登录成功!
+
+命令arch执行结果:
+arch
+x86_64
+root@chenjingv:/home/chenjingv# 
+
+命令pwd执行结果:
+pwd
+/home/chenjingv
+root@chenjingv:/home/chenjingv# 
+
+命令uname -r执行结果:
+uname -r
+5.19.0-38-generic
+root@chenjingv:/home/chenjingv# 
+
+tips:检查设备版本信息是否正确......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################【exec_cmd】脚本测试执行结束!####################
+
 
 ####################【check_ssh】脚本测试执行开始!####################
 
@@ -25,8 +51,8 @@ root@chenjingv:/home/chenjingv#
 命令ps -ef | grep sshd执行结果:
 ps -ef | grep sshd
 root         896       1  0 09:56 ?        00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
-root        3248     896  0 11:02 ?        00:00:02 [01;31m[Ksshd[m[K: root@pts/0
-root        5217    5208  0 11:55 pts/1    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+root        3248     896  0 11:02 ?        00:00:04 [01;31m[Ksshd[m[K: root@pts/0
+root        5633    5623  0 12:03 pts/2    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 命令netstat -anp | grep :22执行结果:
