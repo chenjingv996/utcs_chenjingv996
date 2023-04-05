@@ -105,7 +105,7 @@ class TelnetClient:
         check_str='tips:检查测试ONU在线状态......'
         print(f'\n{check_str}\n')
         self.tn.logfile=output.write(f'\n{check_str}\n')
-        if "working        MONU0000456a" in cmds_res[:-1]:
+        if "working        MONU0000456a" in cmds_res:
             self.pass_res()
         else:
             self.fail_res()
@@ -128,7 +128,7 @@ class TelnetClient:
         check_str='tips:检查单个vlan是否创建成功......'
         print(f'\n{check_str}\n')
         self.tn.logfile=output.write(f'\n{check_str}\n')
-        if "Name           : vlan123" in cmds_res[:-1]:
+        if "Name           : vlan123" in cmds_res:
             self.pass_res()
         else:
             self.fail_res()
@@ -152,7 +152,7 @@ class TelnetClient:
         check_str='tips:检查单个vlan是否删除成功......'
         print(f'\n{check_str}\n')
         self.tn.logfile=output.write(f'\n{check_str}\n')
-        if "Vlan 123 is not exist." in cmds_res[:-1]:
+        if "Vlan 123 is not exist." in cmds_res:
             self.pass_res()
         else:
             self.fail_res()
@@ -176,9 +176,8 @@ class TelnetClient:
         print(f'\n{check_str}\n')
         self.tn.logfile=output.write(f'\n{check_str}\n')
         vlan_lst=["vlan125","vlan126","vlan127","vlan128","vlan129"]
-        # print(vlan_lst[1])
         for i in range(len(vlan_lst)):            
-            if vlan_lst[i] not in cmds_res[:-1]:
+            if vlan_lst[i] not in cmds_res:
                 self.fail_res()
                 break            
         else:
@@ -204,9 +203,8 @@ class TelnetClient:
         print(f'\n{check_str}\n')
         self.tn.logfile=output.write(f'\n{check_str}\n')
         vlan_lst=["vlan125","vlan126","vlan127"]
-        # print(vlan_lst[1])
         for i in range(len(vlan_lst)):            
-            if vlan_lst[i] in cmds_res[:-1]:
+            if vlan_lst[i] in cmds_res:
                 self.fail_res()
                 break            
         else:
@@ -228,7 +226,7 @@ class TelnetClient:
         check_str='tips:检查vlan128和vlan129是否存在......'
         print(f'\n{check_str}\n')
         self.tn.logfile=output.write(f'\n{check_str}\n')
-        if "vlan128" in cmds_res[:-1] and "vlan129" in cmds_res[:-1]:
+        if "vlan128" in cmds_res and "vlan129" in cmds_res:
             self.pass_res()
         else:
             self.fail_res()
