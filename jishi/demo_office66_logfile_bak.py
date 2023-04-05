@@ -90,7 +90,7 @@ class TelnetClient:
     @outer
     def check_onu(self):
         self.login_host()
-        #cmds=['arch','pwd','uname -r']
+
         cmds=['show onu state']
         for i in range(len(cmds)):
         # 执行命令
@@ -101,19 +101,26 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查测试ONU在线状态···
-        check_str='tips:检查测试ONU在线状态......'
-        print(f'\n{check_str}\n')
-        self.tn.logfile=output.write(f'\n{check_str}\n')
-        if "working        MONU0000456a" in cmds_res:
-            self.pass_res()
+        check_name="tips:检查测试ONU在线状态......"
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
+        check_words=["working        MONU0000456a"]
+        for j in range(len(check_words)):
+            if check_words[j] not in cmds_res:
+                self.fail_res()
+                break
         else:
-            self.fail_res()
+            self.pass_res()
+
         self.logout_host()    
     
     @outer
     def vlan_add_uni(self):
         self.login_host()
+        
         cmds=['vlan 123',
               'exit',
               'show vlan']
@@ -124,19 +131,26 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查单个vlan是否创建成功···
-        check_str='tips:检查单个vlan是否创建成功......'
-        print(f'\n{check_str}\n')
-        self.tn.logfile=output.write(f'\n{check_str}\n')
-        if "Name           : vlan123" in cmds_res:
-            self.pass_res()
+        check_name="tips:检查单个vlan是否创建成功......"
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
+        check_words=["Name           : vlan123"]
+        for j in range(len(check_words)):
+            if check_words[j] not in cmds_res:
+                self.fail_res()
+                break
         else:
-            self.fail_res()
+            self.pass_res()
+        
         self.logout_host()
 
     @outer
     def vlan_del_uni(self):
         self.login_host()
+        
         cmds=['vlan 123',
               'exit',
               'no vlan 123',
@@ -148,19 +162,26 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查单个vlan是否删除成功···
-        check_str='tips:检查单个vlan是否删除成功......'
-        print(f'\n{check_str}\n')
-        self.tn.logfile=output.write(f'\n{check_str}\n')
-        if "Vlan 123 is not exist." in cmds_res:
-            self.pass_res()
+        check_name='tips:检查单个vlan是否删除成功......'
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
+        check_words=["Vlan 123 is not exist."]
+        for j in range(len(check_words)):
+            if check_words[j] not in cmds_res:
+                self.fail_res()
+                break
         else:
-            self.fail_res()
+            self.pass_res()
+        
         self.logout_host()
 
     @outer
     def vlan_add_mul(self):
         self.login_host()
+        
         cmds=['vlan 125 - 129',
             #   'exit',
               'show vlan']
@@ -171,22 +192,26 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查多个vlan是否创建成功···
-        check_str='tips:检查多个vlan是否创建成功......'
-        print(f'\n{check_str}\n')
-        self.tn.logfile=output.write(f'\n{check_str}\n')
-        vlan_lst=["vlan125","vlan126","vlan127","vlan128","vlan129"]
-        for i in range(len(vlan_lst)):            
-            if vlan_lst[i] not in cmds_res:
+        check_name='tips:检查多个vlan是否创建成功......'
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
+        check_words=["vlan125","vlan126","vlan127","vlan128","vlan129"]
+        for j in range(len(check_words)):            
+            if check_words[j] not in cmds_res:
                 self.fail_res()
                 break            
         else:
             self.pass_res()
+        
         self.logout_host()
 
     @outer
     def vlan_del_mul(self):
         self.login_host()
+
         cmds=['vlan 125 - 129',
               'show vlan',
               'no vlan 125 - 127',
@@ -198,22 +223,26 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查多个vlan是否删除成功···
-        check_str='tips:检查多个vlan是否删除成功......'
-        print(f'\n{check_str}\n')
-        self.tn.logfile=output.write(f'\n{check_str}\n')
-        vlan_lst=["vlan125","vlan126","vlan127"]
-        for i in range(len(vlan_lst)):            
-            if vlan_lst[i] in cmds_res:
-                self.fail_res()
+        check_name='tips:检查多个vlan是否删除成功......'
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+
+        check_words=["vlan125","vlan126","vlan127"]
+        for j in range(len(check_words)):            
+            if check_words[j] not in cmds_res:
+                self.pass_res()
                 break            
         else:
-            self.pass_res()
+            self.fail_res()
+
         self.logout_host()         
 
     @outer
     def vlan_show(self):
         self.login_host()
+
         cmds=['show vlan']
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
@@ -222,14 +251,20 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+        
         #检查vlan128和vlan129是否存在···
-        check_str='tips:检查vlan128和vlan129是否存在......'
-        print(f'\n{check_str}\n')
-        self.tn.logfile=output.write(f'\n{check_str}\n')
-        if "vlan128" in cmds_res and "vlan129" in cmds_res:
-            self.pass_res()
+        check_name='tips:检查vlan128和vlan129是否存在......'
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
+        check_words=["vlan128","vlan129"]
+        for j in range(len(check_words)):
+            if check_words[j] not in cmds_res:
+                self.fail_res()
+                break
         else:
-            self.fail_res()
+            self.pass_res()
+
         self.logout_host()
 
 
