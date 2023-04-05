@@ -1,5 +1,5 @@
 
-测试开始时间为:2023-04-05 13:00:33.136418
+测试开始时间为:2023-04-05 13:13:50.623479
 
 ####################【exec_cmd】脚本测试执行开始!####################
 
@@ -32,24 +32,29 @@ tips:检查设备版本信息是否正确......
 192.168.3.123登录成功!
 
 命令ps -ef | grep sshd执行结果:
+ps -ef | grep sshd
 root         896       1  0 09:57 ?        00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
 root        3248     896  0 11:03 ?        00:00:06 [01;31m[Ksshd[m[K: root@pts/0
-root        7470    7463  0 13:00 pts/2    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+root        8052    8045  0 13:13 pts/2    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 命令this is a test script!执行结果:
+this is a test script!
 找不到命令 “this”，您的意思是：
   “thin” 命令来自 Debian 软件包 thin (1.8.0-1ubuntu3)
 尝试 apt install <deb name>
 root@chenjingv:/home/chenjingv# 
 
 命令netstat -anp | grep :22执行结果:
+netstat -anp | grep :22
 tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      896/sshd: /usr/sbin 
-tcp        0    268 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:50177      ESTABLISHED 3248/sshd: root@pts 
+tcp        0    292 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:50177      ESTABLISHED 3248/sshd: root@pts 
+tcp        0      0 192.168.3.123:38466     20.205.243.166[01;31m[K:22[m[K       TIME_WAIT   -                   
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      896/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 
 命令ip add | grep inet -C2执行结果:
+ip add | grep inet -C2
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     [01;31m[Kinet[m[K 127.0.0.1/8 scope host lo
