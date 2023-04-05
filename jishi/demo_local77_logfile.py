@@ -85,21 +85,22 @@ class TelnetClient:
         print(f'\n{res}')
         self.tn.logfile=output.write(f'\n{res}\n')
     
-    def check_res(self,cmds,check_name,check_words):
+    def check_res(self,cmds,check_name,check_words,output_lst):
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
             time.sleep(0.5)
             cmds_res=self.tn.read_very_eager().decode('utf-8')
+            output_lst.append(cmds_res)
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
-        # check_name="tips:检查接口表项是否正确......"
+        
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
-        # check_words=["lo","ens33","ens35"]
+        
         for j in range(len(check_words)):
-            print(f'@@@@{cmds_res}')
-            if check_words[j] not in cmds_res:
+            print(f'aaa:{str(cmds_res)}\n')
+            if check_words[j] not in output_lst[-1]:
                 self.fail_res()
                 break
         else:
@@ -109,52 +110,25 @@ class TelnetClient:
     def exec_cmd(self):
         self.login_host()
         cmds=['arch','pwd','uname -r']
-        for i in range(len(cmds)):
-        # 执行命令
-            self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(0.5)
-        # 获取命令结果
-            cmds_res = self.tn.read_very_eager().decode('utf-8')
-            res="命令"+cmds[i]+"执行结果:"
-            print(f'\n{res}\n{cmds_res}\n')
-            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
         check_name="tips:检查设备版本信息是否正确......"
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
         check_words=["gen"]
-        for j in range(len(check_words)):
-            if check_words[j] not in cmds_res:
-                self.fail_res()
-                break
-        else:
-            self.pass_res()
+        output_lst=[]
+
+        self.check_res(cmds,check_name,check_words,output_lst)
         self.logout_host()    
     
     @outer
     def check_ssh(self):
         self.login_host()
-        cmds=['ip add | grep inet -C2',
-              'ps -ef | grep sshd',
+        cmds=['ps -ef | grep sshd',
+              'this is a test script!',
               'netstat -anp | grep :22',
-              'this is a test script!']
-        # for i in range(len(cmds)):
-        #     self.tn.write(cmds[i].encode('ascii')+b'\n')
-        #     time.sleep(0.5)
-        #     cmds_res=self.tn.read_very_eager().decode('utf-8')
-        #     res="命令"+cmds[i]+"执行结果:"
-        #     print(f'\n{res}\n{cmds_res}\n')
-        #     self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+              'ip add | grep inet -C2']
         check_name="tips:检查接口表项是否正确......"
-        # print(f'\n{check_name}\n')
-        # self.tn.logfile=output.write(f'\n{check_name}\n')
-        check_words=["lo","ens33","ens35"]
-        # for j in range(len(check_words)):
-        #     if check_words[j] not in cmds_res:
-        #         self.fail_res()
-        #         break
-        # else:
-        #     self.pass_res()
-        self.check_res(cmds,check_name,check_words)
+        check_words=["lo","ens33"]
+        output_lst=[]
+
+        self.check_res(cmds,check_name,check_words,output_lst)
         self.logout_host()
 
 
@@ -169,7 +143,7 @@ if __name__ == '__main__':
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
-    # telnet.exec_cmd()
+    telnet.exec_cmd()
     telnet.check_ssh()
     #telnet.exec_cmd()
     #telnet.check_ssh()
