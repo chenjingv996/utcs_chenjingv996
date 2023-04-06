@@ -104,7 +104,7 @@ class TelnetClient:
 
         for j in range(len(check_words)):
             if check_words[j] not in output_lst[-1]:
-                elf.fail_res()
+                self.fail_res()
                 break
         else:
             self.pass_res()

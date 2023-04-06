@@ -1,6 +1,5 @@
 
-<<<<<<< HEAD
-测试开始时间为:2023-04-04 13:12:07.725096
+测试开始时间为:2023-04-06 08:31:13.671763
 
 ####################【check_onu】脚本测试执行开始!####################
 
@@ -57,22 +56,6 @@ Untagged Ports :
 
 Vlan ID        : 123
 Name           : vlan123
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 128
-Name           : vlan128
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 129
-Name           : vlan129
 Mac Address    : 80:07:1b:ea:fd:3d
 Tagged Ports   :  
                   
@@ -435,9 +418,3 @@ tips:检查vlan128和vlan129是否存在......
 
 ####################【vlan_show】脚本测试执行结束!####################
 
-=======
-测试开始时间为:2023-04-05 17:52:40.746168
-
-####################【check_onu】脚本测试执行开始!####################
-
->>>>>>> 229f41357acf447d8e19f527089b44dac2c50194
