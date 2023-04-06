@@ -125,11 +125,11 @@ class TelnetClient:
         self.tn.logfile=output.write(f'\n{check_name}\n')
 
         for j in range(len(check_words)):
-            if check_words[j] not in output_lst[-1]:
-                self.pass_res()
+            if check_words[j] in output_lst[-1]:
+                self.fail_res()
                 break
         else:
-            self.fail_res()
+            self.pass_res()
 
     @outer
     def check_onu(self):

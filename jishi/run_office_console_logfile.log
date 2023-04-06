@@ -1,5 +1,5 @@
 
-测试开始时间为:2023-04-06 08:31:13.671763
+测试开始时间为:2023-04-06 08:41:54.016793
 
 ####################【check_onu】脚本测试执行开始!####################
 
@@ -56,6 +56,22 @@ Untagged Ports :
 
 Vlan ID        : 123
 Name           : vlan123
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 128
+Name           : vlan128
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 129
+Name           : vlan129
 Mac Address    : 80:07:1b:ea:fd:3d
 Tagged Ports   :  
                   
