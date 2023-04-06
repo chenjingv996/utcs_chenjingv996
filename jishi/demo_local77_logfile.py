@@ -108,7 +108,7 @@ class TelnetClient:
     def exec_cmd(self):
         self.login_host()
         cmds=['arch','pwd','uname -r']
-        check_name="tips:检查设备版本信息是否正确......"
+        check_name='tips:检查设备版本信息是否正确......'
         check_words=["gen"]
         output_lst=[]
 
@@ -122,8 +122,8 @@ class TelnetClient:
               'this is a test script!',
               'netstat -anp | grep :22',
               'ip add | grep inet -C2']
-        check_name="tips:检查接口表项是否正确......"
-        check_words=["lo","ens33"]
+        check_name='tips:检查接口表项是否正确......'
+        check_words=['lo','ens33']
         output_lst=[]
 
         self.check_res(cmds,check_name,check_words,output_lst)
