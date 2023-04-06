@@ -81,44 +81,8 @@ class TelnetClient:
         res="++"*20+"当前用例测试结果为:fail"
         print(f'\n{res}')
         self.tn.logfile=output.write(f'\n{res}\n')
-
-    @outer
-    def exec_cmd(self):
-        self.login_host()
-        cmds=['arch','pwd','uname -r']
-        output_lst=[]
-        for i in range(len(cmds)):
-        # 执行命令
-            self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(0.5)
-        # 获取命令结果
-            cmds_res = self.tn.read_very_eager().decode('utf-8')
-            output_lst.append(cmds_res)
-            res="命令"+cmds[i]+"执行结果:"
-            print(f'\n{res}\n{cmds_res}\n')
-            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
-
-        check_name="tips:检查设备版本信息是否正确......"
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
-        
-        check_words=["gen"]
-        for j in range(len(check_words)):
-            if check_words[j] not in output_lst[-1]:
-                self.fail_res()
-                break
-        else:
-            self.pass_res()
-        self.logout_host()    
     
-    @outer
-    def check_ssh(self):
-        self.login_host()
-        cmds=['ip add | grep inet -C2',
-              'ps -ef | grep sshd',
-              'netstat -anp | grep :22',
-              'this is a test script!']
-        output_lst=[]
+    def check_res(self,cmds,check_name,check_words,output_lst):
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
             time.sleep(0.5)
@@ -128,17 +92,41 @@ class TelnetClient:
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
         
-        check_name="tips:检查接口表项是否正确......"
+        print(f'\n{output_lst}\n')
+
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
         
-        check_words=["lo","ens33"]
         for j in range(len(check_words)):
-            if check_words[j] not in output_lst[0]:
+            if check_words[j] not in output_lst[-1]:
                 self.fail_res()
                 break
         else:
             self.pass_res()
+
+    @outer
+    def exec_cmd(self):
+        self.login_host()
+        cmds=['arch','pwd','uname -r']
+        check_name="tips:检查设备版本信息是否正确......"
+        check_words=["gen"]
+        output_lst=[]
+
+        self.check_res(cmds,check_name,check_words,output_lst)
+        self.logout_host()    
+    
+    @outer
+    def check_ssh(self):
+        self.login_host()
+        cmds=['ps -ef | grep sshd',
+              'this is a test script!',
+              'netstat -anp | grep :22',
+              'ip add | grep inet -C2']
+        check_name="tips:检查接口表项是否正确......"
+        check_words=["lo","ens33"]
+        output_lst=[]
+
+        self.check_res(cmds,check_name,check_words,output_lst)
         self.logout_host()
 
 

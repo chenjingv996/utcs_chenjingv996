@@ -1,5 +1,6 @@
 #!/bin/bash
 
+chmod a+x *.py *.sh
 if [ -f "./run_local_console_logfile.log" ];then
 echo -e "\nwarning:the logfile is exist,delete it!\n"
 rm run_local_console_logfile.log &&  ./demo_local55_logfile.py     
