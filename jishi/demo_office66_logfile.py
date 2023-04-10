@@ -6,7 +6,7 @@ import telnetlib
 import time,os,sys
 from datetime import datetime as dt
 
-start_time,end_time=dt.now(),dt.now()
+start_time,end_time=dt.now().ctime(),dt.now().ctime()
 
 class TelnetClient:
     def __init__(self):
