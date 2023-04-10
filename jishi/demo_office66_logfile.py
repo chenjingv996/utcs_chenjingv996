@@ -10,7 +10,7 @@ start_time,end_time=dt.now(),dt.now()
 
 class TelnetClient:
     def __init__(self):
-        self.host_ip='192.168.10.135'
+        self.host_ip='172.17.100.135'
         self.username='admin'
         self.password='admin123'
         self.cmd_1='en'
