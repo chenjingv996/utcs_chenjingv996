@@ -6,11 +6,11 @@ import telnetlib
 import time,os,sys
 from datetime import datetime as dt
 
-start_time,end_time=dt.now(),dt.now()
+start_time,end_time=dt.now().ctime(),dt.now().ctime()
 
 class TelnetClient:
     def __init__(self):
-        self.host_ip='192.168.10.135'
+        self.host_ip='172.17.100.135'
         self.username='admin'
         self.password='admin123'
         self.cmd_1='en'
@@ -138,7 +138,7 @@ class TelnetClient:
         cmds=['show onu state']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
-        check_words=["working        MONU0000456a"]
+        check_words=["working        YHCT0000843a"]
         output_lst=[]
         self.check_res1(cmds,check_name,check_words,output_lst)
         

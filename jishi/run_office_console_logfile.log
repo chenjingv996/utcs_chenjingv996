@@ -1,17 +1,18 @@
 
-测试开始时间为:2023-04-06 16:36:56.505143
+测试开始时间为:Mon Apr 10 18:33:28 2023
 
 ####################【check_onu】脚本测试执行开始!####################
 
-192.168.10.135登录成功!
+172.17.100.135登录成功!
 
 命令show onu state执行结果:
 show onu state
 OnuIndex    Admin State    OMCC State    Phase State    Serial Number
 ---------------------------------------------------------------
-1/1/3:128[12Cenable[27Cenable[41Clogging[56CYHCT006f0108
+1/1/1:1[12Cenable[27Cenable[41Cworking[56CYHCT0000843a
+1/1/1:128[12Cenable[27Cenable[41Clogging[56CGPON00002ffe
 
-pon: 3 total: 1 working: 0
+pon: 1 total: 2 working: 1
 
 gpon-olt(config)# 
 
@@ -24,7 +25,7 @@ tips:检查测试ONU在线状态......
 
 ####################【vlan_add_uni】脚本测试执行开始!####################
 
-192.168.10.135登录成功!
+172.17.100.135登录成功!
 
 命令vlan 123执行结果:
 vlan 123
@@ -54,8 +55,48 @@ Tagged Ports   :
 Untagged Ports :  
                   
 
+Vlan ID        : 101
+Name           : vlan101
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 102
+Name           : vlan102
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
 Vlan ID        : 123
 Name           : vlan123
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 125
+Name           : vlan125
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 126
+Name           : vlan126
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 127
+Name           : vlan127
 Mac Address    : 80:07:1b:ea:fd:3d
 Tagged Ports   :  
                   
@@ -77,22 +118,6 @@ Tagged Ports   :
                   
 Untagged Ports :  
                   
-
-Vlan ID        : 200
-Name           : vlan200
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 300
-Name           : vlan300
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
 gpon-olt(config)# 
 
 tips:检查单个vlan是否创建成功......
@@ -104,7 +129,7 @@ tips:检查单个vlan是否创建成功......
 
 ####################【vlan_del_uni】脚本测试执行开始!####################
 
-192.168.10.135登录成功!
+172.17.100.135登录成功!
 
 命令vlan 123执行结果:
 vlan 123
@@ -132,7 +157,7 @@ tips:检查单个vlan是否删除成功......
 
 ####################【vlan_add_mul】脚本测试执行开始!####################
 
-192.168.10.135登录成功!
+172.17.100.135登录成功!
 
 命令vlan 125 - 129执行结果:
 vlan 125 - 129
@@ -152,6 +177,22 @@ Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8
 
 Vlan ID        : 100
 Name           : vlan100
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 101
+Name           : vlan101
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 102
+Name           : vlan102
 Mac Address    : 80:07:1b:ea:fd:3d
 Tagged Ports   :  
                   
@@ -192,22 +233,6 @@ Untagged Ports :
 
 Vlan ID        : 129
 Name           : vlan129
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 200
-Name           : vlan200
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 300
-Name           : vlan300
 Mac Address    : 80:07:1b:ea:fd:3d
 Tagged Ports   :  
                   
@@ -224,7 +249,7 @@ tips:检查多个vlan是否创建成功......
 
 ####################【vlan_del_mul】脚本测试执行开始!####################
 
-192.168.10.135登录成功!
+172.17.100.135登录成功!
 
 命令vlan 125 - 129执行结果:
 vlan 125 - 129
@@ -244,6 +269,22 @@ Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8
 
 Vlan ID        : 100
 Name           : vlan100
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 101
+Name           : vlan101
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 102
+Name           : vlan102
 Mac Address    : 80:07:1b:ea:fd:3d
 Tagged Ports   :  
                   
@@ -284,22 +325,6 @@ Untagged Ports :
 
 Vlan ID        : 129
 Name           : vlan129
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 200
-Name           : vlan200
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 300
-Name           : vlan300
 Mac Address    : 80:07:1b:ea:fd:3d
 Tagged Ports   :  
                   
@@ -331,6 +356,22 @@ Tagged Ports   :
 Untagged Ports :  
                   
 
+Vlan ID        : 101
+Name           : vlan101
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 102
+Name           : vlan102
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
 Vlan ID        : 128
 Name           : vlan128
 Mac Address    : 80:07:1b:ea:fd:3d
@@ -341,22 +382,6 @@ Untagged Ports :
 
 Vlan ID        : 129
 Name           : vlan129
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 200
-Name           : vlan200
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 300
-Name           : vlan300
 Mac Address    : 80:07:1b:ea:fd:3d
 Tagged Ports   :  
                   
@@ -373,7 +398,7 @@ tips:检查多个vlan是否删除成功......
 
 ####################【vlan_show】脚本测试执行开始!####################
 
-192.168.10.135登录成功!
+172.17.100.135登录成功!
 
 命令show vlan执行结果:
 show vlan
@@ -395,6 +420,22 @@ Tagged Ports   :
 Untagged Ports :  
                   
 
+Vlan ID        : 101
+Name           : vlan101
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 102
+Name           : vlan102
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
 Vlan ID        : 128
 Name           : vlan128
 Mac Address    : 80:07:1b:ea:fd:3d
@@ -405,22 +446,6 @@ Untagged Ports :
 
 Vlan ID        : 129
 Name           : vlan129
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 200
-Name           : vlan200
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 300
-Name           : vlan300
 Mac Address    : 80:07:1b:ea:fd:3d
 Tagged Ports   :  
                   
