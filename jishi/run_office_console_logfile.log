@@ -1,5 +1,5 @@
 
-测试开始时间为:Mon Apr 10 12:49:37 2023
+测试开始时间为:Mon Apr 10 18:18:29 2023
 
 ####################【check_onu】脚本测试执行开始!####################
 
@@ -9,9 +9,9 @@
 show onu state
 OnuIndex    Admin State    OMCC State    Phase State    Serial Number
 ---------------------------------------------------------------
-1/1/1:1[12Cenable[27Cenable[41Cworking[56CYHCT0000843a
+1/1/1:1[12Cenable[27Cdisable[41Coffline[56CYHCT0000843a
 
-pon: 1 total: 1 working: 1
+pon: 1 total: 1 working: 0
 
 gpon-olt(config)# 
 
@@ -44,7 +44,31 @@ Tagged Ports   :
                   
 Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8   
                   
-                 gpon0/1   gpon0/2   gpon0/3   gpon0/4   gpon0/5   gpon0/6   gpon0/7   gpon0/8   gpon0/9   gpon0/10  gpon0/11  gpon0/12  gpon0/13  gpon0/14  gpon0/15  gpon0/16   
+                  
+
+Vlan ID        : 100
+Name           : vlan100
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 101
+Name           : vlan101
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 102
+Name           : vlan102
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
 
 Vlan ID        : 123
 Name           : vlan123
@@ -124,7 +148,31 @@ Tagged Ports   :
                   
 Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8   
                   
-                 gpon0/1   gpon0/2   gpon0/3   gpon0/4   gpon0/5   gpon0/6   gpon0/7   gpon0/8   gpon0/9   gpon0/10  gpon0/11  gpon0/12  gpon0/13  gpon0/14  gpon0/15  gpon0/16   
+                  
+
+Vlan ID        : 100
+Name           : vlan100
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 101
+Name           : vlan101
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 102
+Name           : vlan102
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
 
 Vlan ID        : 125
 Name           : vlan125
@@ -192,7 +240,31 @@ Tagged Ports   :
                   
 Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8   
                   
-                 gpon0/1   gpon0/2   gpon0/3   gpon0/4   gpon0/5   gpon0/6   gpon0/7   gpon0/8   gpon0/9   gpon0/10  gpon0/11  gpon0/12  gpon0/13  gpon0/14  gpon0/15  gpon0/16   
+                  
+
+Vlan ID        : 100
+Name           : vlan100
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 101
+Name           : vlan101
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 102
+Name           : vlan102
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
 
 Vlan ID        : 125
 Name           : vlan125
@@ -249,7 +321,31 @@ Tagged Ports   :
                   
 Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8   
                   
-                 gpon0/1   gpon0/2   gpon0/3   gpon0/4   gpon0/5   gpon0/6   gpon0/7   gpon0/8   gpon0/9   gpon0/10  gpon0/11  gpon0/12  gpon0/13  gpon0/14  gpon0/15  gpon0/16   
+                  
+
+Vlan ID        : 100
+Name           : vlan100
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 101
+Name           : vlan101
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 102
+Name           : vlan102
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
 
 Vlan ID        : 128
 Name           : vlan128
@@ -289,7 +385,31 @@ Tagged Ports   :
                   
 Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8   
                   
-                 gpon0/1   gpon0/2   gpon0/3   gpon0/4   gpon0/5   gpon0/6   gpon0/7   gpon0/8   gpon0/9   gpon0/10  gpon0/11  gpon0/12  gpon0/13  gpon0/14  gpon0/15  gpon0/16   
+                  
+
+Vlan ID        : 100
+Name           : vlan100
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 101
+Name           : vlan101
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 102
+Name           : vlan102
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
 
 Vlan ID        : 128
 Name           : vlan128

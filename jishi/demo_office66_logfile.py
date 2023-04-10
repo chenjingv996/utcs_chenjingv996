@@ -138,7 +138,7 @@ class TelnetClient:
         cmds=['show onu state']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
-        check_words=["working"]
+        check_words=["working        YHCT0000843a"]
         output_lst=[]
         self.check_res1(cmds,check_name,check_words,output_lst)
         
