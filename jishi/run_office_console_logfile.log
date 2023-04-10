@@ -1,5 +1,5 @@
 
-测试开始时间为:2023-04-10 11:39:00.161932
+测试开始时间为:2023-04-10 11:46:29.782434
 
 ####################【check_onu】脚本测试执行开始!####################
 
@@ -9,9 +9,9 @@
 show onu state
 OnuIndex    Admin State    OMCC State    Phase State    Serial Number
 ---------------------------------------------------------------
-1/1/1:128[12Cenable[27Cenable[41CsyncMib[56CYHCT0000843a
+1/1/1:1[12Cenable[27Cenable[41Cworking[56CYHCT0000843a
 
-pon: 1 total: 1 working: 0
+pon: 1 total: 1 working: 1
 
 gpon-olt(config)# 
 
@@ -48,6 +48,22 @@ Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8
 
 Vlan ID        : 123
 Name           : vlan123
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 128
+Name           : vlan128
+Mac Address    : 80:07:1b:ea:fd:3d
+Tagged Ports   :  
+                  
+Untagged Ports :  
+                  
+
+Vlan ID        : 129
+Name           : vlan129
 Mac Address    : 80:07:1b:ea:fd:3d
 Tagged Ports   :  
                   
