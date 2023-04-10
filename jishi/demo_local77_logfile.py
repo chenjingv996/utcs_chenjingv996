@@ -56,7 +56,7 @@ class TelnetClient:
         print()
         # 获取登录结果
         # read_very_eager()获取到的是的是上次获取之后本次获取之前的所有输出
-        command_result = self.tn.read_very_eager().decode('utf-8')
+        command_result = self.tn.read_very_eager().decode('ascii')
         if 'Login incorrect' not in command_result:
             login_res1=self.host_ip+"登录成功!"
             print(f'{login_res1}\n')
@@ -135,7 +135,7 @@ if __name__ == '__main__':
     #打印console时间
     print(f'\n{timmer}\n')
     #创建log文件
-    output=open(os.path.join(os.getcwd(),'run_local_console_logfile.log'),'w')
+    output=open(os.path.join(os.getcwd(),'run_local_console_logfile.log'),'w',encoding='utf-8')
     #打印log时间
     telnetlib.Telnet().logfile=output.write(f'\n{timmer}\n')
     #创建telnet实例
