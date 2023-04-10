@@ -225,7 +225,7 @@ if __name__ == '__main__':
     #打印console时间
     print(f'\n{timmer}\n')
     #创建log文件
-    output=open(os.path.join(os.getcwd(),'run_office_console_logfile.log'),'w')
+    output=open(os.path.join(os.getcwd(),'run_office_console_logfile.log'),'w',encoding='utf-8')
     #打印log时间
     telnetlib.Telnet().logfile=output.write(f'\n{timmer}\n')
     #创建telnet实例
