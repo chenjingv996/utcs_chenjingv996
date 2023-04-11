@@ -97,6 +97,7 @@ class TelnetClient:
             output_lst.append(cmds_res)
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
+            print(f'\nwww:{output_lst[-1]}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
 
         print(f'\n{check_name}\n')
@@ -232,11 +233,11 @@ if __name__ == '__main__':
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     telnet.check_onu()
-    telnet.vlan_add_uni()
-    telnet.vlan_del_uni()
-    telnet.vlan_add_mul()
-    telnet.vlan_del_mul()
-    telnet.vlan_show()
+    #telnet.vlan_add_uni()
+    #telnet.vlan_del_uni()
+    #telnet.vlan_add_mul()
+    #telnet.vlan_del_mul()
+    #telnet.vlan_show()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
