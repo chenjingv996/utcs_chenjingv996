@@ -97,14 +97,13 @@ class TelnetClient:
             output_lst.append(cmds_res)
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
-            print(f'\nwww:{output_lst[-1]}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
 
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
 
         for j in range(len(check_words)):
-            if check_words[j] not in output_lst[-1]:
+            if check_words[j] not in output_lst[-1].replace(' ',''):
                 self.fail_res()
                 break
         else:
@@ -139,7 +138,7 @@ class TelnetClient:
         cmds=['show onu state']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
-        check_words=["working        YHCT0000843a"]
+        check_words=["workingYHCT0000843a"]
         output_lst=[]
         self.check_res1(cmds,check_name,check_words,output_lst)
         
