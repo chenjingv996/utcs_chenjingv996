@@ -117,7 +117,8 @@ class TelnetClient:
         cmds=['ip add | grep inet -C2',
               'ps -ef | grep sshd',
               'netstat -anp | grep :22',
-              'this is a test script!']
+              'this is a test script!',
+              'ip add']
         output_lst=[]
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
@@ -132,9 +133,9 @@ class TelnetClient:
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
         
-        check_words=["lo","ens33"]
+        check_words=["state UP"]
         for j in range(len(check_words)):
-            if check_words[j] not in output_lst[0]:
+            if check_words[j] not in output_lst[-1]:
                 self.fail_res()
                 break
         else:
@@ -147,13 +148,13 @@ if __name__ == '__main__':
     #打印console时间
     print(f'\n{timmer}\n')
     #创建log文件
-    output=open(os.path.join(os.getcwd(),'run_local_console_logfile.log'),'w')
+    output=open(os.path.join(os.getcwd(),'run_local_console_logfile.log'),'w',encoding='utf-8')
     #打印log时间
     telnetlib.Telnet().logfile=output.write(f'\n{timmer}\n')
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
-    telnet.exec_cmd()
+    #telnet.exec_cmd()
     telnet.check_ssh()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output

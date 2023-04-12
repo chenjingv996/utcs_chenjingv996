@@ -121,9 +121,10 @@ class TelnetClient:
         cmds=['ps -ef | grep sshd',
               'this is a test script!',
               'netstat -anp | grep :22',
-              'ip add | grep inet -C2']
+              'ip add',
+              'ip route']
         check_name='tips:检查接口表项是否正确......'
-        check_words=['lo','ens33']
+        check_words=['ens33 proto kernel']
         output_lst=[]
 
         self.check_res(cmds,check_name,check_words,output_lst)
@@ -141,7 +142,7 @@ if __name__ == '__main__':
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
-    telnet.exec_cmd()
+    #telnet.exec_cmd()
     telnet.check_ssh()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
