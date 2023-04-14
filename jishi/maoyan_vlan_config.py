@@ -14,7 +14,7 @@ class TelnetClient:
         self.username='admin'
         self.password='admin123'
         self.cmd_1='en'
-        self.cmd_2='terminal length 0'
+        self.cmd_2='terminal page-break disable'
         self.cmd_3='conf t'
         self.tn = telnetlib.Telnet()
           
@@ -39,22 +39,22 @@ class TelnetClient:
             logging.warning(f'{self.host_ip}网络连接失败!\n')
             return False
         # 等待login出现后输入用户名，最多等待10秒
-        self.tn.read_until(b'gin: ',timeout=10)
+        self.tn.read_until(b'gin: ',timeout=2)
         self.tn.write(self.username.encode('ascii') + b'\n')
         # 等待Password出现后输入用户名，最多等待10秒
-        self.tn.read_until(b'word: ',timeout=10)
+        self.tn.read_until(b'word: ',timeout=2)
         self.tn.write(self.password.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'> ',timeout=10)
+        self.tn.read_until(b'> ',timeout=2)
         self.tn.write(self.cmd_1.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'word ',timeout=10)
+        self.tn.read_until(b'word ',timeout=2)
         self.tn.write(self.password.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'# ',timeout=10)
+        self.tn.read_until(b'# ',timeout=2)
         self.tn.write(self.cmd_2.encode('ascii') + b'\n')
         
-        self.tn.read_until(b'# ',timeout=10)
+        self.tn.read_until(b'# ',timeout=2)
         self.tn.write(self.cmd_3.encode('ascii') + b'\n')
         # 延时1秒再收取返回结果，给服务端足够响应时间
         time.sleep(1)
@@ -103,7 +103,7 @@ class TelnetClient:
         self.tn.logfile=output.write(f'\n{check_name}\n')
 
         for j in range(len(check_words)):
-            if check_words[j] not in output_lst[-1].replace(' ',''):
+            if check_words[j] not in output_lst[-1]:
                 self.fail_res()
                 break
         else:
@@ -135,10 +135,11 @@ class TelnetClient:
     def check_onu(self):
         self.login_host()
 
-        cmds=['show onu state']
+        cmds=['show interface gpon-onu creation-information',
+              'show interface gpon-onu online-information']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
-        check_words=["workingYHCT0000843a"]
+        check_words=["3/10/1     online"]
         output_lst=[]
         self.check_res1(cmds,check_name,check_words,output_lst)
         
@@ -148,12 +149,15 @@ class TelnetClient:
     def vlan_add_uni(self):
         self.login_host()
         
-        cmds=['vlan 123',
+        cmds=['no vlan 120-129',
+              'show vlan | in VLAN012',
+              'create vlan  123  active',
               'exit',
-              'show vlan']
+        #      'exit',
+              'show vlan | in VLAN012']
         #检查单个vlan是否创建成功···
         check_name="tips:检查单个vlan是否创建成功......"
-        check_words=["Name           : vlan123"]
+        check_words=["VLAN0123        active  static"]
         output_lst=[]
         self.check_res1(cmds,check_name,check_words,output_lst)
         
@@ -163,15 +167,16 @@ class TelnetClient:
     def vlan_del_uni(self):
         self.login_host()
         
-        cmds=['vlan 123',
-              'exit',
+        cmds=['create vlan  123  active',
+        #      'exit',
               'no vlan 123',
-              'show vlan 123']
+              'exit',
+              'show vlan | in VLAN012']
         #检查单个vlan是否删除成功···
         check_name='tips:检查单个vlan是否删除成功......'
-        check_words=["Vlan 123 is not exist."]
+        check_words=["VLAN0123"]
         output_lst=[]
-        self.check_res1(cmds,check_name,check_words,output_lst)
+        self.check_res2(cmds,check_name,check_words,output_lst)
 
         self.logout_host()
 
@@ -179,12 +184,12 @@ class TelnetClient:
     def vlan_add_mul(self):
         self.login_host()
         
-        cmds=['vlan 125 - 129',
-            #   'exit',
-              'show vlan']
+        cmds=['create vlan  125-129 active',
+              'exit',
+              'show vlan | in VLAN012']
         #检查多个vlan是否创建成功···
         check_name='tips:检查多个vlan是否创建成功......'
-        check_words=["vlan125","vlan126","vlan127","vlan128","vlan129"]
+        check_words=["VLAN0125","VLAN0126","VLAN0127","VLAN0128","VLAN0129"]
         output_lst=[] 
         self.check_res1(cmds,check_name,check_words,output_lst)
 
@@ -194,13 +199,14 @@ class TelnetClient:
     def vlan_del_mul(self):
         self.login_host()
 
-        cmds=['vlan 125 - 129',
-              'show vlan',
-              'no vlan 125 - 127',
-              'show vlan']
+        cmds=['create vlan  125-129 active',
+        #      'show vlan',
+              'no vlan 125-127',
+              'exit',
+              'show vlan | in VLAN012']
         #检查多个vlan是否删除成功···
         check_name='tips:检查多个vlan是否删除成功......'
-        check_words=["vlan125","vlan126","vlan127"]
+        check_words=["VLAN0125","VLAN0126","VLAN0127"]
         output_lst=[]
         self.check_res2(cmds,check_name,check_words,output_lst)
 
@@ -210,10 +216,10 @@ class TelnetClient:
     def vlan_show(self):
         self.login_host()
 
-        cmds=['show vlan']
+        cmds=['exit','show vlan | in VLAN012']
         #检查vlan128和vlan129是否存在···
         check_name='tips:检查vlan128和vlan129是否存在......'
-        check_words=["vlan128","vlan129"]
+        check_words=["VLAN0128","VLAN0129"]
         output_lst=[]
         self.check_res1(cmds,check_name,check_words,output_lst)
 
@@ -232,11 +238,11 @@ if __name__ == '__main__':
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     telnet.check_onu()
-    #telnet.vlan_add_uni()
-    #telnet.vlan_del_uni()
-    #telnet.vlan_add_mul()
-    #telnet.vlan_del_mul()
-    #telnet.vlan_show()
+    telnet.vlan_add_uni()
+    telnet.vlan_del_uni()
+    telnet.vlan_add_mul()
+    telnet.vlan_del_mul()
+    telnet.vlan_show()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 

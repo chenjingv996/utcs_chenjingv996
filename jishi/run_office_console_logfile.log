@@ -1,25 +1,171 @@
 
-测试开始时间为:Tue Apr 11 18:25:57 2023
+测试开始时间为:Fri Apr 14 17:29:05 2023
 
 ####################【check_onu】脚本测试执行开始!####################
 
-172.17.100.135登录成功!
+172.17.100.214登录成功!
 
-命令show onu state执行结果:
-show onu state
-OnuIndex    Admin State    OMCC State    Phase State    Serial Number
----------------------------------------------------------------
-1/1/1:1[12Cenable[27Cenable[41Cworking[56CYHCT0000843a
-1/1/1:127[12Cenable[27Cenable[41Clogging[56CGPON00002b6c
-1/1/1:128[12Cenable[27Cenable[41Clogging[56CGPON00002ffe
+命令show interface gpon-onu creation-information执行结果:
 
-pon: 1 total: 3 working: 1
 
-gpon-olt(config)# 
+命令show interface gpon-onu online-information执行结果:
+show interface gpon-onu creation-information
+ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
+                                                                                                 ID   name             ID      name            
+------------------------------------------------------------------------------------------------------------------------------------------------------
+3/10/1    RCMG4AC03AF8      gpon    (g)       5104G-GP-HB        2023-04-14,13:58:02    active   1024 Def_P_all        1018    Def_4E
+4/10/1    RCMG4AC03AEC      gpon    (g)       5104G-GP-HB        2023-04-14,17:03:39    active   101  profile-101      101     profile-101
+
+yuhong(config)#show interface gpon-onu online-information
+ONU ID     State       Distance(m)      Login Date           Logout Date          Logout Reason               
+--------------------------------------------------------------------------------------------------------------
+3/10/1     online      1                2023-04-14,13:58:26  --                   --                          
+4/10/1     online      1                2023-04-14,17:05:29  2023-04-14,17:05:07  Backbone fiber cut          
+
 
 tips:检查测试ONU在线状态......
 
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:fail
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
 
 ####################【check_onu】脚本测试执行结束!####################
+
+
+####################【vlan_add_uni】脚本测试执行开始!####################
+
+172.17.100.214登录成功!
+
+命令no vlan 120-129执行结果:
+no vlan 120-129
+yuhong(config)#
+
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+Error : " show vlan | in VLAN012 "  Unknown command.
+yuhong(config)#
+
+命令create vlan  123  active执行结果:
+create vlan  123  active
+yuhong(config)#
+
+命令exit执行结果:
+exit
+yuhong#
+
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+123  VLAN0123        active  static  No      31:24:22
+yuhong#
+
+tips:检查单个vlan是否创建成功......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################【vlan_add_uni】脚本测试执行结束!####################
+
+
+####################【vlan_del_uni】脚本测试执行开始!####################
+
+172.17.100.214登录成功!
+
+命令create vlan  123  active执行结果:
+create vlan  123  active
+Already existed vlans: 123,can not be created again.
+yuhong(config)#
+
+命令no vlan 123执行结果:
+no vlan 123
+yuhong(config)#
+
+命令exit执行结果:
+exit
+yuhong#
+
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+yuhong#
+
+tips:检查单个vlan是否删除成功......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################【vlan_del_uni】脚本测试执行结束!####################
+
+
+####################【vlan_add_mul】脚本测试执行开始!####################
+
+172.17.100.214登录成功!
+
+命令create vlan  125-129 active执行结果:
+create vlan  125-129 active
+yuhong(config)#
+
+命令exit执行结果:
+exit
+yuhong#
+
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+125  VLAN0125        active  static  No      31:24:52
+126  VLAN0126        active  static  No      31:24:52
+127  VLAN0127        active  static  No      31:24:52
+128  VLAN0128        active  static  No      31:24:52
+129  VLAN0129        active  static  No      31:24:52
+yuhong#
+
+tips:检查多个vlan是否创建成功......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################【vlan_add_mul】脚本测试执行结束!####################
+
+
+####################【vlan_del_mul】脚本测试执行开始!####################
+
+172.17.100.214登录成功!
+
+命令create vlan  125-129 active执行结果:
+create vlan  125-129 active
+Already existed vlans: 125-129,can not be created again.
+yuhong(config)#
+
+命令no vlan 125-127执行结果:
+no vlan 125-127
+yuhong(config)#
+
+命令exit执行结果:
+exit
+yuhong#
+
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+128  VLAN0128        active  static  No      31:24:52
+129  VLAN0129        active  static  No      31:24:52
+yuhong#
+
+tips:检查多个vlan是否删除成功......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################【vlan_del_mul】脚本测试执行结束!####################
+
+
+####################【vlan_show】脚本测试执行开始!####################
+
+172.17.100.214登录成功!
+
+命令exit执行结果:
+exit
+yuhong#
+
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+128  VLAN0128        active  static  No      31:24:52
+129  VLAN0129        active  static  No      31:24:52
+yuhong#
+
+tips:检查vlan128和vlan129是否存在......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################【vlan_show】脚本测试执行结束!####################
 
