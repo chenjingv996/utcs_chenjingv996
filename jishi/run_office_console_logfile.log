@@ -1,5 +1,5 @@
 
-测试开始时间为:Sat Apr 15 08:44:00 2023
+测试开始时间为:Sat Apr 15 09:45:46 2023
 
 ####################【check_onu】脚本测试执行开始!####################
 
@@ -31,142 +31,30 @@ tips:检查测试ONU在线状态......
 ####################【check_onu】脚本测试执行结束!####################
 
 
-####################【vlan_add_uni】脚本测试执行开始!####################
+####################【dba_add_uni】脚本测试执行开始!####################
 
 172.17.100.214登录成功!
 
-命令no vlan 120-129执行结果:
-no vlan 120-129
+命令no create dba-profile 201-205执行结果:
+no create dba-profile 201-205
 yuhong(config)#
 
-命令show vlan | in VLAN012执行结果:
-show vlan | in VLAN012
-Error : " show vlan | in VLAN012 "  Unknown command.
-yuhong(config)#
-
-命令create vlan  123  active执行结果:
-create vlan  123  active
+命令show dba-profile all | in chenjingv执行结果:
+show dba-profile all | in chenjingv
 yuhong(config)#
 
-命令exit执行结果:
-exit
-yuhong#
+命令create dba-profile 201 name chenjingv201  type1 fix 10240执行结果:
+create dba-profile 201 name chenjingv201  type1 fix 10240
+yuhong(config)#
 
-命令show vlan | in VLAN012执行结果:
-show vlan | in VLAN012
-123  VLAN0123        active  static  No      46:39:19
-yuhong#
+命令show dba-profile all | in chenjingv201执行结果:
+show dba-profile all | in chenjingv201
+201         chenjingv201      type1  10240      0             0          --             0         0       --        0   
+yuhong(config)#
 
-tips:检查单个vlan是否创建成功......
+tips:检查单个dba是否创建成功......
 
 ++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
 
-####################【vlan_add_uni】脚本测试执行结束!####################
-
-
-####################【vlan_del_uni】脚本测试执行开始!####################
-
-172.17.100.214登录成功!
-
-命令create vlan  123  active执行结果:
-create vlan  123  active
-Already existed vlans: 123,can not be created again.
-yuhong(config)#
-
-命令no vlan 123执行结果:
-no vlan 123
-yuhong(config)#
-
-命令exit执行结果:
-exit
-yuhong#
-
-命令show vlan | in VLAN012执行结果:
-show vlan | in VLAN012
-yuhong#
-
-tips:检查单个vlan是否删除成功......
-
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
-
-####################【vlan_del_uni】脚本测试执行结束!####################
-
-
-####################【vlan_add_mul】脚本测试执行开始!####################
-
-172.17.100.214登录成功!
-
-命令create vlan  125-129 active执行结果:
-create vlan  125-129 active
-yuhong(config)#
-
-命令exit执行结果:
-exit
-yuhong#
-
-命令show vlan | in VLAN012执行结果:
-show vlan | in VLAN012
-125  VLAN0125        active  static  No      46:39:52
-126  VLAN0126        active  static  No      46:39:52
-127  VLAN0127        active  static  No      46:39:52
-128  VLAN0128        active  static  No      46:39:52
-129  VLAN0129        active  static  No      46:39:52
-yuhong#
-
-tips:检查多个vlan是否创建成功......
-
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
-
-####################【vlan_add_mul】脚本测试执行结束!####################
-
-
-####################【vlan_del_mul】脚本测试执行开始!####################
-
-172.17.100.214登录成功!
-
-命令create vlan  125-129 active执行结果:
-create vlan  125-129 active
-Already existed vlans: 125-129,can not be created again.
-yuhong(config)#
-
-命令no vlan 125-127执行结果:
-no vlan 125-127
-yuhong(config)#
-
-命令exit执行结果:
-exit
-yuhong#
-
-命令show vlan | in VLAN012执行结果:
-show vlan | in VLAN012
-128  VLAN0128        active  static  No      46:39:52
-129  VLAN0129        active  static  No      46:39:52
-yuhong#
-
-tips:检查多个vlan是否删除成功......
-
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
-
-####################【vlan_del_mul】脚本测试执行结束!####################
-
-
-####################【vlan_show】脚本测试执行开始!####################
-
-172.17.100.214登录成功!
-
-命令exit执行结果:
-exit
-yuhong#
-
-命令show vlan | in VLAN012执行结果:
-show vlan | in VLAN012
-128  VLAN0128        active  static  No      46:39:52
-129  VLAN0129        active  static  No      46:39:52
-yuhong#
-
-tips:检查vlan128和vlan129是否存在......
-
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
-
-####################【vlan_show】脚本测试执行结束!####################
+####################【dba_add_uni】脚本测试执行结束!####################
 
