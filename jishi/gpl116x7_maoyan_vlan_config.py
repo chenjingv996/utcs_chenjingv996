@@ -91,7 +91,7 @@ class TelnetClient:
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(0.5)
+            time.sleep(1)
             # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
             output_lst.append(cmds_res)
@@ -113,7 +113,7 @@ class TelnetClient:
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            time.sleep(0.5)
+            time.sleep(1)
             # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
             output_lst.append(cmds_res)
@@ -136,7 +136,7 @@ class TelnetClient:
         self.login_host()
 
         cmds=['show interface gpon-onu creation-information',
-              'show interface gpon-onu online-information']
+        'show interface gpon-onu online-information']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
         check_words=["3/10/1     online"]

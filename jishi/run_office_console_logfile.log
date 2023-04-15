@@ -1,14 +1,11 @@
 
-测试开始时间为:Fri Apr 14 17:29:05 2023
+测试开始时间为:Sat Apr 15 08:44:00 2023
 
 ####################【check_onu】脚本测试执行开始!####################
 
 172.17.100.214登录成功!
 
 命令show interface gpon-onu creation-information执行结果:
-
-
-命令show interface gpon-onu online-information执行结果:
 show interface gpon-onu creation-information
 ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
                                                                                                  ID   name             ID      name            
@@ -16,12 +13,16 @@ ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date  
 3/10/1    RCMG4AC03AF8      gpon    (g)       5104G-GP-HB        2023-04-14,13:58:02    active   1024 Def_P_all        1018    Def_4E
 4/10/1    RCMG4AC03AEC      gpon    (g)       5104G-GP-HB        2023-04-14,17:03:39    active   101  profile-101      101     profile-101
 
-yuhong(config)#show interface gpon-onu online-information
+yuhong(config)#
+
+命令show interface gpon-onu online-information执行结果:
+show interface gpon-onu online-information
 ONU ID     State       Distance(m)      Login Date           Logout Date          Logout Reason               
 --------------------------------------------------------------------------------------------------------------
 3/10/1     online      1                2023-04-14,13:58:26  --                   --                          
 4/10/1     online      1                2023-04-14,17:05:29  2023-04-14,17:05:07  Backbone fiber cut          
 
+yuhong(config)#
 
 tips:检查测试ONU在线状态......
 
@@ -53,7 +54,7 @@ yuhong#
 
 命令show vlan | in VLAN012执行结果:
 show vlan | in VLAN012
-123  VLAN0123        active  static  No      31:24:22
+123  VLAN0123        active  static  No      46:39:19
 yuhong#
 
 tips:检查单个vlan是否创建成功......
@@ -105,11 +106,11 @@ yuhong#
 
 命令show vlan | in VLAN012执行结果:
 show vlan | in VLAN012
-125  VLAN0125        active  static  No      31:24:52
-126  VLAN0126        active  static  No      31:24:52
-127  VLAN0127        active  static  No      31:24:52
-128  VLAN0128        active  static  No      31:24:52
-129  VLAN0129        active  static  No      31:24:52
+125  VLAN0125        active  static  No      46:39:52
+126  VLAN0126        active  static  No      46:39:52
+127  VLAN0127        active  static  No      46:39:52
+128  VLAN0128        active  static  No      46:39:52
+129  VLAN0129        active  static  No      46:39:52
 yuhong#
 
 tips:检查多个vlan是否创建成功......
@@ -138,8 +139,8 @@ yuhong#
 
 命令show vlan | in VLAN012执行结果:
 show vlan | in VLAN012
-128  VLAN0128        active  static  No      31:24:52
-129  VLAN0129        active  static  No      31:24:52
+128  VLAN0128        active  static  No      46:39:52
+129  VLAN0129        active  static  No      46:39:52
 yuhong#
 
 tips:检查多个vlan是否删除成功......
@@ -159,8 +160,8 @@ yuhong#
 
 命令show vlan | in VLAN012执行结果:
 show vlan | in VLAN012
-128  VLAN0128        active  static  No      31:24:52
-129  VLAN0129        active  static  No      31:24:52
+128  VLAN0128        active  static  No      46:39:52
+129  VLAN0129        active  static  No      46:39:52
 yuhong#
 
 tips:检查vlan128和vlan129是否存在......
