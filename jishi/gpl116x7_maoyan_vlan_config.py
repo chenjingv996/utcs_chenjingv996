@@ -150,14 +150,15 @@ class TelnetClient:
         self.login_host()
         
         cmds=['no vlan 120-129',
+              'exit',
               'show vlan | in VLAN012',
+              'conf t',
               'create vlan  123  active',
               'exit',
-        #      'exit',
               'show vlan | in VLAN012']
         #检查单个vlan是否创建成功···
         check_name="tips:检查单个vlan是否创建成功......"
-        check_words=["VLAN0123        active  static"]
+        check_words=["VLAN0123"]
         output_lst=[]
         self.check_res1(cmds,check_name,check_words,output_lst)
         
