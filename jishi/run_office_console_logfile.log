@@ -1,5 +1,5 @@
 
-测试开始时间为:Sat Apr 15 09:45:46 2023
+测试开始时间为:Sat Apr 15 14:35:50 2023
 
 ####################【check_onu】脚本测试执行开始!####################
 
@@ -10,23 +10,19 @@ show interface gpon-onu creation-information
 ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
                                                                                                  ID   name             ID      name            
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-3/10/1    RCMG4AC03AF8      gpon    (g)       5104G-GP-HB        2023-04-14,13:58:02    active   1024 Def_P_all        1018    Def_4E
-4/10/1    RCMG4AC03AEC      gpon    (g)       5104G-GP-HB        2023-04-14,17:03:39    active   101  profile-101      101     profile-101
 
-yuhong(config)#
+raisecom(config)#
 
 命令show interface gpon-onu online-information执行结果:
 show interface gpon-onu online-information
 ONU ID     State       Distance(m)      Login Date           Logout Date          Logout Reason               
 --------------------------------------------------------------------------------------------------------------
-3/10/1     online      1                2023-04-14,13:58:26  --                   --                          
-4/10/1     online      1                2023-04-14,17:05:29  2023-04-14,17:05:07  Backbone fiber cut          
 
-yuhong(config)#
+raisecom(config)#
 
 tips:检查测试ONU在线状态......
 
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:fail
 
 ####################【check_onu】脚本测试执行结束!####################
 
@@ -37,24 +33,119 @@ tips:检查测试ONU在线状态......
 
 命令no create dba-profile 201-205执行结果:
 no create dba-profile 201-205
-yuhong(config)#
+raisecom(config)#
 
 命令show dba-profile all | in chenjingv执行结果:
 show dba-profile all | in chenjingv
-yuhong(config)#
+raisecom(config)#
 
 命令create dba-profile 201 name chenjingv201  type1 fix 10240执行结果:
 create dba-profile 201 name chenjingv201  type1 fix 10240
-yuhong(config)#
+raisecom(config)#
 
-命令show dba-profile all | in chenjingv201执行结果:
-show dba-profile all | in chenjingv201
+命令show dba-profile all | in chenjingv执行结果:
+show dba-profile all | in chenjingv
 201         chenjingv201      type1  10240      0             0          --             0         0       --        0   
-yuhong(config)#
+raisecom(config)#
 
 tips:检查单个dba是否创建成功......
 
 ++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
 
 ####################【dba_add_uni】脚本测试执行结束!####################
+
+
+####################【dba_del_uni】脚本测试执行开始!####################
+
+172.17.100.214登录成功!
+
+命令show dba-profile all | in chenjingv执行结果:
+show dba-profile all | in chenjingv
+201         chenjingv201      type1  10240      0             0          --             0         0       --        0   
+raisecom(config)#
+
+命令no create dba-profile 201执行结果:
+no create dba-profile 201
+raisecom(config)#
+
+命令show dba-profile all | in chenjingv执行结果:
+show dba-profile all | in chenjingv
+raisecom(config)#
+
+tips:检查单个dba是否删除成功......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################【dba_del_uni】脚本测试执行结束!####################
+
+
+####################【dba_add_mul】脚本测试执行开始!####################
+
+172.17.100.214登录成功!
+
+命令show dba-profile all | in chenjingv执行结果:
+show dba-profile all | in chenjingv
+raisecom(config)#
+
+命令create dba-profile 201 name chenjingv201  type1 fix 10240执行结果:
+create dba-profile 201 name chenjingv201  type1 fix 10240
+raisecom(config)#
+
+命令create dba-profile 202 name chenjingv202 type2 assure 20480执行结果:
+create dba-profile 202 name chenjingv202 type2 assure 20480
+raisecom(config)#
+
+命令create dba-profile 203 name chenjingv203 type3 assure 20480 max 51200执行结果:
+create dba-profile 203 name chenjingv203 type3 assure 20480 max 51200
+raisecom(config)#
+
+命令create dba-profile 204 name chenjingv204 type4 max 102400执行结果:
+create dba-profile 204 name chenjingv204 type4 max 102400
+raisecom(config)#
+
+命令create dba-profile 205 name chenjingv205 type5 fix 10240 assure 20480 max 51200执行结果:
+
+
+命令show dba-profile all | in chenjingv执行结果:
+
+
+tips:检查多个dba是否创建成功......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:fail
+
+####################【dba_add_mul】脚本测试执行结束!####################
+
+
+####################【dba_del_mul】脚本测试执行开始!####################
+
+172.17.100.214登录成功!
+
+命令show dba-profile all | in chenjingv执行结果:
+
+
+命令no create dba-profile 201-203执行结果:
+
+
+命令show dba-profile all | in chenjingv执行结果:
+
+
+tips:检查多个dba是否删除成功......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################【dba_del_mul】脚本测试执行结束!####################
+
+
+####################【dba_show】脚本测试执行开始!####################
+
+172.17.100.214登录成功!
+
+命令show dba-profile all | in chenjingv执行结果:
+
+
+tips:检查dba-profile 204和dba-profile 205是否存在......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:fail
+
+####################【dba_show】脚本测试执行结束!####################
 
