@@ -155,8 +155,8 @@ class TelnetClient:
         #      'conf t',
               'create dba-profile 201 name chenjingv201  type1 fix 10240',
         #      'exit',
-              'show dba-profile all | in chenjingv201']
-        #检查单个vlan是否创建成功···
+              'show dba-profile all | in chenjingv']
+        #检查单个dba是否创建成功···
         check_name="tips:检查单个dba是否创建成功......"
         check_words=["201         chenjingv201      type1"]
         output_lst=[]
@@ -165,62 +165,66 @@ class TelnetClient:
         self.logout_host()
 
     @outer
-    def vlan_del_uni(self):
+    def dba_del_uni(self):
         self.login_host()
         
-        cmds=['create vlan  123  active',
-        #      'exit',
-              'no vlan 123',
-              'exit',
-              'show vlan | in VLAN012']
-        #检查单个vlan是否删除成功···
-        check_name='tips:检查单个vlan是否删除成功......'
-        check_words=["VLAN0123"]
+        cmds=['show dba-profile all | in chenjingv',
+              'no create dba-profile 201',
+              'show dba-profile all | in chenjingv']
+        #检查单个dba是否删除成功···
+        check_name='tips:检查单个dba是否删除成功......'
+        check_words=["201         chenjingv201      type1"]
         output_lst=[]
         self.check_res2(cmds,check_name,check_words,output_lst)
 
         self.logout_host()
 
     @outer
-    def vlan_add_mul(self):
+    def dba_add_mul(self):
         self.login_host()
         
-        cmds=['create vlan  125-129 active',
-              'exit',
-              'show vlan | in VLAN012']
-        #检查多个vlan是否创建成功···
-        check_name='tips:检查多个vlan是否创建成功......'
-        check_words=["VLAN0125","VLAN0126","VLAN0127","VLAN0128","VLAN0129"]
+        cmds=['show dba-profile all | in chenjingv',
+              'create dba-profile 201 name chenjingv201  type1 fix 10240',
+              'create dba-profile 202 name chenjingv202 type2 assure 20480',
+              'create dba-profile 203 name chenjingv203 type3 assure 20480 max 51200',
+              'create dba-profile 204 name chenjingv204 type4 max 102400',
+              'create dba-profile 205 name chenjingv205 type5 fix 10240 assure 20480 max 51200',
+              'show dba-profile all | in chenjingv']
+        #检查多个dba是否创建成功···
+        check_name='tips:检查多个dba是否创建成功......'
+        check_words=["201         chenjingv201      type1  10240      0             0",
+                     "202         chenjingv202      type2  0          20480         0",
+                     "203         chenjingv203      type3  0          20480         51200",
+                     "204         chenjingv204      type4  0          0             102400",
+                     "205         chenjingv205      type5  10240      20480         51200"]
         output_lst=[] 
         self.check_res1(cmds,check_name,check_words,output_lst)
 
         self.logout_host()
 
     @outer
-    def vlan_del_mul(self):
+    def dba_del_mul(self):
         self.login_host()
 
-        cmds=['create vlan  125-129 active',
-        #      'show vlan',
-              'no vlan 125-127',
-              'exit',
-              'show vlan | in VLAN012']
-        #检查多个vlan是否删除成功···
-        check_name='tips:检查多个vlan是否删除成功......'
-        check_words=["VLAN0125","VLAN0126","VLAN0127"]
+        cmds=['show dba-profile all | in chenjingv',
+              'no create dba-profile 201-203',
+              'show dba-profile all | in chenjingv']
+        #检查多个dba是否删除成功···
+        check_name='tips:检查多个dba是否删除成功......'
+        check_words=["chenjingv201","chenjingv202","chenjingv203"]
         output_lst=[]
         self.check_res2(cmds,check_name,check_words,output_lst)
 
         self.logout_host()         
 
     @outer
-    def vlan_show(self):
+    def dba_show(self):
         self.login_host()
 
-        cmds=['exit','show vlan | in VLAN012']
-        #检查vlan128和vlan129是否存在···
-        check_name='tips:检查vlan128和vlan129是否存在......'
-        check_words=["VLAN0128","VLAN0129"]
+        cmds=['show dba-profile all | in chenjingv']
+        #检查dba-profile 204和dba-profile 205是否存在···
+        check_name='tips:检查dba-profile 204和dba-profile 205是否存在......'
+        check_words=["chenjingv204","chenjingv205"]
         output_lst=[]
         self.check_res1(cmds,check_name,check_words,output_lst)
 
@@ -240,10 +244,10 @@ if __name__ == '__main__':
     # 如果登录结果返加True，则执行命令，然后退出
     telnet.check_onu()
     telnet.dba_add_uni()
-    #telnet.vlan_del_uni()
-    #telnet.vlan_add_mul()
-    #telnet.vlan_del_mul()
-    #telnet.vlan_show()
+    telnet.dba_del_uni()
+    telnet.dba_add_mul()
+    telnet.dba_del_mul()
+    telnet.dba_show()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
