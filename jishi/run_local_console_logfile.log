@@ -1,16 +1,41 @@
 
-测试开始时间为:2023-04-11 21:50:27.597983
+测试开始时间为:2023-04-18 20:57:58.928435
 
-####################【check_ssh】脚本测试执行开始!####################
+#########################【exec_cmd】脚本测试执行开始!####################
+
+192.168.3.123登录成功!
+
+命令arch执行结果:
+arch
+x86_64
+root@chenjingv:/home/chenjingv# 
+
+命令pwd执行结果:
+pwd
+/home/chenjingv
+root@chenjingv:/home/chenjingv# 
+
+命令uname -r执行结果:
+uname -r
+5.19.0-38-generic
+root@chenjingv:/home/chenjingv# 
+
+tips:检查设备版本信息是否正确......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【exec_cmd】测试结果为:pass
+
+#########################【exec_cmd】脚本测试执行结束!####################
+
+
+#########################【check_ssh】脚本测试执行开始!####################
 
 192.168.3.123登录成功!
 
 命令ps -ef | grep sshd执行结果:
 ps -ef | grep sshd
-root         896       1  0 4月10 ?       00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
-root       21872     896  0 16:27 ?        00:00:03 [01;31m[Ksshd[m[K: root@pts/0
-root       25718     896  0 21:46 ?        00:00:00 [01;31m[Ksshd[m[K: root@notty
-root       26070   26063  0 21:50 pts/1    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+root         901       1  0 20:12 ?        00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
+root        1038     901  0 20:12 ?        00:00:06 [01;31m[Ksshd[m[K: root@pts/0
+root        3904    3897  0 20:58 pts/2    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 命令this is a test script!执行结果:
@@ -22,10 +47,9 @@ root@chenjingv:/home/chenjingv#
 
 命令netstat -anp | grep :22执行结果:
 netstat -anp | grep :22
-tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      896/sshd: /usr/sbin 
-tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:50193      ESTABLISHED 25718/sshd: root@no 
-tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:59982      ESTABLISHED 21872/sshd: root@pt 
-tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      896/sshd: /usr/sbin 
+tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      901/sshd: /usr/sbin 
+tcp        0    292 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:50536      ESTABLISHED 1038/sshd: root@pts 
+tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      901/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 
 命令ip add执行结果:
@@ -54,7 +78,7 @@ root@chenjingv:/home/chenjingv#
 
 tips:检查接口表项是否正确......
 
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+++++++++++++++++++++++++++++++++++++++++当前用例【check_ssh】测试结果为:pass
 
-####################【check_ssh】脚本测试执行结束!####################
+#########################【check_ssh】脚本测试执行结束!####################
 
