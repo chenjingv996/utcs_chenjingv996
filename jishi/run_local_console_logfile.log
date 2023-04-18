@@ -1,5 +1,5 @@
 
-测试开始时间为:2023-04-18 20:59:16.806701
+测试开始时间为:2023-04-18 21:02:02.895265
 
 #########################【exec_cmd】脚本测试执行开始!####################
 
@@ -34,8 +34,8 @@ tips:检查设备版本信息是否正确......
 命令ps -ef | grep sshd执行结果:
 ps -ef | grep sshd
 root         901       1  0 20:12 ?        00:00:00 [01;31m[Ksshd[m[K: /usr/sbin/[01;31m[Ksshd[m[K -D [listener] 0 of 10-100 startups
-root        1038     901  0 20:12 ?        00:00:06 [01;31m[Ksshd[m[K: root@pts/0
-root        4066    4059  0 20:59 pts/2    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
+root        1038     901  0 20:12 ?        00:00:07 [01;31m[Ksshd[m[K: root@pts/0
+root        4228    4221  0 21:02 pts/2    00:00:00 grep --color=auto [01;31m[Ksshd[m[K
 root@chenjingv:/home/chenjingv# 
 
 命令this is a test script!执行结果:
@@ -48,11 +48,7 @@ root@chenjingv:/home/chenjingv#
 命令netstat -anp | grep :22执行结果:
 netstat -anp | grep :22
 tcp        0      0 0.0.0.0[01;31m[K:22[m[K              0.0.0.0:*               LISTEN      901/sshd: /usr/sbin 
-tcp        0      0 192.168.3.123:50522     20.205.243.166[01;31m[K:22[m[K       TIME_WAIT   -                   
-tcp        0      0 192.168.3.123:43674     20.205.243.166[01;31m[K:22[m[K       TIME_WAIT   -                   
-tcp        0      0 192.168.3.123:38666     20.205.243.166[01;31m[K:22[m[K       TIME_WAIT   -                   
-tcp        0      0 192.168.3.123:37772     20.205.243.166[01;31m[K:22[m[K       TIME_WAIT   -                   
-tcp        0    292 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:50536      ESTABLISHED 1038/sshd: root@pts 
+tcp        0      0 192.168.3.123[01;31m[K:22[m[K        192.168.3.13:50536      ESTABLISHED 1038/sshd: root@pts 
 tcp6       0      0 ::[01;31m[K:22[m[K                   :::*                    LISTEN      901/sshd: /usr/sbin 
 root@chenjingv:/home/chenjingv# 
 
