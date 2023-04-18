@@ -1,5 +1,5 @@
 
-测试开始时间为:Sat Apr 15 14:35:50 2023
+测试开始时间为:Tue Apr 18 09:21:01 2023
 
 ####################【check_onu】脚本测试执行开始!####################
 
@@ -10,6 +10,11 @@ show interface gpon-onu creation-information
 ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
                                                                                                  ID   name             ID      name            
 ------------------------------------------------------------------------------------------------------------------------------------------------------
+3/10/1    YHCT0000843A      gpon    (g)       YHCTH115           2023-04-17,13:54:13    active   1024 Def_P_all        1006    Def_VEIP
+3/10/2    RCMG4AC03AF8      gpon    (g)       5104G-GP-HB        2023-04-17,13:54:18    active   1024 Def_P_all        1018    Def_4E
+4/10/1    RCMG4AC03AEC      gpon    (g)       5104G-GP-HB        2023-04-17,13:59:55    active   1024 Def_P_all        1018    Def_4E
+4/10/2    MONU0000456A      gpon    (g)       MONUD604           2023-04-17,14:06:25    active   1024 Def_P_all        1021    Def_2E
+4/10/3    YHCT006F01A8      gpon    (g)       YHCT0860           2023-04-17,14:06:40    active   1024 Def_P_all        1006    Def_VEIP
 
 raisecom(config)#
 
@@ -17,135 +22,166 @@ raisecom(config)#
 show interface gpon-onu online-information
 ONU ID     State       Distance(m)      Login Date           Logout Date          Logout Reason               
 --------------------------------------------------------------------------------------------------------------
+3/10/1     online      96               2023-04-17,13:54:43  --                   --                          
+3/10/2     online      1                2023-04-17,13:54:48  --                   --                          
+4/10/1     offline     0                2023-04-17,14:00:25  2023-04-17,15:05:04  Branch fiber cut            
+4/10/2     online      97               2023-04-17,14:07:00  --                   --                          
+4/10/3     online      96               2023-04-17,14:07:15  --                   --                          
 
 raisecom(config)#
 
 tips:检查测试ONU在线状态......
 
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:fail
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
 
 ####################【check_onu】脚本测试执行结束!####################
 
 
-####################【dba_add_uni】脚本测试执行开始!####################
+####################【vlan_add_uni】脚本测试执行开始!####################
 
 172.17.100.214登录成功!
 
-命令no create dba-profile 201-205执行结果:
-no create dba-profile 201-205
+命令no vlan 120-129执行结果:
+no vlan 120-129
 raisecom(config)#
 
-命令show dba-profile all | in chenjingv执行结果:
-show dba-profile all | in chenjingv
+命令exit执行结果:
+exit
+raisecom#
+
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+raisecom#
+
+命令conf t执行结果:
+conf t
+Configuration mode, one command input per times. End with CTRL-Z.
+CONFIG-I:Configured from telnet ...
 raisecom(config)#
 
-命令create dba-profile 201 name chenjingv201  type1 fix 10240执行结果:
-create dba-profile 201 name chenjingv201  type1 fix 10240
+命令create vlan  123  active执行结果:
+create vlan  123  active
 raisecom(config)#
 
-命令show dba-profile all | in chenjingv执行结果:
-show dba-profile all | in chenjingv
-201         chenjingv201      type1  10240      0             0          --             0         0       --        0   
-raisecom(config)#
+命令exit执行结果:
+exit
+raisecom#
 
-tips:检查单个dba是否创建成功......
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+123  VLAN0123        active  static  No      24:44:20
+raisecom#
+
+tips:检查单个vlan是否创建成功......
 
 ++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
 
-####################【dba_add_uni】脚本测试执行结束!####################
+####################【vlan_add_uni】脚本测试执行结束!####################
 
 
-####################【dba_del_uni】脚本测试执行开始!####################
+####################【vlan_del_uni】脚本测试执行开始!####################
 
 172.17.100.214登录成功!
 
-命令show dba-profile all | in chenjingv执行结果:
-show dba-profile all | in chenjingv
-201         chenjingv201      type1  10240      0             0          --             0         0       --        0   
+命令create vlan  123  active执行结果:
+create vlan  123  active
+Already existed vlans: 123,can not be created again.
 raisecom(config)#
 
-命令no create dba-profile 201执行结果:
-no create dba-profile 201
+命令no vlan 123执行结果:
+no vlan 123
 raisecom(config)#
 
-命令show dba-profile all | in chenjingv执行结果:
-show dba-profile all | in chenjingv
-raisecom(config)#
+命令exit执行结果:
+exit
+raisecom#
 
-tips:检查单个dba是否删除成功......
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+raisecom#
+
+tips:检查单个vlan是否删除成功......
 
 ++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
 
-####################【dba_del_uni】脚本测试执行结束!####################
+####################【vlan_del_uni】脚本测试执行结束!####################
 
 
-####################【dba_add_mul】脚本测试执行开始!####################
-
-172.17.100.214登录成功!
-
-命令show dba-profile all | in chenjingv执行结果:
-show dba-profile all | in chenjingv
-raisecom(config)#
-
-命令create dba-profile 201 name chenjingv201  type1 fix 10240执行结果:
-create dba-profile 201 name chenjingv201  type1 fix 10240
-raisecom(config)#
-
-命令create dba-profile 202 name chenjingv202 type2 assure 20480执行结果:
-create dba-profile 202 name chenjingv202 type2 assure 20480
-raisecom(config)#
-
-命令create dba-profile 203 name chenjingv203 type3 assure 20480 max 51200执行结果:
-create dba-profile 203 name chenjingv203 type3 assure 20480 max 51200
-raisecom(config)#
-
-命令create dba-profile 204 name chenjingv204 type4 max 102400执行结果:
-create dba-profile 204 name chenjingv204 type4 max 102400
-raisecom(config)#
-
-命令create dba-profile 205 name chenjingv205 type5 fix 10240 assure 20480 max 51200执行结果:
-
-
-命令show dba-profile all | in chenjingv执行结果:
-
-
-tips:检查多个dba是否创建成功......
-
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:fail
-
-####################【dba_add_mul】脚本测试执行结束!####################
-
-
-####################【dba_del_mul】脚本测试执行开始!####################
+####################【vlan_add_mul】脚本测试执行开始!####################
 
 172.17.100.214登录成功!
 
-命令show dba-profile all | in chenjingv执行结果:
+命令create vlan  125-129 active执行结果:
+create vlan  125-129 active
+raisecom(config)#
 
+命令exit执行结果:
+exit
+raisecom#
 
-命令no create dba-profile 201-203执行结果:
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+125  VLAN0125        active  static  No      24:44:54
+126  VLAN0126        active  static  No      24:44:54
+127  VLAN0127        active  static  No      24:44:54
+128  VLAN0128        active  static  No      24:44:54
+129  VLAN0129        active  static  No      24:44:54
+raisecom#
 
-
-命令show dba-profile all | in chenjingv执行结果:
-
-
-tips:检查多个dba是否删除成功......
+tips:检查多个vlan是否创建成功......
 
 ++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
 
-####################【dba_del_mul】脚本测试执行结束!####################
+####################【vlan_add_mul】脚本测试执行结束!####################
 
 
-####################【dba_show】脚本测试执行开始!####################
+####################【vlan_del_mul】脚本测试执行开始!####################
 
 172.17.100.214登录成功!
 
-命令show dba-profile all | in chenjingv执行结果:
+命令create vlan  125-129 active执行结果:
+create vlan  125-129 active
+Already existed vlans: 125-129,can not be created again.
+raisecom(config)#
+
+命令no vlan 125-127执行结果:
+no vlan 125-127
+raisecom(config)#
+
+命令exit执行结果:
+exit
+raisecom#
+
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+128  VLAN0128        active  static  No      24:44:54
+129  VLAN0129        active  static  No      24:44:54
+raisecom#
+
+tips:检查多个vlan是否删除成功......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################【vlan_del_mul】脚本测试执行结束!####################
 
 
-tips:检查dba-profile 204和dba-profile 205是否存在......
+####################【vlan_show】脚本测试执行开始!####################
 
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:fail
+172.17.100.214登录成功!
 
-####################【dba_show】脚本测试执行结束!####################
+命令exit执行结果:
+exit
+raisecom#
+
+命令show vlan | in VLAN012执行结果:
+show vlan | in VLAN012
+128  VLAN0128        active  static  No      24:44:54
+129  VLAN0129        active  static  No      24:44:54
+raisecom#
+
+tips:检查vlan128和vlan129是否存在......
+
+++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+
+####################【vlan_show】脚本测试执行结束!####################
 
