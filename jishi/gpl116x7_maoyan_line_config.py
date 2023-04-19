@@ -134,7 +134,7 @@ class TelnetClient:
     @outer
     def check_onu(self):
         self.login_host()
-
+        
         cn=sys._getframe().f_code.co_name
         cmds=['show interface gpon-onu creation-information',
         'show interface gpon-onu online-information']
@@ -147,86 +147,132 @@ class TelnetClient:
         self.logout_host()    
     
     @outer
-    def vlan_add_uni(self):
+    def line_add_uni(self):
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['no vlan 120-129',
+        cmds=['no gpon-onu-line-profile 121-125',
+              'show gpon-onu-line-profile all',
+              'no create dba-profile 121-125',
+              'show dba-profile all',
+              'create dba-profile 121 name chenjingv121 type1 fix 40960',
+              'show dba-profile all',
+              'gpon-onu-line-profile 121',
+              'create tcont 1 dba-profile 121',
+              'create gem 1 tcont 1',
+              'gem 1 mapping 1 vlan 121',
+              'omcc encryption enable',
+              'fec upstream enable',
+              'commit',
               'exit',
-              'show vlan | in VLAN012',
-              'conf t',
-              'create vlan  123  active',
-              'exit',
-              'show vlan | in VLAN012']
-        #检查单个vlan是否创建成功···
-        check_name="tips:检查单个vlan是否创建成功......"
-        check_words=["VLAN0123"]
+              'show gpon-onu-line-profile all',
+              'show gpon-onu-line-profile 121']
+        #检查单个line是否创建成功···
+        check_name="tips:检查单个line是否创建成功......"
+        check_words=['T-CONT 1          DBA Profile Name: chenjingv121',
+                     'FEC upstream: enable',
+                     'OMCC encrypt: enable',
+                     '1              121   --']
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
         
         self.logout_host()
 
     @outer
-    def vlan_del_uni(self):
+    def line_del_uni(self):
         self.login_host()
 
         cn=sys._getframe().f_code.co_name
-        cmds=['create vlan  123  active',
-        #      'exit',
-              'no vlan 123',
-              'exit',
-              'show vlan | in VLAN012']
-        #检查单个vlan是否删除成功···
-        check_name='tips:检查单个vlan是否删除成功......'
-        check_words=["VLAN0123"]
+        cmds=['show gpon-onu-line-profile all',
+              'no gpon-onu-line-profile 121',
+              'no create dba-profile 121-125',
+              'show dba-profile all',
+              'show gpon-onu-line-profile all']
+        #检查单个line是否删除成功···
+        check_name='tips:检查单个line是否删除成功......'
+        check_words=['121         profile-121']
         output_lst=[]
         self.check_res2(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
 
     @outer
-    def vlan_add_mul(self):
+    def line_add_mul(self):
         self.login_host()
 
         cn=sys._getframe().f_code.co_name
-        cmds=['create vlan  125-129 active',
+        cmds=['create dba-profile 121 name chenjingv121 type1 fix 40960',
+              'show dba-profile all',
+              'gpon-onu-line-profile 121',
+              'create tcont 1 dba-profile 121',
+              'create gem 1 tcont 1',
+              'gem 1 mapping 1 vlan 121',
+              'omcc encryption enable',
+              'fec upstream enable',
+              'commit',
               'exit',
-              'show vlan | in VLAN012']
-        #检查多个vlan是否创建成功···
-        check_name='tips:检查多个vlan是否创建成功......'
-        check_words=["VLAN0125","VLAN0126","VLAN0127","VLAN0128","VLAN0129"]
+              'show gpon-onu-line-profile all',
+            #   'show gpon-onu-line-profile 121'
+
+              'create dba-profile 122 name chenjingv122  type3 ass 12240 max 51200',
+              'show dba-profile all',
+              'gpon-onu-line-profile 122',
+              'create tcont 2 dba-profile 122',
+              'create gem 2 tcont 2',
+              'mapping-mode pri',
+              'gem 2 mapping 2 priority 2',
+            #   'omcc encryption enable',
+            #   'fec upstream enable',
+              'commit',
+              'exit',
+              'show gpon-onu-line-profile all',
+            #   'show gpon-onu-line-profile 122',
+
+              'create dba-profile 123 name chenjingv123 type5 fix 12480 assure 40960 max 51200',
+              'show dba-profile all',
+              'gpon-onu-line-profile 123',
+              'create tcont 3 dba-profile 123',
+              'create gem 3 tcont 3',
+              'gem 3 mapping 3 vlan 123',
+              'omcc encryption enable',
+              'fec upstream enable',
+              'commit',
+              'exit',
+              'show gpon-onu-line-profile all']
+            #  'show gpon-onu-line-profile 123'
+        #检查多个line是否创建成功···
+        check_name='tips:检查多个line是否创建成功......'
+        check_words=['121         profile-121','122         profile-122','123         profile-123']
         output_lst=[] 
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
 
     @outer
-    def vlan_del_mul(self):
+    def line_del_mul(self):
         self.login_host()
-
+        
         cn=sys._getframe().f_code.co_name
-        cmds=['create vlan  125-129 active',
-        #      'show vlan',
-              'no vlan 125-127',
-              'exit',
-              'show vlan | in VLAN012']
-        #检查多个vlan是否删除成功···
-        check_name='tips:检查多个vlan是否删除成功......'
-        check_words=["VLAN0125","VLAN0126","VLAN0127"]
+        cmds=['show gpon-onu-line-profile all',
+              'no gpon-onu-line-profile 121-122',
+              'show gpon-onu-line-profile all']
+        #检查多个line是否删除成功···
+        check_name='tips:检查多个line是否删除成功......'
+        check_words=['121         profile-121','122         profile-122']
         output_lst=[]
         self.check_res2(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()         
 
     @outer
-    def vlan_show(self):
+    def line_show(self):
         self.login_host()
-
+        
         cn=sys._getframe().f_code.co_name
-        cmds=['exit','show vlan | in VLAN012']
-        #检查vlan128和vlan129是否存在···
-        check_name='tips:检查vlan128和vlan129是否存在......'
-        check_words=["VLAN0128","VLAN0129"]
+        cmds=['show gpon-onu-line-profile all']
+        #检查line-profile 123是否存在···
+        check_name='tips:检查line-profile 123是否存在......'
+        check_words=['123         profile-123']
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
@@ -237,10 +283,14 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['no vlan 123-129','exit','show vlan']
-        #检查配置vlan 123-129是否清除···
-        check_name='tips:检查配置vlan 123-129是否清除......'
-        check_words=['VLAN0123','VLAN0124','VLAN0125','VLAN0126','VLAN0127','VLAN0128','VLAN0129']
+        cmds=['no gpon-onu-line-profile 121-125','no create dba-profile 121-125','show gpon-onu-line-profile all']
+        #检查配置line-profile 121-125是否清除···
+        check_name='tips:检查配置line-profile 121-125是否清除......'
+        check_words=['121         profile-121',
+                     '122         profile-122',
+                     '123         profile-123',
+                     '124         profile-124',
+                     '125         profile-125']
         output_lst=[]
         self.check_res2(cn,cmds,check_name,check_words,output_lst)
 
@@ -259,11 +309,11 @@ if __name__ == '__main__':
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     telnet.check_onu()
-    telnet.vlan_add_uni()
-    telnet.vlan_del_uni()
-    telnet.vlan_add_mul()
-    telnet.vlan_del_mul()
-    telnet.vlan_show()
+    telnet.line_add_uni()
+    telnet.line_del_uni()
+    telnet.line_add_mul()
+    telnet.line_del_mul()
+    telnet.line_show()
     telnet.clear_config()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
