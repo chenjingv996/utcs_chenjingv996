@@ -151,16 +151,16 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['no create dba-profile 201-205',
+        cmds=['no create dba-profile 121-125',
         #      'exit',
               'show dba-profile all | in chenjingv',
         #      'conf t',
-              'create dba-profile 201 name chenjingv201  type1 fix 10240',
+              'create dba-profile 121 name chenjingv121  type1 fix 12240',
         #      'exit',
               'show dba-profile all | in chenjingv']
         #检查单个dba是否创建成功···
         check_name="tips:检查单个dba是否创建成功......"
-        check_words=["201         chenjingv201      type1"]
+        check_words=["121         chenjingv121      type1"]
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
         
@@ -172,11 +172,11 @@ class TelnetClient:
         
         cn=sys._getframe().f_code.co_name
         cmds=['show dba-profile all | in chenjingv',
-              'no create dba-profile 201',
+              'no create dba-profile 121',
               'show dba-profile all | in chenjingv']
         #检查单个dba是否删除成功···
         check_name='tips:检查单个dba是否删除成功......'
-        check_words=["201         chenjingv201      type1"]
+        check_words=["121         chenjingv121      type1"]
         output_lst=[]
         self.check_res2(cn,cmds,check_name,check_words,output_lst)
 
@@ -188,19 +188,19 @@ class TelnetClient:
         
         cn=sys._getframe().f_code.co_name
         cmds=['show dba-profile all | in chenjingv',
-              'create dba-profile 201 name chenjingv201  type1 fix 10240',
-              'create dba-profile 202 name chenjingv202 type2 assure 20480',
-              'create dba-profile 203 name chenjingv203 type3 assure 20480 max 51200',
-              'create dba-profile 204 name chenjingv204 type4 max 102400',
-              'create dba-profile 205 name chenjingv205 type5 fix 10240 assure 20480 max 51200',
+              'create dba-profile 121 name chenjingv121  type1 fix 12240',
+              'create dba-profile 122 name chenjingv122 type2 assure 12480',
+              'create dba-profile 123 name chenjingv123 type3 assure 12480 max 51200',
+              'create dba-profile 124 name chenjingv124 type4 max 122400',
+              'create dba-profile 125 name chenjingv125 type5 fix 12240 assure 12480 max 51200',
               'show dba-profile all | in chenjingv']
         #检查多个dba是否创建成功···
         check_name='tips:检查多个dba是否创建成功......'
-        check_words=["201         chenjingv201      type1  10240      0             0",
-                     "202         chenjingv202      type2  0          20480         0",
-                     "203         chenjingv203      type3  0          20480         51200",
-                     "204         chenjingv204      type4  0          0             102400",
-                     "205         chenjingv205      type5  10240      20480         51200"]
+        check_words=["121         chenjingv121      type1  12240      0             0",
+                     "122         chenjingv122      type2  0          12480         0",
+                     "123         chenjingv123      type3  0          12480         51200",
+                     "124         chenjingv124      type4  0          0             122400",
+                     "125         chenjingv125      type5  12240      12480         51200"]
         output_lst=[] 
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
@@ -212,11 +212,11 @@ class TelnetClient:
         
         cn=sys._getframe().f_code.co_name
         cmds=['show dba-profile all | in chenjingv',
-              'no create dba-profile 201-203',
+              'no create dba-profile 121-123',
               'show dba-profile all | in chenjingv']
         #检查多个dba是否删除成功···
         check_name='tips:检查多个dba是否删除成功......'
-        check_words=["chenjingv201","chenjingv202","chenjingv203"]
+        check_words=["chenjingv121","chenjingv122","chenjingv123"]
         output_lst=[]
         self.check_res2(cn,cmds,check_name,check_words,output_lst)
 
@@ -228,13 +228,31 @@ class TelnetClient:
         
         cn=sys._getframe().f_code.co_name
         cmds=['show dba-profile all | in chenjingv']
-        #检查dba-profile 204和dba-profile 205是否存在···
-        check_name='tips:检查dba-profile 204和dba-profile 205是否存在......'
-        check_words=["chenjingv204","chenjingv205"]
+        #检查dba-profile 124和dba-profile 125是否存在···
+        check_name='tips:检查dba-profile 124和dba-profile 125是否存在......'
+        check_words=["chenjingv124","chenjingv125"]
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
+
+    @outer
+    def clear_config(self):
+        self.login_host()
+        
+        cn=sys._getframe().f_code.co_name
+        cmds=['no create dba-profile 121-125','show dba-profile all']
+        #检查配置dba-profile 121-125是否清除···
+        check_name='tips:检查配置dba-profile 121-125是否清除......'
+        check_words=['121         chenjingv121',
+                     '122         chenjingv122',
+                     '123         chenjingv123',
+                     '124         chenjingv124',
+                     '125         chenjingv125']
+        output_lst=[]
+        self.check_res2(cn,cmds,check_name,check_words,output_lst)
+
+        self.logout_host()    
 
 
 if __name__ == '__main__':
@@ -254,6 +272,7 @@ if __name__ == '__main__':
     telnet.dba_add_mul()
     telnet.dba_del_mul()
     telnet.dba_show()
+    telnet.clear_config()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 

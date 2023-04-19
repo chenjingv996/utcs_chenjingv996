@@ -232,6 +232,20 @@ class TelnetClient:
 
         self.logout_host()
 
+    @outer
+    def clear_config(self):
+        self.login_host()
+        
+        cn=sys._getframe().f_code.co_name
+        cmds=['no vlan 123-129','exit','show vlan']
+        #检查配置vlan 123-129是否清除···
+        check_name='tips:检查配置vlan 123-129是否清除......'
+        check_words=['VLAN0123','VLAN0124','VLAN0125','VLAN0126','VLAN0127','VLAN0128','VLAN0129']
+        output_lst=[]
+        self.check_res2(cn,cmds,check_name,check_words,output_lst)
+
+        self.logout_host()    
+
 
 if __name__ == '__main__':
     timmer="测试开始时间为:"+str(start_time)
@@ -250,6 +264,7 @@ if __name__ == '__main__':
     telnet.vlan_add_mul()
     telnet.vlan_del_mul()
     telnet.vlan_show()
+    telnet.clear_config()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 

@@ -151,28 +151,28 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['no gpon-onu-line-profile 201-205',
+        cmds=['no gpon-onu-line-profile 121-125',
               'show gpon-onu-line-profile all',
-              'no create dba-profile 201-205',
+              'no create dba-profile 121-125',
               'show dba-profile all',
-              'create dba-profile 201 name chenjingv201 type1 fix 40960',
+              'create dba-profile 121 name chenjingv121 type1 fix 40960',
               'show dba-profile all',
-              'gpon-onu-line-profile 201',
-              'create tcont 1 dba-profile 201',
+              'gpon-onu-line-profile 121',
+              'create tcont 1 dba-profile 121',
               'create gem 1 tcont 1',
-              'gem 1 mapping 1 vlan 201',
+              'gem 1 mapping 1 vlan 121',
               'omcc encryption enable',
               'fec upstream enable',
               'commit',
               'exit',
               'show gpon-onu-line-profile all',
-              'show gpon-onu-line-profile 201']
+              'show gpon-onu-line-profile 121']
         #检查单个line是否创建成功···
         check_name="tips:检查单个line是否创建成功......"
-        check_words=['T-CONT 1          DBA Profile Name: chenjingv201',
+        check_words=['T-CONT 1          DBA Profile Name: chenjingv121',
                      'FEC upstream: enable',
                      'OMCC encrypt: enable',
-                     '1              201   --']
+                     '1              121   --']
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
         
@@ -184,13 +184,13 @@ class TelnetClient:
 
         cn=sys._getframe().f_code.co_name
         cmds=['show gpon-onu-line-profile all',
-              'no gpon-onu-line-profile 201',
-              'no create dba-profile 201-205',
+              'no gpon-onu-line-profile 121',
+              'no create dba-profile 121-125',
               'show dba-profile all',
               'show gpon-onu-line-profile all']
         #检查单个line是否删除成功···
         check_name='tips:检查单个line是否删除成功......'
-        check_words=['201         profile-201']
+        check_words=['121         profile-121']
         output_lst=[]
         self.check_res2(cn,cmds,check_name,check_words,output_lst)
 
@@ -201,23 +201,23 @@ class TelnetClient:
         self.login_host()
 
         cn=sys._getframe().f_code.co_name
-        cmds=['create dba-profile 201 name chenjingv201 type1 fix 40960',
+        cmds=['create dba-profile 121 name chenjingv121 type1 fix 40960',
               'show dba-profile all',
-              'gpon-onu-line-profile 201',
-              'create tcont 1 dba-profile 201',
+              'gpon-onu-line-profile 121',
+              'create tcont 1 dba-profile 121',
               'create gem 1 tcont 1',
-              'gem 1 mapping 1 vlan 201',
+              'gem 1 mapping 1 vlan 121',
               'omcc encryption enable',
               'fec upstream enable',
               'commit',
               'exit',
               'show gpon-onu-line-profile all',
-            #   'show gpon-onu-line-profile 201'
+            #   'show gpon-onu-line-profile 121'
 
-              'create dba-profile 202 name chenjingv202  type3 ass 10240 max 51200',
+              'create dba-profile 122 name chenjingv122  type3 ass 12240 max 51200',
               'show dba-profile all',
-              'gpon-onu-line-profile 202',
-              'create tcont 2 dba-profile 202',
+              'gpon-onu-line-profile 122',
+              'create tcont 2 dba-profile 122',
               'create gem 2 tcont 2',
               'mapping-mode pri',
               'gem 2 mapping 2 priority 2',
@@ -226,23 +226,23 @@ class TelnetClient:
               'commit',
               'exit',
               'show gpon-onu-line-profile all',
-            #   'show gpon-onu-line-profile 202',
+            #   'show gpon-onu-line-profile 122',
 
-              'create dba-profile 203 name chenjingv203 type5 fix 20480 assure 40960 max 51200',
+              'create dba-profile 123 name chenjingv123 type5 fix 12480 assure 40960 max 51200',
               'show dba-profile all',
-              'gpon-onu-line-profile 203',
-              'create tcont 3 dba-profile 203',
+              'gpon-onu-line-profile 123',
+              'create tcont 3 dba-profile 123',
               'create gem 3 tcont 3',
-              'gem 3 mapping 3 vlan 203',
+              'gem 3 mapping 3 vlan 123',
               'omcc encryption enable',
               'fec upstream enable',
               'commit',
               'exit',
               'show gpon-onu-line-profile all']
-            #  'show gpon-onu-line-profile 203'
+            #  'show gpon-onu-line-profile 123'
         #检查多个line是否创建成功···
         check_name='tips:检查多个line是否创建成功......'
-        check_words=['201         profile-201','202         profile-202','203         profile-203']
+        check_words=['121         profile-121','122         profile-122','123         profile-123']
         output_lst=[] 
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
@@ -254,11 +254,11 @@ class TelnetClient:
         
         cn=sys._getframe().f_code.co_name
         cmds=['show gpon-onu-line-profile all',
-              'no gpon-onu-line-profile 201-202',
+              'no gpon-onu-line-profile 121-122',
               'show gpon-onu-line-profile all']
         #检查多个line是否删除成功···
         check_name='tips:检查多个line是否删除成功......'
-        check_words=['201         profile-201','202         profile-202']
+        check_words=['121         profile-121','122         profile-122']
         output_lst=[]
         self.check_res2(cn,cmds,check_name,check_words,output_lst)
 
@@ -270,13 +270,31 @@ class TelnetClient:
         
         cn=sys._getframe().f_code.co_name
         cmds=['show gpon-onu-line-profile all']
-        #检查line-profile 203是否存在···
-        check_name='tips:检查line-profile 203是否存在......'
-        check_words=['203         profile-203']
+        #检查line-profile 123是否存在···
+        check_name='tips:检查line-profile 123是否存在......'
+        check_words=['123         profile-123']
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
+
+    @outer
+    def clear_config(self):
+        self.login_host()
+        
+        cn=sys._getframe().f_code.co_name
+        cmds=['no gpon-onu-line-profile 121-125','no create dba-profile 121-125','show gpon-onu-line-profile all']
+        #检查配置line-profile 121-125是否清除···
+        check_name='tips:检查配置line-profile 121-125是否清除......'
+        check_words=['121         profile-121',
+                     '122         profile-122',
+                     '123         profile-123',
+                     '124         profile-124',
+                     '125         profile-125']
+        output_lst=[]
+        self.check_res2(cn,cmds,check_name,check_words,output_lst)
+
+        self.logout_host()    
 
 
 if __name__ == '__main__':
@@ -296,6 +314,7 @@ if __name__ == '__main__':
     telnet.line_add_mul()
     telnet.line_del_mul()
     telnet.line_show()
+    telnet.clear_config()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
