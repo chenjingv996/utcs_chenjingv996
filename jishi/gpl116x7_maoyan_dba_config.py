@@ -20,11 +20,11 @@ class TelnetClient:
           
     def outer(fun_name):
         def wrapper(*args,**kwargs):
-            test_exec1="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
+            test_exec1="#"*25+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
             print(f'\n{test_exec1}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n')
             res=fun_name(*args,**kwargs)
-            test_exec2="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行结束!"+"#"*20
+            test_exec2="#"*25+"【"+fun_name.__name__+"】"+"脚本测试执行结束!"+"#"*20
             print(f'\n{test_exec2}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec2}\n\n')
             return res
@@ -77,17 +77,17 @@ class TelnetClient:
     def logout_host(self):
         self.tn.write(b"exit\n\n")
 
-    def pass_res(self):
-        res="++"*20+"当前用例测试结果为:pass"
+    def pass_res(self,cn):
+        res="++"*20+"当前用例"+"【"+cn+"】"+"测试结果为:pass"
         print(f'\n{res}')
         self.tn.logfile=output.write(f'\n{res}\n')
     
-    def fail_res(self):
-        res="++"*20+"当前用例测试结果为:fail"
+    def fail_res(self,cn):
+        res="++"*20+"当前用例"+"【"+cn+"】"+"测试结果为:fail"
         print(f'\n{res}')
         self.tn.logfile=output.write(f'\n{res}\n')
     
-    def check_res1(self,cmds,check_name,check_words,output_lst):
+    def check_res1(self,cn,cmds,check_name,check_words,output_lst):
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
@@ -104,12 +104,12 @@ class TelnetClient:
 
         for j in range(len(check_words)):
             if check_words[j] not in output_lst[-1]:
-                self.fail_res()
+                self.fail_res(cn)
                 break
         else:
-            self.pass_res()
+            self.pass_res(cn)
 
-    def check_res2(self,cmds,check_name,check_words,output_lst):
+    def check_res2(self,cn,cmds,check_name,check_words,output_lst):
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
@@ -126,22 +126,23 @@ class TelnetClient:
 
         for j in range(len(check_words)):
             if check_words[j] in output_lst[-1]:
-                self.fail_res()
+                self.fail_res(cn)
                 break
         else:
-            self.pass_res()
+            self.pass_res(cn)
 
     @outer
     def check_onu(self):
         self.login_host()
 
+        cn=sys._getframe().f_code.co_name 
         cmds=['show interface gpon-onu creation-information',
         'show interface gpon-onu online-information']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
         check_words=["3/10/1     online"]
         output_lst=[]
-        self.check_res1(cmds,check_name,check_words,output_lst)
+        self.check_res1(cn,cmds,check_name,check_words,output_lst)
         
         self.logout_host()    
     
@@ -149,6 +150,7 @@ class TelnetClient:
     def dba_add_uni(self):
         self.login_host()
         
+        cn=sys._getframe().f_code.co_name
         cmds=['no create dba-profile 201-205',
         #      'exit',
               'show dba-profile all | in chenjingv',
@@ -160,7 +162,7 @@ class TelnetClient:
         check_name="tips:检查单个dba是否创建成功......"
         check_words=["201         chenjingv201      type1"]
         output_lst=[]
-        self.check_res1(cmds,check_name,check_words,output_lst)
+        self.check_res1(cn,cmds,check_name,check_words,output_lst)
         
         self.logout_host()
 
@@ -168,6 +170,7 @@ class TelnetClient:
     def dba_del_uni(self):
         self.login_host()
         
+        cn=sys._getframe().f_code.co_name
         cmds=['show dba-profile all | in chenjingv',
               'no create dba-profile 201',
               'show dba-profile all | in chenjingv']
@@ -175,7 +178,7 @@ class TelnetClient:
         check_name='tips:检查单个dba是否删除成功......'
         check_words=["201         chenjingv201      type1"]
         output_lst=[]
-        self.check_res2(cmds,check_name,check_words,output_lst)
+        self.check_res2(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
 
@@ -183,6 +186,7 @@ class TelnetClient:
     def dba_add_mul(self):
         self.login_host()
         
+        cn=sys._getframe().f_code.co_name
         cmds=['show dba-profile all | in chenjingv',
               'create dba-profile 201 name chenjingv201  type1 fix 10240',
               'create dba-profile 202 name chenjingv202 type2 assure 20480',
@@ -198,14 +202,15 @@ class TelnetClient:
                      "204         chenjingv204      type4  0          0             102400",
                      "205         chenjingv205      type5  10240      20480         51200"]
         output_lst=[] 
-        self.check_res1(cmds,check_name,check_words,output_lst)
+        self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
 
     @outer
     def dba_del_mul(self):
         self.login_host()
-
+        
+        cn=sys._getframe().f_code.co_name
         cmds=['show dba-profile all | in chenjingv',
               'no create dba-profile 201-203',
               'show dba-profile all | in chenjingv']
@@ -213,20 +218,21 @@ class TelnetClient:
         check_name='tips:检查多个dba是否删除成功......'
         check_words=["chenjingv201","chenjingv202","chenjingv203"]
         output_lst=[]
-        self.check_res2(cmds,check_name,check_words,output_lst)
+        self.check_res2(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()         
 
     @outer
     def dba_show(self):
         self.login_host()
-
+        
+        cn=sys._getframe().f_code.co_name
         cmds=['show dba-profile all | in chenjingv']
         #检查dba-profile 204和dba-profile 205是否存在···
         check_name='tips:检查dba-profile 204和dba-profile 205是否存在......'
         check_words=["chenjingv204","chenjingv205"]
         output_lst=[]
-        self.check_res1(cmds,check_name,check_words,output_lst)
+        self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
 
