@@ -147,7 +147,7 @@ class TelnetClient:
 
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
-
+        
         for j in range(len(check_words)):
             for k in range(1,11):
                 cnt_loop='第'+str(k)+'次检查当前ONU在线状态......'
@@ -170,124 +170,83 @@ class TelnetClient:
             self.pass_res(cn)
 
     @outer
-    def check_onu(self):
+    def onu_autofind(self):
         self.login_host()
-
-        cn=sys._getframe().f_code.co_name 
-        cmds=['show interface gpon-onu creation-information | in 3/3',
-              'show interface gpon-onu online-information | in 3/3']
-        #检查测试ONU在线状态···
-        check_name="tips:检查测试ONU在线状态......"
-        check_words=["3/3/1      online"]
+        
+        cn=sys._getframe().f_code.co_name
+        cmds=['int gpon-olt 3/3',
+              'no authorization mode',
+              'no create gpon-onu 1',
+              'show interface gpon-olt illegal-onu | in 3/3']
+        #检查测试ONU发现状态···
+        check_name="tips:检查测试ONU发现状态......"
+        check_words=['RCMG4B08001D        --']
         output_lst=[]
         self.check_loop(cn,cmds,check_name,check_words,output_lst)
         
         self.logout_host()    
     
     @outer
-    def dba_add_uni(self):
+    def onu_auth_none(self):
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['no create dba-profile 121-125',
-              'show dba-profile all | in chenjingv',
-              'create dba-profile 121 name chenjingv121  type1 fix 12240',
-              'show dba-profile all | in chenjingv']
-        #检查单个dba是否创建成功···
-        check_name="tips:检查单个dba是否创建成功......"
-        check_words=["121         chenjingv121      type1"]
+        cmds=['int gpon-olt 3/3',
+              'no authorization mode',
+              'no create gpon-onu 1',
+              'show interface gpon-olt illegal-onu | in 3/3',
+              'authorization mode none',
+              'show interface gpon-onu creation-information | in 3/3',
+              'show interface gpon-onu online-information | in 3/3']
+        #检查none认证时单个onu在线状态···
+        check_name="tips:检查none认证时单个onu在线状态......"
+        check_words=['3/3/1      online']
         output_lst=[]
-        self.check_res1(cn,cmds,check_name,check_words,output_lst)
+        self.check_loop(cn,cmds,check_name,check_words,output_lst)
         
         self.logout_host()
 
     @outer
-    def dba_del_uni(self):
+    def onu_auth_sn(self):
         self.login_host()
-        
+
         cn=sys._getframe().f_code.co_name
-        cmds=['show dba-profile all | in chenjingv',
-              'no create dba-profile 121',
-              'show dba-profile all | in chenjingv']
-        #检查单个dba是否删除成功···
-        check_name='tips:检查单个dba是否删除成功......'
-        check_words=["121         chenjingv121      type1"]
+        cmds=['int gpon-olt 3/3',
+              'no authorization mode',
+              'no create gpon-onu 1',
+              'show interface gpon-olt illegal-onu | in 3/3',
+              'authorization mode sn',
+              'create gpon-onu sn RCMG4B08001D',
+              'show interface gpon-onu creation-information | in 3/3',
+              'show interface gpon-onu online-information | in 3/3']
+        #检查sn认证时单个onu在线状态···
+        check_name="tips:检查sn认证时单个onu在线状态......"
+        check_words=['3/3/1      online']
         output_lst=[]
-        self.check_res2(cn,cmds,check_name,check_words,output_lst)
+        self.check_loop(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
 
     @outer
-    def dba_add_mul(self):
+    def onu_auth_password(self):
         self.login_host()
-        
+
         cn=sys._getframe().f_code.co_name
-        cmds=['show dba-profile all | in chenjingv',
-              'create dba-profile 121 name chenjingv121  type1 fix 12240',
-              'create dba-profile 122 name chenjingv122 type2 assure 12480',
-              'create dba-profile 123 name chenjingv123 type3 assure 12480 max 51200',
-              'create dba-profile 124 name chenjingv124 type4 max 122400',
-              'create dba-profile 125 name chenjingv125 type5 fix 12240 assure 12480 max 51200',
-              'show dba-profile all | in chenjingv']
-        #检查多个dba是否创建成功···
-        check_name='tips:检查多个dba是否创建成功......'
-        check_words=["121         chenjingv121      type1  12240      0             0",
-                     "122         chenjingv122      type2  0          12480         0",
-                     "123         chenjingv123      type3  0          12480         51200",
-                     "124         chenjingv124      type4  0          0             122400",
-                     "125         chenjingv125      type5  12240      12480         51200"]
-        output_lst=[] 
-        self.check_res1(cn,cmds,check_name,check_words,output_lst)
+        cmds=['int gpon-olt 3/3',
+              'no authorization mode',
+              'no create gpon-onu 1',
+              'show interface gpon-olt illegal-onu | in 3/3',
+              'authorization mode password',
+              'create gpon-onu password 12345678',
+              'show interface gpon-onu creation-information | in 3/3',
+              'show interface gpon-onu online-information | in 3/3']
+        #检查password认证时单个onu在线状态···
+        check_name="tips:检查password认证时单个onu在线状态......"
+        check_words=['3/3/1      online']
+        output_lst=[]
+        self.check_loop(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
-
-    @outer
-    def dba_del_mul(self):
-        self.login_host()
-        
-        cn=sys._getframe().f_code.co_name
-        cmds=['show dba-profile all | in chenjingv',
-              'no create dba-profile 121-123',
-              'show dba-profile all | in chenjingv']
-        #检查多个dba是否删除成功···
-        check_name='tips:检查多个dba是否删除成功......'
-        check_words=["chenjingv121","chenjingv122","chenjingv123"]
-        output_lst=[]
-        self.check_res2(cn,cmds,check_name,check_words,output_lst)
-
-        self.logout_host()         
-
-    @outer
-    def dba_show(self):
-        self.login_host()
-        
-        cn=sys._getframe().f_code.co_name
-        cmds=['show dba-profile all | in chenjingv']
-        #检查dba-profile 124和dba-profile 125是否存在···
-        check_name='tips:检查dba-profile 124和dba-profile 125是否存在......'
-        check_words=["chenjingv124","chenjingv125"]
-        output_lst=[]
-        self.check_res1(cn,cmds,check_name,check_words,output_lst)
-
-        self.logout_host()
-
-    @outer
-    def clear_config(self):
-        self.login_host()
-        
-        cn=sys._getframe().f_code.co_name
-        cmds=['no create dba-profile 121-125','show dba-profile all']
-        #检查配置dba-profile 121-125是否清除···
-        check_name='tips:检查配置dba-profile 121-125是否清除......'
-        check_words=['121         chenjingv121',
-                     '122         chenjingv122',
-                     '123         chenjingv123',
-                     '124         chenjingv124',
-                     '125         chenjingv125']
-        output_lst=[]
-        self.check_res2(cn,cmds,check_name,check_words,output_lst)
-
-        self.logout_host()    
 
 
 if __name__ == '__main__':
@@ -301,13 +260,10 @@ if __name__ == '__main__':
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
-    telnet.check_onu()
-    telnet.dba_add_uni()
-    telnet.dba_del_uni()
-    telnet.dba_add_mul()
-    telnet.dba_del_mul()
-    telnet.dba_show()
-    telnet.clear_config()
+    telnet.onu_autofind()
+    telnet.onu_auth_none()
+    telnet.onu_auth_sn()
+    # telnet.onu_auth_password()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 

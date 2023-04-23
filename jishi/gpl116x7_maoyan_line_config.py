@@ -21,7 +21,9 @@ class TelnetClient:
     def outer(fun_name):
         def wrapper(*args,**kwargs):
             test_exec1="#"*25+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
+            link_tips="设备登录中，请稍后......"
             print(f'\n{test_exec1}\n')
+            print(f'\n{link_tips}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n')
             res=fun_name(*args,**kwargs)
             test_exec2="#"*25+"【"+fun_name.__name__+"】"+"脚本测试执行结束!"+"#"*20
@@ -109,6 +111,42 @@ class TelnetClient:
         else:
             self.pass_res(cn)
 
+    def check_loop(self,cn,cmds,check_name,check_words,output_lst):
+        for i in range(len(cmds)):
+            # 执行命令
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(2)
+            # 获取命令结果
+            cmds_res = self.tn.read_very_eager().decode('utf-8')
+            output_lst.append(cmds_res)
+            res="命令"+cmds[i]+"执行结果:"
+            print(f'\n{res}\n{cmds_res}\n')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
+        for j in range(len(check_words)):
+            for k in range(1,11):
+                cnt_loop='第'+str(k)+'次检查当前ONU在线状态......'
+                print(f'\n{cnt_loop}\n')
+                self.tn.logfile=output.write(f'\n{cnt_loop}\n')
+                # 执行命令
+                self.tn.write(cmds[-1].encode('ascii')+b'\n')
+                time.sleep(6)
+                # 获取命令结果
+                cmds_res = self.tn.read_very_eager().decode('utf-8')
+                output_lst.append(cmds_res)
+                res_last="命令"+cmds[-1]+"执行结果:"
+                print(f'\n{res_last}\n{cmds_res}\n')
+                self.tn.logfile=output.write(f'\n{res_last}\n{cmds_res}\n')
+            # print(f'\nqwer:{output_lst[-1]}\n')
+            if check_words[j] not in output_lst[-1]:
+                self.fail_res(cn)
+                break
+        else:
+            self.pass_res(cn)
+
     def check_res2(self,cn,cmds,check_name,check_words,output_lst):
         for i in range(len(cmds)):
             # 执行命令
@@ -136,13 +174,13 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['show interface gpon-onu creation-information',
-              'show interface gpon-onu online-information']
+        cmds=['show interface gpon-onu creation-information | in 3/3',
+              'show interface gpon-onu online-information | in 3/3']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
         check_words=["3/3/1      online"]
         output_lst=[]
-        self.check_res1(cn,cmds,check_name,check_words,output_lst)
+        self.check_loop(cn,cmds,check_name,check_words,output_lst)
         
         self.logout_host()    
     
