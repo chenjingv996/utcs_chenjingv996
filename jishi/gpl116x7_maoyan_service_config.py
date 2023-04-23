@@ -137,7 +137,7 @@ class TelnetClient:
         
         cn=sys._getframe().f_code.co_name
         cmds=['show interface gpon-onu creation-information',
-        'show interface gpon-onu online-information']
+              'show interface gpon-onu online-information']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
         check_words=["3/10/1     online"]
@@ -190,30 +190,22 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name
         cmds=['gpon-onu-service-profile 121',
               'port-num ethernet 4 pots 1 veip 1',
-            #   'omcc encryption enable',
-            #   'fec upstream enable',
               'commit',
               'exit',
               'show gpon-onu-service-profile all',
-            #   'show gpon-onu-service-profile 121'
 
               'gpon-onu-service-profile 122',
               'port-num ethernet 4 pots 0 veip 1',
-            #   'omcc encryption enable',
-            #   'fec upstream enable',
               'commit',
               'exit',
               'show gpon-onu-service-profile all',
-            #   'show gpon-onu-service-profile 122',
 
+              'show gpon-onu-service-profile all',
               'gpon-onu-service-profile 123',
               'port-num ethernet 8 pots 1 veip 1',
-            #   'omcc encryption enable',
-            #   'fec upstream enable',
               'commit',
               'exit',
               'show gpon-onu-service-profile all']
-            #  'show gpon-onu-service-profile 123'
         #检查多个service是否创建成功···
         check_name='tips:检查多个service是否创建成功......'
         check_words=['121         profile-121','122         profile-122','123         profile-123']

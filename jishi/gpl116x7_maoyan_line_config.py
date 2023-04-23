@@ -39,22 +39,22 @@ class TelnetClient:
             logging.warning(f'{self.host_ip}网络连接失败!\n')
             return False
         # 等待login出现后输入用户名，最多等待10秒
-        self.tn.read_until(b'gin: ',timeout=2)
+        self.tn.read_until(b'gin: ',timeout=6)
         self.tn.write(self.username.encode('ascii') + b'\n')
         # 等待Password出现后输入用户名，最多等待10秒
-        self.tn.read_until(b'word: ',timeout=2)
+        self.tn.read_until(b'word: ',timeout=6)
         self.tn.write(self.password.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'> ',timeout=2)
+        self.tn.read_until(b'> ',timeout=6)
         self.tn.write(self.cmd_1.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'word ',timeout=2)
+        self.tn.read_until(b'word ',timeout=6)
         self.tn.write(self.password.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'# ',timeout=2)
+        self.tn.read_until(b'# ',timeout=6)
         self.tn.write(self.cmd_2.encode('ascii') + b'\n')
         
-        self.tn.read_until(b'# ',timeout=2)
+        self.tn.read_until(b'# ',timeout=6)
         self.tn.write(self.cmd_3.encode('ascii') + b'\n')
         # 延时1秒再收取返回结果，给服务端足够响应时间
         time.sleep(1)
@@ -137,10 +137,10 @@ class TelnetClient:
         
         cn=sys._getframe().f_code.co_name
         cmds=['show interface gpon-onu creation-information',
-        'show interface gpon-onu online-information']
+              'show interface gpon-onu online-information']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
-        check_words=["3/10/1     online"]
+        check_words=["3/3/1      online"]
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
         
@@ -212,7 +212,6 @@ class TelnetClient:
               'commit',
               'exit',
               'show gpon-onu-line-profile all',
-            #   'show gpon-onu-line-profile 121'
 
               'create dba-profile 122 name chenjingv122  type3 ass 12240 max 51200',
               'show dba-profile all',
@@ -226,7 +225,6 @@ class TelnetClient:
               'commit',
               'exit',
               'show gpon-onu-line-profile all',
-            #   'show gpon-onu-line-profile 122',
 
               'create dba-profile 123 name chenjingv123 type5 fix 12480 assure 40960 max 51200',
               'show dba-profile all',
@@ -234,12 +232,11 @@ class TelnetClient:
               'create tcont 3 dba-profile 123',
               'create gem 3 tcont 3',
               'gem 3 mapping 3 vlan 123',
-              'omcc encryption enable',
-              'fec upstream enable',
+            #   'omcc encryption enable',
+            #   'fec upstream enable',
               'commit',
               'exit',
               'show gpon-onu-line-profile all']
-            #  'show gpon-onu-line-profile 123'
         #检查多个line是否创建成功···
         check_name='tips:检查多个line是否创建成功......'
         check_words=['121         profile-121','122         profile-122','123         profile-123']

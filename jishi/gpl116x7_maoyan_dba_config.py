@@ -39,22 +39,22 @@ class TelnetClient:
             logging.warning(f'{self.host_ip}网络连接失败!\n')
             return False
         # 等待login出现后输入用户名，最多等待10秒
-        self.tn.read_until(b'gin: ',timeout=2)
+        self.tn.read_until(b'gin: ',timeout=6)
         self.tn.write(self.username.encode('ascii') + b'\n')
         # 等待Password出现后输入用户名，最多等待10秒
-        self.tn.read_until(b'word: ',timeout=2)
+        self.tn.read_until(b'word: ',timeout=6)
         self.tn.write(self.password.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'> ',timeout=2)
+        self.tn.read_until(b'> ',timeout=6)
         self.tn.write(self.cmd_1.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'word ',timeout=2)
+        self.tn.read_until(b'word ',timeout=6)
         self.tn.write(self.password.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'# ',timeout=2)
+        self.tn.read_until(b'# ',timeout=6)
         self.tn.write(self.cmd_2.encode('ascii') + b'\n')
         
-        self.tn.read_until(b'# ',timeout=2)
+        self.tn.read_until(b'# ',timeout=6)
         self.tn.write(self.cmd_3.encode('ascii') + b'\n')
         # 延时1秒再收取返回结果，给服务端足够响应时间
         time.sleep(1)
@@ -137,10 +137,10 @@ class TelnetClient:
 
         cn=sys._getframe().f_code.co_name 
         cmds=['show interface gpon-onu creation-information',
-        'show interface gpon-onu online-information']
+              'show interface gpon-onu online-information']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
-        check_words=["3/10/1     online"]
+        check_words=["3/3/1      online"]
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
         
@@ -152,11 +152,8 @@ class TelnetClient:
         
         cn=sys._getframe().f_code.co_name
         cmds=['no create dba-profile 121-125',
-        #      'exit',
               'show dba-profile all | in chenjingv',
-        #      'conf t',
               'create dba-profile 121 name chenjingv121  type1 fix 12240',
-        #      'exit',
               'show dba-profile all | in chenjingv']
         #检查单个dba是否创建成功···
         check_name="tips:检查单个dba是否创建成功......"
