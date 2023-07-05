@@ -1,436 +1,399 @@
 
-测试开始时间为:2023-04-06 16:36:56.505143
+测试开始时间为:Fri May 19 11:06:40 2023
 
 ####################【check_onu】脚本测试执行开始!####################
 
-192.168.10.135登录成功!
 
-命令show onu state执行结果:
-show onu state
-OnuIndex    Admin State    OMCC State    Phase State    Serial Number
----------------------------------------------------------------
-1/1/3:128[12Cenable[27Cenable[41Clogging[56CYHCT006f0108
+设备登录中，请稍后......
 
-pon: 3 total: 1 working: 0
+172.17.100.214登录成功!
 
-gpon-olt(config)# 
+命令int gpon-olt 3/3执行结果:
+int gpon-olt 3/3
+raisecom(config-if-gpon-olt-3:3)#
+
+命令authorization mode none执行结果:
+authorization mode none
+raisecom(config-if-gpon-olt-3:3)#
+
+命令no creat gpon-onu 1执行结果:
+no creat gpon-onu 1
+Delete ONU 1 successfully
+MAY-19-2023 19:06:39  if-1-Link state change down: gpon-olt3/3 link down.
+raisecom(config-if-gpon-olt-3:3)#MAY-19-2023 19:06:42  if-1-Link state change down: vlan100 link down.
+MAY-19-2023 19:06:42  if-1-Link state change down: vlan4000 link down.
+
+
+命令show interface gpon-olt 3/3 illegal-onu | in 3/3执行结果:
+show interface gpon-olt 3/3 illegal-onu | in 3/3
+raisecom(config-if-gpon-olt-3:3)#
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     RCMG4B08001B      gpon    (g)       --                 2023-05-19,19:06:42    --       --   --               --      --
+
+raisecom(config-if-gpon-olt-3:3)#
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      offline     0                --                   --                   --                          
+
+raisecom(config-if-gpon-olt-3:3)#
 
 tips:检查测试ONU在线状态......
 
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:fail
+第1次检查当前ONU在线状态......
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      offline     0                --                   --                   --                          
+
+raisecom(config-if-gpon-olt-3:3)#
+
+第2次检查当前ONU在线状态......
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      offline     0                --                   --                   --                          
+
+raisecom(config-if-gpon-olt-3:3)#
+
+第3次检查当前ONU在线状态......
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      offline     0                --                   --                   --                          
+
+raisecom(config-if-gpon-olt-3:3)#
+
+第4次检查当前ONU在线状态......
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      offline     0                --                   --                   --                          
+
+raisecom(config-if-gpon-olt-3:3)#
+
+第5次检查当前ONU在线状态......
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      offline     0                --                   --                   --                          
+
+raisecom(config-if-gpon-olt-3:3)#MAY-19-2023 19:07:17  gpon-onu-remote-3-ONU 3/3/1 register, OnuRegType g(0)! 
+MAY-19-2023 19:07:18  onu-register-4-ONU Register: ONU 3/3/1 Registration, SN: RCMG4B08001B.
+
+
+第6次检查当前ONU在线状态......
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      online      2                2023-05-19,19:07:17  --                   --                          
+
+raisecom(config-if-gpon-olt-3:3)#MAY-19-2023 19:07:18  if-1-Link state change up: gpon-olt3/3 link up.
+MAY-19-2023 19:07:21  if-1-Link state change up: vlan100 link up.
+MAY-19-2023 19:07:21  if-1-Link state change up: vlan4000 link up.
+
+
+第7次检查当前ONU在线状态......
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      online      2                2023-05-19,19:07:17  --                   --                          
+
+raisecom(config-if-gpon-olt-3:3)#
+
+第8次检查当前ONU在线状态......
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      online      2                2023-05-19,19:07:17  --                   --                          
+
+raisecom(config-if-gpon-olt-3:3)#
+
+第9次检查当前ONU在线状态......
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+
+
+第10次检查当前ONU在线状态......
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+3/3/1      online      2                2023-05-19,19:07:17  --                   --                          
+MAY-19-2023 19:07:31  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 160 (ulTunnelId 160) success
+
+raisecom(config-if-gpon-olt-3:3)#ow interface gpon-onu online-information | in 3/3
+Error : " ow interface gpon-onu online-information | in 3/3 "  Unknown command.
+raisecom(config-if-gpon-olt-3:3)#MAY-19-2023 19:07:31  gpon-onu-remote-5-Config download: ONU 3/3/1 pon-sys config download success
+MAY-19-2023 19:07:32  gpon-onu-remote-3-ONU 3/3/1 ME class ME SERVICE CLASSIFICATION MEid 0x0000 response error(0)(5)
+MAY-19-2023 19:07:32  gpon-onu-remote-3-ONU 3/3/1 ME class ME SERVICE CLASSIFICATION MEid 0x0001 response error(0)(5)
+MAY-19-2023 19:07:32  gpon-onu-remote-5-Config download: ONU 3/3/1 config download success. 
+
+
+++++++++++++++++++++++++++++++++++++++++当前用例【check_onu】测试结果为:pass
 
 ####################【check_onu】脚本测试执行结束!####################
 
 
-####################【vlan_add_uni】脚本测试执行开始!####################
-
-192.168.10.135登录成功!
-
-命令vlan 123执行结果:
-vlan 123
-gpon-olt(config-vlan-123)# 
-
-命令exit执行结果:
-exit
-gpon-olt(config)# 
-
-命令show vlan执行结果:
-show vlan
-
-Vlan ID        : 1
-Name           : default
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8   
-                  
-                  
-
-Vlan ID        : 100
-Name           : vlan100
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 123
-Name           : vlan123
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 128
-Name           : vlan128
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 129
-Name           : vlan129
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 200
-Name           : vlan200
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 300
-Name           : vlan300
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-gpon-olt(config)# 
-
-tips:检查单个vlan是否创建成功......
-
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
-
-####################【vlan_add_uni】脚本测试执行结束!####################
+####################【dba_config】脚本测试执行开始!####################
 
 
-####################【vlan_del_uni】脚本测试执行开始!####################
+设备登录中，请稍后......
 
-192.168.10.135登录成功!
+172.17.100.214登录成功!
 
-命令vlan 123执行结果:
-vlan 123
-gpon-olt(config-vlan-123)# 
+命令no gpon-onu-line-profile 127执行结果:
+no gpon-onu-line-profile 127
+raisecom(config)#
+
+命令no create dba-profile 127执行结果:
+no create dba-profile 127
+raisecom(config)#
+
+命令show dba-profile 127执行结果:
+show dba-profile 127
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+raisecom(config)#
+
+命令create dba-profile 127 name chenjingv127 type4 max 1024000执行结果:
+create dba-profile 127 name chenjingv127 type4 max 1024000
+raisecom(config)#
+
+命令show dba-profile 127执行结果:
+show dba-profile 127
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+127         chenjingv127      type4  0          0             1024000    best-effort    0         0       TM        0   
+raisecom(config)#
+
+配置dba profile......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【dba_config】测试结果为:pass
+
+####################【dba_config】脚本测试执行结束!####################
+
+
+####################【line_config】脚本测试执行开始!####################
+
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+命令no gpon-onu-line-profile 127执行结果:
+no gpon-onu-line-profile 127
+raisecom(config)#
+
+命令show gpon-onu-line-profile 127执行结果:
+show gpon-onu-line-profile 127
+raisecom(config)#
+
+命令gpon-onu-line-profile 127执行结果:
+gpon-onu-line-profile 127
+raisecom(config-gpon-onu-line-profile:127)#
+
+命令create tcont 1 dba-profile 127执行结果:
+create tcont 1 dba-profile 127
+raisecom(config-gpon-onu-line-profile:127)#
+
+命令create gem 1 tcont 1执行结果:
+create gem 1 tcont 1
+raisecom(config-gpon-onu-line-profile:127)#
+
+命令gem 1 mapping 1 vlan 4000执行结果:
+gem 1 mapping 1 vlan 4000
+raisecom(config-gpon-onu-line-profile:127)#
+
+命令commit执行结果:
+commit
+raisecom(config-gpon-onu-line-profile:127)#
 
 命令exit执行结果:
 exit
-gpon-olt(config)# 
+raisecom(config)#
 
-命令no vlan 123执行结果:
-no vlan 123
-gpon-olt(config)# 
+命令show gpon-onu-line-profile 127执行结果:
+show gpon-onu-line-profile 127
+LineProfile ID  : 127
+LineProfile Name: profile-127
+Ref. counter    : 0
+  FEC upstream: disable
+  OMCC encrypt: disable
+  Mapping mode: VLAN
+  ------------------------------------------------------------------------------
+  T-CONT 0          DBA Profile Name: def_gp_1
+  T-CONT 1          DBA Profile Name: chenjingv127
+    Gem Index    Encryption       Priority  USPolicing  DSPolicing   MAC limit
+                DS        US                                                    
+    ----------------------------------------------------------------------------
+    1         disable   disable   0         0           0            unlimited
+    ----------------------------------------------------------------------------
+      Mapping Index  VLAN  Priority  Port Type  Port ID
+      ----------------------------------------------------------------
+      1              4000  --        --         --
+      ----------------------------------------------------------------
+raisecom(config)#
 
-命令show vlan 123执行结果:
-show vlan 123
-Vlan 123 is not exist. 
-gpon-olt(config)# 
+tips:配置line profile......
 
-tips:检查单个vlan是否删除成功......
+++++++++++++++++++++++++++++++++++++++++当前用例【line_config】测试结果为:pass
 
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
-
-####################【vlan_del_uni】脚本测试执行结束!####################
-
-
-####################【vlan_add_mul】脚本测试执行开始!####################
-
-192.168.10.135登录成功!
-
-命令vlan 125 - 129执行结果:
-vlan 125 - 129
-gpon-olt(config)# 
-
-命令show vlan执行结果:
-show vlan
-
-Vlan ID        : 1
-Name           : default
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8   
-                  
-                  
-
-Vlan ID        : 100
-Name           : vlan100
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 125
-Name           : vlan125
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 126
-Name           : vlan126
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 127
-Name           : vlan127
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 128
-Name           : vlan128
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 129
-Name           : vlan129
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 200
-Name           : vlan200
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 300
-Name           : vlan300
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-gpon-olt(config)# 
-
-tips:检查多个vlan是否创建成功......
-
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
-
-####################【vlan_add_mul】脚本测试执行结束!####################
+####################【line_config】脚本测试执行结束!####################
 
 
-####################【vlan_del_mul】脚本测试执行开始!####################
-
-192.168.10.135登录成功!
-
-命令vlan 125 - 129执行结果:
-vlan 125 - 129
-gpon-olt(config)# 
-
-命令show vlan执行结果:
-show vlan
-
-Vlan ID        : 1
-Name           : default
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8   
-                  
-                  
-
-Vlan ID        : 100
-Name           : vlan100
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 125
-Name           : vlan125
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 126
-Name           : vlan126
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 127
-Name           : vlan127
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 128
-Name           : vlan128
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 129
-Name           : vlan129
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 200
-Name           : vlan200
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 300
-Name           : vlan300
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-gpon-olt(config)# 
-
-命令no vlan 125 - 127执行结果:
-no vlan 125 - 127
-gpon-olt(config)# 
-
-命令show vlan执行结果:
-show vlan
-
-Vlan ID        : 1
-Name           : default
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8   
-                  
-                  
-
-Vlan ID        : 100
-Name           : vlan100
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 128
-Name           : vlan128
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 129
-Name           : vlan129
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 200
-Name           : vlan200
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-
-Vlan ID        : 300
-Name           : vlan300
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-gpon-olt(config)# 
-
-tips:检查多个vlan是否删除成功......
-
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
-
-####################【vlan_del_mul】脚本测试执行结束!####################
+####################【service_config】脚本测试执行开始!####################
 
 
-####################【vlan_show】脚本测试执行开始!####################
+设备登录中，请稍后......
 
-192.168.10.135登录成功!
+172.17.100.214登录成功!
 
-命令show vlan执行结果:
-show vlan
+命令no gpon-onu-service-profile 127执行结果:
+no gpon-onu-service-profile 127
+raisecom(config)#
 
-Vlan ID        : 1
-Name           : default
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports : ge0/1   ge0/2   ge0/3   ge0/4   ge0/5   ge0/6   ge0/7   ge0/8   
-                  
-                  
+命令show gpon-onu-service-profile 127执行结果:
+show gpon-onu-service-profile 127
+raisecom(config)#
 
-Vlan ID        : 100
-Name           : vlan100
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
+命令gpon-onu-service-profile 127执行结果:
+gpon-onu-service-profile 127
+raisecom(config-gpon-onu-service-profile:127)#
 
-Vlan ID        : 128
-Name           : vlan128
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
+命令port-num ethernet 4执行结果:
+port-num ethernet 4
+raisecom(config-gpon-onu-service-profile:127)#
 
-Vlan ID        : 129
-Name           : vlan129
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
+命令uni ethernet 1-4 vlan mode tagged执行结果:
+uni ethernet 1-4 vlan mode tagged
+raisecom(config-gpon-onu-service-profile:127)#
 
-Vlan ID        : 200
-Name           : vlan200
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
+命令uni ethernet 1-4 native vlan 4000执行结果:
+uni ethernet 1-4 native vlan 4000
+raisecom(config-gpon-onu-service-profile:127)#
 
-Vlan ID        : 300
-Name           : vlan300
-Mac Address    : 80:07:1b:ea:fd:3d
-Tagged Ports   :  
-                  
-Untagged Ports :  
-                  
-gpon-olt(config)# 
+命令commit执行结果:
+commit
+raisecom(config-gpon-onu-service-profile:127)#
 
-tips:检查vlan128和vlan129是否存在......
+命令exit执行结果:
+exit
+raisecom(config)#
 
-++++++++++++++++++++++++++++++++++++++++当前用例测试结果为:pass
+命令show gpon-onu-service-profile 127 | section-end WLAN执行结果:
+show gpon-onu-service-profile 127 | section-end WLAN
+ServiceProfile ID  : 127
+ServiceProfile Name: profile-127
+Ref. counter       : 0
+  MAC learning              : enable
+  MAC aging time(seconds)   : 300
+  Switchport isolation      : enable
+  DLF discard               : disable
+  Multicast mode            : snooping
+  VOIP type                 : sip
+  Iphost Num                : 2
+  Country code              : undefine
+  Time zone                 : undefine
+  VOIP IPhost Id            : 1
+  MNG-SVR IPhost Id         : 0
+  MNG-SVR PRI-Domain        : --
+  MNG-SVR BAK-Domain        : --
+  ---------------------------------------------------------
+  Type      Port Num
+  ---------------------------------------------------------
+  Ethernet  4
+  POTS      0
+  VEIP      0
+  CATV      0
+  WLAN      0
+raisecom(config)#
 
-####################【vlan_show】脚本测试执行结束!####################
+tips:配置service profile......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【service_config】测试结果为:pass
+
+####################【service_config】脚本测试执行结束!####################
+
+
+####################【bind_profile】脚本测试执行开始!####################
+
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     RCMG4B08001B      gpon    (g)       5104-GP-PSE        2023-05-19,19:06:42    active   1024 Def_P_all        1018    Def_4E
+
+raisecom(config)#
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      online      2                2023-05-19,19:07:17  --                   --                          
+
+raisecom(config)#
+
+命令int gpon-onu 3/3/1执行结果:
+int gpon-onu 3/3/1
+raisecom(config-if-gpon-onu-3/3:1)#
+
+命令state suspend执行结果:
+state suspend
+Please input 'yes' to confirm:
+
+命令yes执行结果:
+yes
+raisecom(config-if-gpon-onu-3/3:1)#MAY-19-2023 19:11:24  if-1-Link state change down: gpon-olt3/3 link down.
+
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      pending     0                2023-05-19,19:07:17  --                   --                          
+
+raisecom(config-if-gpon-onu-3/3:1)#MAY-19-2023 19:11:27  if-1-Link state change down: vlan100 link down.
+MAY-19-2023 19:11:27  if-1-Link state change down: vlan4000 link down.
+
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     RCMG4B08001B      gpon    (g)       5104-GP-PSE        2023-05-19,19:06:42    suspend  1024 Def_P_all        1018    Def_4E
+
+raisecom(config-if-gpon-onu-3/3:1)#
+
+命令line-profile-id 127执行结果:
+line-profile-id 127
+
+
+命令service-profile-id 127执行结果:
+raisecom(config-if-gpon-onu-3/3:1)#MAY-19-2023 19:11:37  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 160 (ulTunnelId 160) success
+MAY-19-2023 19:11:37  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2886
+service-profile-id 127
+
+
+命令state active执行结果:
+
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+raisecom(config-if-gpon-onu-3/3:1)#MAY-19-2023 19:11:43  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 160 (ulTunnelId 160) success
+MAY-19-2023 19:11:43  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2886
+state active
+raisecom(config-if-gpon-onu-3/3:1)#show interface gpon-onu online-information | in 3/3
+3/3/1      offline     0                2023-05-19,19:07:17  --                   --                          
+
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+
+raisecom(config-if-gpon-onu-3/3:1)#show interface gpon-onu creation-information | in 3/3
+3/3/1     RCMG4B08001B      gpon    (g)       Unknown            2023-05-19,19:06:42    active   127  profile-127      127     profile-127
+
+raisecom(config-if-gpon-onu-3/3:1)#
+
+tips:绑定自定义line profile和service profile......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【bind_profile】测试结果为:pass
+
+####################【bind_profile】脚本测试执行结束!####################
 

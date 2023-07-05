@@ -6,11 +6,11 @@ import telnetlib
 import time,os,sys
 from datetime import datetime as dt
 
-start_time,end_time=dt.now(),dt.now()
+start_time,end_time=dt.now().ctime(),dt.now().ctime()
 
 class TelnetClient:
     def __init__(self):
-        self.host_ip='192.168.10.135'
+        self.host_ip='172.17.100.135'
         self.username='admin'
         self.password='admin123'
         self.cmd_1='en'
@@ -101,7 +101,7 @@ class TelnetClient:
 
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
-
+        
         for j in range(len(check_words)):
             if check_words[j] not in output_lst[-1]:
                 self.fail_res()
@@ -138,7 +138,7 @@ class TelnetClient:
         cmds=['show onu state']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
-        check_words=["working        MONU0000456a"]
+        check_words=["YHCT0000843a"]
         output_lst=[]
         self.check_res1(cmds,check_name,check_words,output_lst)
         
@@ -216,7 +216,7 @@ class TelnetClient:
         check_words=["vlan128","vlan129"]
         output_lst=[]
         self.check_res1(cmds,check_name,check_words,output_lst)
-
+        
         self.logout_host()
 
 
@@ -225,7 +225,7 @@ if __name__ == '__main__':
     #打印console时间
     print(f'\n{timmer}\n')
     #创建log文件
-    output=open(os.path.join(os.getcwd(),'run_office_console_logfile.log'),'w')
+    output=open(os.path.join(os.getcwd(),'run_office_console_logfile.log'),'w',encoding='utf-8')
     #打印log时间
     telnetlib.Telnet().logfile=output.write(f'\n{timmer}\n')
     #创建telnet实例

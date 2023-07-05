@@ -15,14 +15,15 @@ class TelnetClient:
         self.password='123456'
         self.cmd_1='su'
         self.tn = telnetlib.Telnet()
+        #self.cn = sys._getframe().f_code.co_name
           
     def outer(fun_name):
         def wrapper(*args,**kwargs):
-            test_exec1="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
+            test_exec1="#"*25+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
             print(f'\n{test_exec1}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n')
             res=fun_name(*args,**kwargs)
-            test_exec2="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行结束!"+"#"*20
+            test_exec2="#"*25+"【"+fun_name.__name__+"】"+"脚本测试执行结束!"+"#"*20
             print(f'\n{test_exec2}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec2}\n\n')
             return res
@@ -56,7 +57,7 @@ class TelnetClient:
         print()
         # 获取登录结果
         # read_very_eager()获取到的是的是上次获取之后本次获取之前的所有输出
-        command_result = self.tn.read_very_eager().decode('utf-8')
+        command_result = self.tn.read_very_eager().decode('ascii')
         if 'Login incorrect' not in command_result:
             login_res1=self.host_ip+"登录成功!"
             print(f'{login_res1}\n')
@@ -72,17 +73,17 @@ class TelnetClient:
     def logout_host(self):
         self.tn.write(b"exit\n\n")
 
-    def pass_res(self):
-        res="++"*20+"当前用例测试结果为:pass"
+    def pass_res(self,cn):
+        res="++"*20+"当前用例"+"【"+cn+"】"+"测试结果为:pass"
+        print(f'\n{res}')
+        self.tn.logfile=output.write(f'\n{res}\n')
+        
+    def fail_res(self,cn):
+        res="++"*20+"当前用例"+"【"+cn+"】"+"测试结果为:fail"
         print(f'\n{res}')
         self.tn.logfile=output.write(f'\n{res}\n')
     
-    def fail_res(self):
-        res="++"*20+"当前用例测试结果为:fail"
-        print(f'\n{res}')
-        self.tn.logfile=output.write(f'\n{res}\n')
-    
-    def check_res(self,cmds,check_name,check_words,output_lst):
+    def check_res(self,cmds,check_name,check_words,output_lst,cn):
         for i in range(len(cmds)):
             self.tn.write(cmds[i].encode('ascii')+b'\n')
             time.sleep(0.5)
@@ -92,27 +93,28 @@ class TelnetClient:
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
         
-        print(f'\n{output_lst}\n')
+        #print(f'\n{output_lst}\n')
 
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
         
         for j in range(len(check_words)):
             if check_words[j] not in output_lst[-1]:
-                self.fail_res()
+                self.fail_res(cn)
                 break
         else:
-            self.pass_res()
+            self.pass_res(cn)
 
     @outer
     def exec_cmd(self):
         self.login_host()
         cmds=['arch','pwd','uname -r']
-        check_name="tips:检查设备版本信息是否正确......"
+        check_name='tips:检查设备版本信息是否正确......'
         check_words=["gen"]
         output_lst=[]
-
-        self.check_res(cmds,check_name,check_words,output_lst)
+        cn=sys._getframe().f_code.co_name
+        
+        self.check_res(cmds,check_name,check_words,output_lst,cn)
         self.logout_host()    
     
     @outer
@@ -121,12 +123,14 @@ class TelnetClient:
         cmds=['ps -ef | grep sshd',
               'this is a test script!',
               'netstat -anp | grep :22',
-              'ip add | grep inet -C2']
-        check_name="tips:检查接口表项是否正确......"
-        check_words=["lo","ens33"]
+              'ip add',
+              'ip route']
+        check_name='tips:检查接口表项是否正确......'
+        check_words=['ens33 proto kernel']
         output_lst=[]
+        cn=sys._getframe().f_code.co_name
 
-        self.check_res(cmds,check_name,check_words,output_lst)
+        self.check_res(cmds,check_name,check_words,output_lst,cn)
         self.logout_host()
 
 
@@ -135,7 +139,7 @@ if __name__ == '__main__':
     #打印console时间
     print(f'\n{timmer}\n')
     #创建log文件
-    output=open(os.path.join(os.getcwd(),'run_local_console_logfile.log'),'w')
+    output=open(os.path.join(os.getcwd(),'run_local_console_logfile.log'),'w',encoding='utf-8')
     #打印log时间
     telnetlib.Telnet().logfile=output.write(f'\n{timmer}\n')
     #创建telnet实例
