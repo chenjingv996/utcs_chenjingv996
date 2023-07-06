@@ -44,6 +44,11 @@ sleep 0.5
 send "\r\r"
 
 expect "*#"
+send "brief-show vlan interface xge 3\r"
+sleep 0.5
+send "\r\r"
+
+expect "*#"
 send "brief-show port slot 4\r"
 sleep 0.5
 send "\r\r"
