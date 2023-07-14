@@ -172,14 +172,14 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name
         cmds=['exit',
               'slot 1 interface gpon-olt 1/3',
-              'brief-show slot 1 interface gpon-olt 1/3  ont 1',
+              'brief-show slot 1 interface gpon-olt 1/3  ont 2',
               'auto-register',
-              'no ont 1',
-              'brief-show slot 1 interface gpon-olt 1/3  ont 1',
+              'no ont 2',
+              'brief-show slot 1 interface gpon-olt 1/3  ont 2',
               'brief-show slot 1 ont-info 3 detail']
         #检查测试ONU在线状态···
         check_name='tips:检查测试ONU在线状态......'
-        check_words=['1/3/1    ready']
+        check_words=['1/3/2    ready']
         output_lst=[]
         self.check_loop(cn,cmds,check_name,check_words,output_lst)
         
@@ -227,19 +227,19 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name 
         cmds=['exit',
               'slot 1 interface gpon-olt 1/3',
-              'ont 1',
+              'ont 2',
               'no service',
               'home',
               'slot 1',
-              'no gpon profile tcont-bind 127 1',
-              'no gpon profile tcont-svc 127',
-              'no gpon profile dba 127',
-              'brief-show slot 1 gpon profile dba 127',
-              'gpon profile dba id 127 type4 max 1024000',
-              'brief-show slot 1 gpon profile dba 127']
+              'no gpon profile tcont-bind 128 1',
+              'no gpon profile tcont-svc 128',
+              'no gpon profile dba 128',
+              'brief-show slot 1 gpon profile dba 128',
+              'gpon profile dba id 128 type4 max 1024000',
+              'brief-show slot 1 gpon profile dba 128']
         #配置dba profile......
         check_name='配置dba profile......'
-        check_words=['127 newprof_dba_127  type4']
+        check_words=['128 newprof_dba_128  type4']
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
         
@@ -252,19 +252,19 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name
         cmds=['exit',
               'slot 1 interface gpon-olt 1/3',
-              'ont 1',
+              'ont 2',
               'no service',
               'home',
               'slot 1',
-              'no gpon profile flow 127 1',
-              'brief-show slot 1 gpon profile flow 127',
-              'gpon profile flow id 127 1 uni-type ethernet-uni uni-bitmap 0xf upmap-type vlanId 4000 4000 pri-bitmap 0xff vport 1',
-              'brief-show slot 1 gpon profile flow 127']
+              'no gpon profile flow 128 1',
+              'brief-show slot 1 gpon profile flow 128',
+              'gpon profile flow id 128 1 uni-type veip uni-bitmap 0xf upmap-type vlanId 4000 4000 pri-bitmap 0xff vport 1',
+              'brief-show slot 1 gpon profile flow 128']
         #配置profile_flow......
         check_name='tips:配置profile_flow......'
-        check_words=['profile id1           :127',
-                     'profile name          :newprofile_127',
-                     'uni type              :ethernet-uni']
+        check_words=['profile id1           :128',
+                     'profile name          :newprofile_128',
+                     'uni type              :veip']
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
@@ -277,18 +277,18 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name
         cmds=['exit',
               'slot 1 interface gpon-olt 1/3',
-              'ont 1',
+              'ont 2',
               'no service',
               'home',
               'slot 1',
-              'no gpon profile tcont-bind 127 1',
-              'no gpon profile tcont-svc 127',
-              'brief-show slot 1 gpon profile tcont-svc 127',
-              'gpon profile tcont-svc id 127  dba-id 127',
-              'brief-show slot 1 gpon profile tcont-svc 127']
+              'no gpon profile tcont-bind 128 1',
+              'no gpon profile tcont-svc 128',
+              'brief-show slot 1 gpon profile tcont-svc 128',
+              'gpon profile tcont-svc id 128  dba-id 128',
+              'brief-show slot 1 gpon profile tcont-svc 128']
         #配置profile_tcont_svc......
         check_name='tips:配置profile_tcont_svc......'
-        check_words=['127 newprofile_127']
+        check_words=['128 newprofile_128']
         output_lst=[] 
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
@@ -301,17 +301,17 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name
         cmds=['exit',
               'slot 1 interface gpon-olt 1/3',
-              'ont 1',
+              'ont 2',
               'no service',
               'home',
               'slot 1',
-              'no gpon profile tcont-bind 127 1',
-              'brief-show slot 1 gpon profile tcont-bind 127',
-              'gpon profile tcont-bind id 127 v-port 1  vportsvc-id 1 tcont-id 1 tcontsvc-id 127',
-              'brief-show slot 1 gpon profile tcont-bind 127']
+              'no gpon profile tcont-bind 128 1',
+              'brief-show slot 1 gpon profile tcont-bind 128',
+              'gpon profile tcont-bind id 128 v-port 1  vportsvc-id 1 tcont-id 1 tcontsvc-id 128',
+              'brief-show slot 1 gpon profile tcont-bind 128']
         #配置profile_tcont_bind......
         check_name='tips:配置profile_tcont_bind......'
-        check_words=["127 1      newprofile_127"]
+        check_words=["128 1      newprofile_128"]
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
@@ -324,14 +324,14 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name
         cmds=['exit',
               'slot 1 interface gpon-olt 1/3',
-              'ont 1',
+              'ont 2',
               'no service',
               'virtual-port 1 encrypt disable',
-              'service flow-profile 127 tcont-bind-profile 127',
-              'brief-show slot 1 interface gpon-olt 1/3 ont 1']
+              'service flow-profile 128 tcont-bind-profile 128',
+              'brief-show slot 1 interface gpon-olt 1/3 ont 2']
         #配置onu绑定svc_type......
         check_name='tips:配置onu绑定svc_type......'
-        check_words=["service flow-profile 127 tcont-bind-profile 127 svc-type 1_"]
+        check_words=["service flow-profile 128 tcont-bind-profile 128 svc-type 1_"]
         output_lst=[]
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
@@ -382,20 +382,20 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name
         cmds=['exit',
               'slot 1 interface gpon-olt 1/3',
-              'no ont 1',
+              'no ont 2',
               'home',
               'slot 1',
-              'no gpon profile flow 127 1',
-              'no gpon profile tcont-bind 127 1',
-              'no gpon profile tcont-svc 127',
-              'no gpon profile dba 127',
+              'no gpon profile flow 128 1',
+              'no gpon profile tcont-bind 128 1',
+              'no gpon profile tcont-svc 128',
+              'no gpon profile dba 128',
               'brief-show slot 1 gpon profile']
         #将ONU恢复缺省配置......
         check_name='tips:将ONU恢复缺省配置......'
-        check_words=['gpon profile flow id 127 1',
-                     'gpon profile tcont-bind id 127 v-port 1',
-                     'gpon profile tcont-svc id 127',
-                     'gpon profile dba id 127']
+        check_words=['gpon profile flow id 128 1',
+                     'gpon profile tcont-bind id 128 v-port 1',
+                     'gpon profile tcont-svc id 128',
+                     'gpon profile dba id 128']
         output_lst=[]
         self.check_res2(cn,cmds,check_name,check_words,output_lst)
         
@@ -422,7 +422,7 @@ if __name__ == '__main__':
     telnet.profile_tcont_svc()
     telnet.profile_tcont_bind()
     telnet.svc_type()
-    telnet.port_vlan()
+    # telnet.port_vlan()
     # telnet.clear_config()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
