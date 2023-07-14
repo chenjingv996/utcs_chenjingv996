@@ -172,8 +172,10 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name
         cmds=['exit',
               'slot 1 interface gpon-olt 1/3',
+              'brief-show slot 1 interface gpon-olt 1/3  ont 1',
               'auto-register',
               'no ont 1',
+              'brief-show slot 1 interface gpon-olt 1/3  ont 1',
               'brief-show slot 1 ont-info 3 detail']
         #检查测试ONU在线状态···
         check_name='tips:检查测试ONU在线状态......'
@@ -345,13 +347,13 @@ class TelnetClient:
               'ont 1',
               'brief-show slot 1 interface gpon-olt 1/3  ont 1',
               'no port-vlan 1 1',
-              'no port-vlan 1',
+            #   'no port-vlan 1',
               'no port-vlan 2 1',
-              'no port-vlan 2',
+            #   'no port-vlan 2',
               'no port-vlan 3 1',
-              'no port-vlan 3',
+            #   'no port-vlan 3',
               'no port-vlan 4 1',
-              'no port-vlan 4',
+            #   'no port-vlan 4',
               'brief-show slot 1 interface gpon-olt 1/3  ont 1',
               'port-vlan 1 downstream inverse-upstream intpid 0x8100 outtpid 0x8100',
               'port-vlan 1 rule 1 untag add-vid inner-pri 0 inner-vid 4000 inner-tpid mode4 ether-type 0',
