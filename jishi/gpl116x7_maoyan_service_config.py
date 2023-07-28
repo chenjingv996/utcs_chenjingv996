@@ -21,7 +21,9 @@ class TelnetClient:
     def outer(fun_name):
         def wrapper(*args,**kwargs):
             test_exec1="#"*25+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
+            link_tips="设备登录中，请稍后......"
             print(f'\n{test_exec1}\n')
+            print(f'\n{link_tips}\n')
             telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n')
             res=fun_name(*args,**kwargs)
             test_exec2="#"*25+"【"+fun_name.__name__+"】"+"脚本测试执行结束!"+"#"*20
@@ -39,25 +41,25 @@ class TelnetClient:
             logging.warning(f'{self.host_ip}网络连接失败!\n')
             return False
         # 等待login出现后输入用户名，最多等待10秒
-        self.tn.read_until(b'gin: ',timeout=2)
+        self.tn.read_until(b'gin: ',timeout=6)
         self.tn.write(self.username.encode('ascii') + b'\n')
         # 等待Password出现后输入用户名，最多等待10秒
-        self.tn.read_until(b'word: ',timeout=2)
+        self.tn.read_until(b'word: ',timeout=6)
         self.tn.write(self.password.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'> ',timeout=2)
+        self.tn.read_until(b'> ',timeout=6)
         self.tn.write(self.cmd_1.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'word ',timeout=2)
+        self.tn.read_until(b'word ',timeout=6)
         self.tn.write(self.password.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'# ',timeout=2)
+        self.tn.read_until(b'# ',timeout=6)
         self.tn.write(self.cmd_2.encode('ascii') + b'\n')
         
-        self.tn.read_until(b'# ',timeout=2)
+        self.tn.read_until(b'# ',timeout=6)
         self.tn.write(self.cmd_3.encode('ascii') + b'\n')
         # 延时1秒再收取返回结果，给服务端足够响应时间
-        time.sleep(1)
+        time.sleep(2)
         print()
         # 获取登录结果
         # read_very_eager()获取到的是的是上次获取之后本次获取之前的所有输出
@@ -131,18 +133,54 @@ class TelnetClient:
         else:
             self.pass_res(cn)
 
+    def check_loop(self,cn,cmds,check_name,check_words,output_lst):
+        for i in range(len(cmds)):
+            # 执行命令
+            self.tn.write(cmds[i].encode('ascii')+b'\n')
+            time.sleep(2)
+            # 获取命令结果
+            cmds_res = self.tn.read_very_eager().decode('utf-8')
+            output_lst.append(cmds_res)
+            res="命令"+cmds[i]+"执行结果:"
+            print(f'\n{res}\n{cmds_res}\n')
+            self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
+
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        
+        for j in range(len(check_words)):
+            for k in range(1,11):
+                cnt_loop='第'+str(k)+'次检查当前ONU在线状态......'
+                print(f'\n{cnt_loop}\n')
+                self.tn.logfile=output.write(f'\n{cnt_loop}\n')
+                # 执行命令
+                self.tn.write(cmds[-1].encode('ascii')+b'\n')
+                time.sleep(6)
+                # 获取命令结果
+                cmds_res = self.tn.read_very_eager().decode('utf-8')
+                output_lst.append(cmds_res)
+                res_last="命令"+cmds[-1]+"执行结果:"
+                print(f'\n{res_last}\n{cmds_res}\n')
+                self.tn.logfile=output.write(f'\n{res_last}\n{cmds_res}\n')
+            # print(f'\nqwer:{output_lst[-1]}\n')
+            if check_words[j] not in output_lst[-1]:
+                self.fail_res(cn)
+                break
+        else:
+            self.pass_res(cn)
+
     @outer
     def check_onu(self):
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['show interface gpon-onu creation-information',
-        'show interface gpon-onu online-information']
+        cmds=['show interface gpon-onu creation-information | in 3/3',
+              'show interface gpon-onu online-information | in 3/3']
         #检查测试ONU在线状态···
         check_name="tips:检查测试ONU在线状态......"
-        check_words=["3/10/1     online"]
+        check_words=["3/3/1      online"]
         output_lst=[]
-        self.check_res1(cn,cmds,check_name,check_words,output_lst)
+        self.check_loop(cn,cmds,check_name,check_words,output_lst)
         
         self.logout_host()    
     
@@ -190,30 +228,22 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name
         cmds=['gpon-onu-service-profile 121',
               'port-num ethernet 4 pots 1 veip 1',
-            #   'omcc encryption enable',
-            #   'fec upstream enable',
               'commit',
               'exit',
               'show gpon-onu-service-profile all',
-            #   'show gpon-onu-service-profile 121'
 
               'gpon-onu-service-profile 122',
               'port-num ethernet 4 pots 0 veip 1',
-            #   'omcc encryption enable',
-            #   'fec upstream enable',
               'commit',
               'exit',
               'show gpon-onu-service-profile all',
-            #   'show gpon-onu-service-profile 122',
 
+              'show gpon-onu-service-profile all',
               'gpon-onu-service-profile 123',
               'port-num ethernet 8 pots 1 veip 1',
-            #   'omcc encryption enable',
-            #   'fec upstream enable',
               'commit',
               'exit',
               'show gpon-onu-service-profile all']
-            #  'show gpon-onu-service-profile 123'
         #检查多个service是否创建成功···
         check_name='tips:检查多个service是否创建成功......'
         check_words=['121         profile-121','122         profile-122','123         profile-123']

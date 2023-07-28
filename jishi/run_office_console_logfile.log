@@ -1,139 +1,110 @@
 
-测试开始时间为:Wed Apr 19 10:24:21 2023
+测试开始时间为:Fri Jul 28 18:15:25 2023
 
-#########################【check_onu】脚本测试执行开始!####################
-
-172.17.100.214登录成功!
-
-命令show interface gpon-onu creation-information执行结果:
-show interface gpon-onu creation-information
-ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
-                                                                                                 ID   name             ID      name            
-------------------------------------------------------------------------------------------------------------------------------------------------------
-3/10/1    YHCT0000843A      gpon    (g)       YHCTH115           2023-04-17,05:54:13    active   1024 Def_P_all        1006    Def_VEIP
-3/10/2    RCMG4AC03AF8      gpon    (g)       5104G-GP-HB        2023-04-17,05:54:18    active   1024 Def_P_all        1018    Def_4E
-4/10/1    RCMG4AC03AEC      gpon    (g)       Unknown            2023-04-18,08:25:59    active   1024 Def_P_all        1018    Def_4E
-4/10/2    MONU0000456A      gpon    (g)       MONUD604           2023-04-18,08:26:05    active   1024 Def_P_all        1021    Def_2E
-4/10/3    YHCT006F01A8      gpon    (g)       YHCT0860           2023-04-18,08:26:11    active   1024 Def_P_all        1006    Def_VEIP
-
-raisecom(config)#
-
-命令show interface gpon-onu online-information执行结果:
-show interface gpon-onu online-information
-ONU ID     State       Distance(m)      Login Date           Logout Date          Logout Reason               
---------------------------------------------------------------------------------------------------------------
-3/10/1     online      96               2023-04-17,05:54:43  --                   --                          
-3/10/2     online      1                2023-04-17,05:54:48  --                   --                          
-4/10/1     offline     0                --                   --                   --                          
-4/10/2     online      97               2023-04-19,09:36:51  2023-04-19,09:36:30  Host request                
-4/10/3     online      97               2023-04-19,09:36:51  2023-04-19,09:36:30  Host request                
-
-raisecom(config)#
-
-tips:检查测试ONU在线状态......
-
-++++++++++++++++++++++++++++++++++++++++当前用例【check_onu】测试结果为:pass
-
-#########################【check_onu】脚本测试执行结束!####################
+####################【bind_onu_profile】脚本测试执行开始!####################
 
 
-#########################【line_add_uni】脚本测试执行开始!####################
+设备登录中，请稍后......
 
 172.17.100.214登录成功!
 
-命令no gpon-onu-line-profile 201-205执行结果:
-no gpon-onu-line-profile 201-205
-raisecom(config)#
+命令show interface gpon-onu creation-information | in 3/3/4执行结果:
+show interface gpon-onu creation-information | in 3/3/4
+3/3/4     RCMG4B08001B      gpon    (g)       GPU040-4G0F0P-TKPSE2023-07-28,18:05:05    active   1024 Def_P_all        1018    Def_4E
 
-命令show gpon-onu-line-profile all执行结果:
-show gpon-onu-line-profile all
-Profile ID  Profile Name      Ref.
-----------------------------------
-1024        Def_P_all         5
-1025        Def_P_all_xgs     0
-raisecom(config)#
+GPL116-X7-100.214(config)#
 
-命令no create dba-profile 201-205执行结果:
-no create dba-profile 201-205
-raisecom(config)#
+tips:绑定自定义dba profile、line profile和service profile......
 
-命令show dba-profile all执行结果:
-show dba-profile all
+####################【dba_config_sfu】脚本测试执行开始!####################
+
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+命令no gpon-onu-line-profile 127执行结果:
+no gpon-onu-line-profile 127
+GPL116-X7-100.214(config)#
+
+命令no create dba-profile 127执行结果:
+no create dba-profile 127
+GPL116-X7-100.214(config)#
+
+命令show dba-profile 127执行结果:
+show dba-profile 127
 Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
 -----------------------------------------------------------------------------------------------------------------------
-1           def_gp_1          type3  0          1024          1024000    best-effort    0         0       TM        7   
-200         chenjingv200      type1  20480      0             0          --             0         0       --        0   
-516         def_ep_516        type3  0          10240         102400     best-effort    0         0       TM        1   
-517         def_xgspon_517    type3  0          1024          1024000    best-effort    0         0       SR        2   
-raisecom(config)#
+GPL116-X7-100.214(config)#
 
-命令create dba-profile 201 name chenjingv201 type1 fix 40960执行结果:
-create dba-profile 201 name chenjingv201 type1 fix 40960
-raisecom(config)#
+命令create dba-profile 127 name chenjingv127 type4 max 1024000执行结果:
+create dba-profile 127 name chenjingv127 type4 max 1024000
+GPL116-X7-100.214(config)#
 
-命令show dba-profile all执行结果:
-show dba-profile all
+命令show dba-profile 127执行结果:
+show dba-profile 127
 Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
 -----------------------------------------------------------------------------------------------------------------------
-1           def_gp_1          type3  0          1024          1024000    best-effort    0         0       TM        7   
-200         chenjingv200      type1  20480      0             0          --             0         0       --        0   
-201         chenjingv201      type1  40960      0             0          --             0         0       --        0   
-516         def_ep_516        type3  0          10240         102400     best-effort    0         0       TM        1   
-517         def_xgspon_517    type3  0          1024          1024000    best-effort    0         0       SR        2   
-raisecom(config)#
+127         chenjingv127      type4  0          0             1024000    best-effort    0         0       TM        0   
+GPL116-X7-100.214(config)#
 
-命令gpon-onu-line-profile 201执行结果:
-gpon-onu-line-profile 201
-raisecom(config-gpon-onu-line-profile:201)#
+配置dba profile......
 
-命令create tcont 1 dba-profile 201执行结果:
-create tcont 1 dba-profile 201
-raisecom(config-gpon-onu-line-profile:201)#
+++++++++++++++++++++++++++++++++++++++++当前用例【dba_config_sfu】测试结果为:pass
+
+####################【dba_config_sfu】脚本测试执行结束!####################
+
+
+####################【line_config_sfu】脚本测试执行开始!####################
+
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+命令no gpon-onu-line-profile 127执行结果:
+no gpon-onu-line-profile 127
+GPL116-X7-100.214(config)#
+
+命令show gpon-onu-line-profile 127执行结果:
+show gpon-onu-line-profile 127
+GPL116-X7-100.214(config)#
+
+命令gpon-onu-line-profile 127执行结果:
+gpon-onu-line-profile 127
+GPL116-X7-100.214(config-gpon-onu-line-profile:127)#
+
+命令create tcont 1 dba-profile 127执行结果:
+create tcont 1 dba-profile 127
+GPL116-X7-100.214(config-gpon-onu-line-profile:127)#
 
 命令create gem 1 tcont 1执行结果:
 create gem 1 tcont 1
-raisecom(config-gpon-onu-line-profile:201)#
+GPL116-X7-100.214(config-gpon-onu-line-profile:127)#
 
-命令gem 1 mapping 1 vlan 201执行结果:
-gem 1 mapping 1 vlan 201
-raisecom(config-gpon-onu-line-profile:201)#
-
-命令omcc encryption enable执行结果:
-omcc encryption enable
-raisecom(config-gpon-onu-line-profile:201)#
-
-命令fec upstream enable执行结果:
-fec upstream enable
-raisecom(config-gpon-onu-line-profile:201)#
+命令gem 1 mapping 1 vlan 4000执行结果:
+gem 1 mapping 1 vlan 4000
+GPL116-X7-100.214(config-gpon-onu-line-profile:127)#
 
 命令commit执行结果:
 commit
-raisecom(config-gpon-onu-line-profile:201)#
+GPL116-X7-100.214(config-gpon-onu-line-profile:127)#
 
 命令exit执行结果:
 exit
-raisecom(config)#
+GPL116-X7-100.214(config)#
 
-命令show gpon-onu-line-profile all执行结果:
-show gpon-onu-line-profile all
-Profile ID  Profile Name      Ref.
-----------------------------------
-201         profile-201       0
-1024        Def_P_all         5
-1025        Def_P_all_xgs     0
-raisecom(config)#
-
-命令show gpon-onu-line-profile 201执行结果:
-show gpon-onu-line-profile 201
-LineProfile ID  : 201
-LineProfile Name: profile-201
+命令show gpon-onu-line-profile 127执行结果:
+show gpon-onu-line-profile 127
+LineProfile ID  : 127
+LineProfile Name: profile-127
 Ref. counter    : 0
-  FEC upstream: enable
-  OMCC encrypt: enable
+  FEC upstream: disable
+  OMCC encrypt: disable
   Mapping mode: VLAN
   ------------------------------------------------------------------------------
   T-CONT 0          DBA Profile Name: def_gp_1
-  T-CONT 1          DBA Profile Name: chenjingv201
+  T-CONT 1          DBA Profile Name: chenjingv127
     Gem Index    Encryption       Priority  USPolicing  DSPolicing   MAC limit
                 DS        US                                                    
     ----------------------------------------------------------------------------
@@ -141,295 +112,186 @@ Ref. counter    : 0
     ----------------------------------------------------------------------------
       Mapping Index  VLAN  Priority  Port Type  Port ID
       ----------------------------------------------------------------
-      1              201   --        --         --
+      1              4000  --        --         --
       ----------------------------------------------------------------
-raisecom(config)#
+GPL116-X7-100.214(config)#
 
-tips:检查单个line是否创建成功......
+tips:配置line profile......
 
-++++++++++++++++++++++++++++++++++++++++当前用例【line_add_uni】测试结果为:pass
+++++++++++++++++++++++++++++++++++++++++当前用例【line_config_sfu】测试结果为:pass
 
-#########################【line_add_uni】脚本测试执行结束!####################
-
-
-#########################【line_del_uni】脚本测试执行开始!####################
-
-172.17.100.214登录成功!
-
-命令show gpon-onu-line-profile all执行结果:
-show gpon-onu-line-profile all
-Profile ID  Profile Name      Ref.
-----------------------------------
-201         profile-201       0
-1024        Def_P_all         5
-1025        Def_P_all_xgs     0
-raisecom(config)#
-
-命令no gpon-onu-line-profile 201执行结果:
-no gpon-onu-line-profile 201
-raisecom(config)#
-
-命令no create dba-profile 201-205执行结果:
-no create dba-profile 201-205
-raisecom(config)#
-
-命令show dba-profile all执行结果:
-show dba-profile all
-Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
------------------------------------------------------------------------------------------------------------------------
-1           def_gp_1          type3  0          1024          1024000    best-effort    0         0       TM        7   
-200         chenjingv200      type1  20480      0             0          --             0         0       --        0   
-516         def_ep_516        type3  0          10240         102400     best-effort    0         0       TM        1   
-517         def_xgspon_517    type3  0          1024          1024000    best-effort    0         0       SR        2   
-raisecom(config)#
-
-命令show gpon-onu-line-profile all执行结果:
-show gpon-onu-line-profile all
-Profile ID  Profile Name      Ref.
-----------------------------------
-1024        Def_P_all         5
-1025        Def_P_all_xgs     0
-raisecom(config)#
-
-tips:检查单个line是否删除成功......
-
-++++++++++++++++++++++++++++++++++++++++当前用例【line_del_uni】测试结果为:pass
-
-#########################【line_del_uni】脚本测试执行结束!####################
+####################【line_config_sfu】脚本测试执行结束!####################
 
 
-#########################【line_add_mul】脚本测试执行开始!####################
+####################【service_config_sfu】脚本测试执行开始!####################
+
+
+设备登录中，请稍后......
 
 172.17.100.214登录成功!
 
-命令create dba-profile 201 name chenjingv201 type1 fix 40960执行结果:
-create dba-profile 201 name chenjingv201 type1 fix 40960
-raisecom(config)#
+命令no gpon-onu-service-profile 127执行结果:
+no gpon-onu-service-profile 127
+GPL116-X7-100.214(config)#
 
-命令show dba-profile all执行结果:
-show dba-profile all
-Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
------------------------------------------------------------------------------------------------------------------------
-1           def_gp_1          type3  0          1024          1024000    best-effort    0         0       TM        7   
-200         chenjingv200      type1  20480      0             0          --             0         0       --        0   
-201         chenjingv201      type1  40960      0             0          --             0         0       --        0   
-516         def_ep_516        type3  0          10240         102400     best-effort    0         0       TM        1   
-517         def_xgspon_517    type3  0          1024          1024000    best-effort    0         0       SR        2   
-raisecom(config)#
+命令show gpon-onu-service-profile 127执行结果:
+show gpon-onu-service-profile 127
+GPL116-X7-100.214(config)#
 
-命令gpon-onu-line-profile 201执行结果:
-gpon-onu-line-profile 201
-raisecom(config-gpon-onu-line-profile:201)#
+命令gpon-onu-service-profile 127执行结果:
+gpon-onu-service-profile 127
+GPL116-X7-100.214(config-gpon-onu-service-profile:127)#
 
-命令create tcont 1 dba-profile 201执行结果:
-create tcont 1 dba-profile 201
-raisecom(config-gpon-onu-line-profile:201)#
+命令port-num ethernet 4执行结果:
+port-num ethernet 4
+GPL116-X7-100.214(config-gpon-onu-service-profile:127)#
 
-命令create gem 1 tcont 1执行结果:
-create gem 1 tcont 1
-raisecom(config-gpon-onu-line-profile:201)#
+命令uni ethernet 1-4 vlan mode tagged执行结果:
+uni ethernet 1-4 vlan mode tagged
+GPL116-X7-100.214(config-gpon-onu-service-profile:127)#
 
-命令gem 1 mapping 1 vlan 201执行结果:
-gem 1 mapping 1 vlan 201
-raisecom(config-gpon-onu-line-profile:201)#
-
-命令omcc encryption enable执行结果:
-omcc encryption enable
-raisecom(config-gpon-onu-line-profile:201)#
-
-命令fec upstream enable执行结果:
-fec upstream enable
-raisecom(config-gpon-onu-line-profile:201)#
+命令uni ethernet 1-4 native vlan 4000执行结果:
+uni ethernet 1-4 native vlan 4000
+GPL116-X7-100.214(config-gpon-onu-service-profile:127)#
 
 命令commit执行结果:
 commit
-raisecom(config-gpon-onu-line-profile:201)#
+GPL116-X7-100.214(config-gpon-onu-service-profile:127)#
 
 命令exit执行结果:
 exit
-raisecom(config)#
+GPL116-X7-100.214(config)#
 
-命令show gpon-onu-line-profile all执行结果:
-show gpon-onu-line-profile all
-Profile ID  Profile Name      Ref.
-----------------------------------
-201         profile-201       0
-1024        Def_P_all         5
-1025        Def_P_all_xgs     0
-raisecom(config)#
+命令show gpon-onu-service-profile 127 | section-end WLAN执行结果:
+show gpon-onu-service-profile 127 | section-end WLAN
+ServiceProfile ID  : 127
+ServiceProfile Name: profile-127
+Ref. counter       : 0
+  MAC learning              : enable
+  MAC aging time(seconds)   : 300
+  Switchport isolation      : enable
+  DLF discard               : disable
+  Multicast mode            : snooping
+  VOIP type                 : sip
+  Iphost Num                : 2
+  Country code              : undefine
+  Time zone                 : undefine
+  VOIP IPhost Id            : 1
+  MNG-SVR IPhost Id         : 0
+  MNG-SVR PRI-Domain        : --
+  MNG-SVR BAK-Domain        : --
+  ---------------------------------------------------------
+  Type      Port Num
+  ---------------------------------------------------------
+  Ethernet  4
+  POTS      0
+  VEIP      0
+  CATV      0
+  WLAN      0
+GPL116-X7-100.214(config)#
 
-命令create dba-profile 202 name chenjingv202  type3 ass 10240 max 51200执行结果:
-create dba-profile 202 name chenjingv202  type3 ass 10240 max 51200
-raisecom(config)#
+tips:配置service profile......
 
-命令show dba-profile all执行结果:
-show dba-profile all
-Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
------------------------------------------------------------------------------------------------------------------------
-1           def_gp_1          type3  0          1024          1024000    best-effort    0         0       TM        8   
-200         chenjingv200      type1  20480      0             0          --             0         0       --        0   
-201         chenjingv201      type1  40960      0             0          --             0         0       --        1   
-202         chenjingv202      type3  0          10240         51200      best-effort    0         0       TM        0   
-516         def_ep_516        type3  0          10240         102400     best-effort    0         0       TM        1   
-517         def_xgspon_517    type3  0          1024          1024000    best-effort    0         0       SR        2   
-raisecom(config)#
+++++++++++++++++++++++++++++++++++++++++当前用例【service_config_sfu】测试结果为:pass
 
-命令gpon-onu-line-profile 202执行结果:
-gpon-onu-line-profile 202
-raisecom(config-gpon-onu-line-profile:202)#
-
-命令create tcont 2 dba-profile 202执行结果:
-create tcont 2 dba-profile 202
-raisecom(config-gpon-onu-line-profile:202)#
-
-命令create gem 2 tcont 2执行结果:
-create gem 2 tcont 2
-raisecom(config-gpon-onu-line-profile:202)#
-
-命令mapping-mode pri执行结果:
-mapping-mode pri
-raisecom(config-gpon-onu-line-profile:202)#
-
-命令gem 2 mapping 2 priority 2执行结果:
-gem 2 mapping 2 priority 2
-raisecom(config-gpon-onu-line-profile:202)#
-
-命令commit执行结果:
-commit
-raisecom(config-gpon-onu-line-profile:202)#
-
-命令exit执行结果:
-exit
-raisecom(config)#
-
-命令show gpon-onu-line-profile all执行结果:
-show gpon-onu-line-profile all
-Profile ID  Profile Name      Ref.
-----------------------------------
-201         profile-201       0
-202         profile-202       0
-1024        Def_P_all         5
-1025        Def_P_all_xgs     0
-raisecom(config)#
-
-命令create dba-profile 203 name chenjingv203 type5 fix 20480 assure 40960 max 51200执行结果:
-create dba-profile 203 name chenjingv203 type5 fix 20480 assure 40960 max 51200
-raisecom(config)#
-
-命令show dba-profile all执行结果:
-show dba-profile all
-Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
------------------------------------------------------------------------------------------------------------------------
-1           def_gp_1          type3  0          1024          1024000    best-effort    0         0       TM        9   
-200         chenjingv200      type1  20480      0             0          --             0         0       --        0   
-201         chenjingv201      type1  40960      0             0          --             0         0       --        1   
-202         chenjingv202      type3  0          10240         51200      best-effort    0         0       TM        1   
-203         chenjingv203      type5  20480      40960         51200      best-effort    0         0       TM        0   
-516         def_ep_516        type3  0          10240         102400     best-effort    0         0       TM        1   
-517         def_xgspon_517    type3  0          1024          1024000    best-effort    0         0       SR        2   
-raisecom(config)#
-
-命令gpon-onu-line-profile 203执行结果:
-gpon-onu-line-profile 203
-raisecom(config-gpon-onu-line-profile:203)#
-
-命令create tcont 3 dba-profile 203执行结果:
-create tcont 3 dba-profile 203
-raisecom(config-gpon-onu-line-profile:203)#
-
-命令create gem 3 tcont 3执行结果:
-create gem 3 tcont 3
-raisecom(config-gpon-onu-line-profile:203)#
-
-命令gem 3 mapping 3 vlan 203执行结果:
-gem 3 mapping 3 vlan 203
-raisecom(config-gpon-onu-line-profile:203)#
-
-命令omcc encryption enable执行结果:
-omcc encryption enable
-raisecom(config-gpon-onu-line-profile:203)#
-
-命令fec upstream enable执行结果:
-fec upstream enable
-raisecom(config-gpon-onu-line-profile:203)#
-
-命令commit执行结果:
-commit
-raisecom(config-gpon-onu-line-profile:203)#
-
-命令exit执行结果:
-exit
-raisecom(config)#
-
-命令show gpon-onu-line-profile all执行结果:
-show gpon-onu-line-profile all
-Profile ID  Profile Name      Ref.
-----------------------------------
-201         profile-201       0
-202         profile-202       0
-203         profile-203       0
-1024        Def_P_all         5
-1025        Def_P_all_xgs     0
-raisecom(config)#
-
-tips:检查多个line是否创建成功......
-
-++++++++++++++++++++++++++++++++++++++++当前用例【line_add_mul】测试结果为:pass
-
-#########################【line_add_mul】脚本测试执行结束!####################
+####################【service_config_sfu】脚本测试执行结束!####################
 
 
-#########################【line_del_mul】脚本测试执行开始!####################
+####################【bind_profile_sfu】脚本测试执行开始!####################
+
+
+设备登录中，请稍后......
 
 172.17.100.214登录成功!
 
-命令show gpon-onu-line-profile all执行结果:
-show gpon-onu-line-profile all
-Profile ID  Profile Name      Ref.
-----------------------------------
-201         profile-201       0
-202         profile-202       0
-203         profile-203       0
-1024        Def_P_all         5
-1025        Def_P_all_xgs     0
-raisecom(config)#
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       MONUH265           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/2     GPON120441AE      gpon    (g)       IGD                2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/3     MONU0000EFDB      gpon    (g)       MONUD401           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/4     RCMG4B08001B      gpon    (g)       GPU040-4G0F0P-TKPSE2023-07-28,18:05:05    active   1024 Def_P_all        1018    Def_4E
 
-命令no gpon-onu-line-profile 201-202执行结果:
-no gpon-onu-line-profile 201-202
-raisecom(config)#
+GPL116-X7-100.214(config)#
 
-命令show gpon-onu-line-profile all执行结果:
-show gpon-onu-line-profile all
-Profile ID  Profile Name      Ref.
-----------------------------------
-203         profile-203       0
-1024        Def_P_all         5
-1025        Def_P_all_xgs     0
-raisecom(config)#
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      online      2                2023-07-28,18:05:35  --                   --                          
+3/3/2      online      2                2023-07-28,18:05:35  --                   --                          
+3/3/3      online      84               2023-07-28,18:05:35  --                   --                          
+3/3/4      online      2                2023-07-28,18:05:35  --                   --                          
 
-tips:检查多个line是否删除成功......
+GPL116-X7-100.214(config)#
 
-++++++++++++++++++++++++++++++++++++++++当前用例【line_del_mul】测试结果为:pass
+命令int gpon-onu 3/3/4执行结果:
+int gpon-onu 3/3/4
+GPL116-X7-100.214(config-if-gpon-onu-3/3:4)#
 
-#########################【line_del_mul】脚本测试执行结束!####################
+命令state suspend执行结果:
+state suspend
+Please input 'yes' to confirm:
+
+命令yes执行结果:
+yes
+GPL116-X7-100.214(config-if-gpon-onu-3/3:4)#
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      online      2                2023-07-28,18:05:35  --                   --                          
+3/3/2      online      2                2023-07-28,18:05:35  --                   --                          
+3/3/3      online      84               2023-07-28,18:05:35  --                   --                          
+3/3/4      pending     0                2023-07-28,18:05:35  --                   --                          
+
+GPL116-X7-100.214(config-if-gpon-onu-3/3:4)#
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       MONUH265           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/2     GPON120441AE      gpon    (g)       IGD                2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/3     MONU0000EFDB      gpon    (g)       MONUD401           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/4     RCMG4B08001B      gpon    (g)       GPU040-4G0F0P-TKPSE2023-07-28,18:05:05    suspend  1024 Def_P_all        1018    Def_4E
+
+GPL116-X7-100.214(config-if-gpon-onu-3/3:4)#
+
+命令line-profile-id 127执行结果:
+line-profile-id 127
+GPL116-X7-100.214(config-if-gpon-onu-3/3:4)#JUL-28-2023 18:10:48  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/4/1 create gemport 162 (ulTunnelId 162) success
+JUL-28-2023 18:10:48  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/4, gponPonSysOnuMib.c 2888
 
 
-#########################【line_show】脚本测试执行开始!####################
+命令service-profile-id 127执行结果:
+service-profile-id 127
+GPL116-X7-100.214(config-if-gpon-onu-3/3:4)#JUL-28-2023 18:10:50  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/4/1 create gemport 162 (ulTunnelId 162) success
+JUL-28-2023 18:10:50  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/4, gponPonSysOnuMib.c 2888
 
-172.17.100.214登录成功!
 
-命令show gpon-onu-line-profile all执行结果:
-show gpon-onu-line-profile all
-Profile ID  Profile Name      Ref.
-----------------------------------
-203         profile-203       0
-1024        Def_P_all         5
-1025        Def_P_all_xgs     0
-raisecom(config)#
+命令state active执行结果:
+state active
+GPL116-X7-100.214(config-if-gpon-onu-3/3:4)#
 
-tips:检查line-profile 203是否存在......
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      online      2                2023-07-28,18:05:35  --                   --                          
+3/3/2      online      2                2023-07-28,18:05:35  --                   --                          
+3/3/3      online      84               2023-07-28,18:05:35  --                   --                          
+3/3/4      offline     0                2023-07-28,18:05:35  --                   --                          
 
-++++++++++++++++++++++++++++++++++++++++当前用例【line_show】测试结果为:pass
+GPL116-X7-100.214(config-if-gpon-onu-3/3:4)#
 
-#########################【line_show】脚本测试执行结束!####################
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       MONUH265           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/2     GPON120441AE      gpon    (g)       IGD                2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/3     MONU0000EFDB      gpon    (g)       MONUD401           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/4     RCMG4B08001B      gpon    (g)       Unknown            2023-07-28,18:05:05    active   127  profile-127      127     profile-127
+
+GPL116-X7-100.214(config-if-gpon-onu-3/3:4)#
+
+tips:绑定自定义dba profile、line profile和service profile......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【bind_profile_sfu】测试结果为:pass
+
+####################【bind_profile_sfu】脚本测试执行结束!####################
+
+
+####################【bind_onu_profile】脚本测试执行结束!####################
 
