@@ -193,14 +193,14 @@ class TelnetClient:
 
         for j in range(len(check_words)):
             if check_words[j] not in output_lst[-1]:
-                print(f'\n当前ONU为SFU型设备......\n')
+                print(f'\ntips:当前ONU为SFU型设备......\n')
                 self.dba_config_sfu()
                 self.line_config_sfu()
                 self.service_config_sfu()
                 self.bind_profile_sfu()
                 # break
             else:
-                print(f'\n当前ONU为HGU型设备......\n')
+                print(f'\ntips:当前ONU为HGU型设备......\n')
                 self.dba_config_hgu()
                 self.line_config_hgu()
                 self.service_config_hgu()
