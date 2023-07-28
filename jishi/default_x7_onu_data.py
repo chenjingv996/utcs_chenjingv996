@@ -451,8 +451,8 @@ if __name__ == '__main__':
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
-    telnet.clear_onu_config()
-    telnet.check_onu_state()
+    # telnet.clear_onu_config()
+    # telnet.check_onu_state()
     telnet.bind_onu_profile()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output

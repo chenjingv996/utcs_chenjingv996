@@ -1,7 +1,7 @@
 
-测试开始时间为:Fri May 19 11:06:40 2023
+测试开始时间为:Fri Jul 28 18:11:05 2023
 
-####################【check_onu】脚本测试执行开始!####################
+####################【clear_onu_config】脚本测试执行开始!####################
 
 
 设备登录中，请稍后......
@@ -10,390 +10,211 @@
 
 命令int gpon-olt 3/3执行结果:
 int gpon-olt 3/3
-raisecom(config-if-gpon-olt-3:3)#
-
-命令authorization mode none执行结果:
-authorization mode none
-raisecom(config-if-gpon-olt-3:3)#
-
-命令no creat gpon-onu 1执行结果:
-no creat gpon-onu 1
-Delete ONU 1 successfully
-MAY-19-2023 19:06:39  if-1-Link state change down: gpon-olt3/3 link down.
-raisecom(config-if-gpon-olt-3:3)#MAY-19-2023 19:06:42  if-1-Link state change down: vlan100 link down.
-MAY-19-2023 19:06:42  if-1-Link state change down: vlan4000 link down.
-
-
-命令show interface gpon-olt 3/3 illegal-onu | in 3/3执行结果:
-show interface gpon-olt 3/3 illegal-onu | in 3/3
-raisecom(config-if-gpon-olt-3:3)#
+GPL116-X7-100.214(config-if-gpon-olt-3:3)#
 
 命令show interface gpon-onu creation-information | in 3/3执行结果:
 show interface gpon-onu creation-information | in 3/3
-3/3/1     RCMG4B08001B      gpon    (g)       --                 2023-05-19,19:06:42    --       --   --               --      --
+3/3/1     GPON120441AE      gpon    (g)       IGD                2023-07-28,17:46:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/2     MONU0000EFDB      gpon    (g)       MONUD401           2023-07-28,17:46:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/3     RCMG4B08001B      gpon    (g)       GPU040-4G0F0P-TKPSE2023-07-28,17:48:05    active   127  profile-127      127     profile-127
+3/3/4     GPON00F0B8B0      gpon    (g)       MONUH265           2023-07-28,17:46:05    active   1024 Def_P_all        1006    Def_VEIP
 
-raisecom(config-if-gpon-olt-3:3)#
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-show interface gpon-onu online-information | in 3/3
-3/3/1      offline     0                --                   --                   --                          
-
-raisecom(config-if-gpon-olt-3:3)#
-
-tips:检查测试ONU在线状态......
-
-第1次检查当前ONU在线状态......
+GPL116-X7-100.214(config-if-gpon-olt-3:3)#
 
 命令show interface gpon-onu online-information | in 3/3执行结果:
 show interface gpon-onu online-information | in 3/3
-3/3/1      offline     0                --                   --                   --                          
+3/3/1      online      2                2023-07-28,17:46:35  --                   --                          
+3/3/2      online      84               2023-07-28,17:46:35  --                   --                          
+3/3/3      online      2                2023-07-28,17:51:35  2023-07-28,17:51:35  --                          
+3/3/4      online      2                2023-07-28,17:46:35  --                   --                          
 
-raisecom(config-if-gpon-olt-3:3)#
+GPL116-X7-100.214(config-if-gpon-olt-3:3)#
 
-第2次检查当前ONU在线状态......
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-show interface gpon-onu online-information | in 3/3
-3/3/1      offline     0                --                   --                   --                          
-
-raisecom(config-if-gpon-olt-3:3)#
-
-第3次检查当前ONU在线状态......
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-show interface gpon-onu online-information | in 3/3
-3/3/1      offline     0                --                   --                   --                          
-
-raisecom(config-if-gpon-olt-3:3)#
-
-第4次检查当前ONU在线状态......
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-show interface gpon-onu online-information | in 3/3
-3/3/1      offline     0                --                   --                   --                          
-
-raisecom(config-if-gpon-olt-3:3)#
-
-第5次检查当前ONU在线状态......
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-show interface gpon-onu online-information | in 3/3
-3/3/1      offline     0                --                   --                   --                          
-
-raisecom(config-if-gpon-olt-3:3)#MAY-19-2023 19:07:17  gpon-onu-remote-3-ONU 3/3/1 register, OnuRegType g(0)! 
-MAY-19-2023 19:07:18  onu-register-4-ONU Register: ONU 3/3/1 Registration, SN: RCMG4B08001B.
+命令no create gpon-onu 1-10执行结果:
+no create gpon-onu 1-10
+Delete ONU 1 successfully
 
 
-第6次检查当前ONU在线状态......
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-show interface gpon-onu online-information | in 3/3
-3/3/1      online      2                2023-05-19,19:07:17  --                   --                          
-
-raisecom(config-if-gpon-olt-3:3)#MAY-19-2023 19:07:18  if-1-Link state change up: gpon-olt3/3 link up.
-MAY-19-2023 19:07:21  if-1-Link state change up: vlan100 link up.
-MAY-19-2023 19:07:21  if-1-Link state change up: vlan4000 link up.
+命令exit执行结果:
+Delete ONU 2 successfully
+Delete ONU 3 successfully
 
 
-第7次检查当前ONU在线状态......
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-show interface gpon-onu online-information | in 3/3
-3/3/1      online      2                2023-05-19,19:07:17  --                   --                          
-
-raisecom(config-if-gpon-olt-3:3)#
-
-第8次检查当前ONU在线状态......
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-show interface gpon-onu online-information | in 3/3
-3/3/1      online      2                2023-05-19,19:07:17  --                   --                          
-
-raisecom(config-if-gpon-olt-3:3)#
-
-第9次检查当前ONU在线状态......
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-show interface gpon-onu online-information | in 3/3
+命令no gpon-onu-line-profile 127-128执行结果:
+Delete ONU 4 successfully
 
 
-第10次检查当前ONU在线状态......
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-3/3/1      online      2                2023-05-19,19:07:17  --                   --                          
-MAY-19-2023 19:07:31  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 160 (ulTunnelId 160) success
-
-raisecom(config-if-gpon-olt-3:3)#ow interface gpon-onu online-information | in 3/3
-Error : " ow interface gpon-onu online-information | in 3/3 "  Unknown command.
-raisecom(config-if-gpon-olt-3:3)#MAY-19-2023 19:07:31  gpon-onu-remote-5-Config download: ONU 3/3/1 pon-sys config download success
-MAY-19-2023 19:07:32  gpon-onu-remote-3-ONU 3/3/1 ME class ME SERVICE CLASSIFICATION MEid 0x0000 response error(0)(5)
-MAY-19-2023 19:07:32  gpon-onu-remote-3-ONU 3/3/1 ME class ME SERVICE CLASSIFICATION MEid 0x0001 response error(0)(5)
-MAY-19-2023 19:07:32  gpon-onu-remote-5-Config download: ONU 3/3/1 config download success. 
+命令show gpon-onu-line-profile 127-128执行结果:
+GPL116-X7-100.214(config-if-gpon-olt-3:3)#exit
+GPL116-X7-100.214(config)#no gpon-onu-line-profile 127-128
+GPL116-X7-100.214(config)#show gpon-onu-line-profile 127-128
+GPL116-X7-100.214(config)#JUL-28-2023 18:04:46  if-1-Link state change down: gpon-olt3/3 link down.
 
 
-++++++++++++++++++++++++++++++++++++++++当前用例【check_onu】测试结果为:pass
-
-####################【check_onu】脚本测试执行结束!####################
-
-
-####################【dba_config】脚本测试执行开始!####################
+命令no gpon-onu-service-profile 127-128执行结果:
+no gpon-onu-service-profile 127-128
+GPL116-X7-100.214(config)#JUL-28-2023 18:04:47  if-1-Link state change down: vlan100 link down.
+JUL-28-2023 18:04:47  if-1-Link state change down: vlan101 link down.
 
 
-设备登录中，请稍后......
+命令show gpon-onu-service-profile 127-128执行结果:
+show gpon-onu-service-profile 127-128
+GPL116-X7-100.214(config)#
 
-172.17.100.214登录成功!
-
-命令no gpon-onu-line-profile 127执行结果:
-no gpon-onu-line-profile 127
-raisecom(config)#
-
-命令no create dba-profile 127执行结果:
-no create dba-profile 127
-raisecom(config)#
-
-命令show dba-profile 127执行结果:
-show dba-profile 127
-Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
------------------------------------------------------------------------------------------------------------------------
-raisecom(config)#
-
-命令create dba-profile 127 name chenjingv127 type4 max 1024000执行结果:
-create dba-profile 127 name chenjingv127 type4 max 1024000
-raisecom(config)#
-
-命令show dba-profile 127执行结果:
-show dba-profile 127
+命令show dba-profile 127-128执行结果:
+show dba-profile 127-128
 Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
 -----------------------------------------------------------------------------------------------------------------------
 127         chenjingv127      type4  0          0             1024000    best-effort    0         0       TM        0   
-raisecom(config)#
-
-配置dba profile......
-
-++++++++++++++++++++++++++++++++++++++++当前用例【dba_config】测试结果为:pass
-
-####################【dba_config】脚本测试执行结束!####################
-
-
-####################【line_config】脚本测试执行开始!####################
-
-
-设备登录中，请稍后......
-
-172.17.100.214登录成功!
-
-命令no gpon-onu-line-profile 127执行结果:
-no gpon-onu-line-profile 127
-raisecom(config)#
-
-命令show gpon-onu-line-profile 127执行结果:
-show gpon-onu-line-profile 127
-raisecom(config)#
-
-命令gpon-onu-line-profile 127执行结果:
-gpon-onu-line-profile 127
-raisecom(config-gpon-onu-line-profile:127)#
-
-命令create tcont 1 dba-profile 127执行结果:
-create tcont 1 dba-profile 127
-raisecom(config-gpon-onu-line-profile:127)#
-
-命令create gem 1 tcont 1执行结果:
-create gem 1 tcont 1
-raisecom(config-gpon-onu-line-profile:127)#
-
-命令gem 1 mapping 1 vlan 4000执行结果:
-gem 1 mapping 1 vlan 4000
-raisecom(config-gpon-onu-line-profile:127)#
-
-命令commit执行结果:
-commit
-raisecom(config-gpon-onu-line-profile:127)#
-
-命令exit执行结果:
-exit
-raisecom(config)#
-
-命令show gpon-onu-line-profile 127执行结果:
-show gpon-onu-line-profile 127
-LineProfile ID  : 127
-LineProfile Name: profile-127
-Ref. counter    : 0
-  FEC upstream: disable
-  OMCC encrypt: disable
-  Mapping mode: VLAN
-  ------------------------------------------------------------------------------
-  T-CONT 0          DBA Profile Name: def_gp_1
-  T-CONT 1          DBA Profile Name: chenjingv127
-    Gem Index    Encryption       Priority  USPolicing  DSPolicing   MAC limit
-                DS        US                                                    
-    ----------------------------------------------------------------------------
-    1         disable   disable   0         0           0            unlimited
-    ----------------------------------------------------------------------------
-      Mapping Index  VLAN  Priority  Port Type  Port ID
-      ----------------------------------------------------------------
-      1              4000  --        --         --
-      ----------------------------------------------------------------
-raisecom(config)#
-
-tips:配置line profile......
-
-++++++++++++++++++++++++++++++++++++++++当前用例【line_config】测试结果为:pass
-
-####################【line_config】脚本测试执行结束!####################
-
-
-####################【service_config】脚本测试执行开始!####################
-
-
-设备登录中，请稍后......
-
-172.17.100.214登录成功!
-
-命令no gpon-onu-service-profile 127执行结果:
-no gpon-onu-service-profile 127
-raisecom(config)#
-
-命令show gpon-onu-service-profile 127执行结果:
-show gpon-onu-service-profile 127
-raisecom(config)#
-
-命令gpon-onu-service-profile 127执行结果:
-gpon-onu-service-profile 127
-raisecom(config-gpon-onu-service-profile:127)#
-
-命令port-num ethernet 4执行结果:
-port-num ethernet 4
-raisecom(config-gpon-onu-service-profile:127)#
-
-命令uni ethernet 1-4 vlan mode tagged执行结果:
-uni ethernet 1-4 vlan mode tagged
-raisecom(config-gpon-onu-service-profile:127)#
-
-命令uni ethernet 1-4 native vlan 4000执行结果:
-uni ethernet 1-4 native vlan 4000
-raisecom(config-gpon-onu-service-profile:127)#
-
-命令commit执行结果:
-commit
-raisecom(config-gpon-onu-service-profile:127)#
-
-命令exit执行结果:
-exit
-raisecom(config)#
-
-命令show gpon-onu-service-profile 127 | section-end WLAN执行结果:
-show gpon-onu-service-profile 127 | section-end WLAN
-ServiceProfile ID  : 127
-ServiceProfile Name: profile-127
-Ref. counter       : 0
-  MAC learning              : enable
-  MAC aging time(seconds)   : 300
-  Switchport isolation      : enable
-  DLF discard               : disable
-  Multicast mode            : snooping
-  VOIP type                 : sip
-  Iphost Num                : 2
-  Country code              : undefine
-  Time zone                 : undefine
-  VOIP IPhost Id            : 1
-  MNG-SVR IPhost Id         : 0
-  MNG-SVR PRI-Domain        : --
-  MNG-SVR BAK-Domain        : --
-  ---------------------------------------------------------
-  Type      Port Num
-  ---------------------------------------------------------
-  Ethernet  4
-  POTS      0
-  VEIP      0
-  CATV      0
-  WLAN      0
-raisecom(config)#
-
-tips:配置service profile......
-
-++++++++++++++++++++++++++++++++++++++++当前用例【service_config】测试结果为:pass
-
-####################【service_config】脚本测试执行结束!####################
-
-
-####################【bind_profile】脚本测试执行开始!####################
-
-
-设备登录中，请稍后......
-
-172.17.100.214登录成功!
-
-命令show interface gpon-onu creation-information | in 3/3执行结果:
-show interface gpon-onu creation-information | in 3/3
-3/3/1     RCMG4B08001B      gpon    (g)       5104-GP-PSE        2023-05-19,19:06:42    active   1024 Def_P_all        1018    Def_4E
-
-raisecom(config)#
+128         chenjingv128      type4  0          0             1024000    best-effort    0         0       TM        0   
+GPL116-X7-100.214(config)#
 
 命令show interface gpon-onu online-information | in 3/3执行结果:
 show interface gpon-onu online-information | in 3/3
-3/3/1      online      2                2023-05-19,19:07:17  --                   --                          
 
-raisecom(config)#
-
-命令int gpon-onu 3/3/1执行结果:
-int gpon-onu 3/3/1
-raisecom(config-if-gpon-onu-3/3:1)#
-
-命令state suspend执行结果:
-state suspend
-Please input 'yes' to confirm:
-
-命令yes执行结果:
-yes
-raisecom(config-if-gpon-onu-3/3:1)#MAY-19-2023 19:11:24  if-1-Link state change down: gpon-olt3/3 link down.
-
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-show interface gpon-onu online-information | in 3/3
-3/3/1      pending     0                2023-05-19,19:07:17  --                   --                          
-
-raisecom(config-if-gpon-onu-3/3:1)#MAY-19-2023 19:11:27  if-1-Link state change down: vlan100 link down.
-MAY-19-2023 19:11:27  if-1-Link state change down: vlan4000 link down.
-
+GPL116-X7-100.214(config)#
 
 命令show interface gpon-onu creation-information | in 3/3执行结果:
 show interface gpon-onu creation-information | in 3/3
-3/3/1     RCMG4B08001B      gpon    (g)       5104-GP-PSE        2023-05-19,19:06:42    suspend  1024 Def_P_all        1018    Def_4E
 
-raisecom(config-if-gpon-onu-3/3:1)#
+GPL116-X7-100.214(config)#
 
-命令line-profile-id 127执行结果:
-line-profile-id 127
+tips:将该PON口下所有ONU恢复缺省模板配置......
 
-
-命令service-profile-id 127执行结果:
-raisecom(config-if-gpon-onu-3/3:1)#MAY-19-2023 19:11:37  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 160 (ulTunnelId 160) success
-MAY-19-2023 19:11:37  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2886
-service-profile-id 127
-
-
-命令state active执行结果:
-
-
-命令show interface gpon-onu online-information | in 3/3执行结果:
-raisecom(config-if-gpon-onu-3/3:1)#MAY-19-2023 19:11:43  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 160 (ulTunnelId 160) success
-MAY-19-2023 19:11:43  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2886
-state active
-raisecom(config-if-gpon-onu-3/3:1)#show interface gpon-onu online-information | in 3/3
-3/3/1      offline     0                2023-05-19,19:07:17  --                   --                          
-
+第1次检查当前ONU模板状态......
 
 命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
 
-raisecom(config-if-gpon-onu-3/3:1)#show interface gpon-onu creation-information | in 3/3
-3/3/1     RCMG4B08001B      gpon    (g)       Unknown            2023-05-19,19:06:42    active   127  profile-127      127     profile-127
+GPL116-X7-100.214(config)#
 
-raisecom(config-if-gpon-onu-3/3:1)#
+第2次检查当前ONU模板状态......
 
-tips:绑定自定义line profile和service profile......
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
 
-++++++++++++++++++++++++++++++++++++++++当前用例【bind_profile】测试结果为:pass
+GPL116-X7-100.214(config)#
 
-####################【bind_profile】脚本测试执行结束!####################
+第3次检查当前ONU模板状态......
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/2     GPON120441AE      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/3     MONU0000EFDB      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/4     RCMG4B08001B      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+
+GPL116-X7-100.214(config)#
+
+第4次检查当前ONU模板状态......
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/2     GPON120441AE      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/3     MONU0000EFDB      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/4     RCMG4B08001B      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+
+GPL116-X7-100.214(config)#
+
+第5次检查当前ONU模板状态......
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/2     GPON120441AE      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/3     MONU0000EFDB      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/4     RCMG4B08001B      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+
+GPL116-X7-100.214(config)#
+
+第6次检查当前ONU模板状态......
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/2     GPON120441AE      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/3     MONU0000EFDB      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+3/3/4     RCMG4B08001B      gpon    (g)       --                 2023-07-28,18:05:05    --       --   --               --      --
+
+GPL116-X7-100.214(config)#JUL-28-2023 18:05:35  gpon-onu-remote-3-ONU 3/3/4 register, OnuRegType g(0)! 
+JUL-28-2023 18:05:35  gpon-onu-remote-3-ONU 3/3/3 register, OnuRegType g(0)! 
+JUL-28-2023 18:05:35  onu-register-4-ONU Register: ONU 3/3/4 Registration, SN: RCMG4B08001B.
+JUL-28-2023 18:05:35  gpon-onu-remote-3-ONU 3/3/2 register, OnuRegType g(0)! 
+JUL-28-2023 18:05:35  onu-register-4-ONU Register: ONU 3/3/3 Registration, SN: MONU0000EFDB.
+JUL-28-2023 18:05:35  gpon-onu-remote-3-ONU 3/3/1 register, OnuRegType g(0)! 
+JUL-28-2023 18:05:35  onu-register-4-ONU Register: ONU 3/3/2 Registration, SN: GPON120441AE.
+JUL-28-2023 18:05:36  onu-register-4-ONU Register: ONU 3/3/1 Registration, SN: GPON00F0B8B0.
+JUL-28-2023 18:05:37  if-1-Link state change up: gpon-olt3/3 link up.
+JUL-28-2023 18:05:37  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/3/1 create gemport 160 (ulTunnelId 160) success
+JUL-28-2023 18:05:37  gpon-onu-remote-5-Config download: ONU 3/3/3 pon-sys config download success
+JUL-28-2023 18:05:38  if-1-Link state change up: vlan100 link up.
+JUL-28-2023 18:05:38  if-1-Link state change up: vlan101 link up.
+
+
+第7次检查当前ONU模板状态......
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       --                 2023-07-28,18:05:05    active   --   --               --      --
+3/3/2     GPON120441AE      gpon    (g)       --                 2023-07-28,18:05:05    active   --   --               --      --
+3/3/3     MONU0000EFDB      gpon    (g)       MONUD401           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/4     RCMG4B08001B      gpon    (g)       --                 2023-07-28,18:05:05    active   --   --               --      --
+
+GPL116-X7-100.214(config)#JUL-28-2023 18:05:39  gpon-onu-remote-5-Config download: ONU 3/3/3 config download success. 
+JUL-28-2023 18:05:42  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
+JUL-28-2023 18:05:42  gpon-onu-remote-5-Config download: ONU 3/3/1 pon-sys config download success
+JUL-28-2023 18:05:43  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/4/1 create gemport 162 (ulTunnelId 162) success
+JUL-28-2023 18:05:43  gpon-onu-remote-5-Config download: ONU 3/3/4 pon-sys config download success
+JUL-28-2023 18:05:43  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 163 (ulTunnelId 163) success
+JUL-28-2023 18:05:43  gpon-onu-remote-5-Config download: ONU 3/3/2 pon-sys config download success
+JUL-28-2023 18:05:44  gpon-onu-remote-3-ONU 3/3/4 ME class ME SERVICE CLASSIFICATION MEid 0x0000 response error(0)(5)
+JUL-28-2023 18:05:44  gpon-onu-remote-3-ONU 3/3/4 ME class ME SERVICE CLASSIFICATION MEid 0x0001 response error(0)(5)
+JUL-28-2023 18:05:44  gpon-onu-remote-5-Config download: ONU 3/3/4 config download success. 
+JUL-28-2023 18:05:45  gpon-onu-remote-5-Config download: ONU 3/3/2 config download success. 
+
+
+第8次检查当前ONU模板状态......
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       MONUH265           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/2     GPON120441AE      gpon    (g)       IGD                2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/3     MONU0000EFDB      gpon    (g)       MONUD401           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/4     RCMG4B08001B      gpon    (g)       GPU040-4G0F0P-TKPSE2023-07-28,18:05:05    active   1024 Def_P_all        1018    Def_4E
+
+GPL116-X7-100.214(config)#JUL-28-2023 18:05:50  gpon-onu-remote-5-Config download: ONU 3/3/1 config download success. 
+
+
+第9次检查当前ONU模板状态......
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       MONUH265           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/2     GPON120441AE      gpon    (g)       IGD                2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/3     MONU0000EFDB      gpon    (g)       MONUD401           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/4     RCMG4B08001B      gpon    (g)       GPU040-4G0F0P-TKPSE2023-07-28,18:05:05    active   1024 Def_P_all        1018    Def_4E
+
+GPL116-X7-100.214(config)#
+
+第10次检查当前ONU模板状态......
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     GPON00F0B8B0      gpon    (g)       MONUH265           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/2     GPON120441AE      gpon    (g)       IGD                2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/3     MONU0000EFDB      gpon    (g)       MONUD401           2023-07-28,18:05:05    active   1024 Def_P_all        1006    Def_VEIP
+3/3/4     RCMG4B08001B      gpon    (g)       GPU040-4G0F0P-TKPSE2023-07-28,18:05:05    active   1024 Def_P_all        1018    Def_4E
+
+GPL116-X7-100.214(config)#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【clear_onu_config】测试结果为:pass
+
+####################【clear_onu_config】脚本测试执行结束!####################
+
+
+####################【check_onu_state】脚本测试执行开始!####################
+
+
+设备登录中，请稍后......
 
