@@ -18,11 +18,12 @@ class TelnetClient:
         self.cmd_2='terminal page-break disable'
         self.cmd_3='conf t'
         self.tn = telnetlib.Telnet()
-        self.pon_id = '3/3'
-        self.onu_id = sys.argv[1]
+        self.pon_id = '/'.join(sys.argv[1].split('/')[:2])
+        self.onu_id = sys.argv[1].split('/')[-1]
         self.onu_mode1 ='SFU'
         self.onu_mode2 ='HGU'
-        
+    
+    #定义装饰器动作    
     def outer(fun_name):
         def wrapper(*args,**kwargs):
             test_exec1="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
@@ -97,6 +98,7 @@ class TelnetClient:
         print(f'\n{res}')
         self.tn.logfile=output.write(f'\n{res}\n')
     
+    #返回执行结果res1
     def check_res1(self,cn,cmds,check_name,check_words,output_lst):
         for i in range(len(cmds)):
             # 执行命令
@@ -118,7 +120,8 @@ class TelnetClient:
                 break
         else:
             self.pass_res(cn)
-
+   
+    #返回执行结果res2
     def check_res2(self,cn,cmds,check_name,check_words,output_lst):
         for i in range(len(cmds)):
             # 执行命令
@@ -140,12 +143,13 @@ class TelnetClient:
                 break
         else:
             self.pass_res(cn)
-            
+    
+    #循环检查10次    
     def check_loop(self,cn,cmds,check_name,check_words,output_lst,title_loop):
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
-            sleep(2)
+            sleep(3)
             # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
             output_lst.append(cmds_res)
@@ -163,7 +167,7 @@ class TelnetClient:
                 self.tn.logfile=output.write(f'\n{cnt_loop}\n')
                 # 执行命令
                 self.tn.write(cmds[-1].encode('ascii')+b'\n')
-                sleep(7)
+                sleep(6)
                 # 获取命令结果
                 cmds_res = self.tn.read_very_eager().decode('utf-8')
                 output_lst.append(cmds_res)
@@ -175,8 +179,9 @@ class TelnetClient:
                 break
         else:
             self.pass_res(cn)
-            
-    def check_onu_type(self,cn,cmds,check_name,check_words,output_lst):
+    
+    #检查ONU类型并绑定所有模版
+    def check_type(self,cmds,check_name,check_words,output_lst):
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\n')
@@ -191,21 +196,19 @@ class TelnetClient:
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
 
-        for j in range(len(check_words)):
-            if check_words[j] not in output_lst[-1]:
-                print(f'\ntips:当前ONU为SFU型设备......\n')
-                self.dba_config_sfu()
-                self.line_config_sfu()
-                self.service_config_sfu()
-                self.bind_profile_sfu()
-                # break
-            else:
-                print(f'\ntips:当前ONU为HGU型设备......\n')
-                self.dba_config_hgu()
-                self.line_config_hgu()
-                self.service_config_hgu()
-                self.bind_profile_hgu()
-                
+        if check_words[0] in output_lst[-1]:    
+            print(f'\ntips:当前ONU为SFU型设备......\n')
+            self.dba_config_sfu()
+            self.line_config_sfu()
+            self.service_config_sfu()
+            self.bind_profile_sfu()
+        else: 
+            print(f'\ntips:当前ONU为HGU型设备......\n')
+            self.dba_config_hgu()
+            self.line_config_hgu()
+            self.service_config_hgu()
+            self.bind_profile_hgu()
+    
     @outer
     def check_onu_state(self):
         self.login_host()
@@ -252,7 +255,6 @@ class TelnetClient:
         cmds=['no gpon-onu-line-profile 127',
               'show gpon-onu-line-profile 127',
               'gpon-onu-line-profile 127',
-            #   'mapping-mode port',
               'create tcont 1 dba-profile 127',
               'create gem 1 tcont 1',
               'gem 1 mapping 1 vlan 4000',
@@ -402,20 +404,19 @@ class TelnetClient:
     def bind_onu_profile(self):
         self.login_host()
         
-        cn=sys._getframe().f_code.co_name
-        cmds=['show interface gpon-onu creation-information | in {}/{}'.format(self.pon_id,self.onu_id)]
+        #cn=sys._getframe().f_code.co_name
+        cmds=['show gpon-onu {}/{} capability | in ype'.format(self.pon_id,self.onu_id)]
         #绑定自定义dba profile、line profile和service profile......
         check_name='tips:绑定自定义dba profile、line profile和service profile......'
-        check_words=['Def_VEIP']
+        check_words=['sfu','hgu']
         output_lst=[]
-        self.check_onu_type(cn,cmds,check_name,check_words,output_lst)
+        self.check_type(cmds,check_name,check_words,output_lst)
 
         self.logout_host()           
 
     @outer
     def clear_onu_config(self):
         self.login_host()
-        # print(f'\n{self.pon_id}\n')
         cn=sys._getframe().f_code.co_name
         cmds=['int gpon-olt {}'.format(self.pon_id),
               'show interface gpon-onu creation-information | in {}'.format(self.pon_id),
@@ -452,9 +453,9 @@ if __name__ == '__main__':
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     # telnet.clear_onu_config()
-    # telnet.check_onu_state()
+    telnet.check_onu_state()
     telnet.bind_onu_profile()
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
-#执行方式：python3 default_x7_onu_data.py 3
+#执行方式：python3 default_x7_onu_data.py 3/3/3
