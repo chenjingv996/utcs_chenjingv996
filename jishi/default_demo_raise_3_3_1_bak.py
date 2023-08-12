@@ -259,13 +259,13 @@ class TelnetClient:
         self.tn.logfile=output.write(f'\n{res_1}\n{cmds_res_1}\n')
         
         if check_words_1 in cmds_res_1:
-            cfg_res_1='该ONU已绑定自定义模版{}......'.format(check_words_1)
+            cfg_res_1='该ONU已绑定自定义模版-{},无需重复配置......'.format(check_words_1)
             print(f'{cfg_res_1}\n')
             self.tn.logfile=output.write(f'{cfg_res_1}\n')
             self.pass_res(cn)
             return True           
         else:
-            cfg_res_2='该ONU未绑定自定义模版{},配置中......'.format(check_words_1)
+            cfg_res_2='该ONU未绑定自定义模版-{},配置中请稍后......'.format(check_words_1)
             print(f'{cfg_res_2}\n')
             self.tn.logfile=output.write(f'{cfg_res_2}\n')
             self.tn.write(cmds_2.encode('ascii') + b'\n')
