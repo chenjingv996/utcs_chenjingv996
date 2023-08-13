@@ -19,8 +19,10 @@ class TelnetClient:
         self.tn = telnetlib.Telnet()
         self.pon_id = '/'.join(sys.argv[1].split('/')[:2])
         self.onu_id = sys.argv[1].split('/')[-1]
-        self.onu_mode1 ='SFU'
-        self.onu_mode2 ='HGU'
+        self.onu_type1 ='SFU'
+        self.onu_type2 ='HGU'
+        self.dba_type1='dba-profile 127'
+        self.dba_type2='dba-profile 128'
         
     def outer(fun_name):
         def wrapper(*args,**kwargs):
@@ -233,16 +235,16 @@ class TelnetClient:
         self.login_host()
 
         cn=sys._getframe().f_code.co_name
-        cmds_1='show interface gpon-onu cr'
+        cmds_info='show interface gpon-onu cr'
         #检查测试ONU接口状态......
         check_name='tips:检查测试ONU接口状态......'
         check_words='{}/{}'.format(self.pon_id,self.onu_id)
         # 执行命令
-        self.tn.write(cmds_1.encode('ascii')+b'\n')
+        self.tn.write(cmds_info.encode('ascii')+b'\n')
         time.sleep(1)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        res_1="命令"+cmds_1+"执行结果:"
+        res_1="命令"+cmds_info+"执行结果:"
         print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         
@@ -261,20 +263,68 @@ class TelnetClient:
         self.logout_host()    
     
     @outer
-    def dba_config(self):
+    def dba_config_sfu(self):
         self.login_host()
         
-        cn=sys._getframe().f_code.co_name 
-        cmds=['no gpon-onu-line-profile 127',
-              'no create dba-profile 127',
-              'show dba-profile 127',
-              'create dba-profile 127 name chenjingv127 type4 max 1024000',
-              'show dba-profile 127']
+        cn=sys._getframe().f_code.co_name
+        cmds=['create dba-profile 127 name chenjingv127 type4 max 1024000',
+              'show {}'.format(self.dba_type1)]
         #配置dba profile···
-        check_name='配置dba profile......'
-        check_words=['127         chenjingv127      type4']
+        check_name='tips:配置dba profile......'
+        check_words='127         chenjingv127      type4'
         output_lst=[]
-        self.check_res1(cn,cmds,check_name,check_words,output_lst)
+        # 执行命令
+        self.tn.write(cmds[-1].encode('ascii')+b'\n')
+        time.sleep(1)
+        # 获取命令结果
+        cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
+        res_1="命令"+cmds[-1]+"执行结果:"
+        print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
+        
+        if check_words in cmds_res_1:
+            cfg_res_1='已存在{}类型dba模版-{}，无需重复配置......'.format(self.onu_type1,self.dba_type1)
+            print(f'\n{cfg_res_1}\n')
+            self.tn.logfile=output.write(f'\n{cfg_res_1}\n')
+            self.pass_res(cn)         
+        else:
+            cfg_res_2='不存在{}类型dba模版-{}，配置中请稍后......'.format(self.onu_type1,self.dba_type1)
+            print(f'\n{cfg_res_2}\n')
+            self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
+            self.check_res1(cn,cmds,check_words,output_lst)
+        
+        self.logout_host()
+        
+    @outer
+    def dba_config_hgu(self):
+        self.login_host()
+        
+        cn=sys._getframe().f_code.co_name
+        cmds=['create dba-profile 128 name chenjingv128 type4 max 1024000',
+              'show {}'.format(self.dba_type2)]
+        #配置dba profile···
+        check_name='tips:配置dba profile......'
+        check_words='128         chenjingv128      type4'
+        output_lst=[]
+        # 执行命令
+        self.tn.write(cmds[-1].encode('ascii')+b'\n')
+        time.sleep(1)
+        # 获取命令结果
+        cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
+        res_1="命令"+cmds[-1]+"执行结果:"
+        print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
+        
+        if check_words in cmds_res_1:
+            cfg_res_1='已存在{}类型dba模版-{}，无需重复配置......'.format(self.onu_type2,self.dba_type2)
+            print(f'\n{cfg_res_1}\n')
+            self.tn.logfile=output.write(f'\n{cfg_res_1}\n')
+            self.pass_res(cn)         
+        else:
+            cfg_res_2='不存在{}类型dba模版-{}，配置中请稍后......'.format(self.onu_type2,self.dba_type2)
+            print(f'\n{cfg_res_2}\n')
+            self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
+            self.check_res1(cn,cmds,check_words,output_lst)
         
         self.logout_host()
 
@@ -306,7 +356,6 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds_1='show interface gpon-onu cr | in {}/{}'.format(self.pon_id,self.onu_id)
         cmds=['int gpon-onu {}/{}'.format(self.pon_id,self.onu_id),
               'service-profile-id 1007',
               'show interface gpon-onu cr | in {}/{}'.format(self.pon_id,self.onu_id)]
@@ -315,11 +364,11 @@ class TelnetClient:
         check_words='1007    Def_24E_2P'
         output_lst=[]
         # 执行命令
-        self.tn.write(cmds_1.encode('ascii')+b'\n')
+        self.tn.write(cmds[-1].encode('ascii')+b'\n')
         time.sleep(1)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        res_1="命令"+cmds_1+"执行结果:"
+        res_1="命令"+cmds[-1]+"执行结果:"
         print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         
@@ -402,7 +451,8 @@ if __name__ == '__main__':
     telnet.uplink_config()
     telnet.downlink_config()
     telnet.check_onu_intf()
-    # telnet.dba_config()
+    telnet.dba_config_sfu()
+    telnet.dba_config_hgu()
     # telnet.line_config()
     telnet.service_config()
     # telnet.bind_profile()
