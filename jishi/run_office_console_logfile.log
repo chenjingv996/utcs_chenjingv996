@@ -1,5 +1,5 @@
 
-测试开始时间为:Sun Aug 13 19:44:25 2023
+测试开始时间为:Sun Aug 13 20:03:16 2023
 
 ####################【uplink_config】脚本测试执行开始!####################
 
@@ -73,6 +73,100 @@ GPL116#
 ++++++++++++++++++++++++++++++++++++++++当前用例【uplink_config】测试结果为:pass
 
 ####################【uplink_config】脚本测试执行结束!####################
+
+
+####################【downlink_config】脚本测试执行开始!####################
+
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置downlink......
+
+命令end执行结果:
+end
+GPL116#
+
+命令show run interface gpon-olt 3/3执行结果:
+show run interface gpon-olt 3/3
+!command in gpon-olt_mode
+interface gpon-olt 3/3
+authorization mode none
+create gpon-onu 1 sn GPON00F0B8B0 line-profile-id 1024 service-profile-id 1007 
+switchport trunk allowed vlan 4000 
+switchport trunk untagged vlan remove 1 
+switchport mode trunk
+quit
+!
+GPL116#
+
+命令conf t执行结果:
+conf t
+Configuration mode, one command input per times. End with CTRL-Z.
+CONFIG-I:Configured from telnet ...
+GPL116(config)#
+
+命令interface gpon-olt 3/3执行结果:
+interface gpon-olt 3/3
+GPL116(config-if-gpon-olt-3:3)#
+
+命令authorization mode none执行结果:
+authorization mode none
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport mode执行结果:
+no switchport mode
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport access vlan执行结果:
+no switchport access vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport trunk native vlan执行结果:
+no switchport trunk native vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport trunk allowed vlan执行结果:
+no switchport trunk allowed vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport trunk untagged vlan执行结果:
+no switchport trunk untagged vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令switchport mode trunk执行结果:
+switchport mode trunk
+GPL116(config-if-gpon-olt-3:3)#
+
+命令switchport trunk allowed vlan 4000执行结果:
+switchport trunk allowed vlan 4000
+Trunk allow vlan will be reconfiged,please input 'yes' to confirm set allowed vlan:[yes]
+
+命令yes执行结果:
+yes
+GPL116(config-if-gpon-olt-3:3)#
+
+命令end执行结果:
+end
+GPL116#
+
+命令show run interface gpon-olt 3/3执行结果:
+show run interface gpon-olt 3/3
+!command in gpon-olt_mode
+interface gpon-olt 3/3
+authorization mode none
+create gpon-onu 1 sn GPON00F0B8B0 line-profile-id 1024 service-profile-id 1007 
+switchport trunk allowed vlan 4000 
+switchport trunk untagged vlan remove 1 
+switchport mode trunk
+quit
+!
+GPL116#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【downlink_config】测试结果为:pass
+
+####################【downlink_config】脚本测试执行结束!####################
 
 
 ####################【check_onu_intf】脚本测试执行开始!####################
