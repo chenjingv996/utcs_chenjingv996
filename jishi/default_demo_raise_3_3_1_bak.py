@@ -48,22 +48,22 @@ class TelnetClient:
             logging.warning(f'{self.host_ip}网络连接失败!\n')
             return False
         # 等待login出现后输入用户名，最多等待10秒
-        self.tn.read_until(b'gin: ',timeout=2)
+        self.tn.read_until(b'gin: ',timeout=1)
         self.tn.write(self.username.encode('ascii') + b'\n')
         # 等待Password出现后输入用户名，最多等待10秒
-        self.tn.read_until(b'word: ',timeout=2)
+        self.tn.read_until(b'word: ',timeout=1)
         self.tn.write(self.password.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'> ',timeout=2)
+        self.tn.read_until(b'> ',timeout=1)
         self.tn.write(self.cmd_1.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'word ',timeout=2)
+        self.tn.read_until(b'word ',timeout=1)
         self.tn.write(self.password.encode('ascii') + b'\n')
 
-        self.tn.read_until(b'# ',timeout=2)
+        self.tn.read_until(b'# ',timeout=1)
         self.tn.write(self.cmd_2.encode('ascii') + b'\n')
         
-        self.tn.read_until(b'# ',timeout=2)
+        self.tn.read_until(b'# ',timeout=1)
         self.tn.write(self.cmd_3.encode('ascii') + b'\n')
         # 延时1秒再收取返回结果，给服务端足够响应时间
         time.sleep(1)
@@ -182,17 +182,31 @@ class TelnetClient:
         self.login_host()
 
         cn=sys._getframe().f_code.co_name
-        cmds=['int gpon-olt 3/3',
-              'authorization mode none',
-              'no creat gpon-onu 1',
-              'show interface gpon-olt 3/3 illegal-onu | in 3/3',
-              'show interface gpon-onu creation-information | in 3/3',
-              'show interface gpon-onu online-information | in 3/3']
-        #检查测试ONU在线状态···
-        check_name="tips:检查测试ONU在线状态......"
-        check_words=["3/3/1      online"]
-        output_lst=[]
-        self.check_loop(cn,cmds,check_name,check_words,output_lst)
+        #检查测试ONU在线状态......
+        check_name='tips:检查测试ONU在线状态......'
+        cmds_1='show interface gpon-onu cr'
+        check_words_1='{}/{}'.format(self.pon_id,self.onu_id)
+        # 执行命令
+        self.tn.write(cmds_1.encode('ascii')+b'\n')
+        time.sleep(1)
+        # 获取命令结果
+        cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
+        res_1="命令"+cmds_1+"执行结果:"
+        print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
+        
+        if check_words_1 in cmds_res_1:
+            cfg_res_1='该ONU接口{}已存在，程序继续......'.format(check_words_1)
+            print(f'\n{cfg_res_1}\n')
+            self.tn.logfile=output.write(f'\n{cfg_res_1}\n')
+            self.pass_res(cn)
+        else:
+            cfg_res_2='该ONU接口{}不存在，程序退出......'.format(check_words_1)
+            print(f'\n{cfg_res_2}\n')
+            self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
+            self.fail_res(cn)
+            sys.exit()           
+        
         
         self.logout_host()    
     
@@ -236,12 +250,15 @@ class TelnetClient:
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
-
+    
+    
     @outer
     def service_config(self):
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
+        #检查service profile绑定状态......
+        check_name='tips:检查service profile绑定状态......'
         cmds_1='show interface gpon-onu cr | in {}/{}'.format(self.pon_id,self.onu_id)
         cmds_2='int gpon-onu {}/{}'.format(self.pon_id,self.onu_id)
         output_lst_1=[]
@@ -253,21 +270,19 @@ class TelnetClient:
         time.sleep(1)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        # output_lst_1.append(cmds_res_1)
         res_1="命令"+cmds_1+"执行结果:"
-        print(f'\n{res_1}\n{cmds_res_1}\n')
-        self.tn.logfile=output.write(f'\n{res_1}\n{cmds_res_1}\n')
+        print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         
         if check_words_1 in cmds_res_1:
             cfg_res_1='该ONU已绑定自定义模版-{},无需重复配置......'.format(check_words_1)
-            print(f'{cfg_res_1}\n')
-            self.tn.logfile=output.write(f'{cfg_res_1}\n')
-            self.pass_res(cn)
-            return True           
+            print(f'\n{cfg_res_1}\n')
+            self.tn.logfile=output.write(f'\n{cfg_res_1}\n')
+            self.pass_res(cn)         
         else:
             cfg_res_2='该ONU未绑定自定义模版-{},配置中请稍后......'.format(check_words_1)
-            print(f'{cfg_res_2}\n')
-            self.tn.logfile=output.write(f'{cfg_res_2}\n')
+            print(f'\n{cfg_res_2}\n')
+            self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
             self.tn.write(cmds_2.encode('ascii') + b'\n')
             time.sleep(1)
             # 获取命令结果
@@ -275,9 +290,7 @@ class TelnetClient:
             res_2="命令"+cmds_2+"执行结果:"
             print(f'\n{res_2}\n{cmds_res_2}\n')
             self.tn.logfile=output.write(f'\n{res_2}\n{cmds_res_2}\n')
-            self.pass_res(cn)            
-            return False        
-        # self.check_res1(cn,cmds,check_name,check_words,output_lst)
+            self.pass_res(cn)
         
         self.logout_host()
 
@@ -344,7 +357,7 @@ if __name__ == '__main__':
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
-    # telnet.check_onu()
+    telnet.check_onu()
     # telnet.dba_config()
     # telnet.line_config()
     telnet.service_config()
