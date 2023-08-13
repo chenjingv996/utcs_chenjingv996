@@ -190,12 +190,12 @@ class TelnetClient:
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         
         if check_words in cmds_res_1:
-            cfg_res_1='该ONU接口{}已存在，程序继续......'.format(check_words)
+            cfg_res_1='该ONU接口{}已存在，程序继续......'.format(sys.argv[1])
             print(f'\n{cfg_res_1}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_1}\n')
             self.pass_res(cn)
         else:
-            cfg_res_2='该ONU接口{}不存在，程序退出......'.format(check_words)
+            cfg_res_2='该ONU接口{}不存在，程序退出......'.format(sys.argv[1])
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
             self.fail_res(cn)
