@@ -1,5 +1,5 @@
 
-测试开始时间为:Sun Aug 13 12:23:52 2023
+测试开始时间为:Sun Aug 13 12:31:20 2023
 
 ####################【check_onu_intf】脚本测试执行开始!####################
 
@@ -15,7 +15,7 @@ show interface gpon-onu cr
 ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
                                                                                                  ID   name             ID      name            
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-3/3/1     GPON00F0B8B0      gpon    (g)       Unknown            2023-08-11,10:25:10    active   1024 Def_P_all        1006    Def_VEIP
+3/3/1     GPON00F0B8B0      gpon    (g)       Unknown            2023-08-11,10:25:10    active   1024 Def_P_all        1007    Def_24E_2P
 
 GPL116(config)#
 
@@ -37,25 +37,25 @@ tips:配置service profile......
 
 命令show interface gpon-onu cr | in 3/3/1执行结果:
 show interface gpon-onu cr | in 3/3/1
-3/3/1     GPON00F0B8B0      gpon    (g)       Unknown            2023-08-11,10:25:10    active   1024 Def_P_all        1006    Def_VEIP
+3/3/1     GPON00F0B8B0      gpon    (g)       Unknown            2023-08-11,10:25:10    active   1024 Def_P_all        1007    Def_24E_2P
 
 GPL116(config)#
 
-该ONU未绑定自定义模版-1007    Def_24E_2P，配置中请稍后......
+该ONU未绑定自定义模版-1006    Def_VEIP，配置中请稍后......
 
 命令int gpon-onu 3/3/1执行结果:
 int gpon-onu 3/3/1
 GPL116(config-if-gpon-onu-3/3:1)#
 
-命令service-profile-id 1007执行结果:
-service-profile-id 1007
-GPL116(config-if-gpon-onu-3/3:1)#AUG-13-2023 12:24:24  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 160 (ulTunnelId 160) success
-AUG-13-2023 12:24:24  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2888
+命令service-profile-id 1006执行结果:
+service-profile-id 1006
+GPL116(config-if-gpon-onu-3/3:1)#AUG-13-2023 12:31:52  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 160 (ulTunnelId 160) success
+AUG-13-2023 12:31:52  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2888
 
 
 命令show interface gpon-onu cr | in 3/3/1执行结果:
 show interface gpon-onu cr | in 3/3/1
-3/3/1     GPON00F0B8B0      gpon    (g)       Unknown            2023-08-11,10:25:10    active   1024 Def_P_all        1007    Def_24E_2P
+3/3/1     GPON00F0B8B0      gpon    (g)       Unknown            2023-08-11,10:25:10    active   1024 Def_P_all        1006    Def_VEIP
 
 GPL116(config-if-gpon-onu-3/3:1)#
 
