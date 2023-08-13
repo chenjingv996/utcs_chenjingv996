@@ -199,6 +199,36 @@ class TelnetClient:
         self.logout_host()
         
     @outer
+    def downlink_config(self):
+        self.login_host()
+        
+        cn=sys._getframe().f_code.co_name
+        cmds=['end',
+              'show run interface gpon-olt {}'.format(self.pon_id),
+              'conf t',
+              'interface gpon-olt {}'.format(self.pon_id),
+              'authorization mode none',
+              'no switchport mode',
+              'no switchport access vlan',
+              'no switchport trunk native vlan',
+              'no switchport trunk allowed vlan',
+              'no switchport trunk untagged vlan',
+              'switchport mode trunk',
+              'switchport trunk allowed vlan 4000',
+              'yes',
+              'end',
+              'show run interface gpon-olt {}'.format(self.pon_id)]
+        #配置downlink......
+        check_name='tips:配置downlink......'
+        check_words='switchport trunk allowed vlan 4000'
+        output_lst=[]
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_res1(cn,cmds,check_words,output_lst)
+        
+        self.logout_host()
+        
+    @outer
     def check_onu_intf(self):
         self.login_host()
 
@@ -370,6 +400,7 @@ if __name__ == '__main__':
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
     telnet.uplink_config()
+    telnet.downlink_config()
     telnet.check_onu_intf()
     # telnet.dba_config()
     # telnet.line_config()
