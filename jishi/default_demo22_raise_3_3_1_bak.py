@@ -21,8 +21,8 @@ class TelnetClient:
         self.onu_id = sys.argv[1].split('/')[-1]
         self.onu_mode1 ='SFU'
         self.onu_mode2 ='HGU'
-        self.check_dba127 = 'show dba-profile 127'
-        self.check_dba128 = 'show dba-profile 128'
+        # self.check_dba127 = 'show dba-profile 127'
+        # self.check_dba128 = 'show dba-profile 128'
         
     def outer(fun_name):
         def wrapper(*args,**kwargs):
@@ -177,6 +177,7 @@ class TelnetClient:
                 break
         else:
             self.pass_res(cn)
+            
     @outer
     def check_onu_intf(self):
         self.login_host()
@@ -250,8 +251,7 @@ class TelnetClient:
         self.check_res1(cn,cmds,check_name,check_words,output_lst)
 
         self.logout_host()
-    
-    
+       
     @outer
     def service_config(self):
         self.login_host()
