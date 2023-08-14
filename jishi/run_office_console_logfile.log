@@ -1,5 +1,5 @@
 
-测试开始时间为:Sun Aug 13 20:03:16 2023
+测试开始时间为:Sun Aug 13 22:32:27 2023
 
 ####################【uplink_config】脚本测试执行开始!####################
 
@@ -192,6 +192,52 @@ GPL116(config)#
 ++++++++++++++++++++++++++++++++++++++++当前用例【check_onu_intf】测试结果为:pass
 
 ####################【check_onu_intf】脚本测试执行结束!####################
+
+
+####################【dba_config_sfu】脚本测试执行开始!####################
+
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置dba profile......
+
+命令show dba-profile 127执行结果:
+show dba-profile 127
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+127         chenjingv127      type4  0          0             1024000    best-effort    0         0       TM        0   
+GPL116(config)#
+
+已存在SFU类型dba模版-dba-profile 127，无需重复配置......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【dba_config_sfu】测试结果为:pass
+
+####################【dba_config_sfu】脚本测试执行结束!####################
+
+
+####################【dba_config_hgu】脚本测试执行开始!####################
+
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置dba profile......
+
+命令show dba-profile 128执行结果:
+show dba-profile 128
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+128         chenjingv128      type4  0          0             1024000    best-effort    0         0       TM        0   
+GPL116(config)#
+
+已存在HGU类型dba模版-dba-profile 128，无需重复配置......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【dba_config_hgu】测试结果为:pass
+
+####################【dba_config_hgu】脚本测试执行结束!####################
 
 
 ####################【service_config】脚本测试执行开始!####################

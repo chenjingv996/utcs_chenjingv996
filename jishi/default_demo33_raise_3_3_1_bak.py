@@ -19,8 +19,8 @@ class TelnetClient:
         self.tn = telnetlib.Telnet()
         self.pon_id = '/'.join(sys.argv[1].split('/')[:2])
         self.onu_id = sys.argv[1].split('/')[-1]
-        self.onu_type1 ='SFU'
-        self.onu_type2 ='HGU'
+        self.onu_type1 ='sfu'
+        self.onu_type2 ='hgu'
         self.dba_type1='dba-profile 127'
         self.dba_type2='dba-profile 128'
         
@@ -206,6 +206,36 @@ class TelnetClient:
         
         cn=sys._getframe().f_code.co_name
         cmds=['end',
+              'show run interface gpon-olt 3/3',
+              'conf t',
+              'interface gpon-olt 3/3',
+              'authorization mode none',
+              'no switchport mode',
+              'no switchport access vlan',
+              'no switchport trunk native vlan',
+              'no switchport trunk allowed vlan',
+              'no switchport trunk untagged vlan',
+              'switchport mode trunk',
+              'switchport trunk allowed vlan 4000',
+              'yes',
+              'end',
+              'show run interface gpon-olt 3/3']
+        #配置downlink......
+        check_name='tips:配置downlink......'
+        check_words='switchport trunk allowed vlan 4000'
+        output_lst=[]
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_res1(cn,cmds,check_words,output_lst)
+        
+        self.logout_host()
+    
+    @outer
+    def downlink_config_auto(self):
+        self.login_host()
+        
+        cn=sys._getframe().f_code.co_name
+        cmds=['end',
               'show run interface gpon-olt {}'.format(self.pon_id),
               'conf t',
               'interface gpon-olt {}'.format(self.pon_id),
@@ -231,7 +261,7 @@ class TelnetClient:
         self.logout_host()
         
     @outer
-    def check_onu_intf(self):
+    def check_onu_port(self):
         self.login_host()
 
         cn=sys._getframe().f_code.co_name
@@ -239,6 +269,7 @@ class TelnetClient:
         #检查测试ONU接口状态......
         check_name='tips:检查测试ONU接口状态......'
         check_words='{}/{}'.format(self.pon_id,self.onu_id)
+        
         # 执行命令
         self.tn.write(cmds_info.encode('ascii')+b'\n')
         time.sleep(1)
@@ -273,6 +304,7 @@ class TelnetClient:
         check_name='tips:配置dba profile......'
         check_words='127         chenjingv127      type4'
         output_lst=[]
+        
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\n')
         time.sleep(1)
@@ -306,6 +338,7 @@ class TelnetClient:
         check_name='tips:配置dba profile......'
         check_words='128         chenjingv128      type4'
         output_lst=[]
+        
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\n')
         time.sleep(1)
@@ -363,6 +396,7 @@ class TelnetClient:
         check_name='tips:配置service profile......'
         check_words='1007    Def_24E_2P'
         output_lst=[]
+        
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\n')
         time.sleep(1)
@@ -448,9 +482,13 @@ if __name__ == '__main__':
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返加True，则执行命令，然后退出
+    #指定uplink为ten-gigabitethernet 10/2
     telnet.uplink_config()
+    #指定downlink为gpon-olt 3/3
     telnet.downlink_config()
-    telnet.check_onu_intf()
+    #指定downlink为auto接口
+    # telnet.downlink_config_auto()
+    telnet.check_onu_port()
     telnet.dba_config_sfu()
     telnet.dba_config_hgu()
     # telnet.line_config()
@@ -460,4 +498,4 @@ if __name__ == '__main__':
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
-#执行方式：python3 demo_office66_logfile.py
+#执行方式：python3 demo_xxx.py 3/3/1  执行脚本需传递ONU接口为第一个参数
