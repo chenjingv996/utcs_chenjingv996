@@ -1,5 +1,5 @@
 
-测试开始时间为:Wed Aug 16 18:09:02 2023
+测试开始时间为:Wed Aug 16 18:12:58 2023
 
 ####################【uplink_config】脚本测试执行开始!####################
 
@@ -85,16 +85,21 @@ GPL116#
 tips:配置downlink......
 
 命令end执行结果:
+AUG-16-2023 18:13:46  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
 end
-GPL116#
+GPL116#AUG-16-2023 18:13:46  gpon-onu-remote-5-Config download: ONU 3/3/2 pon-sys config download success
+AUG-16-2023 18:13:46  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
+AUG-16-2023 18:13:46  gpon-onu-remote-5-Config download: ONU 3/3/1 pon-sys config download success
+
 
 命令show run interface gpon-olt 3/3执行结果:
 show run interface gpon-olt 3/3
 !command in gpon-olt_mode
+AUG-16-2023 18:13:48  gpon-onu-remote-5-Config download: ONU 3/3/1 config download success. 
 interface gpon-olt 3/3
 authorization mode none
-create gpon-onu 1 sn YHCT0070692F line-profile-id 128 service-profile-id 128 
-create gpon-onu 2 sn YHCT00704FAB line-profile-id 1024 service-profile-id 1015 
+create gpon-onu 1 sn YHCT00704FAB line-profile-id 1024 service-profile-id 1015 
+create gpon-onu 2 sn YHCT0070692F line-profile-id 1024 service-profile-id 1006 
 switchport trunk allowed vlan 4000 
 switchport trunk untagged vlan remove 1 
 switchport mode trunk
@@ -116,7 +121,8 @@ GPL116(config-if-gpon-olt-3:3)#
 
 命令authorization mode none执行结果:
 authorization mode none
-GPL116(config-if-gpon-olt-3:3)#
+GPL116(config-if-gpon-olt-3:3)#AUG-16-2023 18:13:54  gpon-onu-remote-5-Config download: ONU 3/3/2 config download success. 
+
 
 命令no switchport mode执行结果:
 no switchport mode
@@ -159,8 +165,8 @@ show run interface gpon-olt 3/3
 !command in gpon-olt_mode
 interface gpon-olt 3/3
 authorization mode none
-create gpon-onu 1 sn YHCT0070692F line-profile-id 128 service-profile-id 128 
-create gpon-onu 2 sn YHCT00704FAB line-profile-id 1024 service-profile-id 1015 
+create gpon-onu 1 sn YHCT00704FAB line-profile-id 1024 service-profile-id 1015 
+create gpon-onu 2 sn YHCT0070692F line-profile-id 1024 service-profile-id 1006 
 switchport trunk allowed vlan 4000 
 switchport trunk untagged vlan remove 1 
 switchport mode trunk
@@ -189,13 +195,13 @@ show interface gpon-onu cr
 ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
                                                                                                  ID   name             ID      name            
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-3/3/1     YHCT0070692F      gpon    (g)       MONUV664           2023-08-16,15:48:10    active   128  profile-128      128     profile-128
-3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,15:48:10    active   1024 Def_P_all        1015    Def_8E
+3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,18:12:40    active   1024 Def_P_all        1015    Def_8E
+3/3/2     YHCT0070692F      gpon    (g)       MONUV664           2023-08-16,18:12:40    active   1024 Def_P_all        1006    Def_VEIP
 3/5/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-08-16,09:53:40    active   1024 Def_P_all        1006    Def_VEIP
 
 GPL116(config)#
 
-该ONU接口3/3/2已存在，程序继续......
+该ONU接口3/3/1已存在，程序继续......
 
 ++++++++++++++++++++++++++++++++++++++++当前用例【check_onu_port】测试结果为:pass
 
@@ -215,10 +221,20 @@ tips:配置dba-profile 127......
 show dba-profile 127
 Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
 -----------------------------------------------------------------------------------------------------------------------
-127         chenjingv127      type4  0          0             1024000    best-effort    0         0       TM        1   
 GPL116(config)#
 
-已存在sfu类型dba模版-dba-profile 127，无需重复配置......
+不存在sfu类型dba模版-dba-profile 127，配置中请稍后......
+
+命令create dba-profile 127 name chenjingv127 type4 max 1024000执行结果:
+create dba-profile 127 name chenjingv127 type4 max 1024000
+GPL116(config)#
+
+命令show dba-profile 127执行结果:
+show dba-profile 127
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+127         chenjingv127      type4  0          0             1024000    best-effort    0         0       TM        0   
+GPL116(config)#
 
 ++++++++++++++++++++++++++++++++++++++++当前用例【dba_config_sfu】测试结果为:pass
 
@@ -238,10 +254,20 @@ tips:配置dba-profile 128......
 show dba-profile 128
 Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
 -----------------------------------------------------------------------------------------------------------------------
-128         chenjingv128      type4  0          0             1024000    best-effort    0         0       TM        2   
 GPL116(config)#
 
-已存在hgu类型dba模版-dba-profile 128，无需重复配置......
+不存在hgu类型dba模版-dba-profile 128，配置中请稍后......
+
+命令create dba-profile 128 name chenjingv128 type4 max 1024000执行结果:
+create dba-profile 128 name chenjingv128 type4 max 1024000
+GPL116(config)#
+
+命令show dba-profile 128执行结果:
+show dba-profile 128
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+128         chenjingv128      type4  0          0             1024000    best-effort    0         0       TM        0   
+GPL116(config)#
 
 ++++++++++++++++++++++++++++++++++++++++当前用例【dba_config_hgu】测试结果为:pass
 
@@ -256,6 +282,36 @@ GPL116(config)#
 172.17.100.214登录成功!
 
 tips:配置line-profile 127......
+
+命令show gpon-onu-line-profile 127执行结果:
+show gpon-onu-line-profile 127
+GPL116(config)#
+
+不存在sfu类型line模版-line-profile 127，配置中请稍后......
+
+命令gpon-onu-line-profile 127执行结果:
+gpon-onu-line-profile 127
+GPL116(config-gpon-onu-line-profile:127)#
+
+命令create tcont 1 dba-profile 127执行结果:
+create tcont 1 dba-profile 127
+GPL116(config-gpon-onu-line-profile:127)#
+
+命令create gem 1 tcont 1执行结果:
+create gem 1 tcont 1
+GPL116(config-gpon-onu-line-profile:127)#
+
+命令gem 1 mapping 1 vlan 4000执行结果:
+gem 1 mapping 1 vlan 4000
+GPL116(config-gpon-onu-line-profile:127)#
+
+命令commit执行结果:
+commit
+GPL116(config-gpon-onu-line-profile:127)#
+
+命令exit执行结果:
+exit
+GPL116(config)#
 
 命令show gpon-onu-line-profile 127执行结果:
 show gpon-onu-line-profile 127
@@ -279,8 +335,6 @@ Ref. counter    : 0
       ----------------------------------------------------------------
 GPL116(config)#
 
-已存在sfu类型line模版-line-profile 127，无需重复配置......
-
 ++++++++++++++++++++++++++++++++++++++++当前用例【line_config_sfu】测试结果为:pass
 
 ####################【line_config_sfu】脚本测试执行结束!####################
@@ -297,9 +351,39 @@ tips:配置line-profile 128......
 
 命令show gpon-onu-line-profile 128执行结果:
 show gpon-onu-line-profile 128
+GPL116(config)#
+
+不存在hgu类型line模版-line-profile 128，配置中请稍后......
+
+命令gpon-onu-line-profile 128执行结果:
+gpon-onu-line-profile 128
+GPL116(config-gpon-onu-line-profile:128)#
+
+命令create tcont 1 dba-profile 128执行结果:
+create tcont 1 dba-profile 128
+GPL116(config-gpon-onu-line-profile:128)#
+
+命令create gem 1 tcont 1执行结果:
+create gem 1 tcont 1
+GPL116(config-gpon-onu-line-profile:128)#
+
+命令gem 1 mapping 1 vlan 4000执行结果:
+gem 1 mapping 1 vlan 4000
+GPL116(config-gpon-onu-line-profile:128)#
+
+命令commit执行结果:
+commit
+GPL116(config-gpon-onu-line-profile:128)#
+
+命令exit执行结果:
+exit
+GPL116(config)#
+
+命令show gpon-onu-line-profile 128执行结果:
+show gpon-onu-line-profile 128
 LineProfile ID  : 128
 LineProfile Name: profile-128
-Ref. counter    : 1
+Ref. counter    : 0
   FEC upstream: disable
   OMCC encrypt: disable
   Mapping mode: VLAN
@@ -317,8 +401,6 @@ Ref. counter    : 1
       ----------------------------------------------------------------
 GPL116(config)#
 
-已存在hgu类型line模版-line-profile 128，无需重复配置......
-
 ++++++++++++++++++++++++++++++++++++++++当前用例【line_config_hgu】测试结果为:pass
 
 ####################【line_config_hgu】脚本测试执行结束!####################
@@ -332,6 +414,36 @@ GPL116(config)#
 172.17.100.214登录成功!
 
 tips:配置service-profile 127......
+
+命令show gpon-onu-service-profile 127 | section-end WLAN执行结果:
+show gpon-onu-service-profile 127 | section-end WLAN
+GPL116(config)#
+
+不存在sfu类型service模版-service-profile 127，配置中请稍后......
+
+命令gpon-onu-service-profile 127执行结果:
+gpon-onu-service-profile 127
+GPL116(config-gpon-onu-service-profile:127)#
+
+命令port-num ethernet 4执行结果:
+port-num ethernet 4
+GPL116(config-gpon-onu-service-profile:127)#
+
+命令uni ethernet 1-4 vlan mode tagged执行结果:
+uni ethernet 1-4 vlan mode tagged
+GPL116(config-gpon-onu-service-profile:127)#
+
+命令uni ethernet 1-4 native vlan 4000执行结果:
+uni ethernet 1-4 native vlan 4000
+GPL116(config-gpon-onu-service-profile:127)#
+
+命令commit执行结果:
+commit
+GPL116(config-gpon-onu-service-profile:127)#
+
+命令exit执行结果:
+exit
+GPL116(config)#
 
 命令show gpon-onu-service-profile 127 | section-end WLAN执行结果:
 show gpon-onu-service-profile 127 | section-end WLAN
@@ -361,8 +473,6 @@ Ref. counter       : 0
   WLAN      0
 GPL116(config)#
 
-已存在sfu类型service模版-service-profile 127，无需重复配置......
-
 ++++++++++++++++++++++++++++++++++++++++当前用例【service_config_sfu】测试结果为:pass
 
 ####################【service_config_sfu】脚本测试执行结束!####################
@@ -379,9 +489,31 @@ tips:配置service-profile 128......
 
 命令show gpon-onu-service-profile 128 | section-end WLAN执行结果:
 show gpon-onu-service-profile 128 | section-end WLAN
+GPL116(config)#
+
+不存在hgu类型service模版-service-profile 128，配置中请稍后......
+
+命令gpon-onu-service-profile 128执行结果:
+gpon-onu-service-profile 128
+GPL116(config-gpon-onu-service-profile:128)#
+
+命令port-num veip 1执行结果:
+port-num veip 1
+GPL116(config-gpon-onu-service-profile:128)#
+
+命令commit执行结果:
+commit
+GPL116(config-gpon-onu-service-profile:128)#
+
+命令exit执行结果:
+exit
+GPL116(config)#
+
+命令show gpon-onu-service-profile 128 | section-end WLAN执行结果:
+show gpon-onu-service-profile 128 | section-end WLAN
 ServiceProfile ID  : 128
 ServiceProfile Name: profile-128
-Ref. counter       : 1
+Ref. counter       : 0
   MAC learning              : enable
   MAC aging time(seconds)   : 300
   Switchport isolation      : enable
@@ -405,8 +537,6 @@ Ref. counter       : 1
   WLAN      0
 GPL116(config)#
 
-已存在hgu类型service模版-service-profile 128，无需重复配置......
-
 ++++++++++++++++++++++++++++++++++++++++当前用例【service_config_hgu】测试结果为:pass
 
 ####################【service_config_hgu】脚本测试执行结束!####################
@@ -421,58 +551,58 @@ GPL116(config)#
 
 tips:配置绑定自定义profile......
 
-命令show gpon-onu 3/3/2 capability | in ype执行结果:
-show gpon-onu 3/3/2 capability | in ype
+命令show gpon-onu 3/3/1 capability | in ype执行结果:
+show gpon-onu 3/3/1 capability | in ype
     ONU Type                   : sfu
 
 GPL116(config)#
 
-命令show interface gpon-onu cr | in 3/3/2执行结果:
-show interface gpon-onu cr | in 3/3/2
-3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,15:48:10    active   1024 Def_P_all        1015    Def_8E
+命令show interface gpon-onu cr | in 3/3/1执行结果:
+show interface gpon-onu cr | in 3/3/1
+3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,18:12:40    active   1024 Def_P_all        1015    Def_8E
 
 GPL116(config)#
 
 该ONU为sfu类型，未绑定自定义模版，配置中请稍后......
 
-命令int gpon-onu 3/3/2执行结果:
-int gpon-onu 3/3/2
-GPL116(config-if-gpon-onu-3/3:2)#
+命令int gpon-onu 3/3/1执行结果:
+int gpon-onu 3/3/1
+GPL116(config-if-gpon-onu-3/3:1)#
 
 命令line-profile-id 127执行结果:
 line-profile-id 127
-GPL116(config-if-gpon-onu-3/3:2)#AUG-16-2023 18:11:27  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
-AUG-16-2023 18:11:27  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/2, gponPonSysOnuMib.c 2877
+GPL116(config-if-gpon-onu-3/3:1)#AUG-16-2023 18:16:23  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
+AUG-16-2023 18:16:23  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2877
 
 
 命令
 
 执行结果:
 
-GPL116(config-if-gpon-onu-3/3:2)#
-GPL116(config-if-gpon-onu-3/3:2)#
-GPL116(config-if-gpon-onu-3/3:2)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
 
 命令service-profile-id 127执行结果:
 service-profile-id 127
-AUG-16-2023 18:11:31  gpon-onu-remote-3-ONU 3/3/2 ME upload process has been aborted(810)
-GPL116(config-if-gpon-onu-3/3:2)#AUG-16-2023 18:11:31  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
-AUG-16-2023 18:11:31  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/2, gponPonSysOnuMib.c 2877
+AUG-16-2023 18:16:27  gpon-onu-remote-3-ONU 3/3/1 ME upload process has been aborted(810)
+GPL116(config-if-gpon-onu-3/3:1)#AUG-16-2023 18:16:27  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
+AUG-16-2023 18:16:27  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2877
 
 
 命令
 
 执行结果:
 
-GPL116(config-if-gpon-onu-3/3:2)#
-GPL116(config-if-gpon-onu-3/3:2)#
-GPL116(config-if-gpon-onu-3/3:2)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
 
-命令show interface gpon-onu cr | in 3/3/2执行结果:
-show interface gpon-onu cr | in 3/3/2
-3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,15:48:10    active   127  profile-127      127     profile-127
+命令show interface gpon-onu cr | in 3/3/1执行结果:
+show interface gpon-onu cr | in 3/3/1
+3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,18:12:40    active   127  profile-127      127     profile-127
 
-GPL116(config-if-gpon-onu-3/3:2)#
+GPL116(config-if-gpon-onu-3/3:1)#
 
 ++++++++++++++++++++++++++++++++++++++++当前用例【profile_bind】测试结果为:pass
 
