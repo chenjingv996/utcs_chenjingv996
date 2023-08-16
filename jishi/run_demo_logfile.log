@@ -1,5 +1,5 @@
 
-测试开始时间为:Wed Aug 16 13:33:14 2023
+测试开始时间为:Wed Aug 16 18:09:02 2023
 
 ####################【uplink_config】脚本测试执行开始!####################
 
@@ -189,8 +189,8 @@ show interface gpon-onu cr
 ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
                                                                                                  ID   name             ID      name            
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-3/3/1     YHCT0070692F      gpon    (g)       MONUV664           2023-08-16,13:06:10    active   128  profile-128      128     profile-128
-3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,13:06:40    active   1024 Def_P_all        1015    Def_8E
+3/3/1     YHCT0070692F      gpon    (g)       MONUV664           2023-08-16,15:48:10    active   128  profile-128      128     profile-128
+3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,15:48:10    active   1024 Def_P_all        1015    Def_8E
 3/5/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-08-16,09:53:40    active   1024 Def_P_all        1006    Def_VEIP
 
 GPL116(config)#
@@ -429,7 +429,7 @@ GPL116(config)#
 
 命令show interface gpon-onu cr | in 3/3/2执行结果:
 show interface gpon-onu cr | in 3/3/2
-3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,13:06:40    active   1024 Def_P_all        1015    Def_8E
+3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,15:48:10    active   1024 Def_P_all        1015    Def_8E
 
 GPL116(config)#
 
@@ -441,8 +441,8 @@ GPL116(config-if-gpon-onu-3/3:2)#
 
 命令line-profile-id 127执行结果:
 line-profile-id 127
-GPL116(config-if-gpon-onu-3/3:2)#AUG-16-2023 13:35:40  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 161 (ulTunnelId 161) success
-AUG-16-2023 13:35:40  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/2, gponPonSysOnuMib.c 2877
+GPL116(config-if-gpon-onu-3/3:2)#AUG-16-2023 18:11:27  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
+AUG-16-2023 18:11:27  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/2, gponPonSysOnuMib.c 2877
 
 
 命令
@@ -455,9 +455,9 @@ GPL116(config-if-gpon-onu-3/3:2)#
 
 命令service-profile-id 127执行结果:
 service-profile-id 127
-AUG-16-2023 13:35:43  gpon-onu-remote-3-ONU 3/3/2 ME upload process has been aborted(810)
-GPL116(config-if-gpon-onu-3/3:2)#AUG-16-2023 13:35:44  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 161 (ulTunnelId 161) success
-AUG-16-2023 13:35:44  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/2, gponPonSysOnuMib.c 2877
+AUG-16-2023 18:11:31  gpon-onu-remote-3-ONU 3/3/2 ME upload process has been aborted(810)
+GPL116(config-if-gpon-onu-3/3:2)#AUG-16-2023 18:11:31  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
+AUG-16-2023 18:11:31  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/2, gponPonSysOnuMib.c 2877
 
 
 命令
@@ -470,7 +470,7 @@ GPL116(config-if-gpon-onu-3/3:2)#
 
 命令show interface gpon-onu cr | in 3/3/2执行结果:
 show interface gpon-onu cr | in 3/3/2
-3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,13:06:40    active   127  profile-127      127     profile-127
+3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-16,15:48:10    active   127  profile-127      127     profile-127
 
 GPL116(config-if-gpon-onu-3/3:2)#
 
