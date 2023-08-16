@@ -571,7 +571,7 @@ class TelnetClient:
               'show dba-profile 128',
               'show interface gpon-onu creation-information | in {}'.format(self.pon_id),
               'show interface gpon-onu online-information | in {}'.format(self.pon_id)]
-        #删除所有ONU自定义模板···
+        #删除所有ONU自定义模板......
         check_name='tips:删除所有ONU自定义模板......'
         check_words=['--                   --                   --']
         output_lst=[]
