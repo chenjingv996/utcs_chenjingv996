@@ -1,9 +1,10 @@
 
-测试开始时间为:Thu Aug 17 16:17:55 2023
+测试开始时间为:Thu Aug 17 16:30:00 2023
 
 ####################【uplink_config】脚本测试执行开始!####################
 
 设备登录中，请稍后......
+
 172.17.100.214登录成功!
 
 tips:配置uplink......
@@ -80,17 +81,14 @@ GPL116#
 ####################【downlink_config】脚本测试执行开始!####################
 
 设备登录中，请稍后......
+
 172.17.100.214登录成功!
 
 tips:配置downlink......
 
 命令end执行结果:
 end
-GPL116#AUG-17-2023 16:18:45  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
-AUG-17-2023 16:18:45  gpon-onu-remote-5-Config download: ONU 3/3/2 pon-sys config download success
-AUG-17-2023 16:18:46  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
-AUG-17-2023 16:18:46  gpon-onu-remote-5-Config download: ONU 3/3/1 pon-sys config download success
-
+GPL116#
 
 命令show run interface gpon-olt 3/3执行结果:
 show run interface gpon-olt 3/3
@@ -112,8 +110,7 @@ GPL116#
 conf t
 Configuration mode, one command input per times. End with CTRL-Z.
 CONFIG-I:Configured from telnet ...
-GPL116(config)#AUG-17-2023 16:18:49  gpon-onu-remote-5-Config download: ONU 3/3/1 config download success. 
-
+GPL116(config)#
 
 命令interface gpon-olt 3/3执行结果:
 interface gpon-olt 3/3
@@ -121,8 +118,7 @@ GPL116(config-if-gpon-olt-3:3)#
 
 命令authorization mode none执行结果:
 authorization mode none
-GPL116(config-if-gpon-olt-3:3)#AUG-17-2023 16:18:54  gpon-onu-remote-5-Config download: ONU 3/3/2 config download success. 
-
+GPL116(config-if-gpon-olt-3:3)#
 
 命令no switchport mode执行结果:
 no switchport mode
@@ -184,6 +180,7 @@ GPL116#
 ####################【check_onu_port】脚本测试执行开始!####################
 
 设备登录中，请稍后......
+
 172.17.100.214登录成功!
 
 tips:检查测试ONU接口状态......
@@ -193,8 +190,8 @@ show interface gpon-onu cr
 ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
                                                                                                  ID   name             ID      name            
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-17,16:17:39    active   1024 Def_P_all        1015    Def_8E
-3/3/2     YHCT0070692F      gpon    (g)       MONUV664           2023-08-17,16:17:39    active   1024 Def_P_all        1006    Def_VEIP
+3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-17,16:28:39    active   1024 Def_P_all        1015    Def_8E
+3/3/2     YHCT0070692F      gpon    (g)       MONUV664           2023-08-17,16:28:39    active   1024 Def_P_all        1006    Def_VEIP
 3/5/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-08-17,08:32:09    active   1024 Def_P_all        1006    Def_VEIP
 
 GPL116(config)#
@@ -209,6 +206,7 @@ GPL116(config)#
 ####################【dba_config_sfu】脚本测试执行开始!####################
 
 设备登录中，请稍后......
+
 172.17.100.214登录成功!
 
 tips:配置dba-profile 127......
@@ -240,6 +238,7 @@ GPL116(config)#
 ####################【dba_config_hgu】脚本测试执行开始!####################
 
 设备登录中，请稍后......
+
 172.17.100.214登录成功!
 
 tips:配置dba-profile 128......
@@ -271,6 +270,7 @@ GPL116(config)#
 ####################【line_config_sfu】脚本测试执行开始!####################
 
 设备登录中，请稍后......
+
 172.17.100.214登录成功!
 
 tips:配置line-profile 127......
@@ -335,6 +335,7 @@ GPL116(config)#
 ####################【line_config_hgu】脚本测试执行开始!####################
 
 设备登录中，请稍后......
+
 172.17.100.214登录成功!
 
 tips:配置line-profile 128......
@@ -399,6 +400,7 @@ GPL116(config)#
 ####################【service_config_sfu】脚本测试执行开始!####################
 
 设备登录中，请稍后......
+
 172.17.100.214登录成功!
 
 tips:配置service-profile 127......
@@ -469,6 +471,7 @@ GPL116(config)#
 ####################【service_config_hgu】脚本测试执行开始!####################
 
 设备登录中，请稍后......
+
 172.17.100.214登录成功!
 
 tips:配置service-profile 128......
@@ -531,6 +534,7 @@ GPL116(config)#
 ####################【profile_bind】脚本测试执行开始!####################
 
 设备登录中，请稍后......
+
 172.17.100.214登录成功!
 
 tips:配置绑定自定义profile......
@@ -543,7 +547,7 @@ GPL116(config)#
 
 命令show interface gpon-onu cr | in 3/3/1执行结果:
 show interface gpon-onu cr | in 3/3/1
-3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-17,16:17:39    active   1024 Def_P_all        1015    Def_8E
+3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-17,16:28:39    active   1024 Def_P_all        1015    Def_8E
 
 GPL116(config)#
 
@@ -555,8 +559,8 @@ GPL116(config-if-gpon-onu-3/3:1)#
 
 命令line-profile-id 127执行结果:
 line-profile-id 127
-GPL116(config-if-gpon-onu-3/3:1)#AUG-17-2023 16:21:21  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
-AUG-17-2023 16:21:21  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2877
+GPL116(config-if-gpon-onu-3/3:1)#AUG-17-2023 16:33:26  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 160 (ulTunnelId 160) success
+AUG-17-2023 16:33:26  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2877
 
 
 命令
@@ -569,9 +573,9 @@ GPL116(config-if-gpon-onu-3/3:1)#
 
 命令service-profile-id 127执行结果:
 service-profile-id 127
-AUG-17-2023 16:21:25  gpon-onu-remote-3-ONU 3/3/1 ME upload process has been aborted(810)
-GPL116(config-if-gpon-onu-3/3:1)#AUG-17-2023 16:21:25  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
-AUG-17-2023 16:21:25  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2877
+AUG-17-2023 16:33:30  gpon-onu-remote-3-ONU 3/3/1 ME upload process has been aborted(810)
+GPL116(config-if-gpon-onu-3/3:1)#AUG-17-2023 16:33:30  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 160 (ulTunnelId 160) success
+AUG-17-2023 16:33:30  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2877
 
 
 命令
@@ -584,7 +588,7 @@ GPL116(config-if-gpon-onu-3/3:1)#
 
 命令show interface gpon-onu cr | in 3/3/1执行结果:
 show interface gpon-onu cr | in 3/3/1
-3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-17,16:17:39    active   127  profile-127      127     profile-127
+3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-17,16:28:39    active   127  profile-127      127     profile-127
 
 GPL116(config-if-gpon-onu-3/3:1)#
 
