@@ -21,6 +21,7 @@ class TelnetClient:
         self.tn = telnetlib.Telnet()
         self.pon_id = '/'.join(sys.argv[1].split('/')[:2])
         self.onu_id = sys.argv[1].split('/')[-1]
+        # self.uplink_id = sys.argv[2]
         self.onu_type1 ='sfu'
         self.onu_type2 ='hgu'
         self.dba_type1='dba-profile 127'
@@ -34,10 +35,8 @@ class TelnetClient:
         def wrapper(*args,**kwargs):
             test_exec1="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
             link_tips="设备登录中，请稍后......"
-            print(f'\n{test_exec1}\n')
-            print(f'\n{link_tips}\n')
-            telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n')
-            telnetlib.Telnet().logfile=output.write(f'\n{link_tips}\n\n')
+            print(f'\n{test_exec1}\n\n{link_tips}\n')
+            telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n{link_tips}\n')
             res=fun_name(*args,**kwargs)
             test_exec2="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行结束!"+"#"*20
             print(f'\n{test_exec2}\n')
@@ -595,19 +594,19 @@ if __name__ == '__main__':
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返回True，则执行命令，然后退出
-   # telnet.uplink_config()
-   # telnet.downlink_config()
+    # telnet.uplink_config()
+    # telnet.downlink_config()
     # telnet.downlink_config_auto()
-   # telnet.check_onu_port()
-   # telnet.dba_config_sfu()
-   # telnet.dba_config_hgu()
-   # telnet.line_config_sfu()
-   # telnet.line_config_hgu()
-   # telnet.service_config_sfu()
-   # telnet.service_config_hgu()
-   # telnet.profile_bind()
+    # telnet.check_onu_port()
+    # telnet.dba_config_sfu()
+    # telnet.dba_config_hgu()
+    # telnet.line_config_sfu()
+    # telnet.line_config_hgu()
+    # telnet.service_config_sfu()
+    # telnet.service_config_hgu()
+    # telnet.profile_bind()
     telnet.clear_config()
-   # #将标准输出和标准错误保存到log文件  
+    #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
 #执行方式：python3 demo_xxx.py x/x/x  执行脚本需传递ONU接口为第一个参数

@@ -21,6 +21,7 @@ class TelnetClient:
         self.tn = telnetlib.Telnet()
         self.pon_id = '/'.join(sys.argv[1].split('/')[:2])
         self.onu_id = sys.argv[1].split('/')[-1]
+        # self.uplink_id = sys.argv[2]
         self.onu_type1 ='sfu'
         self.onu_type2 ='hgu'
         self.dba_type1='dba-profile 127'
@@ -34,10 +35,8 @@ class TelnetClient:
         def wrapper(*args,**kwargs):
             test_exec1="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行开始!"+"#"*20
             link_tips="设备登录中，请稍后......"
-            print(f'\n{test_exec1}\n')
-            print(f'\n{link_tips}\n')
-            telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n')
-            telnetlib.Telnet().logfile=output.write(f'\n{link_tips}\n\n')
+            print(f'\n{test_exec1}\n\n{link_tips}\n')
+            telnetlib.Telnet().logfile=output.write(f'\n{test_exec1}\n\n{link_tips}\n')
             res=fun_name(*args,**kwargs)
             test_exec2="#"*20+"【"+fun_name.__name__+"】"+"脚本测试执行结束!"+"#"*20
             print(f'\n{test_exec2}\n')
@@ -571,7 +570,7 @@ class TelnetClient:
               'show dba-profile 128',
               'show interface gpon-onu creation-information | in {}'.format(self.pon_id),
               'show interface gpon-onu online-information | in {}'.format(self.pon_id)]
-        #删除所有ONU自定义模板......
+        #删除所有ONU自定义模板···
         check_name='tips:删除所有ONU自定义模板......'
         check_words=['--                   --                   --']
         output_lst=[]
