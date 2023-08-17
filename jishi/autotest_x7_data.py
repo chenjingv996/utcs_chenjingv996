@@ -125,7 +125,8 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['end',
+        cmds=['vlan 4000',
+              'end',
               'show run interface ten-gigabitethernet 10/2',
               'conf t',
               'interface ten-gigabitethernet 10/2',

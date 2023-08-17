@@ -153,7 +153,8 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['end',
+        cmds=['vlan 4000',
+              'end',
               'show run interface gpon-olt 3/3',
               'conf t',
               'interface gpon-olt 3/3',
