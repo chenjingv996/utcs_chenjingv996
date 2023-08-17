@@ -1,9 +1,594 @@
 
-测试开始时间为:Thu Aug 17 16:15:50 2023
+测试开始时间为:Thu Aug 17 16:17:55 2023
 
-####################【clear_config】脚本测试执行开始!####################
+####################【uplink_config】脚本测试执行开始!####################
 
 设备登录中，请稍后......
 172.17.100.214登录成功!
 
-tips:删除所有ONU自定义模板......
+tips:配置uplink......
+
+命令vlan 4000执行结果:
+vlan 4000
+GPL116(config-vlan-4000)#
+
+命令end执行结果:
+end
+GPL116#
+
+命令show run interface ten-gigabitethernet 10/2执行结果:
+show run interface ten-gigabitethernet 10/2
+!command in ten-gigabitethernet_mode
+interface ten-gigabitethernet 10/2
+switchport access vlan 4000 
+quit
+!
+GPL116#
+
+命令conf t执行结果:
+conf t
+Configuration mode, one command input per times. End with CTRL-Z.
+CONFIG-I:Configured from telnet ...
+GPL116(config)#
+
+命令interface ten-gigabitethernet 10/2执行结果:
+interface ten-gigabitethernet 10/2
+GPL116(config-if-ten-gigabitethernet-10:2)#
+
+命令no switchport mode执行结果:
+no switchport mode
+GPL116(config-if-ten-gigabitethernet-10:2)#
+
+命令no switchport trunk native vlan执行结果:
+no switchport trunk native vlan
+GPL116(config-if-ten-gigabitethernet-10:2)#
+
+命令no switchport trunk allowed vlan执行结果:
+no switchport trunk allowed vlan
+GPL116(config-if-ten-gigabitethernet-10:2)#
+
+命令no switchport trunk untagged vlan执行结果:
+no switchport trunk untagged vlan
+GPL116(config-if-ten-gigabitethernet-10:2)#
+
+命令switchport mode access执行结果:
+switchport mode access
+GPL116(config-if-ten-gigabitethernet-10:2)#
+
+命令switchport access vlan 4000执行结果:
+switchport access vlan 4000
+GPL116(config-if-ten-gigabitethernet-10:2)#
+
+命令end执行结果:
+end
+GPL116#
+
+命令show run interface ten-gigabitethernet 10/2执行结果:
+show run interface ten-gigabitethernet 10/2
+!command in ten-gigabitethernet_mode
+interface ten-gigabitethernet 10/2
+switchport access vlan 4000 
+quit
+!
+GPL116#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【uplink_config】测试结果为:pass
+
+####################【uplink_config】脚本测试执行结束!####################
+
+
+####################【downlink_config】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+172.17.100.214登录成功!
+
+tips:配置downlink......
+
+命令end执行结果:
+end
+GPL116#AUG-17-2023 16:18:45  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
+AUG-17-2023 16:18:45  gpon-onu-remote-5-Config download: ONU 3/3/2 pon-sys config download success
+AUG-17-2023 16:18:46  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
+AUG-17-2023 16:18:46  gpon-onu-remote-5-Config download: ONU 3/3/1 pon-sys config download success
+
+
+命令show run interface gpon-olt 3/3执行结果:
+show run interface gpon-olt 3/3
+!command in gpon-olt_mode
+interface gpon-olt 3/3
+authorization mode none
+create gpon-onu 1 sn YHCT00704FAB line-profile-id 1024 service-profile-id 1015 
+create gpon-onu 2 sn YHCT0070692F line-profile-id 1024 service-profile-id 1006 
+switchport trunk allowed vlan 4000 
+switchport trunk untagged vlan remove 1 
+switchport mode trunk
+multicast-vlan 4000 member
+igmp snooping immediate-leave multicast-vlan 4000
+quit
+!
+GPL116#
+
+命令conf t执行结果:
+conf t
+Configuration mode, one command input per times. End with CTRL-Z.
+CONFIG-I:Configured from telnet ...
+GPL116(config)#AUG-17-2023 16:18:49  gpon-onu-remote-5-Config download: ONU 3/3/1 config download success. 
+
+
+命令interface gpon-olt 3/3执行结果:
+interface gpon-olt 3/3
+GPL116(config-if-gpon-olt-3:3)#
+
+命令authorization mode none执行结果:
+authorization mode none
+GPL116(config-if-gpon-olt-3:3)#AUG-17-2023 16:18:54  gpon-onu-remote-5-Config download: ONU 3/3/2 config download success. 
+
+
+命令no switchport mode执行结果:
+no switchport mode
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport access vlan执行结果:
+no switchport access vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport trunk native vlan执行结果:
+no switchport trunk native vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport trunk allowed vlan执行结果:
+no switchport trunk allowed vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport trunk untagged vlan执行结果:
+no switchport trunk untagged vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令switchport mode trunk执行结果:
+switchport mode trunk
+GPL116(config-if-gpon-olt-3:3)#
+
+命令switchport trunk allowed vlan 4000执行结果:
+switchport trunk allowed vlan 4000
+Trunk allow vlan will be reconfiged,please input 'yes' to confirm set allowed vlan:[yes]
+
+命令yes执行结果:
+yes
+GPL116(config-if-gpon-olt-3:3)#
+
+命令end执行结果:
+end
+GPL116#
+
+命令show run interface gpon-olt 3/3执行结果:
+show run interface gpon-olt 3/3
+!command in gpon-olt_mode
+interface gpon-olt 3/3
+authorization mode none
+create gpon-onu 1 sn YHCT00704FAB line-profile-id 1024 service-profile-id 1015 
+create gpon-onu 2 sn YHCT0070692F line-profile-id 1024 service-profile-id 1006 
+switchport trunk allowed vlan 4000 
+switchport trunk untagged vlan remove 1 
+switchport mode trunk
+multicast-vlan 4000 member
+igmp snooping immediate-leave multicast-vlan 4000
+quit
+!
+GPL116#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【downlink_config】测试结果为:pass
+
+####################【downlink_config】脚本测试执行结束!####################
+
+
+####################【check_onu_port】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+172.17.100.214登录成功!
+
+tips:检查测试ONU接口状态......
+
+命令show interface gpon-onu cr执行结果:
+show interface gpon-onu cr
+ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
+                                                                                                 ID   name             ID      name            
+------------------------------------------------------------------------------------------------------------------------------------------------------
+3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-17,16:17:39    active   1024 Def_P_all        1015    Def_8E
+3/3/2     YHCT0070692F      gpon    (g)       MONUV664           2023-08-17,16:17:39    active   1024 Def_P_all        1006    Def_VEIP
+3/5/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-08-17,08:32:09    active   1024 Def_P_all        1006    Def_VEIP
+
+GPL116(config)#
+
+该ONU接口3/3/1已存在，程序继续......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【check_onu_port】测试结果为:pass
+
+####################【check_onu_port】脚本测试执行结束!####################
+
+
+####################【dba_config_sfu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+172.17.100.214登录成功!
+
+tips:配置dba-profile 127......
+
+命令show dba-profile 127执行结果:
+show dba-profile 127
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+GPL116(config)#
+
+不存在sfu类型dba模版-dba-profile 127，配置中请稍后......
+
+命令create dba-profile 127 name chenjingv127 type4 max 1024000执行结果:
+create dba-profile 127 name chenjingv127 type4 max 1024000
+GPL116(config)#
+
+命令show dba-profile 127执行结果:
+show dba-profile 127
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+127         chenjingv127      type4  0          0             1024000    best-effort    0         0       TM        0   
+GPL116(config)#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【dba_config_sfu】测试结果为:pass
+
+####################【dba_config_sfu】脚本测试执行结束!####################
+
+
+####################【dba_config_hgu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+172.17.100.214登录成功!
+
+tips:配置dba-profile 128......
+
+命令show dba-profile 128执行结果:
+show dba-profile 128
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+GPL116(config)#
+
+不存在hgu类型dba模版-dba-profile 128，配置中请稍后......
+
+命令create dba-profile 128 name chenjingv128 type4 max 1024000执行结果:
+create dba-profile 128 name chenjingv128 type4 max 1024000
+GPL116(config)#
+
+命令show dba-profile 128执行结果:
+show dba-profile 128
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+128         chenjingv128      type4  0          0             1024000    best-effort    0         0       TM        0   
+GPL116(config)#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【dba_config_hgu】测试结果为:pass
+
+####################【dba_config_hgu】脚本测试执行结束!####################
+
+
+####################【line_config_sfu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+172.17.100.214登录成功!
+
+tips:配置line-profile 127......
+
+命令show gpon-onu-line-profile 127执行结果:
+show gpon-onu-line-profile 127
+GPL116(config)#
+
+不存在sfu类型line模版-line-profile 127，配置中请稍后......
+
+命令gpon-onu-line-profile 127执行结果:
+gpon-onu-line-profile 127
+GPL116(config-gpon-onu-line-profile:127)#
+
+命令create tcont 1 dba-profile 127执行结果:
+create tcont 1 dba-profile 127
+GPL116(config-gpon-onu-line-profile:127)#
+
+命令create gem 1 tcont 1执行结果:
+create gem 1 tcont 1
+GPL116(config-gpon-onu-line-profile:127)#
+
+命令gem 1 mapping 1 vlan 4000执行结果:
+gem 1 mapping 1 vlan 4000
+GPL116(config-gpon-onu-line-profile:127)#
+
+命令commit执行结果:
+commit
+GPL116(config-gpon-onu-line-profile:127)#
+
+命令exit执行结果:
+exit
+GPL116(config)#
+
+命令show gpon-onu-line-profile 127执行结果:
+show gpon-onu-line-profile 127
+LineProfile ID  : 127
+LineProfile Name: profile-127
+Ref. counter    : 0
+  FEC upstream: disable
+  OMCC encrypt: disable
+  Mapping mode: VLAN
+  ------------------------------------------------------------------------------
+  T-CONT 0          DBA Profile Name: def_gp_1
+  T-CONT 1          DBA Profile Name: chenjingv127
+    Gem Index    Encryption       Priority  USPolicing  DSPolicing   MAC limit
+                DS        US                                                    
+    ----------------------------------------------------------------------------
+    1         disable   disable   0         0           0            unlimited
+    ----------------------------------------------------------------------------
+      Mapping Index  VLAN  Priority  Port Type  Port ID
+      ----------------------------------------------------------------
+      1              4000  --        --         --
+      ----------------------------------------------------------------
+GPL116(config)#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【line_config_sfu】测试结果为:pass
+
+####################【line_config_sfu】脚本测试执行结束!####################
+
+
+####################【line_config_hgu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+172.17.100.214登录成功!
+
+tips:配置line-profile 128......
+
+命令show gpon-onu-line-profile 128执行结果:
+show gpon-onu-line-profile 128
+GPL116(config)#
+
+不存在hgu类型line模版-line-profile 128，配置中请稍后......
+
+命令gpon-onu-line-profile 128执行结果:
+gpon-onu-line-profile 128
+GPL116(config-gpon-onu-line-profile:128)#
+
+命令create tcont 1 dba-profile 128执行结果:
+create tcont 1 dba-profile 128
+GPL116(config-gpon-onu-line-profile:128)#
+
+命令create gem 1 tcont 1执行结果:
+create gem 1 tcont 1
+GPL116(config-gpon-onu-line-profile:128)#
+
+命令gem 1 mapping 1 vlan 4000执行结果:
+gem 1 mapping 1 vlan 4000
+GPL116(config-gpon-onu-line-profile:128)#
+
+命令commit执行结果:
+commit
+GPL116(config-gpon-onu-line-profile:128)#
+
+命令exit执行结果:
+exit
+GPL116(config)#
+
+命令show gpon-onu-line-profile 128执行结果:
+show gpon-onu-line-profile 128
+LineProfile ID  : 128
+LineProfile Name: profile-128
+Ref. counter    : 0
+  FEC upstream: disable
+  OMCC encrypt: disable
+  Mapping mode: VLAN
+  ------------------------------------------------------------------------------
+  T-CONT 0          DBA Profile Name: def_gp_1
+  T-CONT 1          DBA Profile Name: chenjingv128
+    Gem Index    Encryption       Priority  USPolicing  DSPolicing   MAC limit
+                DS        US                                                    
+    ----------------------------------------------------------------------------
+    1         disable   disable   0         0           0            unlimited
+    ----------------------------------------------------------------------------
+      Mapping Index  VLAN  Priority  Port Type  Port ID
+      ----------------------------------------------------------------
+      1              4000  --        --         --
+      ----------------------------------------------------------------
+GPL116(config)#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【line_config_hgu】测试结果为:pass
+
+####################【line_config_hgu】脚本测试执行结束!####################
+
+
+####################【service_config_sfu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+172.17.100.214登录成功!
+
+tips:配置service-profile 127......
+
+命令show gpon-onu-service-profile 127 | section-end WLAN执行结果:
+show gpon-onu-service-profile 127 | section-end WLAN
+GPL116(config)#
+
+不存在sfu类型service模版-service-profile 127，配置中请稍后......
+
+命令gpon-onu-service-profile 127执行结果:
+gpon-onu-service-profile 127
+GPL116(config-gpon-onu-service-profile:127)#
+
+命令port-num ethernet 4执行结果:
+port-num ethernet 4
+GPL116(config-gpon-onu-service-profile:127)#
+
+命令uni ethernet 1-4 vlan mode tagged执行结果:
+uni ethernet 1-4 vlan mode tagged
+GPL116(config-gpon-onu-service-profile:127)#
+
+命令uni ethernet 1-4 native vlan 4000执行结果:
+uni ethernet 1-4 native vlan 4000
+GPL116(config-gpon-onu-service-profile:127)#
+
+命令commit执行结果:
+commit
+GPL116(config-gpon-onu-service-profile:127)#
+
+命令exit执行结果:
+exit
+GPL116(config)#
+
+命令show gpon-onu-service-profile 127 | section-end WLAN执行结果:
+show gpon-onu-service-profile 127 | section-end WLAN
+ServiceProfile ID  : 127
+ServiceProfile Name: profile-127
+Ref. counter       : 0
+  MAC learning              : enable
+  MAC aging time(seconds)   : 300
+  Switchport isolation      : enable
+  DLF discard               : disable
+  Multicast mode            : snooping
+  VOIP type                 : sip
+  Iphost Num                : 2
+  Country code              : undefine
+  Time zone                 : undefine
+  VOIP IPhost Id            : 1
+  MNG-SVR IPhost Id         : 0
+  MNG-SVR PRI-Domain        : --
+  MNG-SVR BAK-Domain        : --
+  ---------------------------------------------------------
+  Type      Port Num
+  ---------------------------------------------------------
+  Ethernet  4
+  POTS      0
+  VEIP      0
+  CATV      0
+  WLAN      0
+GPL116(config)#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【service_config_sfu】测试结果为:pass
+
+####################【service_config_sfu】脚本测试执行结束!####################
+
+
+####################【service_config_hgu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+172.17.100.214登录成功!
+
+tips:配置service-profile 128......
+
+命令show gpon-onu-service-profile 128 | section-end WLAN执行结果:
+show gpon-onu-service-profile 128 | section-end WLAN
+GPL116(config)#
+
+不存在hgu类型service模版-service-profile 128，配置中请稍后......
+
+命令gpon-onu-service-profile 128执行结果:
+gpon-onu-service-profile 128
+GPL116(config-gpon-onu-service-profile:128)#
+
+命令port-num veip 1执行结果:
+port-num veip 1
+GPL116(config-gpon-onu-service-profile:128)#
+
+命令commit执行结果:
+commit
+GPL116(config-gpon-onu-service-profile:128)#
+
+命令exit执行结果:
+exit
+GPL116(config)#
+
+命令show gpon-onu-service-profile 128 | section-end WLAN执行结果:
+show gpon-onu-service-profile 128 | section-end WLAN
+ServiceProfile ID  : 128
+ServiceProfile Name: profile-128
+Ref. counter       : 0
+  MAC learning              : enable
+  MAC aging time(seconds)   : 300
+  Switchport isolation      : enable
+  DLF discard               : disable
+  Multicast mode            : snooping
+  VOIP type                 : sip
+  Iphost Num                : 2
+  Country code              : undefine
+  Time zone                 : undefine
+  VOIP IPhost Id            : 1
+  MNG-SVR IPhost Id         : 0
+  MNG-SVR PRI-Domain        : --
+  MNG-SVR BAK-Domain        : --
+  ---------------------------------------------------------
+  Type      Port Num
+  ---------------------------------------------------------
+  Ethernet  0
+  POTS      0
+  VEIP      1
+  CATV      0
+  WLAN      0
+GPL116(config)#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【service_config_hgu】测试结果为:pass
+
+####################【service_config_hgu】脚本测试执行结束!####################
+
+
+####################【profile_bind】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+172.17.100.214登录成功!
+
+tips:配置绑定自定义profile......
+
+命令show gpon-onu 3/3/1 capability | in ype执行结果:
+show gpon-onu 3/3/1 capability | in ype
+    ONU Type                   : sfu
+
+GPL116(config)#
+
+命令show interface gpon-onu cr | in 3/3/1执行结果:
+show interface gpon-onu cr | in 3/3/1
+3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-17,16:17:39    active   1024 Def_P_all        1015    Def_8E
+
+GPL116(config)#
+
+该ONU为sfu类型，未绑定自定义模版，配置中请稍后......
+
+命令int gpon-onu 3/3/1执行结果:
+int gpon-onu 3/3/1
+GPL116(config-if-gpon-onu-3/3:1)#
+
+命令line-profile-id 127执行结果:
+line-profile-id 127
+GPL116(config-if-gpon-onu-3/3:1)#AUG-17-2023 16:21:21  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
+AUG-17-2023 16:21:21  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2877
+
+
+命令
+
+执行结果:
+
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+
+命令service-profile-id 127执行结果:
+service-profile-id 127
+AUG-17-2023 16:21:25  gpon-onu-remote-3-ONU 3/3/1 ME upload process has been aborted(810)
+GPL116(config-if-gpon-onu-3/3:1)#AUG-17-2023 16:21:25  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
+AUG-17-2023 16:21:25  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2877
+
+
+命令
+
+执行结果:
+
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+
+命令show interface gpon-onu cr | in 3/3/1执行结果:
+show interface gpon-onu cr | in 3/3/1
+3/3/1     YHCT00704FAB      gpon    (g)       MONUM208           2023-08-17,16:17:39    active   127  profile-127      127     profile-127
+
+GPL116(config-if-gpon-onu-3/3:1)#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【profile_bind】测试结果为:pass
+
+####################【profile_bind】脚本测试执行结束!####################
+

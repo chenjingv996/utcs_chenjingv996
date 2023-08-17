@@ -77,13 +77,13 @@ class TelnetClient:
         command_result = self.tn.read_very_eager().decode('utf-8')
         if 'Login incorrect' not in command_result:
             login_res1=self.host_ip+"登录成功!"
-            print(f'{login_res1}\n')
-            self.tn.logfile=output.write(f'{login_res1}\n')
+            print(f'\n{login_res1}\n')
+            self.tn.logfile=output.write(f'\n{login_res1}\n')
             return True
         else:
             login_res2=self.host_ip+"登录失败，用户名或密码错误!"
-            print(f'{login_res2}\n')
-            self.tn.logfile=output.write(f'{login_res2}\n')
+            print(f'\n{login_res2}\n')
+            self.tn.logfile=output.write(f'\n{login_res2}\n')
             return False
 
     #退出telnet
