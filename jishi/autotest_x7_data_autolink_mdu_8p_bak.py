@@ -717,4 +717,4 @@ if __name__ == '__main__':
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
-#执行方式：python3 demo_xxx.py x/x/x  执行脚本需传递ONU接口为第一个参数
+#执行方式：python3 demo_xxx.py x/x/x x/x 执行脚本需传递2个参数，ONU接口和UPLINK
