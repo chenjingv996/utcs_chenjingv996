@@ -274,16 +274,14 @@ class TelnetClient:
               'no switchport trunk native vlan',
               'no switchport trunk allowed vlan',
               'no switchport trunk untagged vlan',
-              # 'switchport mode access',
               'switchport mode trunk',
               'switchport trunk native vlan 4000',
-              # 'switchport access vlan 4000',
               'switchport trunk allowed vlan 1011-1020,4000 confirm',
               'end',
               'show run interface ten-gigabitethernet {}'.format(self.uplink_id)]
         #配置uplink......
         check_name='tips:配置uplink......'
-        check_words=['switchport trunk native vlan 4000']
+        check_words=['switchport trunk allowed vlan 1011-1020,4000']
         output_lst=[]
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
@@ -310,12 +308,11 @@ class TelnetClient:
               'no switchport trunk untagged vlan',
               'switchport mode trunk',
               'switchport trunk allowed vlan 1011-1020,4000 confirm',
-              # 'yes',
               'end',
               'show run interface gpon-olt {}'.format(self.pon_id)]
         #配置downlink......
         check_name='tips:配置downlink......'
-        check_words=['switchport trunk allowed vlan']
+        check_words=['switchport trunk allowed vlan 1011-1020,4000']
         output_lst=[]
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
@@ -717,4 +714,4 @@ if __name__ == '__main__':
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
-#执行方式：python3 demo_xxx.py x/x/x x/x 执行脚本需传递2个参数，ONU接口和UPLINK
+#执行方式：python3 demo_xxx.py x/x/x x/x执行脚本需传递2个参数，ONU接口和UPLINK接口

@@ -202,7 +202,7 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['vlan 4000',
+        cmds=['creat vlan 4000,1011-1020 active',
               'end',
               'show run interface ten-gigabitethernet 10/2',
               'conf t',
@@ -264,7 +264,7 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['vlan 4000',
+        cmds=['creat vlan 4000,1011-1020 active',
               'end',
               'show run interface ten-gigabitethernet {}'.format(self.uplink_id),
               'conf t',
@@ -274,13 +274,13 @@ class TelnetClient:
               'no switchport trunk native vlan',
               'no switchport trunk allowed vlan',
               'no switchport trunk untagged vlan',
-              'switchport mode access',
-              'switchport access vlan 4000',
+              'switchport trunk native vlan 4000',
+              'switchport trunk allowed vlan 1011-1020,4000 confirm',
               'end',
               'show run interface ten-gigabitethernet {}'.format(self.uplink_id)]
         #配置uplink......
         check_name='tips:配置uplink......'
-        check_words=['switchport access vlan 4000']
+        check_words=['switchport trunk allowed vlan 1011-1020,4000']
         output_lst=[]
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
@@ -306,13 +306,12 @@ class TelnetClient:
               'no switchport trunk allowed vlan',
               'no switchport trunk untagged vlan',
               'switchport mode trunk',
-              'switchport trunk allowed vlan 4000',
-              'yes',
+              'switchport trunk allowed vlan 1011-1020,4000 confirm',
               'end',
               'show run interface gpon-olt {}'.format(self.pon_id)]
         #配置downlink......
         check_name='tips:配置downlink......'
-        check_words=['switchport trunk allowed vlan 4000']
+        check_words=['switchport trunk allowed vlan 1011-1020,4000']
         output_lst=[]
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
@@ -630,7 +629,8 @@ class TelnetClient:
         cmds=['show interface gpon-onu creation-information | in {}'.format(self.pon_id),
               'show interface gpon-onu online-information | in {}'.format(self.pon_id),
               'int gpon-olt {}'.format(self.pon_id),
-              'no create gpon-onu 1-10',
+              # 'no create gpon-onu 1-10',
+              'no create gpon-onu {}'.format(self.onu_id),
               '\n\n',
               'exit',
               'no gpon-onu-line-profile 127',
@@ -671,7 +671,7 @@ if __name__ == '__main__':
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返回True，则执行命令，然后退出
-    # telnet.clear_config()
+    telnet.clear_config()
     telnet.check_uplink_port()
     telnet.check_onu_port()
     # telnet.uplink_config()
@@ -689,4 +689,4 @@ if __name__ == '__main__':
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
-#执行方式：python3 demo_xxx.py x/x/x  执行脚本需传递ONU接口为第一个参数
+#执行方式：python3 demo_xxx.py x/x/x x/x执行脚本需传递2个参数，ONU接口和UPLINK接口
