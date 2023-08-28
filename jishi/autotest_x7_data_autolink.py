@@ -274,6 +274,7 @@ class TelnetClient:
               'no switchport trunk native vlan',
               'no switchport trunk allowed vlan',
               'no switchport trunk untagged vlan',
+              'switchport mode trunk',
               'switchport trunk native vlan 4000',
               'switchport trunk allowed vlan 1011-1020,4000 confirm',
               'end',
