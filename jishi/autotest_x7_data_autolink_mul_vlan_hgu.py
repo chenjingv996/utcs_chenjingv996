@@ -312,7 +312,7 @@ class TelnetClient:
               'show run interface gpon-olt {}'.format(self.pon_id)]
         #配置downlink......
         check_name='tips:配置downlink......'
-        check_words=['switchport trunk allowed vlan 1011-1020,4000']
+        check_words=['switchport trunk allowed vlan 10,20,30,40,1011-1020,4000']
         output_lst=[]
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
