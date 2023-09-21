@@ -70,19 +70,19 @@ class TelnetClient:
         self.tn.read_until(b'# ',timeout=1)
         self.tn.write(self.cmd_3.encode('ascii') + b'\r\n')
         # 延时1秒再收取返回结果，给服务端足够响应时间
-        sleep(1.5)
+        sleep(2)
         print()
         # 获取登录结果
         # read_very_eager()获取到的是的是上次获取之后本次获取之前的所有输出
         command_result = self.tn.read_very_eager().decode('utf-8')
         if 'Login incorrect' not in command_result:
             login_res1=self.host_ip+"登录成功!"
-            print(f'\n{login_res1}\n')
+            print(f'{login_res1}\n')
             self.tn.logfile=output.write(f'\n{login_res1}\n')
             return True
         else:
             login_res2=self.host_ip+"登录失败，用户名或密码错误!"
-            print(f'\n{login_res2}\n')
+            print(f'{login_res2}\n')
             self.tn.logfile=output.write(f'\n{login_res2}\n')
             return False
 
@@ -104,7 +104,7 @@ class TelnetClient:
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\r\n')
-            sleep(1.5)
+            sleep(2)
             # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
             output_lst.append(cmds_res)
@@ -132,7 +132,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_info[0].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_0 = self.tn.read_very_eager().decode('utf-8')
         res_0="命令"+cmds_info[0]+"执行结果:"
@@ -141,7 +141,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_info[1].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
         res_1="命令"+cmds_info[1]+"执行结果:"
@@ -175,7 +175,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_info.encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
         res_1="命令"+cmds_info+"执行结果:"
@@ -195,6 +195,7 @@ class TelnetClient:
             sys.exit()           
                 
         self.logout_host()
+    
     #检查uplink接口是否存在    
     @outer
     def check_uplink_port(self):
@@ -208,7 +209,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_info[0].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_0 = self.tn.read_very_eager().decode('utf-8')
         res_0="命令"+cmds_info[0]+"执行结果:"
@@ -217,7 +218,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_info[1].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
         res_1="命令"+cmds_info[1]+"执行结果:"
@@ -251,7 +252,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_info.encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
         res_1="命令"+cmds_info+"执行结果:"
@@ -278,7 +279,7 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['creat vlan 4000,1011-1010 active',
+        cmds=['creat vlan 4000,1011-1020 active',
               'end',
               'show run interface ten-gigabitethernet 10/2',
               'conf t',
@@ -340,7 +341,7 @@ class TelnetClient:
         self.login_host()
         
         cn=sys._getframe().f_code.co_name
-        cmds=['creat vlan 4000,1011-1020 active',
+        cmds=['creat vlan 10,20,30,40,4000,1011-1020 active',
               'end',
               'show run interface ten-gigabitethernet {}'.format(self.uplink_id),
               'conf t',
@@ -352,12 +353,12 @@ class TelnetClient:
               'no switchport trunk untagged vlan',
               'switchport mode trunk',
               'switchport trunk native vlan 4000',
-              'switchport trunk allowed vlan 1011-1020,4000 confirm',
+              'switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 confirm',
               'end',
               'show run interface ten-gigabitethernet {}'.format(self.uplink_id)]
         #配置uplink......
         check_name='tips:配置uplink......'
-        check_words=['switchport trunk allowed vlan 1011-1020,4000']
+        check_words=['switchport trunk allowed vlan 10,20,30,40,1011-1020,4000']
         output_lst=[]
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
@@ -383,12 +384,12 @@ class TelnetClient:
               'no switchport trunk allowed vlan',
               'no switchport trunk untagged vlan',
               'switchport mode trunk',
-              'switchport trunk allowed vlan 1011-1020,4000 confirm',
+              'switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 confirm',
               'end',
               'show run interface gpon-olt {}'.format(self.pon_id)]
         #配置downlink......
         check_name='tips:配置downlink......'
-        check_words=['switchport trunk allowed vlan 1011-1020,4000']
+        check_words=['switchport trunk allowed vlan 10,20,30,40,1011-1020,4000']
         output_lst=[]
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
@@ -411,7 +412,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
         res_1="命令"+cmds[-1]+"执行结果:"
@@ -446,7 +447,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
         res_1="命令"+cmds[-1]+"执行结果:"
@@ -505,7 +506,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
         res_1="命令"+cmds[-1]+"执行结果:"
@@ -566,7 +567,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
         res_1="命令"+cmds[-1]+"执行结果:"
@@ -617,7 +618,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
         res_1="命令"+cmds[-1]+"执行结果:"
@@ -655,7 +656,7 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
         res_1="命令"+cmds[-1]+"执行结果:"
@@ -705,7 +706,7 @@ class TelnetClient:
                    'show interface gpon-onu cr | in {}/{}'.format(self.pon_id,self.onu_id)]
         # 执行命令
         self.tn.write(cmds_type[0].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
         cmds_res_0 = self.tn.read_very_eager().decode('utf-8')
         res_0="命令"+cmds_type[0]+"执行结果:"
@@ -714,9 +715,10 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_type[-1].encode('ascii')+b'\r\n')
-        sleep(1.5)
+        sleep(2)
         # 获取命令结果
-        cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
+        # cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
+        cmds_res_1 = self.tn.read_until(b'{sys.args[1]}',timeout=1).decode('utf-8')
         res_1="命令"+cmds_type[-1]+"执行结果:"
         print(f'\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{res_1}\n{cmds_res_1}\n')
@@ -781,8 +783,7 @@ class TelnetClient:
         output_lst=[]
         
         print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
-        
+        self.tn.logfile=output.write(f'\n{check_name}\n') 
         self.check_res1(cn,cmds,check_words,output_lst)
         
         self.logout_host()
@@ -801,7 +802,7 @@ if __name__ == '__main__':
     # 如果登录结果返回True，则执行命令，然后退出
     # telnet.check_olt_version()
     # telnet.check_onu_version()
-    # telnet.clear_config()
+    telnet.clear_config()
     telnet.check_uplink_port()
     telnet.check_onu_port()
     # telnet.uplink_config()
