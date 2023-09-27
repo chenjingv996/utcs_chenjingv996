@@ -196,15 +196,15 @@ class TelnetClient:
                 
         self.logout_host()
     
-    #检查uplink接口是否存在    
+    #检查uplink是否存在    
     @outer
     def check_uplink_port(self):
         self.login_host()
 
         cn=sys._getframe().f_code.co_name
         cmds_info=['end','show interface ten-gigabitethernet']
-        #检查测试uplink接口状态......
-        check_name='tips:检查测试uplink接口状态......'
+        #检查测试uplink状态......
+        check_name='tips:检查测试uplink状态......'
         check_words=['ten-gigabitethernet{}'.format(self.uplink_id)]
         
         # 执行命令
@@ -226,12 +226,12 @@ class TelnetClient:
         self.tn.logfile=output.write(f'\n{res_1}\n{cmds_res_1}\n')
         
         if check_words[0] in cmds_res_1:
-            cfg_res_1='该uplink接口{}已存在，程序继续......'.format(self.uplink_id)
+            cfg_res_1='该uplink{}已存在，程序继续......'.format(self.uplink_id)
             print(f'\n{cfg_res_1}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_1}\n')
             self.pass_res(cn)
         else:
-            cfg_res_2='该uplink接口{}不存在，程序退出......'.format(self.uplink_id)
+            cfg_res_2='该uplink{}不存在，程序退出......'.format(self.uplink_id)
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
             self.fail_res(cn)
@@ -239,15 +239,15 @@ class TelnetClient:
                 
         self.logout_host()  
         
-    #检查ONU接口是否存在    
+    #检查downlink是否存在    
     @outer
-    def check_onu_port(self):
+    def check_downlink_port(self):
         self.login_host()
 
         cn=sys._getframe().f_code.co_name
         cmds_info='show interface gpon-onu cr'
-        #检查测试ONU接口状态......
-        check_name='tips:检查测试ONU接口状态......'
+        #检查测试downlink状态......
+        check_name='tips:检查测试downlink状态......'
         check_words=['{}/{}'.format(self.pon_id,self.onu_id)]
         
         # 执行命令
@@ -260,12 +260,12 @@ class TelnetClient:
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         
         if check_words[0] in cmds_res_1:
-            cfg_res_1='该ONU接口{}已存在，程序继续......'.format(check_words[0])
+            cfg_res_1='该downlink{}已存在，程序继续......'.format(check_words[0])
             print(f'\n{cfg_res_1}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_1}\n')
             self.pass_res(cn)
         else:
-            cfg_res_2='该ONU接口{}不存在，程序退出......'.format(check_words[0])
+            cfg_res_2='该downlink{}不存在，程序退出......'.format(check_words[0])
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
             self.fail_res(cn)
@@ -477,25 +477,22 @@ class TelnetClient:
               'create tcont 1 dba-profile 117',
               'mapping-mode vlan',
               'create gem 1 tcont 1',
-              # 'gem 1 mapping 1 vlan 1011',
               'gem 1 mapping 1 vlan 10',
               'create gem 2 tcont 1',
-              # 'gem 2 mapping 2 vlan 1012',
               'gem 2 mapping 2 vlan 20',
               'create gem 3 tcont 1',
-              # 'gem 3 mapping 3 vlan 1013',
               'gem 3 mapping 3 vlan 30',
               'create gem 4 tcont 1',
-              # 'gem 4 mapping 4 vlan 1014',
               'gem 4 mapping 4 vlan 40',
-              # 'create gem 5 tcont 1',
-              # 'gem 5 mapping 5 vlan 1015',
-              # 'create gem 6 tcont 1',
-              # 'gem 6 mapping 6 vlan 1016',
-              # 'create gem 7 tcont 1',
-              # 'gem 7 mapping 7 vlan 1017',
-              # 'create gem 8 tcont 1',
-              # 'gem 8 mapping 8 vlan 1018',
+              # 'create gem 1 tcont 1',
+              # 'gem 1 mapping 1 vlan 4000',
+              # 'gem 1 mapping 1 vlan 1011',
+              # 'create gem 2 tcont 1',
+              # 'gem 2 mapping 2 vlan 1012',
+              # 'create gem 3 tcont 1',
+              # 'gem 3 mapping 3 vlan 1013',
+              # 'create gem 4 tcont 1',
+              # 'gem 4 mapping 4 vlan 1014',
               'commit',
               'exit',
               'show gpon-onu-line-profile 117']
@@ -534,29 +531,24 @@ class TelnetClient:
         cn=sys._getframe().f_code.co_name
         cmds=['gpon-onu-line-profile 118',
               'create tcont 1 dba-profile 118',
-              # 'create gem 1 tcont 1',
-              # 'gem 1 mapping 1 vlan 4000',
               'mapping-mode vlan',
               'create gem 1 tcont 1',
-              # 'gem 1 mapping 1 vlan 1011',
               'gem 1 mapping 1 vlan 10',
               'create gem 2 tcont 1',
-              # 'gem 2 mapping 2 vlan 1012',
               'gem 2 mapping 2 vlan 20',
               'create gem 3 tcont 1',
-              # 'gem 3 mapping 3 vlan 1013',
               'gem 3 mapping 3 vlan 30',
               'create gem 4 tcont 1',
-              # 'gem 4 mapping 4 vlan 1014',
               'gem 4 mapping 4 vlan 40',
-              # 'create gem 5 tcont 1',
-              # 'gem 5 mapping 5 vlan 1015',
-              # 'create gem 6 tcont 1',
-              # 'gem 6 mapping 6 vlan 1016',
-              # 'create gem 7 tcont 1',
-              # 'gem 7 mapping 7 vlan 1017',
-              # 'create gem 8 tcont 1',
-              # 'gem 8 mapping 8 vlan 1018',
+              # 'create gem 1 tcont 1',
+              # 'gem 1 mapping 1 vlan 4000',
+              # 'gem 1 mapping 1 vlan 1011',
+              # 'create gem 2 tcont 1',
+              # 'gem 2 mapping 2 vlan 1012',
+              # 'create gem 3 tcont 1',
+              # 'gem 3 mapping 3 vlan 1013',
+              # 'create gem 4 tcont 1',
+              # 'gem 4 mapping 4 vlan 1014',
               'commit',
               'exit',
               'show gpon-onu-line-profile 118']
@@ -596,14 +588,14 @@ class TelnetClient:
         cmds=['gpon-onu-service-profile 117',
               'port-num ethernet 4',
               'uni ethernet 1-4 vlan mode tagged',
-              # 'uni ethernet 1 native vlan 1011',
               'uni ethernet 1 native vlan 10',
-              # 'uni ethernet 2 native vlan 1012',
               'uni ethernet 2 native vlan 20',
-              # 'uni ethernet 3 native vlan 1013',
               'uni ethernet 3 native vlan 30',
-              # 'uni ethernet 4 native vlan 1014', 
               'uni ethernet 4 native vlan 40',
+              # 'uni ethernet 1 native vlan 1011',
+              # 'uni ethernet 2 native vlan 1012',
+              # 'uni ethernet 3 native vlan 1013',
+              # 'uni ethernet 4 native vlan 1014',
               # 'uni ethernet 5 native vlan 1011',
               # 'uni ethernet 6 native vlan 1012',
               # 'uni ethernet 7 native vlan 1013',
@@ -804,7 +796,7 @@ if __name__ == '__main__':
     # telnet.check_onu_version()
     telnet.clear_config()
     telnet.check_uplink_port()
-    telnet.check_onu_port()
+    telnet.check_downlink_port()
     # telnet.uplink_config()
     # telnet.downlink_config()
     telnet.uplink_config_auto()
@@ -820,4 +812,4 @@ if __name__ == '__main__':
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
-#执行方式：python3 demo_xxx.py x/x/x x/x执行脚本需传递2个参数，ONU接口和UPLINK接口
+#执行方式：python3 demo_xxx.py x/x/x x/x执行脚本需传递2个参数，downlink和uplink
