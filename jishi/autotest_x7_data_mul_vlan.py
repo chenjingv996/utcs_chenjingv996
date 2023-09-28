@@ -70,7 +70,7 @@ class TelnetClient:
         self.tn.read_until(b'# ',timeout=1)
         self.tn.write(self.cmd_3.encode('ascii') + b'\r\n')
         # 延时1秒再收取返回结果，给服务端足够响应时间
-        sleep(1)
+        sleep(2)
         print()
         # 获取登录结果
         # read_very_eager()获取到的是的是上次获取之后本次获取之前的所有输出
@@ -104,10 +104,10 @@ class TelnetClient:
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\r\n')
-            sleep(1)
+            sleep(2)
             # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
-            self.tn.read_until(b'#',timeout=1).decode('utf-8')
+            # self.tn.read_until(b'# ',timeout=1)
             output_lst.append(cmds_res)
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
@@ -133,20 +133,20 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_info[0].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_0 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_0="命令"+cmds_info[0]+"执行结果:"
         print(f'\n{check_name}\n\n{res_0}\n{cmds_res_0}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_0}\n{cmds_res_0}\n')
         
         # 执行命令
         self.tn.write(cmds_info[1].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_1="命令"+cmds_info[1]+"执行结果:"
         print(f'\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{res_1}\n{cmds_res_1}\n')
@@ -178,10 +178,10 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_info.encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_1="命令"+cmds_info+"执行结果:"
         print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
@@ -213,31 +213,31 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_info[0].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_0 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_0="命令"+cmds_info[0]+"执行结果:"
         print(f'\n{check_name}\n\n{res_0}\n{cmds_res_0}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_0}\n{cmds_res_0}\n')
         
         # 执行命令
         self.tn.write(cmds_info[1].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_1="命令"+cmds_info[1]+"执行结果:"
         print(f'\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{res_1}\n{cmds_res_1}\n')
         
         if check_words[0] in cmds_res_1:
-            cfg_res_1='该uplink{}已存在，程序继续......'.format(self.uplink_id)
+            cfg_res_1='该uplink {} 已存在，程序继续......'.format(self.uplink_id)
             print(f'\n{cfg_res_1}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_1}\n')
             self.pass_res(cn)
         else:
-            cfg_res_2='该uplink{}不存在，程序退出......'.format(self.uplink_id)
+            cfg_res_2='该uplink {} 不存在，程序退出......'.format(self.uplink_id)
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
             self.fail_res(cn)
@@ -258,21 +258,21 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_info.encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_1="命令"+cmds_info+"执行结果:"
         print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         
         if check_words[0] in cmds_res_1:
-            cfg_res_1='该downlink{}已存在，程序继续......'.format(check_words[0])
+            cfg_res_1='该downlink {} 已存在，程序继续......'.format(check_words[0])
             print(f'\n{cfg_res_1}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_1}\n')
             self.pass_res(cn)
         else:
-            cfg_res_2='该downlink{}不存在，程序退出......'.format(check_words[0])
+            cfg_res_2='该downlink {} 不存在，程序退出......'.format(check_words[0])
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
             self.fail_res(cn)
@@ -419,10 +419,10 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_1="命令"+cmds[-1]+"执行结果:"
         print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
@@ -455,10 +455,10 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_1="命令"+cmds[-1]+"执行结果:"
         print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
@@ -512,10 +512,10 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_1="命令"+cmds[-1]+"执行结果:"
         print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
@@ -569,10 +569,10 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_1="命令"+cmds[-1]+"执行结果:"
         print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
@@ -621,10 +621,10 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_1="命令"+cmds[-1]+"执行结果:"
         print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
@@ -660,10 +660,10 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds[-1].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_1="命令"+cmds[-1]+"执行结果:"
         print(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n\n{res_1}\n{cmds_res_1}\n')
@@ -712,20 +712,20 @@ class TelnetClient:
         
         # 执行命令
         self.tn.write(cmds_type[0].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_0 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         res_0="命令"+cmds_type[0]+"执行结果:"
         print(f'n{res_0}\n{cmds_res_0}\n')
         self.tn.logfile=output.write(f'\n{res_0}\n{cmds_res_0}\n')
         
         # 执行命令
         self.tn.write(cmds_type[-1].encode('ascii')+b'\r\n')
-        sleep(1)
+        sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        self.tn.read_until(b'#',timeout=1).decode('utf-8')
+        # self.tn.read_until(b'# ',timeout=1)
         # cmds_res_1 = self.tn.read_until(b'{sys.args[1]}',timeout=1).decode('utf-8')
         res_1="命令"+cmds_type[-1]+"执行结果:"
         print(f'\n{res_1}\n{cmds_res_1}\n')
