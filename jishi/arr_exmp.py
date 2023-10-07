@@ -17,9 +17,10 @@ arr1=array('i',[1,3,5,6])
 
 print(arr1[2])
 
-arr2=np.array([[3,5,2,4],[3,5,6,8]])
+arr2=np.array([[3,5,2,4],[3,25,6,18]])
 
-print(arr2[1])
+print(arr2[0])
+print(arr2[1][3])
 
 arr3=np.array([13,22,34,55])
 
