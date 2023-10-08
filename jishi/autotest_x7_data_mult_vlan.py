@@ -599,6 +599,7 @@ class TelnetClient:
         cmds=['gpon-onu-service-profile 117',
               'port-num ethernet 4',
               'uni ethernet 1-4 vlan mode tagged',
+              # 'uni ethernet 1-4 native vlan 4000',
               'uni ethernet 1 native vlan 10',
               'uni ethernet 2 native vlan 20',
               'uni ethernet 3 native vlan 30',
