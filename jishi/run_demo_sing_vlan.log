@@ -1,0 +1,736 @@
+
+Test start time is:Sun Oct  8 15:49:22 2023
+
+####################【clear_config】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:删除所有ONU自定义模板......
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-10-08,15:18:54    active   118  profile-118      118     profile-118
+3/3/2     MONU008385A8      gpon    (g)       MONUH225           2023-10-08,14:55:54    active   116  profile-116      116     profile-116
+3/3/3     RCMG4B9800AF      gpon    (g)       GPU040-4G0F0P-TKPSE2023-10-08,15:09:24    active   115  profile-115      115     profile-115
+3/3/4     YHCT000102F2      gpon    (g)       YHCTH203           2023-10-08,15:25:24    active   116  profile-116      116     profile-116
+
+GPL116(config)#
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      online      1                2023-10-08,15:19:54  --                   --                          
+3/3/2      online      96               2023-10-08,14:56:24  --                   --                          
+3/3/3      online      1                2023-10-08,15:10:24  --                   --                          
+3/3/4      online      96               2023-10-08,15:26:24  --                   --                          
+
+GPL116(config)#
+
+命令int gpon-olt 3/3执行结果:
+int gpon-olt 3/3
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no create gpon-onu 1执行结果:
+no create gpon-onu 1
+Delete ONU 1 successfully
+
+
+命令
+
+执行结果:
+GPL116(config-if-gpon-olt-3:3)#
+GPL116(config-if-gpon-olt-3:3)#
+GPL116(config-if-gpon-olt-3:3)#
+GPL116(config-if-gpon-olt-3:3)#
+
+命令exit执行结果:
+exit
+GPL116(config)#
+
+命令no gpon-onu-line-profile 115执行结果:
+no gpon-onu-line-profile 115
+Profile 115 delete failed
+Object line-profile is using
+GPL116(config)#
+
+命令show gpon-onu-line-profile 115执行结果:
+show gpon-onu-line-profile 115
+LineProfile ID  : 115
+LineProfile Name: profile-115
+Ref. counter    : 1
+  FEC upstream: disable
+  OMCC encrypt: disable
+  Mapping mode: VLAN
+  ------------------------------------------------------------------------------
+  T-CONT 0          DBA Profile Name: def_gp_1
+  T-CONT 1          DBA Profile Name: chenjingv115
+    Gem Index    Encryption       Priority  USPolicing  DSPolicing   MAC limit
+                DS        US                                                    
+    ----------------------------------------------------------------------------
+    1         disable   disable   0         0           0            unlimited
+    ----------------------------------------------------------------------------
+      Mapping Index  VLAN  Priority  Port Type  Port ID
+      ----------------------------------------------------------------
+      1              4000  --        --         --
+      ----------------------------------------------------------------
+GPL116(config)#
+
+命令no gpon-onu-line-profile 116执行结果:
+no gpon-onu-line-profile 116
+Profile 116 delete failed
+Object line-profile is using
+GPL116(config)#
+
+命令show gpon-onu-line-profile 116执行结果:
+show gpon-onu-line-profile 116
+LineProfile ID  : 116
+LineProfile Name: profile-116
+Ref. counter    : 2
+  FEC upstream: disable
+  OMCC encrypt: disable
+  Mapping mode: VLAN
+  ------------------------------------------------------------------------------
+  T-CONT 0          DBA Profile Name: def_gp_1
+  T-CONT 1          DBA Profile Name: chenjingv116
+    Gem Index    Encryption       Priority  USPolicing  DSPolicing   MAC limit
+                DS        US                                                    
+    ----------------------------------------------------------------------------
+    1         disable   disable   0         0           0            unlimited
+    ----------------------------------------------------------------------------
+      Mapping Index  VLAN  Priority  Port Type  Port ID
+      ----------------------------------------------------------------
+      1              4000  --        --         --
+      ----------------------------------------------------------------
+GPL116(config)#
+
+命令no gpon-onu-service-profile 115执行结果:
+no gpon-onu-service-profile 115
+Profile 115 delete failed
+Object service-profile is using
+GPL116(config)#
+
+命令show gpon-onu-service-profile 115 | section-end WLAN执行结果:
+show gpon-onu-service-profile 115 | section-end WLAN
+ServiceProfile ID  : 115
+ServiceProfile Name: profile-115
+Ref. counter       : 1
+  MAC learning              : enable
+  MAC aging time(seconds)   : 300
+  Switchport isolation      : enable
+  DLF discard               : disable
+  Multicast mode            : snooping
+  VOIP type                 : sip
+  Iphost Num                : 2
+  Country code              : undefine
+  Time zone                 : undefine
+  VOIP IPhost Id            : 1
+  MNG-SVR IPhost Id         : 0
+  MNG-SVR PRI-Domain        : --
+  MNG-SVR BAK-Domain        : --
+  ---------------------------------------------------------
+  Type      Port Num
+  ---------------------------------------------------------
+  Ethernet  4
+  POTS      0
+  VEIP      0
+  CATV      0
+  WLAN      0
+GPL116(config)#
+
+命令no gpon-onu-service-profile 116执行结果:
+no gpon-onu-service-profile 116
+Profile 116 delete failed
+Object service-profile is using
+GPL116(config)#
+
+命令show gpon-onu-service-profile 116 | section-end WLAN执行结果:
+show gpon-onu-service-profile 116 | section-end WLAN
+ServiceProfile ID  : 116
+ServiceProfile Name: profile-116
+Ref. counter       : 2
+  MAC learning              : enable
+  MAC aging time(seconds)   : 300
+  Switchport isolation      : enable
+  DLF discard               : disable
+  Multicast mode            : snooping
+  VOIP type                 : sip
+  Iphost Num                : 2
+  Country code              : undefine
+  Time zone                 : undefine
+  VOIP IPhost Id            : 1
+  MNG-SVR IPhost Id         : 0
+  MNG-SVR PRI-Domain        : --
+  MNG-SVR BAK-Domain        : --
+  ---------------------------------------------------------
+  Type      Port Num
+  ---------------------------------------------------------
+  Ethernet  0
+  POTS      0
+  VEIP      1
+  CATV      0
+  WLAN      0
+GPL116(config)#
+
+命令no creat dba-profile 115执行结果:
+no creat dba-profile 115
+Profile 115 delete failed
+Object is using
+GPL116(config)#
+
+命令show dba-profile 115执行结果:
+show dba-profile 115
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+115         chenjingv115      type4  0          0             1024000    best-effort    0         0       TM        2   
+GPL116(config)#
+
+命令no creat dba-profile 116执行结果:
+no creat dba-profile 116
+Profile 116 delete failed
+Object is using
+GPL116(config)#
+
+命令show dba-profile 116执行结果:
+show dba-profile 116
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+116         chenjingv116      type4  0          0             1024000    best-effort    0         0       TM        3   
+GPL116(config)#
+
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/2     MONU008385A8      gpon    (g)       MONUH225           2023-10-08,14:55:54    active   116  profile-116      116     profile-116
+3/3/3     RCMG4B9800AF      gpon    (g)       GPU040-4G0F0P-TKPSE2023-10-08,15:09:24    active   115  profile-115      115     profile-115
+3/3/4     YHCT000102F2      gpon    (g)       YHCTH203           2023-10-08,15:25:24    active   116  profile-116      116     profile-116
+
+GPL116(config)#
+
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      offline     0                --                   --                   --                          
+3/3/2      online      96               2023-10-08,14:56:24  --                   --                          
+3/3/3      online      1                2023-10-08,15:10:24  --                   --                          
+3/3/4      online      96               2023-10-08,15:26:24  --                   --                          
+
+GPL116(config)#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【clear_config】测试结果为:pass
+
+####################【clear_config】脚本测试执行结束!####################
+
+
+####################【check_uplink_port】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:检查测试uplink状态......
+
+命令end执行结果:
+end
+GPL116#
+
+命令show interface ten-gigabitethernet执行结果:
+show interface ten-gigabitethernet
+Port                     Admin    Operate           Speed/Duplex  Flowctrl(R/S)  State       Connector   DownHoldTime(ms)
+---------------------------------------------------------------------------------------------------------------------
+ten-gigabitethernet10/1  enable   up(1000M/Full)    (1000M/Full)  off/off        Forward     online      0           
+ten-gigabitethernet10/2  enable   down              (1000M/Full)  off/off        Forward     offline     0           
+ten-gigabitethernet10/3  enable   up(1000M/Full)    (1000M/Full)  off/off        Forward     online      0           
+ten-gigabitethernet10/4  enable   down              (1000M/Full)  off/off        Forward     offline     0           
+
+GPL116#
+
+该uplink 10/3 已存在，程序继续......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【check_uplink_port】测试结果为:pass
+
+####################【check_uplink_port】脚本测试执行结束!####################
+
+
+####################【check_downlink_port】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:检查测试downlink状态......
+
+命令show interface gpon-onu cr执行结果:
+show interface gpon-onu cr
+ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
+                                                                                                 ID   name             ID      name            
+------------------------------------------------------------------------------------------------------------------------------------------------------
+3/3/1     YHCT00707D3F      gpon    (g)       --                 2023-10-08,15:48:54    active   --   --               --      --
+3/3/2     MONU008385A8      gpon    (g)       MONUH225           2023-10-08,14:55:54    active   116  profile-116      116     profile-116
+3/3/3     RCMG4B9800AF      gpon    (g)       GPU040-4G0F0P-TKPSE2023-10-08,15:09:24    active   115  profile-115      115     profile-115
+3/3/4     YHCT000102F2      gpon    (g)       YHCTH203           2023-10-08,15:25:24    active   116  profile-116      116     profile-116
+3/16/1    MONU00AB31F0      gpon    (g)       Unknown            2023-10-08,08:31:01    active   1024 Def_P_all        1006    Def_VEIP
+3/16/2    YHCT006F0150      gpon    (g)       Unknown            2023-10-08,08:31:01    active   1024 Def_P_all        1006    Def_VEIP
+3/16/3    GPON00002074      gpon    (g)       --                 2023-10-08,08:31:01    active   --   --               --      --
+
+GPL116(config)#
+
+该downlink 3/3/1 已存在，程序继续......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【check_downlink_port】测试结果为:pass
+
+####################【check_downlink_port】脚本测试执行结束!####################
+
+
+####################【uplink_config_auto】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置uplink......
+
+命令creat vlan 10,20,30,40,4000,1011-1020 active执行结果:
+creat vlan 10,20,30,40,4000,1011-1020 active
+Already existed vlans: 10,20,30,40,1011-1020,4000,can not be created again.
+GPL116(config)#
+
+命令end执行结果:
+end
+GPL116#
+
+命令show run interface ten-gigabitethernet 10/3执行结果:
+show run interface ten-gigabitethernet 10/3
+!command in ten-gigabitethernet_mode
+interface ten-gigabitethernet 10/3
+speed 1000 
+switchport trunk native vlan 4000 
+switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 
+switchport trunk untagged vlan remove 1 
+switchport mode trunk
+quit
+!
+GPL116#
+
+命令conf t执行结果:
+conf t
+Configuration mode, one command input per times. End with CTRL-Z.
+CONFIG-I:Configured from telnet ...
+GPL116(config)#
+
+命令interface ten-gigabitethernet 10/3执行结果:
+interface ten-gigabitethernet 10/3
+GPL116(config-if-ten-gigabitethernet-10:3)#
+
+命令no switchport mode执行结果:
+no switchport mode
+GPL116(config-if-ten-gigabitethernet-10:3)#
+
+命令no switchport access vlan执行结果:
+no switchport access vlan
+GPL116(config-if-ten-gigabitethernet-10:3)#
+
+命令no switchport trunk native vlan执行结果:
+no switchport trunk native vlan
+GPL116(config-if-ten-gigabitethernet-10:3)#
+
+命令no switchport trunk allowed vlan执行结果:
+no switchport trunk allowed vlan
+GPL116(config-if-ten-gigabitethernet-10:3)#
+
+命令no switchport trunk untagged vlan执行结果:
+no switchport trunk untagged vlan
+GPL116(config-if-ten-gigabitethernet-10:3)#
+
+命令switchport mode trunk执行结果:
+
+
+命令switchport trunk native vlan 4000执行结果:
+
+
+命令switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 confirm执行结果:
+
+
+命令end执行结果:
+
+
+命令show run interface ten-gigabitethernet 10/3执行结果:
+
+
+++++++++++++++++++++++++++++++++++++++++当前用例【uplink_config_auto】测试结果为:fail
+
+####################【uplink_config_auto】脚本测试执行结束!####################
+
+
+####################【downlink_config_auto】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置downlink......
+
+命令end执行结果:
+end
+GPL116#
+
+命令show run interface gpon-olt 3/3执行结果:
+show run interface gpon-olt 3/3
+!command in gpon-olt_mode
+interface gpon-olt 3/3
+mac-address-table station move
+authorization mode none
+create gpon-onu 1 sn YHCT00707D3F line-profile-id 1024 service-profile-id 1006 
+create gpon-onu 2 sn MONU008385A8 line-profile-id 116 service-profile-id 116 
+create gpon-onu 3 sn RCMG4B9800AF line-profile-id 115 service-profile-id 115 
+create gpon-onu 4 sn YHCT000102F2 line-profile-id 116 service-profile-id 116 
+switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 
+switchport trunk untagged vlan remove 1 
+switchport mode trunk
+multicast-vlan 4000 member
+igmp snooping immediate-leave multicast-vlan 4000
+quit
+!
+GPL116#
+
+命令conf t执行结果:
+conf t
+Configuration mode, one command input per times. End with CTRL-Z.
+CONFIG-I:Configured from telnet ...
+GPL116(config)#
+
+命令interface gpon-olt 3/3执行结果:
+interface gpon-olt 3/3
+GPL116(config-if-gpon-olt-3:3)#
+
+命令mac-address-table station move执行结果:
+mac-address-table station move
+GPL116(config-if-gpon-olt-3:3)#
+
+命令authorization mode none执行结果:
+authorization mode none
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport mode执行结果:
+no switchport mode
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport access vlan执行结果:
+no switchport access vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport trunk native vlan执行结果:
+no switchport trunk native vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport trunk allowed vlan执行结果:
+no switchport trunk allowed vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令no switchport trunk untagged vlan执行结果:
+no switchport trunk untagged vlan
+GPL116(config-if-gpon-olt-3:3)#
+
+命令switchport mode trunk执行结果:
+switchport mode trunk
+GPL116(config-if-gpon-olt-3:3)#
+
+命令switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 confirm执行结果:
+switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 confirm
+GPL116(config-if-gpon-olt-3:3)#
+
+命令end执行结果:
+end
+GPL116#
+
+命令show run interface gpon-olt 3/3执行结果:
+show run interface gpon-olt 3/3
+!command in gpon-olt_mode
+interface gpon-olt 3/3
+mac-address-table station move
+authorization mode none
+create gpon-onu 1 sn YHCT00707D3F line-profile-id 1024 service-profile-id 1006 
+create gpon-onu 2 sn MONU008385A8 line-profile-id 116 service-profile-id 116 
+create gpon-onu 3 sn RCMG4B9800AF line-profile-id 115 service-profile-id 115 
+create gpon-onu 4 sn YHCT000102F2 line-profile-id 116 service-profile-id 116 
+switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 
+switchport trunk untagged vlan remove 1 
+switchport mode trunk
+multicast-vlan 4000 member
+igmp snooping immediate-leave multicast-vlan 4000
+quit
+!
+GPL116#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【downlink_config_auto】测试结果为:pass
+
+####################【downlink_config_auto】脚本测试执行结束!####################
+
+
+####################【dba_config_sfu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置dba-profile 115......
+
+命令show dba-profile 115执行结果:
+show dba-profile 115
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+115         chenjingv115      type4  0          0             1024000    best-effort    0         0       TM        2   
+GPL116(config)#
+
+已存在sfu类型dba模版-dba-profile 115，无需重复配置......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【dba_config_sfu】测试结果为:pass
+
+####################【dba_config_sfu】脚本测试执行结束!####################
+
+
+####################【dba_config_hgu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置dba-profile 116......
+
+命令show dba-profile 116执行结果:
+show dba-profile 116
+Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  AddBwMode      Priority  Weight  Method    Ref
+-----------------------------------------------------------------------------------------------------------------------
+116         chenjingv116      type4  0          0             1024000    best-effort    0         0       TM        3   
+GPL116(config)#
+
+已存在hgu类型dba模版-dba-profile 116，无需重复配置......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【dba_config_hgu】测试结果为:pass
+
+####################【dba_config_hgu】脚本测试执行结束!####################
+
+
+####################【line_config_sfu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置line-profile 115......
+
+命令show gpon-onu-line-profile 115执行结果:
+show gpon-onu-line-profile 115
+LineProfile ID  : 115
+LineProfile Name: profile-115
+Ref. counter    : 1
+  FEC upstream: disable
+  OMCC encrypt: disable
+  Mapping mode: VLAN
+  ------------------------------------------------------------------------------
+  T-CONT 0          DBA Profile Name: def_gp_1
+  T-CONT 1          DBA Profile Name: chenjingv115
+    Gem Index    Encryption       Priority  USPolicing  DSPolicing   MAC limit
+                DS        US                                                    
+    ----------------------------------------------------------------------------
+    1         disable   disable   0         0           0            unlimited
+    ----------------------------------------------------------------------------
+      Mapping Index  VLAN  Priority  Port Type  Port ID
+      ----------------------------------------------------------------
+      1              4000  --        --         --
+      ----------------------------------------------------------------
+GPL116(config)#
+
+已存在sfu类型line模版-line-profile 115，无需重复配置......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【line_config_sfu】测试结果为:pass
+
+####################【line_config_sfu】脚本测试执行结束!####################
+
+
+####################【line_config_hgu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置line-profile 116......
+
+命令show gpon-onu-line-profile 116执行结果:
+show gpon-onu-line-profile 116
+LineProfile ID  : 116
+LineProfile Name: profile-116
+Ref. counter    : 2
+  FEC upstream: disable
+  OMCC encrypt: disable
+  Mapping mode: VLAN
+  ------------------------------------------------------------------------------
+  T-CONT 0          DBA Profile Name: def_gp_1
+  T-CONT 1          DBA Profile Name: chenjingv116
+    Gem Index    Encryption       Priority  USPolicing  DSPolicing   MAC limit
+                DS        US                                                    
+    ----------------------------------------------------------------------------
+    1         disable   disable   0         0           0            unlimited
+    ----------------------------------------------------------------------------
+      Mapping Index  VLAN  Priority  Port Type  Port ID
+      ----------------------------------------------------------------
+      1              4000  --        --         --
+      ----------------------------------------------------------------
+GPL116(config)#
+
+已存在hgu类型line模版-line-profile 116，无需重复配置......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【line_config_hgu】测试结果为:pass
+
+####################【line_config_hgu】脚本测试执行结束!####################
+
+
+####################【service_config_sfu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置service-profile 115......
+
+命令show gpon-onu-service-profile 115 | section-end WLAN执行结果:
+show gpon-onu-service-profile 115 | section-end WLAN
+ServiceProfile ID  : 115
+ServiceProfile Name: profile-115
+Ref. counter       : 1
+  MAC learning              : enable
+  MAC aging time(seconds)   : 300
+  Switchport isolation      : enable
+  DLF discard               : disable
+  Multicast mode            : snooping
+  VOIP type                 : sip
+  Iphost Num                : 2
+  Country code              : undefine
+  Time zone                 : undefine
+  VOIP IPhost Id            : 1
+  MNG-SVR IPhost Id         : 0
+  MNG-SVR PRI-Domain        : --
+  MNG-SVR BAK-Domain        : --
+  ---------------------------------------------------------
+  Type      Port Num
+  ---------------------------------------------------------
+  Ethernet  4
+  POTS      0
+  VEIP      0
+  CATV      0
+  WLAN      0
+GPL116(config)#
+
+已存在sfu类型service模版-service-profile 115，无需重复配置......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【service_config_sfu】测试结果为:pass
+
+####################【service_config_sfu】脚本测试执行结束!####################
+
+
+####################【service_config_hgu】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置service-profile 116......
+
+命令show gpon-onu-service-profile 116 | section-end WLAN执行结果:
+show gpon-onu-service-profile 116 | section-end WLAN
+ServiceProfile ID  : 116
+ServiceProfile Name: profile-116
+Ref. counter       : 2
+  MAC learning              : enable
+  MAC aging time(seconds)   : 300
+  Switchport isolation      : enable
+  DLF discard               : disable
+  Multicast mode            : snooping
+  VOIP type                 : sip
+  Iphost Num                : 2
+  Country code              : undefine
+  Time zone                 : undefine
+  VOIP IPhost Id            : 1
+  MNG-SVR IPhost Id         : 0
+  MNG-SVR PRI-Domain        : --
+  MNG-SVR BAK-Domain        : --
+  ---------------------------------------------------------
+  Type      Port Num
+  ---------------------------------------------------------
+  Ethernet  0
+  POTS      0
+  VEIP      1
+  CATV      0
+  WLAN      0
+GPL116(config)#
+
+已存在hgu类型service模版-service-profile 116，无需重复配置......
+
+++++++++++++++++++++++++++++++++++++++++当前用例【service_config_hgu】测试结果为:pass
+
+####################【service_config_hgu】脚本测试执行结束!####################
+
+
+####################【profile_bind】脚本测试执行开始!####################
+
+设备登录中，请稍后......
+
+172.17.100.214登录成功!
+
+tips:配置绑定自定义profile......
+
+命令show gpon-onu 3/3/1 capability | in ype执行结果:
+show gpon-onu 3/3/1 capability | in ype
+    ONU Type                   : hgu
+
+GPL116(config)#
+
+命令show interface gpon-onu cr | in 3/3/1执行结果:
+show interface gpon-onu cr | in 3/3/1
+3/3/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-10-08,15:48:54    active   1024 Def_P_all        1006    Def_VEIP
+
+GPL116(config)#
+
+该ONU为hgu类型，未绑定自定义模版，配置中请稍后......
+
+命令int gpon-onu 3/3/1执行结果:
+int gpon-onu 3/3/1
+GPL116(config-if-gpon-onu-3/3:1)#
+
+命令line-profile-id 116执行结果:
+line-profile-id 116
+GPL116(config-if-gpon-onu-3/3:1)#OCT-08-2023 15:53:16  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
+OCT-08-2023 15:53:16  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2877
+
+
+命令
+
+执行结果:
+
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+
+命令service-profile-id 116执行结果:
+service-profile-id 116
+OCT-08-2023 15:53:20  gpon-onu-remote-3-ONU 3/3/1 ME upload next process has been aborted(810)
+GPL116(config-if-gpon-onu-3/3:1)#OCT-08-2023 15:53:20  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/1/1 create gemport 161 (ulTunnelId 161) success
+OCT-08-2023 15:53:20  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/1, gponPonSysOnuMib.c 2877
+
+
+命令
+
+执行结果:
+
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+
+命令show interface gpon-onu cr | in 3/3/1执行结果:
+show interface gpon-onu cr | in 3/3/1
+3/3/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-10-08,15:48:54    active   116  profile-116      116     profile-116
+
+GPL116(config-if-gpon-onu-3/3:1)#
+
+++++++++++++++++++++++++++++++++++++++++当前用例【profile_bind】测试结果为:pass
+
+####################【profile_bind】脚本测试执行结束!####################
+
