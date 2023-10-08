@@ -88,7 +88,10 @@ class TelnetClient:
 
     #退出telnet
     def logout_host(self):
-        self.tn.write(b"exit\n\n")
+        self.tn.read_until(b'# ',timeout=1)
+        self.tn.write('end'.encode('ascii') + b'\r\n')
+        self.tn.read_until(b'# ',timeout=1)
+        self.tn.write(b'exit\r\n')
 
     def pass_res(self,cn):
         res="++"*20+"当前用例"+"【"+cn+"】"+"测试结果为:pass"
@@ -799,7 +802,7 @@ class TelnetClient:
 
 
 if __name__ == '__main__':
-    timmer="测试开始时间为:"+str(start_time)
+    timmer="Test start time is:"+str(start_time)
     #打印console时间
     print(f'\n{timmer}\n')
     #创建log文件
