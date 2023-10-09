@@ -110,7 +110,7 @@ class TelnetClient:
             sleep(2)
             # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
-            # self.tn.read_until(b'# ',timeout=1)
+            self.tn.read_until(b'# ',timeout=1)
             output_lst.append(cmds_res)
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
