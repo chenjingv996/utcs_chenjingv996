@@ -283,68 +283,6 @@ class TelnetClient:
                 
         self.logout_host()    
     
-    #指定uplink为ten-gigabitethernet 10/2
-    @outer
-    def uplink_config(self):
-        self.login_host()
-        
-        cn=sys._getframe().f_code.co_name
-        cmds=['creat vlan 4000,1011-1020 active',
-              'end',
-              'show run interface ten-gigabitethernet 10/2',
-              'conf t',
-              'interface ten-gigabitethernet 10/2',
-              'no switchport mode',
-              'no switchport access vlan',
-              'no switchport trunk native vlan',
-              'no switchport trunk allowed vlan',
-              'no switchport trunk untagged vlan',
-              'switchport mode access',
-              'switchport access vlan 4000',
-              'end',
-              'show run interface ten-gigabitethernet 10/2']
-        #配置uplink......
-        check_name='tips:配置uplink......'
-        check_words=['switchport access vlan 4000']
-        output_lst=[]
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
-        self.check_res1(cn,cmds,check_words,output_lst)
-        
-        self.logout_host()
-    
-    #指定downlink为gpon-olt 3/3    
-    @outer
-    def downlink_config(self):
-        self.login_host()
-        
-        cn=sys._getframe().f_code.co_name
-        cmds=['end',
-              'show run interface gpon-olt 3/3',
-              'conf t',
-              'interface gpon-olt 3/3',
-              'mac-address-table station move',
-              'authorization mode none',
-              'no switchport mode',
-              'no switchport access vlan',
-              'no switchport trunk native vlan',
-              'no switchport trunk allowed vlan',
-              'no switchport trunk untagged vlan',
-              'switchport mode trunk',
-              'switchport trunk allowed vlan 4000',
-              'yes',
-              'end',
-              'show run interface gpon-olt 3/3']
-        #配置downlink......
-        check_name='tips:配置downlink......'
-        check_words=['switchport trunk allowed vlan 4000']
-        output_lst=[]
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
-        self.check_res1(cn,cmds,check_words,output_lst)
-        
-        self.logout_host()
-    
     #指定uplink为auto接口
     @outer
     def uplink_config_auto(self):
@@ -814,8 +752,6 @@ if __name__ == '__main__':
     telnet.clear_config()
     telnet.check_uplink_port()
     telnet.check_downlink_port()
-    # telnet.uplink_config()
-    # telnet.downlink_config()
     telnet.uplink_config_auto()
     telnet.downlink_config_auto()    
     telnet.dba_config_sfu()
