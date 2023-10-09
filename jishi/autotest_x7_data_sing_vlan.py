@@ -721,7 +721,7 @@ class TelnetClient:
         cmds_res_0 = self.tn.read_very_eager().decode('utf-8')
         # self.tn.read_until(b'# ',timeout=1)
         res_0="命令"+cmds_type[0]+"执行结果:"
-        print(f'n{res_0}\n{cmds_res_0}\n')
+        print(f'\n{res_0}\n{cmds_res_0}\n')
         self.tn.logfile=output.write(f'\n{res_0}\n{cmds_res_0}\n')
         
         # 执行命令
