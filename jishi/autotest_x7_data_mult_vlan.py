@@ -719,7 +719,6 @@ class TelnetClient:
         sleep(2)
         # 获取命令结果
         cmds_res_0 = self.tn.read_very_eager().decode('utf-8')
-        # self.tn.read_until(b'# ',timeout=1)
         res_0="命令"+cmds_type[0]+"执行结果:"
         print(f'\n{res_0}\n{cmds_res_0}\n')
         self.tn.logfile=output.write(f'\n{res_0}\n{cmds_res_0}\n')
@@ -729,8 +728,6 @@ class TelnetClient:
         sleep(2)
         # 获取命令结果
         cmds_res_1 = self.tn.read_very_eager().decode('utf-8')
-        # self.tn.read_until(b'# ',timeout=1)
-        # cmds_res_1 = self.tn.read_until(b'{sys.args[1]}',timeout=1).decode('utf-8')
         res_1="命令"+cmds_type[-1]+"执行结果:"
         print(f'\n{res_1}\n{cmds_res_1}\n')
         self.tn.logfile=output.write(f'\n{res_1}\n{cmds_res_1}\n')
