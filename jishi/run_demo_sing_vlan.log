@@ -1,5 +1,5 @@
 
-Test start time is:Tue Oct 10 21:00:41 2023
+Test start time is:Tue Oct 10 21:50:38 2023
 
 ####################【clear_config】脚本测试执行开始!####################
 
@@ -11,8 +11,8 @@ tips:删除所有ONU自定义模板......
 
 命令show interface gpon-onu creation-information | in 3/3执行结果:
 show interface gpon-onu creation-information | in 3/3
-3/3/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-10-10,20:51:23    active   118  profile-118      118     profile-118
-3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-10-10,11:28:53    active   115  profile-115      115     profile-115
+3/3/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-10-10,21:40:23    active   118  profile-118      118     profile-118
+3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-10-10,21:45:23    active   1024 Def_P_all        1015    Def_8E
 3/3/3     RCMG4B9800AF      gpon    (g)       GPU040-4G0F0P-TKPSE2023-10-09,12:58:54    active   117  profile-117      117     profile-117
 3/3/4     YHCT000102F2      gpon    (g)       YHCTH203           2023-10-09,13:25:54    active   116  profile-116      116     profile-116
 
@@ -20,8 +20,8 @@ GPL116(config)#
 
 命令show interface gpon-onu online-information | in 3/3执行结果:
 show interface gpon-onu online-information | in 3/3
-3/3/1      online      1                2023-10-10,20:52:24  --                   --                          
-3/3/2      online      2                2023-10-10,11:29:54  --                   --                          
+3/3/1      online      1                2023-10-10,21:41:24  --                   --                          
+3/3/2      online      2                2023-10-10,21:46:24  --                   --                          
 3/3/3      online      1                2023-10-09,12:59:54  --                   --                          
 3/3/4      online      96               2023-10-10,11:33:54  2023-10-10,11:32:49  Branch fiber cut            
 
@@ -151,8 +151,8 @@ GPL116(config)#
 
 命令show interface gpon-onu creation-information | in 3/3执行结果:
 show interface gpon-onu creation-information | in 3/3
-3/3/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-10-10,20:51:23    active   118  profile-118      118     profile-118
-3/3/2     YHCT00704FAB      gpon    (g)       --                 2023-10-10,20:59:53    active   --   --               --      --
+3/3/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-10-10,21:40:23    active   118  profile-118      118     profile-118
+3/3/2     YHCT00704FAB      gpon    (g)       --                 2023-10-10,21:49:53    active   --   --               --      --
 3/3/3     RCMG4B9800AF      gpon    (g)       GPU040-4G0F0P-TKPSE2023-10-09,12:58:54    active   117  profile-117      117     profile-117
 3/3/4     YHCT000102F2      gpon    (g)       YHCTH203           2023-10-09,13:25:54    active   116  profile-116      116     profile-116
 
@@ -160,7 +160,7 @@ GPL116(config)#
 
 命令show interface gpon-onu online-information | in 3/3执行结果:
 show interface gpon-onu online-information | in 3/3
-3/3/1      online      1                2023-10-10,20:52:24  --                   --                          
+3/3/1      online      1                2023-10-10,21:41:24  --                   --                          
 3/3/2      offline     0                --                   --                   --                          
 3/3/3      online      1                2023-10-09,12:59:54  --                   --                          
 3/3/4      online      96               2023-10-10,11:33:54  2023-10-10,11:32:49  Branch fiber cut            
@@ -182,9 +182,7 @@ tips:检查测试uplink状态......
 
 命令end执行结果:
 end
-GPL116#OCT-10-2023 21:01:01  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
-OCT-10-2023 21:01:01  gpon-onu-remote-5-Config download: ONU 3/3/2 pon-sys config download success
-
+GPL116#
 
 命令show interface ten-gigabitethernet执行结果:
 show interface ten-gigabitethernet
@@ -195,7 +193,9 @@ ten-gigabitethernet10/2  disable  down              (1000M/Full)  off/off       
 ten-gigabitethernet10/3  disable  down              (1000M/Full)  off/off        Block       online      0           
 ten-gigabitethernet10/4  disable  down              (1000M/Full)  off/off        Block       online      0           
 
-GPL116#
+GPL116#OCT-10-2023 21:50:31  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
+OCT-10-2023 21:50:31  gpon-onu-remote-5-Config download: ONU 3/3/2 pon-sys config download success
+
 
 该uplink 10/1 已存在，程序继续......
 
@@ -217,8 +217,8 @@ show interface gpon-onu cr
 ONU ID    SN                Onu Type(ACT)     Device Type        Creation Date          State    Line Profile          Service Profile         
                                                                                                  ID   name             ID      name            
 ------------------------------------------------------------------------------------------------------------------------------------------------------
-3/3/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-10-10,20:51:23    active   118  profile-118      118     profile-118
-3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-10-10,20:59:53    active   1024 Def_P_all        1015    Def_8E
+3/3/1     YHCT00707D3F      gpon    (g)       MONUV664           2023-10-10,21:40:23    active   118  profile-118      118     profile-118
+3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-10-10,21:49:53    active   1024 Def_P_all        1015    Def_8E
 3/3/3     RCMG4B9800AF      gpon    (g)       GPU040-4G0F0P-TKPSE2023-10-09,12:58:54    active   117  profile-117      117     profile-117
 3/3/4     YHCT000102F2      gpon    (g)       YHCTH203           2023-10-09,13:25:54    active   116  profile-116      116     profile-116
 
@@ -720,7 +720,7 @@ GPL116(config)#
 
 命令show interface gpon-onu cr | in 3/3/2执行结果:
 show interface gpon-onu cr | in 3/3/2
-3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-10-10,20:59:53    active   1024 Def_P_all        1015    Def_8E
+3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-10-10,21:49:53    active   1024 Def_P_all        1015    Def_8E
 
 GPL116(config)#
 
@@ -732,8 +732,8 @@ GPL116(config-if-gpon-onu-3/3:2)#
 
 命令line-profile-id 115执行结果:
 line-profile-id 115
-GPL116(config-if-gpon-onu-3/3:2)#OCT-10-2023 21:07:32  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
-OCT-10-2023 21:07:32  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/2, gponPonSysOnuMib.c 2877
+GPL116(config-if-gpon-onu-3/3:2)#OCT-10-2023 21:54:20  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
+OCT-10-2023 21:54:20  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/2, gponPonSysOnuMib.c 2877
 
 
 命令
@@ -746,9 +746,9 @@ GPL116(config-if-gpon-onu-3/3:2)#
 
 命令service-profile-id 115执行结果:
 service-profile-id 115
-OCT-10-2023 21:07:37  gpon-onu-remote-3-ONU 3/3/2 ME upload process has been aborted(810)
-GPL116(config-if-gpon-onu-3/3:2)#OCT-10-2023 21:07:37  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
-OCT-10-2023 21:07:37  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/2, gponPonSysOnuMib.c 2877
+OCT-10-2023 21:54:25  gpon-onu-remote-3-ONU 3/3/2 ME upload process has been aborted(810)
+GPL116(config-if-gpon-onu-3/3:2)#OCT-10-2023 21:54:25  gpon-onu-remote-3-gponOnuGemportEntryAdd: gem_port 3/3/2/1 create gemport 160 (ulTunnelId 160) success
+OCT-10-2023 21:54:25  pon-sys-3-gponOnuDeviceRebindOnuProfile: onu 3/3/2, gponPonSysOnuMib.c 2877
 
 
 命令
@@ -761,7 +761,7 @@ GPL116(config-if-gpon-onu-3/3:2)#
 
 命令show interface gpon-onu cr | in 3/3/2执行结果:
 show interface gpon-onu cr | in 3/3/2
-3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-10-10,20:59:53    active   115  profile-115      115     profile-115
+3/3/2     YHCT00704FAB      gpon    (g)       MONUM208           2023-10-10,21:49:53    active   115  profile-115      115     profile-115
 
 GPL116(config-if-gpon-onu-3/3:2)#
 
