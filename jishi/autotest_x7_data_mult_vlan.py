@@ -52,22 +52,22 @@ class TelnetClient:
             logging.warning(f'{self.host_ip}网络连接失败!\n')
             return False
         # 等待login出现后输入用户名，最多等待3秒
-        self.tn.read_until(b'gin: ',timeout=3)
+        self.tn.read_until(b'gin: ',timeout=1)
         self.tn.write(self.username.encode('ascii') + b'\r\n')
         # 等待Password出现后输入用户名，最多等待3秒
-        self.tn.read_until(b'word: ',timeout=3)
+        self.tn.read_until(b'word: ',timeout=1)
         self.tn.write(self.password.encode('ascii') + b'\r\n')
 
-        self.tn.read_until(b'> ',timeout=3)
+        self.tn.read_until(b'> ',timeout=1)
         self.tn.write(self.cmd_1.encode('ascii') + b'\r\n')
 
-        self.tn.read_until(b'word ',timeout=3)
+        self.tn.read_until(b'word ',timeout=1)
         self.tn.write(self.password.encode('ascii') + b'\r\n')
 
-        self.tn.read_until(b'# ',timeout=3)
+        self.tn.read_until(b'# ',timeout=1)
         self.tn.write(self.cmd_2.encode('ascii') + b'\r\n')
         
-        self.tn.read_until(b'# ',timeout=3)
+        self.tn.read_until(b'# ',timeout=1)
         self.tn.write(self.cmd_3.encode('ascii') + b'\r\n')
         # 延时2秒再收取返回结果，给服务端足够响应时间
         sleep(1.5)
@@ -87,9 +87,9 @@ class TelnetClient:
 
     #退出telnet
     def logout_host(self):
-        self.tn.read_until(b'# ',timeout=3)
+        self.tn.read_until(b'# ',timeout=1)
         self.tn.write('end'.encode('ascii') + b'\r\n')
-        self.tn.read_until(b'# ',timeout=3)
+        self.tn.read_until(b'# ',timeout=1)
         self.tn.write(b'exit\r\n')
 
     def pass_res(self,cn):
