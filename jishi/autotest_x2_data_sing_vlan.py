@@ -9,7 +9,6 @@ from datetime import datetime as dt
 
 start_time,end_time=dt.now().ctime(),dt.now().ctime()
 
-
 class TelnetClient:
     def __init__(self):
         self.host_ip='172.17.100.212'
@@ -51,10 +50,10 @@ class TelnetClient:
         except:
             logging.warning(f'{self.host_ip}网络连接失败!\n')
             return False
-        # 等待login出现后输入用户名，最多等待3秒
+        # 等待login出现后输入用户名，最多等待1秒
         self.tn.read_until(b'gin: ',timeout=1)
         self.tn.write(self.username.encode('ascii') + b'\r\n')
-        # 等待Password出现后输入用户名，最多等待3秒
+        # 等待Password出现后输入用户名，最多等待1秒
         self.tn.read_until(b'word: ',timeout=1)
         self.tn.write(self.password.encode('ascii') + b'\r\n')
 
@@ -69,8 +68,8 @@ class TelnetClient:
         
         self.tn.read_until(b'# ',timeout=1)
         self.tn.write(self.cmd_3.encode('ascii') + b'\r\n')
-        # 延时2秒再收取返回结果，给服务端足够响应时间
-        sleep(1.5)
+        # 延时1秒再收取返回结果，给服务端足够响应时间
+        sleep(1)
         # 获取登录结果
         # read_very_eager()获取到的是的是上次获取之后本次获取之前的所有输出
         command_result = self.tn.read_very_eager().decode('utf-8')
@@ -106,7 +105,7 @@ class TelnetClient:
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\r\n')
-            sleep(1.5)
+            sleep(1)
             # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
             self.tn.read_until(b'# ',timeout=1)
@@ -114,7 +113,6 @@ class TelnetClient:
             res="命令"+cmds[i]+"执行结果:"
             print(f'\n{res}\n{cmds_res}\n')
             self.tn.logfile=output.write(f'\n{res}\n{cmds_res}\n')
-
         for j in range(len(check_words)):
             if check_words[j] not in output_lst[-1]:
                 self.fail_res(cn)
@@ -126,7 +124,7 @@ class TelnetClient:
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\r\n')
-            sleep(1.5)
+            sleep(1)
             # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
             self.tn.read_until(b'# ',timeout=1)
@@ -140,7 +138,6 @@ class TelnetClient:
     @outer
     def check_olt_version(self):
         self.login_host()
-
         cn=sys._getframe().f_code.co_name
         cmds=['end','show version']
         #检查测试OLT软件版本状态......
@@ -162,15 +159,13 @@ class TelnetClient:
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
             self.fail_res(cn)
-            sys.exit()           
-                
+            sys.exit()                          
         self.logout_host()  
     
     #检查ONU软件版本是否正确    
     @outer
     def check_onu_version(self):
         self.login_host()
-
         cn=sys._getframe().f_code.co_name
         cmds=['show version gpon-onu {}/{} | in sion'.format(self.pon_id,self.onu_id)]
         #检查测试ONU软件版本状态......
@@ -192,15 +187,13 @@ class TelnetClient:
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
             self.fail_res(cn)
-            sys.exit()           
-                
+            sys.exit()                           
         self.logout_host()
     
     #检查uplink是否存在    
     @outer
     def check_uplink_port(self):
         self.login_host()
-
         cn=sys._getframe().f_code.co_name
         cmds=['end','show interface ten-gigabitethernet']
         #检查测试uplink状态......
@@ -222,15 +215,13 @@ class TelnetClient:
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
             self.fail_res(cn)
-            sys.exit()           
-                
+            sys.exit()                           
         self.logout_host()  
         
     #检查downlink是否存在    
     @outer
     def check_downlink_port(self):
         self.login_host()
-
         cn=sys._getframe().f_code.co_name
         cmds=['show interface gpon-onu cr']
         #检查测试downlink状态......
@@ -252,15 +243,13 @@ class TelnetClient:
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
             self.fail_res(cn)
-            sys.exit()           
-                
+            sys.exit()                           
         self.logout_host()    
        
     #指定uplink为auto接口
     @outer
     def uplink_config_auto(self):
-        self.login_host()
-        
+        self.login_host()        
         cn=sys._getframe().f_code.co_name
         cmds=['creat vlan 10,20,30,40,4000,1011-1020 active',
               'end',
@@ -284,15 +273,13 @@ class TelnetClient:
         
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
-        self.check_res1(cn,cmds,check_words,output_lst)
-        
+        self.check_res1(cn,cmds,check_words,output_lst)        
         self.logout_host()
                
     #指定downlink为auto接口
     @outer
     def downlink_config_auto(self):
-        self.login_host()
-        
+        self.login_host()        
         cn=sys._getframe().f_code.co_name
         cmds=['end',
               'show run interface gpon-olt {}'.format(self.pon_id),
@@ -316,15 +303,13 @@ class TelnetClient:
         
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n')
-        self.check_res1(cn,cmds,check_words,output_lst)
-        
+        self.check_res1(cn,cmds,check_words,output_lst)        
         self.logout_host()
     
     #配置sfu类型dba模板
     @outer
     def dba_config_sfu(self):
-        self.login_host()
-        
+        self.login_host()        
         cn=sys._getframe().f_code.co_name
         cmds=['conf t',
               'create dba-profile 115 name chenjingv115 type4 max 1024000',
@@ -348,15 +333,13 @@ class TelnetClient:
             cfg_res_2='不存在{}类型dba模版-{}，配置中请稍后......'.format(self.onu_type1,self.dba_type1)
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
-            self.check_res1(cn,cmds,check_words,output_lst)
-        
+            self.check_res1(cn,cmds,check_words,output_lst)        
         self.logout_host()
     
     #配置hgu类型dba模板     
     @outer
     def dba_config_hgu(self):
-        self.login_host()
-        
+        self.login_host()        
         cn=sys._getframe().f_code.co_name
         cmds=['conf t',
               'create dba-profile 116 name chenjingv116 type4 max 1024000',
@@ -380,15 +363,13 @@ class TelnetClient:
             cfg_res_2='不存在{}类型dba模版-{}，配置中请稍后......'.format(self.onu_type2,self.dba_type2)
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
-            self.check_res1(cn,cmds,check_words,output_lst)
-        
+            self.check_res1(cn,cmds,check_words,output_lst)       
         self.logout_host()
     
     #配置sfu类型line模板    
     @outer
     def line_config_sfu(self):
-        self.login_host()
-        
+        self.login_host()        
         cn=sys._getframe().f_code.co_name
         cmds=['conf t',
               'gpon-onu-line-profile 115',
@@ -433,15 +414,13 @@ class TelnetClient:
             cfg_res_2='不存在{}类型line模版-{}，配置中请稍后......'.format(self.onu_type1,self.line_type1)
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
-            self.check_res1(cn,cmds,check_words,output_lst)
-        
+            self.check_res1(cn,cmds,check_words,output_lst)       
         self.logout_host()
     
     #配置hgu类型line模板    
     @outer
     def line_config_hgu(self):
-        self.login_host()
-        
+        self.login_host()        
         cn=sys._getframe().f_code.co_name
         cmds=['conf t',
               'gpon-onu-line-profile 116',
@@ -486,15 +465,13 @@ class TelnetClient:
             cfg_res_2='不存在{}类型line模版-{}，配置中请稍后......'.format(self.onu_type2,self.line_type2)
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
-            self.check_res1(cn,cmds,check_words,output_lst)
-        
+            self.check_res1(cn,cmds,check_words,output_lst)        
         self.logout_host()
 
     #配置sfu类型service模板
     @outer
     def service_config_sfu(self):
-        self.login_host()
-        
+        self.login_host()       
         cn=sys._getframe().f_code.co_name
         cmds=['conf t',
               'gpon-onu-service-profile 115',
@@ -535,15 +512,13 @@ class TelnetClient:
             cfg_res_2='不存在{}类型service模版-{}，配置中请稍后......'.format(self.onu_type1,self.service_type1)
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
-            self.check_res1(cn,cmds,check_words,output_lst)
-        
+            self.check_res1(cn,cmds,check_words,output_lst)        
         self.logout_host()
     
     #配置hgu类型service模板    
     @outer
     def service_config_hgu(self):
-        self.login_host()
-        
+        self.login_host()       
         cn=sys._getframe().f_code.co_name
         cmds=['conf t',
               'gpon-onu-service-profile 116',
@@ -570,15 +545,13 @@ class TelnetClient:
             cfg_res_2='不存在{}类型service模版-{}，配置中请稍后......'.format(self.onu_type2,self.service_type2)
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
-            self.check_res1(cn,cmds,check_words,output_lst)
-        
+            self.check_res1(cn,cmds,check_words,output_lst)       
         self.logout_host()
     
     #绑定对应line及service模板    
     @outer
     def profile_bind(self):
-        self.login_host()
-        
+        self.login_host()        
         cn=sys._getframe().f_code.co_name
         cmds_1=['int gpon-onu {}/{}'.format(self.pon_id,self.onu_id),
                 'line-profile-id 115',
@@ -625,15 +598,13 @@ class TelnetClient:
                 cfg_res_2='该ONU为{}类型，未绑定自定义模版，配置中请稍后......'.format(self.onu_type2)
                 print(f'\n{cfg_res_2}\n')
                 self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
-                self.check_res1(cn,cmds_2,check_words_2,output_lst)
-        
+                self.check_res1(cn,cmds_2,check_words_2,output_lst)        
         self.logout_host()
     
     #删除所有ONU自定义模板    
     @outer
     def clear_config(self):
         self.login_host()
-
         cn=sys._getframe().f_code.co_name
         cmds=['show interface gpon-onu creation-information | in {}'.format(self.pon_id),
               'show interface gpon-onu online-information | in {}'.format(self.pon_id),
@@ -670,11 +641,10 @@ class TelnetClient:
         check_name='tips:删除所有ONU自定义模板......'
         check_words=['--                   --']
         output_lst=[]
-        
+       
         print(f'\n{check_name}\n')
         self.tn.logfile=output.write(f'\n{check_name}\n') 
-        self.check_res1(cn,cmds,check_words,output_lst)
-        
+        self.check_res1(cn,cmds,check_words,output_lst)        
         self.logout_host()
 
 
@@ -683,15 +653,15 @@ if __name__ == '__main__':
     #打印console时间
     print(f'\n{timmer}\n')
     #创建log文件
-    output=open(os.path.join(os.getcwd(),'run_demo_sing_vlan.log'),'w',encoding='utf-8')
+    output=open(os.path.join(os.getcwd(),'run_demo_x2_sing_vlan.log'),'w',encoding='utf-8')
     #打印log时间
     telnetlib.Telnet().logfile=output.write(f'\n{timmer}\n')
     #创建telnet实例
     telnet= TelnetClient()
     # 如果登录结果返回True，则执行命令，然后退出
+    telnet.clear_config()
     # telnet.check_olt_version()
     # telnet.check_onu_version()
-    telnet.clear_config()
     telnet.check_uplink_port()
     telnet.check_downlink_port()
     telnet.uplink_config_auto()
