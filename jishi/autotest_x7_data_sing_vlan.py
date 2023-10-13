@@ -107,7 +107,7 @@ class TelnetClient:
         for i in range(len(cmds)):
             # 执行命令
             self.tn.write(cmds[i].encode('ascii')+b'\r\n')
-            sleep(1)
+            sleep(1.5)
             # 获取命令结果
             cmds_res = self.tn.read_very_eager().decode('utf-8')
             self.tn.read_until(b'# ',timeout=1)
