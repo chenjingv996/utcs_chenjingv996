@@ -449,8 +449,7 @@ class TelnetClient:
             cfg_res_2='不存在{}类型line模版-{}，配置中请稍后......'.format(self.onu_type2,self.line_type2)
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
-            self.check_res1(cn,cmds,check_words,output_lst)
-        
+            self.check_res1(cn,cmds,check_words,output_lst)       
         self.logout_host()
 
     #配置sfu类型service模板
@@ -494,8 +493,7 @@ class TelnetClient:
             cfg_res_2='不存在{}类型service模版-{}，配置中请稍后......'.format(self.onu_type1,self.service_type1)
             print(f'\n{cfg_res_2}\n')
             self.tn.logfile=output.write(f'\n{cfg_res_2}\n')
-            self.check_res1(cn,cmds,check_words,output_lst)
-        
+            self.check_res1(cn,cmds,check_words,output_lst)        
         self.logout_host()
     
     #配置hgu类型service模板    
