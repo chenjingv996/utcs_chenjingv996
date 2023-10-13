@@ -7,8 +7,6 @@ import os,sys
 from time import sleep
 from datetime import datetime as dt
 
-start_time,end_time=dt.now().ctime(),dt.now().ctime()
-
 class TelnetClient:
     def __init__(self):
         self.host_ip='172.17.100.212'
@@ -100,6 +98,10 @@ class TelnetClient:
         res="++"*20+"当前用例"+"【"+cn+"】"+"测试结果为:fail"
         print(f'\n{res}')
         self.tn.logfile=output.write(f'\n{res}\n')
+        
+    def check_tips(self,check_name):
+        print(f'\n{check_name}\n')
+        self.tn.logfile=output.write(f'\n{check_name}\n')
     
     def check_res1(self,cn,cmds,check_words,output_lst):        
         for i in range(len(cmds)):
@@ -145,8 +147,7 @@ class TelnetClient:
         check_words=['GPL116-X']
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds[-2:],output_lst)
               
         if check_words[0] in output_lst[-1]:
@@ -173,8 +174,7 @@ class TelnetClient:
         check_words=['active']
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds[-1:],output_lst)
         
         if check_words[0] in output_lst[-1]:
@@ -201,8 +201,7 @@ class TelnetClient:
         check_words=['ten-gigabitethernet{}'.format(self.uplink_id)]
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds[-2:],output_lst)
         
         if check_words[0] in output_lst[-1]:
@@ -229,8 +228,7 @@ class TelnetClient:
         check_words=['{}/{}'.format(self.pon_id,self.onu_id)]
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds[-1:],output_lst)
         
         if check_words[0] in output_lst[-1]:
@@ -271,8 +269,7 @@ class TelnetClient:
         check_words=['switchport trunk native vlan 4000']
         output_lst=[]
         
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res1(cn,cmds,check_words,output_lst)        
         self.logout_host()
                
@@ -301,8 +298,7 @@ class TelnetClient:
         check_words=['switchport trunk allowed vlan 10,20,30,40,1011-1020,4000']
         output_lst=[]
         
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res1(cn,cmds,check_words,output_lst)        
         self.logout_host()
     
@@ -320,8 +316,7 @@ class TelnetClient:
         check_words=['115         chenjingv115      type4']
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds[-2:],output_lst)
         
         if check_words[0] in output_lst[-1]:
@@ -350,8 +345,7 @@ class TelnetClient:
         check_words=['116         chenjingv116      type4']
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds[-2:],output_lst)
         
         if check_words[0] in output_lst[-1]:
@@ -401,8 +395,7 @@ class TelnetClient:
         check_words=['Line Profile Name: profile-115']
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds[-2:],output_lst)
         
         if check_words[0] in output_lst[-1]:
@@ -452,8 +445,7 @@ class TelnetClient:
         check_words=['Line Profile Name: profile-116']
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds[-2:],output_lst)
         
         if check_words[0] in output_lst[-1]:
@@ -499,8 +491,7 @@ class TelnetClient:
         check_words=['Service Profile Name: profile-115']
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds[-2:],output_lst)
         
         if check_words[0] in output_lst[-1]:
@@ -532,8 +523,7 @@ class TelnetClient:
         check_words=['Service Profile Name: profile-116']
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds[-2:],output_lst)
         
         if check_words[0] in output_lst[-1]:
@@ -573,8 +563,7 @@ class TelnetClient:
         cmds_type=['show gpon-onu {}/{} capability | in ype'.format(self.pon_id,self.onu_id),
                    'show interface gpon-onu cr | in {}/{}'.format(self.pon_id,self.onu_id)]
 
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n')
+        self.check_tips(check_name)
         self.check_res2(cmds_type[-2:],output_lst)
         
         if self.onu_type1 in output_lst[0]: 
@@ -642,23 +631,22 @@ class TelnetClient:
         check_words=['--                   --']
         output_lst=[]
        
-        print(f'\n{check_name}\n')
-        self.tn.logfile=output.write(f'\n{check_name}\n') 
+        self.check_tips(check_name)
         self.check_res1(cn,cmds,check_words,output_lst)        
         self.logout_host()
 
 
 if __name__ == '__main__':
-    timmer="Test start time is:"+str(start_time)
-    #打印console时间
-    print(f'\n{timmer}\n')
+    start_time,end_time='Test start time is:','Test end time is:'
     #创建log文件
     output=open(os.path.join(os.getcwd(),'run_demo_x2_sing_vlan.log'),'w',encoding='utf-8')
-    #打印log时间
-    telnetlib.Telnet().logfile=output.write(f'\n{timmer}\n')
+    #打印log开始时间
+    telnetlib.Telnet().logfile=output.write(f'\n{start_time + dt.now().ctime()}\n')
+    #打印console开始时间
+    print(f'\n{start_time + dt.now().ctime()}\n')
     #创建telnet实例
+    #如果登录结果返回True，则执行命令，然后退出
     telnet= TelnetClient()
-    # 如果登录结果返回True，则执行命令，然后退出
     telnet.clear_config()
     # telnet.check_olt_version()
     # telnet.check_onu_version()
@@ -674,6 +662,10 @@ if __name__ == '__main__':
     telnet.service_config_hgu()
     telnet.profile_bind()
     # telnet.clear_config()
+    #打印console结束时间
+    print(f'\n{end_time + dt.now().ctime()}\n')
+    #打印log结束时间
+    telnetlib.Telnet().logfile=output.write(f'\n{end_time + dt.now().ctime()}\n')
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
