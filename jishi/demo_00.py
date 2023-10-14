@@ -23,8 +23,8 @@ class ccc:
                 r=mid-1
         return -1
 
+
 bbb=ccc()
-print(bbb.aaa([1,2,3,4,5],2))
-
-
+print(bbb.aaa([1,2,3,4,5],5))
+print(bbb.aaa([1,2,3,4,5],6))
 print(f"\n")
