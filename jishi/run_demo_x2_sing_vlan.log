@@ -1,5 +1,5 @@
 
-Test start time is:Sat Oct 14 11:23:50 2023
+Test start time is: Mon Oct 16 22:05:20 2023
 
 ####################【clear_config】脚本测试执行开始!####################
 
@@ -9,35 +9,35 @@ Test start time is:Sat Oct 14 11:23:50 2023
 
 tips:删除所有ONU自定义模板......
 
-命令show interface gpon-onu creation-information | in 3/2执行结果:
-show interface gpon-onu creation-information | in 3/2
-3/2/1     YHCT00704FAB        MONUM208              2023-10-13,16:16:48    active          115     profile-115  115     profile-115    --
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     YHCT00707A1F        MONUV664              2023-10-16,21:46:49    active          116     profile-116  116     profile-116    --
 
 GPL116(config)#
 
-命令show interface gpon-onu online-information | in 3/2执行结果:
-show interface gpon-onu online-information | in 3/2
-3/2/1      online      3                2023-10-13,16:16:58  --                   --                          
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      online      1                2023-10-16,21:46:54  --                   --                          
 
 GPL116(config)#
 
-命令int gpon-olt 3/2执行结果:
-int gpon-olt 3/2
-GPL116(config-if-gpon-olt-3:2)#
+命令int gpon-olt 3/3执行结果:
+int gpon-olt 3/3
+GPL116(config-if-gpon-olt-3:3)#
 
 命令no create gpon-onu 1执行结果:
 no create gpon-onu 1
 Delete ONU 1 successfully
-Oct-14-2023 11:39:09  onu-register-2-ONU Deregister: ONU 3/2/1 deregistration, SN: YHCT00704FAB, reason is .
+Oct-16-2023 22:20:42  onu-register-2-ONU Deregister: ONU 3/3/1 deregistration, SN: YHCT00707A1F, reason is .
 
 
 命令
 
 执行结果:
 
-GPL116(config-if-gpon-olt-3:2)#
-GPL116(config-if-gpon-olt-3:2)#
-GPL116(config-if-gpon-olt-3:2)#
+GPL116(config-if-gpon-olt-3:3)#
+GPL116(config-if-gpon-olt-3:3)#
+GPL116(config-if-gpon-olt-3:3)#
 
 命令exit执行结果:
 exit
@@ -49,7 +49,8 @@ GPL116(config)#
 
 命令end执行结果:
 end
-GPL116#
+GPL116#Oct-16-2023 22:20:50  onu-register-4-ONU Register: ONU 3/3/1 Registration, SN: YHCT00707A1F.
+
 
 命令show gpon-onu-line-profile 115执行结果:
 show gpon-onu-line-profile 115
@@ -67,7 +68,8 @@ GPL116(config)#
 
 命令end执行结果:
 end
-GPL116#
+GPL116#Oct-16-2023 22:20:58  gpon-onu-remote-1-ONU Device: ONU 3/3/1 PON 1 rx optical power high alarm raising.
+
 
 命令show gpon-onu-line-profile 116执行结果:
 show gpon-onu-line-profile 116
@@ -85,11 +87,14 @@ GPL116(config)#
 
 命令end执行结果:
 end
-GPL116#
+GPL116#Oct-16-2023 22:21:07  gpon-onu-remote-5-Config download: ONU 3/3/1 config download success
+Oct-16-2023 22:21:07  gpon-onu-remote-5-Config download: ONU 3/3/1 pon-sys config download success
+
 
 命令show gpon-onu-service-profile 115执行结果:
 show gpon-onu-service-profile 115
-GPL116#
+GPL116#Oct-16-2023 22:21:08  gpon-onu-remote-1-ONU Device: ONU 3/3/1 PON 1 rx optical power high alarm cleared.
+
 
 命令conf t执行结果:
 conf t
@@ -149,15 +154,15 @@ Profile ID  Profile Name      Type   Fix(Kbps)  Assure(Kbps)  Max(Kbps)  Ref
 ----------------------------------------------------------------------------
 GPL116#
 
-命令show interface gpon-onu creation-information | in 3/2执行结果:
-show interface gpon-onu creation-information | in 3/2
-3/2/1     YHCT00704FAB        Unknown               2023-10-14,11:39:46    active          1024    Def_P_all    1024    Def_1E         --
+命令show interface gpon-onu creation-information | in 3/3执行结果:
+show interface gpon-onu creation-information | in 3/3
+3/3/1     YHCT00707A1F        MONUV664              2023-10-16,22:20:44    active          1024    Def_P_all    1006    Def_VEIP       --
 
 GPL116#
 
-命令show interface gpon-onu online-information | in 3/2执行结果:
-show interface gpon-onu online-information | in 3/2
-3/2/1      online      3                2023-10-14,11:39:56  --                   --                          
+命令show interface gpon-onu online-information | in 3/3执行结果:
+show interface gpon-onu online-information | in 3/3
+3/3/1      online      1                2023-10-16,22:20:49  --                   --                          
 
 GPL116#
 
@@ -189,7 +194,7 @@ ten-gigabitethernet2/2   enable   down              (10000M/Full) on/on         
 
 GPL116#
 
-该uplink 1/2 已存在，程序继续......
+该uplink 1/1 已存在，程序继续......
 
 ++++++++++++++++++++++++++++++++++++++++当前用例【check_uplink_port】测试结果为:pass
 
@@ -209,12 +214,11 @@ show interface gpon-onu cr
 ONU ID    SN                  Device Type           Creation Date          State           Line Profile         Service Profile        Description
                                                                                            ID      name         ID      name                      
 ----------------------------------------------------------------------------------------------------------------------------------
-3/2/1     YHCT00704FAB        MONUM208              2023-10-14,11:39:46    active          1024    Def_P_all    1015    Def_8E         --
-3/3/1     YHCT00707A1F        MONUV664              2023-10-13,11:14:42    active          1024    Def_P_all    1006    Def_VEIP       --
+3/3/1     YHCT00707A1F        MONUV664              2023-10-16,22:20:44    active          1024    Def_P_all    1006    Def_VEIP       --
 
 GPL116(config)#
 
-该downlink 3/2/1 已存在，程序继续......
+该downlink 3/3/1 已存在，程序继续......
 
 ++++++++++++++++++++++++++++++++++++++++当前用例【check_downlink_port】测试结果为:pass
 
@@ -238,10 +242,11 @@ GPL116(config)#
 end
 GPL116#
 
-命令show run interface ten-gigabitethernet 1/2执行结果:
-show run interface ten-gigabitethernet 1/2
+命令show run interface ten-gigabitethernet 1/1执行结果:
+show run interface ten-gigabitethernet 1/1
 !command in ten-gigabitethernet_mode
-interface ten-gigabitethernet 1/2
+interface ten-gigabitethernet 1/1
+speed 1000 
 switchport trunk native vlan 4000 
 switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 
 switchport trunk untagged vlan remove 1 
@@ -256,50 +261,51 @@ Configuration mode, one command input per times. End with CTRL-Z.
 CONFIG-I:Configured from telnet ...
 GPL116(config)#
 
-命令interface ten-gigabitethernet 1/2执行结果:
-interface ten-gigabitethernet 1/2
-GPL116(config-if-ten-gigabitethernet-1:2)#
+命令interface ten-gigabitethernet 1/1执行结果:
+interface ten-gigabitethernet 1/1
+GPL116(config-if-ten-gigabitethernet-1:1)#
 
 命令no switchport mode执行结果:
 no switchport mode
-GPL116(config-if-ten-gigabitethernet-1:2)#
+GPL116(config-if-ten-gigabitethernet-1:1)#
 
 命令no switchport access vlan执行结果:
 no switchport access vlan
-GPL116(config-if-ten-gigabitethernet-1:2)#
+GPL116(config-if-ten-gigabitethernet-1:1)#
 
 命令no switchport trunk native vlan执行结果:
 no switchport trunk native vlan
-GPL116(config-if-ten-gigabitethernet-1:2)#
+GPL116(config-if-ten-gigabitethernet-1:1)#
 
 命令no switchport trunk allowed vlan执行结果:
 no switchport trunk allowed vlan
-GPL116(config-if-ten-gigabitethernet-1:2)#
+GPL116(config-if-ten-gigabitethernet-1:1)#
 
 命令no switchport trunk untagged vlan执行结果:
 no switchport trunk untagged vlan
-GPL116(config-if-ten-gigabitethernet-1:2)#
+GPL116(config-if-ten-gigabitethernet-1:1)#
 
 命令switchport mode trunk执行结果:
 switchport mode trunk
-GPL116(config-if-ten-gigabitethernet-1:2)#
+GPL116(config-if-ten-gigabitethernet-1:1)#
 
 命令switchport trunk native vlan 4000执行结果:
 switchport trunk native vlan 4000
-GPL116(config-if-ten-gigabitethernet-1:2)#
+GPL116(config-if-ten-gigabitethernet-1:1)#
 
 命令switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 confirm执行结果:
 switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 confirm
-GPL116(config-if-ten-gigabitethernet-1:2)#
+GPL116(config-if-ten-gigabitethernet-1:1)#
 
 命令end执行结果:
 end
 GPL116#
 
-命令show run interface ten-gigabitethernet 1/2执行结果:
-show run interface ten-gigabitethernet 1/2
+命令show run interface ten-gigabitethernet 1/1执行结果:
+show run interface ten-gigabitethernet 1/1
 !command in ten-gigabitethernet_mode
-interface ten-gigabitethernet 1/2
+interface ten-gigabitethernet 1/1
+speed 1000 
 switchport trunk native vlan 4000 
 switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 
 switchport trunk untagged vlan remove 1 
@@ -325,13 +331,13 @@ tips:配置downlink......
 end
 GPL116#
 
-命令show run interface gpon-olt 3/2执行结果:
-show run interface gpon-olt 3/2
+命令show run interface gpon-olt 3/3执行结果:
+show run interface gpon-olt 3/3
 !command in gpon-olt_mode
-interface gpon-olt 3/2
+interface gpon-olt 3/3
 mac-address-table station move
 authorization mode none
-create gpon-onu 1 sn YHCT00704FAB line-profile-id 1024 service-profile-id 1015
+create gpon-onu 1 sn YHCT00707A1F line-profile-id 1024 service-profile-id 1006
 switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 
 switchport trunk untagged vlan remove 1 
 switchport mode trunk
@@ -345,57 +351,57 @@ Configuration mode, one command input per times. End with CTRL-Z.
 CONFIG-I:Configured from telnet ...
 GPL116(config)#
 
-命令interface gpon-olt 3/2执行结果:
-interface gpon-olt 3/2
-GPL116(config-if-gpon-olt-3:2)#
+命令interface gpon-olt 3/3执行结果:
+interface gpon-olt 3/3
+GPL116(config-if-gpon-olt-3:3)#
 
 命令mac-address-table station move执行结果:
 mac-address-table station move
-GPL116(config-if-gpon-olt-3:2)#
+GPL116(config-if-gpon-olt-3:3)#
 
 命令authorization mode none执行结果:
 authorization mode none
-GPL116(config-if-gpon-olt-3:2)#
+GPL116(config-if-gpon-olt-3:3)#
 
 命令no switchport mode执行结果:
 no switchport mode
-GPL116(config-if-gpon-olt-3:2)#
+GPL116(config-if-gpon-olt-3:3)#
 
 命令no switchport access vlan执行结果:
 no switchport access vlan
-GPL116(config-if-gpon-olt-3:2)#
+GPL116(config-if-gpon-olt-3:3)#
 
 命令no switchport trunk native vlan执行结果:
 no switchport trunk native vlan
-GPL116(config-if-gpon-olt-3:2)#
+GPL116(config-if-gpon-olt-3:3)#
 
 命令no switchport trunk allowed vlan执行结果:
 no switchport trunk allowed vlan
-GPL116(config-if-gpon-olt-3:2)#
+GPL116(config-if-gpon-olt-3:3)#
 
 命令no switchport trunk untagged vlan执行结果:
 no switchport trunk untagged vlan
-GPL116(config-if-gpon-olt-3:2)#
+GPL116(config-if-gpon-olt-3:3)#
 
 命令switchport mode trunk执行结果:
 switchport mode trunk
-GPL116(config-if-gpon-olt-3:2)#
+GPL116(config-if-gpon-olt-3:3)#
 
 命令switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 confirm执行结果:
 switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 confirm
-GPL116(config-if-gpon-olt-3:2)#
+GPL116(config-if-gpon-olt-3:3)#
 
 命令end执行结果:
 end
 GPL116#
 
-命令show run interface gpon-olt 3/2执行结果:
-show run interface gpon-olt 3/2
+命令show run interface gpon-olt 3/3执行结果:
+show run interface gpon-olt 3/3
 !command in gpon-olt_mode
-interface gpon-olt 3/2
+interface gpon-olt 3/3
 mac-address-table station move
 authorization mode none
-create gpon-onu 1 sn YHCT00704FAB line-profile-id 1024 service-profile-id 1015
+create gpon-onu 1 sn YHCT00707A1F line-profile-id 1024 service-profile-id 1006
 switchport trunk allowed vlan 10,20,30,40,1011-1020,4000 
 switchport trunk untagged vlan remove 1 
 switchport mode trunk
@@ -799,58 +805,60 @@ GPL116#
 
 tips:配置绑定自定义profile......
 
-命令show gpon-onu 3/2/1 capability | in ype执行结果:
-show gpon-onu 3/2/1 capability | in ype
-    ONU Type                   : sfu
+命令show gpon-onu 3/3/1 capability | in ype执行结果:
+show gpon-onu 3/3/1 capability | in ype
+    ONU Type                   : hgu
 
 GPL116(config)#
 
-命令show interface gpon-onu cr | in 3/2/1执行结果:
-show interface gpon-onu cr | in 3/2/1
-3/2/1     YHCT00704FAB        MONUM208              2023-10-14,11:39:46    active          1024    Def_P_all    1015    Def_8E         --
+命令show interface gpon-onu cr | in 3/3/1执行结果:
+show interface gpon-onu cr | in 3/3/1
+3/3/1     YHCT00707A1F        MONUV664              2023-10-16,22:20:44    active          1024    Def_P_all    1006    Def_VEIP       --
 
 GPL116(config)#
 
-该ONU为sfu类型，未绑定自定义模版，配置中请稍后......
+该ONU为hgu类型，未绑定自定义模版，配置中请稍后......
 
-命令int gpon-onu 3/2/1执行结果:
-int gpon-onu 3/2/1
-GPL116(config-if-gpon-onu-3/2:1)#
+命令int gpon-onu 3/3/1执行结果:
+int gpon-onu 3/3/1
+GPL116(config-if-gpon-onu-3/3:1)#
 
-命令line-profile-id 115执行结果:
-line-profile-id 115
-GPL116(config-if-gpon-onu-3/2:1)#
+命令line-profile-id 116执行结果:
+line-profile-id 116
+GPL116(config-if-gpon-onu-3/3:1)#
 
 命令
 
 执行结果:
 
-GPL116(config-if-gpon-onu-3/2:1)#
-GPL116(config-if-gpon-onu-3/2:1)#
-GPL116(config-if-gpon-onu-3/2:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
 
-命令service-profile-id 115执行结果:
-service-profile-id 115
-Oct-14-2023 11:44:48  gpon-onu-remote-3-ONU 3/2/1 ME upload process has been aborted(810)
-GPL116(config-if-gpon-onu-3/2:1)#
+命令service-profile-id 116执行结果:
+service-profile-id 116
+Oct-16-2023 22:26:22  gpon-onu-remote-3-ONU 3/3/1 ME upload next process has been aborted(810)
+GPL116(config-if-gpon-onu-3/3:1)#
 
 命令
 
 执行结果:
 
-GPL116(config-if-gpon-onu-3/2:1)#
-GPL116(config-if-gpon-onu-3/2:1)#
-GPL116(config-if-gpon-onu-3/2:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
 
-命令show interface gpon-onu cr | in 3/2/1执行结果:
-show interface gpon-onu cr | in 3/2/1
-3/2/1     YHCT00704FAB        Unknown               2023-10-14,11:39:46    active          115     profile-115  115     profile-115    --
+命令show interface gpon-onu cr | in 3/3/1执行结果:
+show interface gpon-onu cr | in 3/3/1
+3/3/1     YHCT00707A1F        MONUV664              2023-10-16,22:20:44    active          116     profile-116  116     profile-116    --
 
-GPL116(config-if-gpon-onu-3/2:1)#
+GPL116(config-if-gpon-onu-3/3:1)#
 
 ++++++++++++++++++++++++++++++++++++++++当前用例【profile_bind】测试结果为:pass
 
 ####################【profile_bind】脚本测试执行结束!####################
 
 
-Test end time is:Sat Oct 14 11:29:51 2023
+Test end time is: Mon Oct 16 22:11:20 2023
+
+Test elapsed time is: 360.4004sec
