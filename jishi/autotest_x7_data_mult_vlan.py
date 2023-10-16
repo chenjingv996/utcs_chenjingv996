@@ -614,17 +614,17 @@ class TelnetClient:
 
 
 if __name__ == '__main__':
-    start_time,end_time='Test start time is: ','Test end time is: '
-    start_cnt=time.perf_counter()
+    start_time,end_time = 'Test start time is: ','Test end time is: '
+    start_cnt = time.perf_counter()
     # 创建log文件
-    output=open(os.path.join(os.getcwd(),'run_demo_x7_mult_vlan.log'),'w',encoding='utf-8')
+    output = open(os.path.join(os.getcwd(),'run_demo_x7_mult_vlan.log'),'w',encoding = 'utf-8')
     # 打印log开始时间
-    telnetlib.Telnet().logfile=output.write(f'\n{start_time + dt.now().ctime()}\n')
+    telnetlib.Telnet().logfile = output.write(f'\n{start_time + dt.now().ctime()}\n')
     # 打印console开始时间
     print(f'\n{start_time + dt.now().ctime()}\n')
     # 创建telnet实例
     # 如果登录结果返回True，则执行命令，然后退出
-    telnet= TelnetClient()
+    telnet = TelnetClient()
     telnet.clear_config()
     # telnet.check_olt_version()
     # telnet.check_onu_version()
@@ -643,13 +643,13 @@ if __name__ == '__main__':
     # 打印console结束时间
     print(f'\n{end_time + dt.now().ctime()}\n')
     # 打印log结束时间
-    telnetlib.Telnet().logfile=output.write(f'\n{end_time + dt.now().ctime()}\n')
+    telnetlib.Telnet().logfile = output.write(f'\n{end_time + dt.now().ctime()}\n')
     # 打印程序耗时
-    end_cnt=time.perf_counter()
-    elapsed = end_cnt - start_cnt
-    print(f'\nTest elapsed is: {elapsed:.4f}sec\n')
-    telnetlib.Telnet().logfile=output.write(f'\nTest elapsed is: {elapsed:.4f}sec\n')
+    end_cnt = time.perf_counter()
+    elapsed_cnt = end_cnt - start_cnt
+    print(f'\nTest elapsed time is: {elapsed_cnt:.4f}sec\n')
+    telnetlib.Telnet().logfile = output.write(f'\nTest elapsed time is: {elapsed_cnt:.4f}sec\n')
     # 将标准输出和标准错误保存到log文件  
-    sys.stdout,sys.stderr=output,output
+    sys.stdout,sys.stderr = output,output
 
 # 执行方式：python3 demo_xxx.py x/x/x x/x执行脚本需传递2个参数，downlink和uplink
