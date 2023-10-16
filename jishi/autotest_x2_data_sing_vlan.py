@@ -670,8 +670,8 @@ if __name__ == '__main__':
     # 打印程序耗时
     end_cnt=time.perf_counter()
     elapsed = end_cnt - start_cnt
-    print(f'\nTest coast is: {elapsed:.4f}s\n')
-    telnetlib.Telnet().logfile=output.write(f'\nTest coast is: {elapsed:.4f}s\n')
+    print(f'\nTest elapsed is: {elapsed:.4f}sec\n')
+    telnetlib.Telnet().logfile=output.write(f'\nTest elapsed is: {elapsed:.4f}sec\n')
     # 将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
