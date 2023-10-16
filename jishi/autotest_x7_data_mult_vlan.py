@@ -3,7 +3,7 @@
 
 import logging
 import telnetlib
-import os,sys
+import os,sys,time
 from time import sleep
 from datetime import datetime as dt
 
@@ -614,8 +614,9 @@ class TelnetClient:
 
 
 if __name__ == '__main__':
-    start_time,end_time='Test start time is:','Test end time is:'
-    #创建log文件
+    start_time,end_time='Test start time is: ','Test end time is: '
+    start_cnt=time.perf_counter()
+   #创建log文件
     output=open(os.path.join(os.getcwd(),'run_demo_x7_mult_vlan.log'),'w',encoding='utf-8')
     #打印log开始时间
     telnetlib.Telnet().logfile=output.write(f'\n{start_time + dt.now().ctime()}\n')
@@ -643,6 +644,11 @@ if __name__ == '__main__':
     print(f'\n{end_time + dt.now().ctime()}\n')
     #打印log结束时间
     telnetlib.Telnet().logfile=output.write(f'\n{end_time + dt.now().ctime()}\n')
+    #打印程序耗时
+    end_cnt=time.perf_counter()
+    elapsed = end_cnt - start_cnt
+    print(f'\nTest coast is: {elapsed:.4f}s\n')
+    telnetlib.Telnet().logfile=output.write(f'\nTest coast is: {elapsed:.4f}s\n')
     #将标准输出和标准错误保存到log文件  
     sys.stdout,sys.stderr=output,output
 
