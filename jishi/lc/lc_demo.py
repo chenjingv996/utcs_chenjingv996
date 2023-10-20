@@ -1,23 +1,16 @@
 #!/usr/bin/env python
 #coding:utf-8
 
+import numpy as np
 
 class ccc:
-    def aaa(self,s:str)->int:
-        n=len(s)
-        ret,l,r=0,0,0
-        if n==0:
-            return 0
-        while r<n:
-            if s[r] not in s[l:r]:
-               r+=1
-               ret=max(ret,len(s[l:r]))
-               print(s[l:r]) #debug
-            else:
-                while s[r] in s[l:r]:
-                    l+=1
-        return ret
+    def aaa(self,nums:list[int])->str:
+        nd1=np.array(nums)
+        #print(nd1,type(nd1))
+        #return nd1,type(nd1)
+        return nd1
+
 
 bbb=ccc()
-print(bbb.aaa('cabcabcbb'))
+print(bbb.aaa([1,2,3]))
 
