@@ -12,7 +12,7 @@ class ccc:
             if s[r] not in s[l:r]:
                r+=1
                ret=max(ret,len(s[l:r]))
-               print(s[l:r])
+               print(s[l:r]) #debug
             else:
                 while s[r] in s[l:r]:
                     l+=1
