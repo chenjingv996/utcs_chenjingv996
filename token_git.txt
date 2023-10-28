@@ -1,3 +1,12 @@
+gitee server:
+
+https://gitee.com/chenjingv996/utcs_chenjingv996/tree/main/jishi
+https://gitee.com/chenjingv996/utcs_chenjingv996.git
+git push:
+chenjingv996
+EINSTEIN!23.
+
+---------------------------------------------------------------------------------
 git server:
 
 https://github.com/chenjingv996/utcs_chenjingv996
